@@ -9,6 +9,7 @@
   --mirage: rgba(20, 28, 37, 255);
 }
 body {
+    color: #fff;
   display: flex;
   height: 100vh;
   font-family: "Poppins", sans-serif;
@@ -71,16 +72,15 @@ section{
     background-color: #10141c;
 }
 .film-list{
-    display: grid;
-    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+}
+.films-container{
+    display: flex;
+    gap: 2em;
+    margin: auto 2rem;
 }
 
-@media screen and (min-width: 768px){
-    .film-list{
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-}
 .film-title{
     color: #fff;
 }
