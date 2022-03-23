@@ -88,6 +88,9 @@ section{
 .film-title{
     color: #fff;
 }
+.film-image{
+    border-radius: 0.5rem;
+}
 .film:hover{
     transform: scale(1.2);
 }
