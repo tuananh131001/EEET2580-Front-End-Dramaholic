@@ -75,7 +75,7 @@ header {
 section{
     background-color: #10141c;
 }
-.film-list{
+.film-list-top{
     display: flex;
     flex-direction: column;
 }
@@ -86,11 +86,19 @@ section{
 }
 
 .film-title{
+    font-size: 0.8rem;
+    text-align: center;
     color: #fff;
 }
 .film-image{
     border-radius: 0.5rem;
 }
+.film{
+    padding: 0.5em;
+    border-radius: 1em;
+}
 .film:hover{
+    cursor: pointer;
     transform: scale(1.2);
+    background-color: rgba(20, 28, 37, 255);
 }
