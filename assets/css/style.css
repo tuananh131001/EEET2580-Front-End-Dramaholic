@@ -95,6 +95,7 @@ header {
     color: #fff;
 }
 .film-image{
+    min-width: 60%;
     border-radius: 0.5rem;
 }
 .film{
@@ -105,8 +106,11 @@ header {
     border-radius: 1em;
     gap: 0.3em;
 }
-.film:hover{
+.film h1:hover {
+    color: #41c4e2  ;
     cursor: pointer;
-    transform: scale(1.1);
-    background-color: rgba(20, 28, 37, 255);
+}
+.film img:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
