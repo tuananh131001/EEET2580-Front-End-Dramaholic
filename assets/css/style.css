@@ -13,6 +13,7 @@ body {
   display: flex;
   height: 100vh;
   font-family: "Poppins", sans-serif;
+    background-color:#10141c ;
 }
 aside {
   display: flex;
@@ -107,10 +108,17 @@ header {
     gap: 0.3em;
 }
 .film h1:hover {
-    color: #41c4e2  ;
+    color: rgb(255, 6, 6)  ;
     cursor: pointer;
 }
 .film img:hover {
     cursor: pointer;
     opacity: 0.8;
 }
+@media screen and (max-width: 30em) {
+  aside{
+      display: none;
+  }
+
+}
+    
