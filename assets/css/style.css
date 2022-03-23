@@ -43,6 +43,10 @@ body > :nth-child(2) {
 
   border-left: 5px solid #41c4e2;
 }
+.logo{
+    margin-top: 1rem;
+    max-width:40%;
+}
 .logo-text {
   font-size: 1rem;
   color: #5f6875;
