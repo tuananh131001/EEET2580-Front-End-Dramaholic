@@ -82,9 +82,12 @@ section{
 .films-container{
     display: flex;
     gap: 2em;
-    margin: auto 2rem;
+    margin: 5em 2em;
 }
 
 .film-title{
     color: #fff;
+}
+.film:hover{
+    transform: scale(1.2);
 }
