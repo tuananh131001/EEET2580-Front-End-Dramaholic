@@ -93,7 +93,7 @@ nav img {
 /* Billbroad */
 .billboard {
   display: flex;
-  min-height: 60vh;
+  min-height: 80vh;
 
   flex-direction: column;
 }
@@ -155,9 +155,8 @@ nav img {
   border-radius: 5px;
   width: 98%;
 }
-.movie-list {
-
-  gap: 2em;
+.thumbTitle {
+  padding-left: 2em;
 }
 /* Swipe */
 @media screen and (max-width: 30em) {
