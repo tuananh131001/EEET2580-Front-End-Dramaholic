@@ -59,7 +59,7 @@ section {
   display: flex;
   flex-direction: column;
   width: 80%;
-  background-color: #10141c;
+  background-color: red;
 }
 
 .nav-top{
@@ -89,6 +89,11 @@ section {
 /* End Sidebar */
 
 /* Start Right Container */
+.movie-row{
+  display: flex;
+  gap: 1em;
+  overflow:scroll;
+}
 
 
 
