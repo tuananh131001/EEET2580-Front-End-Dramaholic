@@ -1,3 +1,4 @@
+
 const filmContainer1 = document.querySelector(".korean");
 const filmContainer2 = document.querySelector(".trending");
 
@@ -40,22 +41,22 @@ const filmList1 = [
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/title_card_dark/2022/03/04/5er4bv0y_title-conangbuongbinh_815_255.webp",
   },
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2022/03/08/g69j46gx_1920x1080tuoithanhxuan-1_296_168.webp",
   },
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2022/03/04/24c7gijx_1920x1080-damcuoi_296_168.webp",
   },
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2022/03/04/xc3s51hg_1920x1080-haithan_296_168.webp",
   },
 ];
 const filmList2 = [

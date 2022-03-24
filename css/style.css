@@ -18,6 +18,10 @@ body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
   background-color: #10141c;
+  
+}
+main{
+  background: linear-gradient(77deg,rgba(0,0,0,.6) 0,rgba(0,0,0,0) 85%);
 }
 
 /* Start side bar */
@@ -29,7 +33,9 @@ nav {
   background-color: transparent;
   padding: 0 3em;
   top: 0;
+  background-color: var(--mirage);
 }
+
 
 nav img {
   object-fit: cover;
@@ -94,7 +100,6 @@ nav img {
 .billboard {
   display: flex;
   min-height: 80vh;
-
   flex-direction: column;
 }
 
