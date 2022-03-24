@@ -7,6 +7,11 @@
 }
 :root {
   --mirage: rgba(20, 28, 37, 255);
+  --colorOne: #141414;
+  --colorTwo: #5c5c5c;
+  --colorWhite: #e5e5e5;
+
+  --tileBorderRadius: 4px;
 }
 body {
   color: #fff;
@@ -26,6 +31,8 @@ nav {
   padding: 0 3em;
   top: 0;
 }
+
+
 
 nav img{
   object-fit: cover;
@@ -114,7 +121,7 @@ nav img{
   flex-direction: column;
   gap: 1em;
   width: max(50%,500px);
-  padding: 8em 3em;
+  padding: 8em 2em;
 }
 .text-shadow{
   text-shadow: 2px 2px #10141c;
@@ -149,9 +156,16 @@ nav img{
 
 
 .movie-container{
-  padding: 2em 2em;
+  padding-left: 2em;
+}
+/* Swipe */
+
+.thumbTile__image{
+  border-radius: 5px;
+  width: 98%;
 }
 
+/* Swipe */
 @media screen and (max-width: 30em) {
   aside {
     display: none;

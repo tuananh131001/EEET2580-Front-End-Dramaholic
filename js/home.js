@@ -70,14 +70,38 @@ const filmList2 = [
       "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/01/07/vdex07ka_horizontal-thumbnail-nuaduongmat0e1832ec2d83da051e1cc4e2c0f9d367_296_168.webp",
   },
 ];
-let filmClass = "<div class=" + "movie-poster" + ">";
+// let filmClassstart =
+//   '<div class="swiper-slide"><a class="thumbTile" href="#"><img class="thumbTile__image" src="';
+// let filmClassend = '" alt="Suits"></a></div>';
+let filmClassstart =
+  '<div class="swiper-slide"><img class="thumbTile__image" src="';
+let filmClassend = '"></div>';
+
 filmList1.forEach(
   (film) =>
-    (filmContainer1.innerHTML +=
-      filmClass + "<img src=" + film.image + ">" + "</div>")
+    (filmContainer1.innerHTML += filmClassstart + film.image + filmClassend)
 );
-filmList2.forEach(
-  (film) =>
-    (filmContainer2.innerHTML +=
-      filmClass + "<img src=" + film.image + ">" + "</div>")
-);
+
+// End Swipe
+const swiper = new Swiper(".swiper", {
+  // Optional parameters
+  spaceBetween: 5,
+  slidesPerView: 2,
+  loop: true,
+  freeMode: true,
+  loopAdditionalSlides: 5,
+  speed: 500,
+  // Navigation arrows
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
+      freeMode: false,
+    },
+  },
+});
