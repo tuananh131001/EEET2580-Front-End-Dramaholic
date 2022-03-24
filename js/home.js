@@ -15,22 +15,22 @@ const filmList1 = [
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/11/19/sny500e6_1920x1080-keanhoilo_296_168.webp",
   },
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2020/12/25/izk8e6is_1920x1080-riddickthonglinhbongtoi_296_168.webp",
   },
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/12/02/7uywy9bh_1920x1080-hoden_296_168.webp",
   },
   {
     id: 2,
     image:
-      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/07/27/v0k12byv_1920x1080-chaytron2020_296_168.webp",
+      "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2021/03/17/z4pqgeck_1920x1080-thuanhuyet7_296_168.webp",
   },
   {
     id: 2,
@@ -81,7 +81,10 @@ filmList1.forEach(
   (film) =>
     (filmContainer1.innerHTML += filmClassstart + film.image + filmClassend)
 );
-
+filmList2.forEach(
+  (film) =>
+    (filmContainer2.innerHTML += filmClassstart + film.image + filmClassend)
+);
 // End Swipe
 const swiper = new Swiper(".swiper", {
   // Optional parameters
