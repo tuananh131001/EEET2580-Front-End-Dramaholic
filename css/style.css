@@ -97,13 +97,17 @@ section {
 .billboard-image img{
   width: 100%;
 }
+.billboard-description{
+  font-size: 1.4vw;
+}
+
 .billboard-text{
   display: flex;
   flex-direction: column;
   gap: 1em;
   position: absolute;
   max-width: 40vw;
-  margin-top: -40em;
+  margin-top: -30em;
   margin-left: 3em;
 }
 .text-shadow{
@@ -115,7 +119,15 @@ section {
   padding: 0.3em 0.875em;
   border-radius: 5px;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+.button-play{
+  display: flex;
+  gap: 0.2em;
+}
+.button-container{
+  display: flex;
+  gap: 1em;
 }
 .more-info{
   color: #fff;
