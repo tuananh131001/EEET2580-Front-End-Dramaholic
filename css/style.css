@@ -10,28 +10,26 @@
 }
 body {
   color: #fff;
-  display: flex;
   height: 100vh;
   font-family: "Poppins", sans-serif;
   background-color: #10141c;
 }
-body > :nth-child(2) {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+
 
 /* Start side bar */
 nav {
+  position: sticky;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 1.5em 0;
   justify-content: space-between;
   background-color: transparent;
-  min-height: 100%;
-  width: 6rem;
-  position: sticky;
+  padding: 0 3em;
+  top: 0;
+}
+
+nav img{
+  object-fit: cover;
+  width: 30%;
 }
 
 .browse a {
@@ -52,26 +50,18 @@ nav {
 
 .browse {
   display: flex;
-  flex-direction: column;
   text-transform: uppercase;
   gap: 0.875em;
 }
-section {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-}
 
-.nav-top{
+
+.nav-left{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2em;
 }
 
 .nav-bottom{
   display: flex;
-  flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   gap: 2em;
@@ -92,27 +82,45 @@ section {
 .movie-row{
   display: flex;
   gap: 1em;
+
   overflow:scroll;
+  position: relative;
 }
+
+
+
+/* Billbroad */
+.billboard{
+  display: flex;
+  min-height: 60vh;
+
+  flex-direction: column;
+}
+
 .billboard-image img{
   width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  min-height: 100vh;
 }
+
 .billboard-description{
   font-size: 1.4vw;
 }
 
-.billboard-text{
+.billboard-details{
   display: flex;
   flex-direction: column;
   gap: 1em;
-  position: absolute;
-  max-width: 40vw;
-  margin-top: -30em;
-  margin-left: 3em;
+  width: max(50%,500px);
+  padding: 8em 3em;
 }
 .text-shadow{
   text-shadow: 2px 2px #10141c;
 }
+/* Billboard */
+
 /* Billboard Button */
 .more-info,
 .button-play{
@@ -139,6 +147,10 @@ section {
 
 /* End Right container */
 
+
+.movie-container{
+  padding: 2em 2em;
+}
 
 @media screen and (max-width: 30em) {
   aside {
