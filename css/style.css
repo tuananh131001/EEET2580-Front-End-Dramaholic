@@ -179,10 +179,16 @@ nav img {
 .card:hover .card-title:after {
   transform: scaleX(1);
 }
-.card:hover .card-content {
+.card:hover .card-content, .card:focus-within .card-content {
   transform: translateY(0);
   transition: transform 500ms ease;
   transition-delay: 500ms;
+}
+.card:focus-within .card-content {
+  transition-duration: 0ms;
+}
+.card:hover, .card:focus-within {
+  transform: scale(1.05);
 }
 .card .card-content > *:not(.card-title) {
   opacity: 0;
@@ -198,7 +204,7 @@ nav img {
   overflow: hidden;
   transform: translateY(65%);
 }
-.card:hover .card-content > *:not(.card-title) {
+.card:hover .card-content > *:not(.card-title), .card:focus-within .card-content > *:not(.card-title) {
   opacity: 1;
   transition-delay: 1000ms;
 }

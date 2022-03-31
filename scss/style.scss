@@ -177,10 +177,18 @@ nav img {
   &:hover .card-title:after {
     transform: scaleX(1);
   }
-  &:hover .card-content {
+  &:hover .card-content,
+  &:focus-within .card-content {
     transform: translateY(0);
     transition: transform 500ms ease;
     transition-delay: 500ms;
+  }
+  &:focus-within .card-content {
+      transition-duration: 0ms;
+  }
+  &:hover,
+  &:focus-within{
+      transform: scale(1.05);
   }
 
   .card-content > *:not(.card-title) {
@@ -203,7 +211,8 @@ nav img {
     transform: translateY(65%);
   }
 
-  &:hover .card-content > *:not(.card-title) {
+  &:hover .card-content > *:not(.card-title),
+  &:focus-within .card-content > *:not(.card-title) {
     opacity: 1;
     transition-delay: 1000ms ;
   }
