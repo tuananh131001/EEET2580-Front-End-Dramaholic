@@ -30,11 +30,11 @@ fetch("https://dramaholic.herokuapp.com/api/movies")
 // End Swipe
 const swiper = new Swiper(".swiper", {
   // Optional parameters
-  spaceBetween: 5,
+  spaceBetween: 6,
   slidesPerView: 2,
   loop: true,
   freeMode: true,
-  loopAdditionalSlides: 5,
+  loopAdditionalSlides: 6,
   speed: 500,
   // Navigation arrows
   navigation: {
@@ -44,8 +44,8 @@ const swiper = new Swiper(".swiper", {
   breakpoints: {
     // when window width is >= 640px
     640: {
-      slidesPerView: 5,
-      slidesPerGroup: 5,
+      slidesPerView: 6,
+      slidesPerGroup: 6,
       freeMode: false,
     },
   },
