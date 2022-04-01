@@ -6,19 +6,11 @@
   box-sizing: border-box;
 }
 
-:root {
-  --mirage: rgba(20, 28, 37, 255);
-  --colorOne: #141414;
-  --colorTwo: #5c5c5c;
-  --colorWhite: #e5e5e5;
-  --tileBorderRadius: 4px;
-}
-
 body {
   color: #fff;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: #10141c;
+  background-color: #131834;
 }
 
 main {
@@ -52,7 +44,7 @@ nav .nav-left {
   align-items: center;
 }
 nav .sign-in {
-  background-color: #e50914;
+  background-color: #c1071e;
   color: white;
   font-weight: 400;
   font-size: 1rem;
