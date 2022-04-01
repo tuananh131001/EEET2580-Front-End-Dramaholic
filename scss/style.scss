@@ -64,9 +64,9 @@ nav {
     color: white;
     font-weight: 400;
     font-size: 1rem;
-    border-radius: 3px;
+    border-radius: 5px;
     border: none;
-    padding: 0.3rem 1rem;
+    padding: .5rem 1rem;
   }
   .browse {
     @include flex(row, center, flex-start);
@@ -159,7 +159,7 @@ nav {
   width: 98%;
 }
 .thumbTitle {
-  padding-left: 2em;
+  padding: .3em 2em;
 }
 
 .card {

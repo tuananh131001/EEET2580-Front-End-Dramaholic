@@ -62,9 +62,9 @@ nav .sign-in {
   color: white;
   font-weight: 400;
   font-size: 1rem;
-  border-radius: 3px;
+  border-radius: 5px;
   border: none;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
 }
 nav .browse {
   display: flex;
@@ -159,7 +159,7 @@ nav .browse li:hover {
 }
 
 .thumbTitle {
-  padding-left: 2em;
+  padding: 0.3em 2em;
 }
 
 .card {
