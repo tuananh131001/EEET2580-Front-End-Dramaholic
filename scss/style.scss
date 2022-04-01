@@ -25,26 +25,29 @@ main {
     rgba(0, 0, 0, 0) 85%
   );
 }
+@mixin flex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
 
 /* Start side bar */
 nav {
   position: sticky;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(row, center, space-between);
   padding: 0 2em;
   top: 0;
-  background-color: 	#000000;
-  .nav-right{
-    display: flex;
-    align-items: center;
+  background-color: #000000;
+  .nav-right {
+    @include flex(row, center, flex-start);
     gap: 2em;
   }
   .logo {
     margin-top: 1em;
     max-width: 55%;
   }
-  
+
   .nav-left {
     display: flex;
     align-items: center;
@@ -59,8 +62,7 @@ nav {
     padding: 0.3rem 1rem;
   }
   .browse {
-    display: flex;
-    align-items: center;
+    @include flex(row, center, flex-start);
     text-transform: uppercase;
     list-style: none;
     gap: 0.875em;
@@ -83,18 +85,7 @@ nav img {
   width: 30%;
 }
 
-
-
 /* End Sidebar */
-
-/* Start Right Container */
-.movie-row {
-  display: flex;
-  gap: 1em;
-
-  overflow: scroll;
-  position: relative;
-}
 
 /* Billbroad */
 .billboard {

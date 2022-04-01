@@ -29,6 +29,7 @@ main {
 nav {
   position: sticky;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 0 2em;
@@ -37,7 +38,9 @@ nav {
 }
 nav .nav-right {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 2em;
 }
 nav .logo {
@@ -59,7 +62,9 @@ nav .sign-in {
 }
 nav .browse {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   text-transform: uppercase;
   list-style: none;
   gap: 0.875em;
@@ -82,14 +87,6 @@ nav img {
 }
 
 /* End Sidebar */
-/* Start Right Container */
-.movie-row {
-  display: flex;
-  gap: 1em;
-  overflow: scroll;
-  position: relative;
-}
-
 /* Billbroad */
 .billboard {
   display: flex;
