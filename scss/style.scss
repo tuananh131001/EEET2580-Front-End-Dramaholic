@@ -29,11 +29,16 @@ main {
 
 /* Start side bar */
 nav {
-  position: sticky;
+  position: fixed;
   @include flex(row, center, space-between);
   padding: 0 2em;
   top: 0;
   background-color: #000000;
+  z-index: 99;
+  img {
+    object-fit: cover;
+    width: 30%;
+  }
   .nav-right {
     @include flex(row, center, flex-start);
     gap: 2em;
@@ -42,7 +47,6 @@ nav {
     margin-top: 1em;
     max-width: 55%;
   }
-
   .nav-left {
     display: flex;
     align-items: center;
@@ -75,10 +79,6 @@ nav {
   }
 }
 
-nav img {
-  object-fit: cover;
-  width: 30%;
-}
 
 /* End Sidebar */
 
@@ -135,13 +135,13 @@ nav img {
   background-color: rgba(109, 109, 110, 0.7);
 }
 /* End Button */
-
-/* End Right container */
-
+.movie-list{
+  @include flex(column,left,flex-start);
+  gap: 2em;
+}
 .movie-container {
   padding-left: 2em;
 }
-/* Swipe */
 
 .thumbTile__image {
   border-radius: 5px;

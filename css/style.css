@@ -19,7 +19,7 @@ main {
 
 /* Start side bar */
 nav {
-  position: sticky;
+  position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,6 +27,11 @@ nav {
   padding: 0 2em;
   top: 0;
   background-color: #000000;
+  z-index: 99;
+}
+nav img {
+  object-fit: cover;
+  width: 30%;
 }
 nav .nav-right {
   display: flex;
@@ -71,11 +76,6 @@ nav .browse li:hover {
   cursor: pointer;
   color: #41c4e2;
   border-left: 5px solid #41c4e2;
-}
-
-nav img {
-  object-fit: cover;
-  width: 30%;
 }
 
 /* End Sidebar */
@@ -132,12 +132,18 @@ nav img {
 }
 
 /* End Button */
-/* End Right container */
+.movie-list {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  gap: 2em;
+}
+
 .movie-container {
   padding-left: 2em;
 }
 
-/* Swipe */
 .thumbTile__image {
   border-radius: 5px;
   width: 98%;
