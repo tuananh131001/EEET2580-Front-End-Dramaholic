@@ -28,12 +28,18 @@ main {
 }
 
 /* Start side bar */
+.nav-colored {
+  background-color: #000;
+}
+.nav-transparent {
+  background-color: transparent;
+}
 nav {
   position: fixed;
   @include flex(row, center, space-between);
   padding: 0 2em;
   top: 0;
-  background-color: #000000;
+  background-color: #ffffff1a;
   z-index: 99;
   img {
     object-fit: cover;
@@ -73,8 +79,9 @@ nav {
     }
     li:hover {
       cursor: pointer;
-      color: #41c4e2;
-      border-left: 5px solid #41c4e2;
+      color: colors.$red;
+      padding: 0.5em;
+      border-left: 5px solid colors.$red;
     }
   }
 }
@@ -116,10 +123,9 @@ nav {
     border-radius: 5px;
     border: none;
     font-size: 1.5rem;
-    
   }
   .more-info:hover,
-  .button-play:hover{
+  .button-play:hover {
     cursor: pointer;
     transform: scale(1.05);
   }

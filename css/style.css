@@ -18,6 +18,14 @@ main {
 }
 
 /* Start side bar */
+.nav-colored {
+  background-color: #000;
+}
+
+.nav-transparent {
+  background-color: transparent;
+}
+
 nav {
   position: fixed;
   display: flex;
@@ -26,7 +34,7 @@ nav {
   justify-content: space-between;
   padding: 0 2em;
   top: 0;
-  background-color: #000000;
+  background-color: #ffffff1a;
   z-index: 99;
 }
 nav img {
@@ -74,8 +82,9 @@ nav .browse li {
 }
 nav .browse li:hover {
   cursor: pointer;
-  color: #41c4e2;
-  border-left: 5px solid #41c4e2;
+  color: #c1071e;
+  padding: 0.5em;
+  border-left: 5px solid #c1071e;
 }
 
 /* End Sidebar */
