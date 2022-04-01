@@ -95,7 +95,7 @@ nav .browse li:hover {
 /* Billbroad */
 .billboard {
   display: flex;
-  min-height: 80vh;
+  min-height: 90vh;
   flex-direction: column;
   /* Billboard Button */
   /* End Button */
