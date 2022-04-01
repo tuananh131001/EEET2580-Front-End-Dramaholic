@@ -30,11 +30,13 @@ main {
 /* Start side bar */
 .nav-colored {
   background-color: #000;
-  
+  transition: background-color .4s ease;
 }
 .nav-transparent {
   background-color: transparent;
+  transition: background-color .4s ease;
 }
+
 nav {
   position: fixed;
   @include flex(row, center, space-between);
@@ -42,6 +44,7 @@ nav {
   top: 0;
   background-color: transparent;
   z-index: 99;
+
   img {
     object-fit: cover;
     width: 30%;
@@ -66,8 +69,9 @@ nav {
     font-size: 1rem;
     border-radius: 5px;
     border: none;
-    padding: .5rem 1rem;
-  }.sign-in:hover{
+    padding: 0.5rem 1rem;
+  }
+  .sign-in:hover {
     cursor: pointer;
     background-color: colors.$white;
     color: colors.$blue;
@@ -163,7 +167,7 @@ nav {
   width: 98%;
 }
 .thumbTitle {
-  padding: .3em 2em;
+  padding: 0.3em 2em;
 }
 
 .card {
