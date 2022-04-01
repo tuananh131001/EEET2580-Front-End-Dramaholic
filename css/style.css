@@ -220,14 +220,16 @@ nav .browse li:hover {
   cursor: pointer;
   display: inline;
   text-decoration: none;
-  color: black;
-  background-color: lightgreen;
+  border: none;
+  color: white;
+  background-color: #c1071e;
   padding: 0.5em 1.25em;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 .card .button:hover,
 .card .button:focus {
   background-color: white;
+  color: #131834;
 }
 
 /* Swipe */

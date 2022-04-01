@@ -235,14 +235,16 @@ nav {
     cursor: pointer;
     display: inline;
     text-decoration: none;
-    color: black;
-    background-color: lightgreen;
+    border: none;
+    color: colors.$white;
+    background-color: colors.$red;
     padding: 0.5em 1.25em;
-    border-radius: 5px;
+    border-radius: 0.5rem;
   }
   .button:hover,
   .button:focus {
     background-color: white;
+    color: colors.$blue;
   }
 }
 
