@@ -30,6 +30,7 @@ main {
 /* Start side bar */
 .nav-colored {
   background-color: #000;
+  
 }
 .nav-transparent {
   background-color: transparent;
@@ -39,7 +40,7 @@ nav {
   @include flex(row, center, space-between);
   padding: 0 2em;
   top: 0;
-  background-color: #ffffff1a;
+  background-color: transparent;
   z-index: 99;
   img {
     object-fit: cover;
@@ -79,8 +80,7 @@ nav {
     }
     li:hover {
       cursor: pointer;
-      color: colors.$red;
-      padding: 0.5em;
+      transform: scale(1.05);
       border-left: 5px solid colors.$red;
     }
   }

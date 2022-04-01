@@ -34,7 +34,7 @@ nav {
   justify-content: space-between;
   padding: 0 2em;
   top: 0;
-  background-color: #ffffff1a;
+  background-color: transparent;
   z-index: 99;
 }
 nav img {
@@ -82,8 +82,7 @@ nav .browse li {
 }
 nav .browse li:hover {
   cursor: pointer;
-  color: #c1071e;
-  padding: 0.5em;
+  transform: scale(1.05);
   border-left: 5px solid #c1071e;
 }
 
