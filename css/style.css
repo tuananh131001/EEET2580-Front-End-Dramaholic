@@ -66,6 +66,11 @@ nav .sign-in {
   border: none;
   padding: 0.5rem 1rem;
 }
+nav .sign-in:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #131834;
+}
 nav .browse {
   display: flex;
   flex-direction: row;
