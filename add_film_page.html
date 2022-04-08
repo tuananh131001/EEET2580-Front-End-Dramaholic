@@ -77,12 +77,6 @@
         color: #131834;
       }
 
-      footer {
-        background-color: transparent;
-      }
-      
-
-      
 
     </style>
 
@@ -106,7 +100,7 @@
             <tr>
               <td><label for="description">Description:</label></td>
               <td>
-                <input height="300%" required class="add_film_input_box" type="text" id="description" name="description"></td>
+                <input required class="add_film_input_box" type="text" id="description" name="description"></td>
             </tr>
 
             <tr>
@@ -116,9 +110,9 @@
             </tr>
 
             <tr>
-              <td><label for="thumbnail">Thumbnail:</label></td>
+              <td><label for="thumbnail">Thumbnail (URL):</label></td>
               <td>
-                <input required class="add_film_input_box" type="image" id="thumbnail" name="thumnail"></td>
+                <input required class="add_film_input_box" type="url" id="thumbnail" name="thumnail"></td>
             </tr>
 
             <tr>
@@ -148,7 +142,7 @@
             <tr>
               <td><label for="cast">Cast:</label></td>
               <td>
-                <input class="add_film_input_box" type="text" id="cast" name="cast" value=""></td>
+                <input class="add_film_input_box" type="text" id="cast" name="cast"></td>
             </tr>
 
             <tr>
@@ -168,8 +162,7 @@
         </form>
 
         <div class="button_wrapper">
-          <input class="red_theme_button" type="submit" value="Submit">
-          <!-- <input type="reset">           -->
+          <input class="red_theme_button" type="button" onclick="submit_form()" value="Submit">
         </div>
 
     </main>
@@ -178,5 +171,10 @@
     src="./header_footer/footer.txt"></script>
     </footer>
     <script src="./js/home.js"></script>
+    <script>
+      function submit_form() {
+
+      }
+    </script>
   </body>
 </html>
