@@ -4,63 +4,67 @@
   font-family: "Poppins";
 }
 
+html{
+  font-size: 62.5%;
+}
+
 body {
   background-color: #10141c;
   position: relative;
   display: flex;
   flex-direction:column;
   height: 100vh;
-  padding: 20px;
+  padding: 2rem;
 }
 
 .backButt {
   position: relative;
-  top: 20px;
-  padding-left: 30px;
+  top: 2rem;
+  padding-left: 3rem;
 }
 
 .ti-angle-double-left {
   color: white;
-  font-size: 30px;
+  font-size: 3.5rem;
 }
 
 img {
   display: block;
-  max-width: 300px;
+  max-width: 30rem;
   height: auto;
   margin: auto;
 }
 
 section.main {
   text-align: center;
-  height: 400px;
-  margin-top: 50px;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .title {
   color: #dd3d3d;
   text-transform: uppercase;
-  font-size: 35px;
-  margin-bottom: 20px;
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
 }
 
 input {
   background-color: #c4c4c4;
-  height: 38px;
-  width: 200px;
+  height: 3.8rem;
+  width: 23rem;
   border-radius: 5px;
   border-style: none;
-  padding-left: 10px;
-  margin: 8px;
+  padding-left: 1em;
+  margin: 0.8rem;
 }
 
 button {
   color: white;
-  margin: 15px;
-  font-size: 13 px;
+  margin: 1.5em;
+  font-size: 1.4rem;
   background-color: #dd3d3d;
-  height: 30px;
-  width: 70px;
+  height: 3rem;
+  width: 7rem;
   border-radius: 5px;
   border-style: none;
   cursor: pointer;
@@ -85,4 +89,5 @@ footer {
   flex-wrap: wrap;
   padding: 0 30px;
   margin-top:auto;
+  font-size: 1.6rem;
 }
