@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Poppins";
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #10141c;
+  position: relative;
+  display: flex;
+  flex-direction:column;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.backButt {
+  position: relative;
+  top: 2rem;
+  padding-left: 3rem;
+}
+
+.ti-angle-double-left {
+  color: white;
+  font-size: 3.5rem;
+}
+
+img {
+  display: block;
+  max-width: 30rem;
+  height: auto;
+  margin: auto;
+}
+
+section.main {
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.title {
+  color: #dd3d3d;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+input {
+  background-color: #c4c4c4;
+  height: 3.8rem;
+  width: 23rem;
+  border-radius: 5px;
+  border-style: none;
+  padding-left: 1em;
+  margin: 0.8rem;
+}
+
+button {
+  color: white;
+  margin: 1.5em;
+  font-size: 1.4rem;
+  background-color: #dd3d3d;
+  height: 3rem;
+  width: 7rem;
+  border-radius: 5px;
+  border-style: none;
+  cursor: pointer;
+}
+
+div.messages {
+  color: white;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+a {
+  color: #b73537;
+  font-weight: bold;
+}
+
+footer {
+  width: 100%;
+  color: #b63537;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 30px;
+  margin-top:auto;
+  font-size: 1.6rem;
+}
