@@ -46,7 +46,7 @@ nav {
   z-index: 99;
 
   img {
-    object-fit: cover;
+    object-fit:cover;
     width: 30%;
   }
   .nav-right {
@@ -57,6 +57,7 @@ nav {
   .logo {
     margin-top: 1em;
     max-width: 55%;
+    min-width: 50%;
   }
   .nav-left {
     display: flex;
