@@ -109,3 +109,11 @@ window.onscroll = function () {
         myNav.classList.remove("nav-colored");
     }
 };
+
+openNav = () => {
+  const subNav = document.querySelector("#sideNav");
+  if(subNav.style.width === "")
+      subNav.style.width = "80%";
+  else
+      subNav.style.width = "";
+}
