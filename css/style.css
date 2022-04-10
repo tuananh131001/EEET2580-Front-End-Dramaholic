@@ -185,6 +185,21 @@ nav .sign-in-subBar:hover {
 .card .card-body {
   padding-top: 0.5em;
 }
+.card .button {
+  cursor: pointer;
+  display: inline;
+  text-decoration: none;
+  border: none;
+  color: white;
+  background-color: #c1071e;
+  padding: 0.5em 1.25em;
+  border-radius: 0.5rem;
+}
+.card .button:hover,
+.card .button:focus {
+  background-color: white;
+  color: #131834;
+}
 
 .billboard,
 .header-navigation-text,
