@@ -276,7 +276,7 @@ nav .sign-in-subBar:hover {
     /* Billboard Button */
     /* End Button */
   }
-  .billboard img {
+  .billboard .feature-movie {
     width: 100%;
     position: absolute;
     top: 0;
