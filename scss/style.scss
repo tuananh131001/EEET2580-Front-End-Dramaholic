@@ -30,11 +30,11 @@ main {
 /* Start side bar */
 .nav-colored {
   background-color: #000;
-  transition: background-color .4s ease;
+  transition: background-color 0.4s ease;
 }
 .nav-transparent {
   background-color: transparent;
-  transition: background-color .4s ease;
+  transition: background-color 0.4s ease;
 }
 
 nav {
@@ -42,11 +42,12 @@ nav {
   @include flex(row, center, space-between);
   padding: 0 2em;
   top: 0;
+  width: 100%;
   background-color: transparent;
   z-index: 99;
 
   img {
-    object-fit:cover;
+    object-fit: cover;
     width: 30%;
   }
   .nav-right {
@@ -56,8 +57,7 @@ nav {
   }
   .logo {
     margin-top: 1em;
-    max-width: 55%;
-    min-width: 50%;
+    width: 18rem;
   }
   .nav-left {
     display: flex;
@@ -75,7 +75,7 @@ nav {
   .sign-in:hover {
     cursor: pointer;
     background-color: colors.$white;
-    color: colors.$blue;
+    color: colors.$red;
   }
   .browse {
     @include flex(row, center, flex-start);
