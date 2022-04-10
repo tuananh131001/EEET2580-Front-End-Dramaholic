@@ -186,19 +186,20 @@ nav .sign-in-subBar:hover {
   padding-top: 0.5em;
 }
 .card .button {
-  cursor: pointer;
-  display: inline;
-  text-decoration: none;
-  border: none;
-  color: white;
   background-color: #c1071e;
-  padding: 0.5em 1.25em;
-  border-radius: 0.5rem;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
 }
 .card .button:hover,
 .card .button:focus {
+  cursor: pointer;
   background-color: white;
-  color: #131834;
+  color: #c1071e;
 }
 
 .billboard,
