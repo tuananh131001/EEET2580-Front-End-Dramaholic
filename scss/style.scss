@@ -219,8 +219,17 @@ nav {
   .hamburger {
     display: none;
   }
-
+  /* Start side bar */
+  .nav-colored {
+    background-color: #000;
+    transition: background-color 0.4s ease;
+  }
+  .nav-transparent {
+    background-color: transparent;
+    transition: background-color 0.4s ease;
+  }
   nav {
+    position: fixed;
     padding: 1em 2em;
 
     .header-navigation-text {
