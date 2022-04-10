@@ -205,19 +205,11 @@ nav {
     padding-top: 0.5em;
   }
   .button {
-    cursor: pointer;
-    display: inline;
-    text-decoration: none;
-    border: none;
-    color: colors.$white;
-    background-color: colors.$red;
-    padding: 0.5em 1.25em;
-    border-radius: 0.5rem;
+    @include button-style();
   }
   .button:hover,
   .button:focus {
-    background-color: white;
-    color: colors.$blue;
+    @include button-hover();
   }
 }
 
