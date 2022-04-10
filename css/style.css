@@ -6,7 +6,13 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
   color: #fff;
   height: 100vh;
   font-family: "Poppins", sans-serif;
@@ -18,31 +24,28 @@ main {
 }
 
 /* Start side bar */
-.nav-colored {
-  background-color: #000;
-  transition: background-color 0.4s ease;
-}
-
-.nav-transparent {
-  background-color: transparent;
-  transition: background-color 0.4s ease;
-}
-
 nav {
-  position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2em;
-  top: 0;
+  position: relative;
+  padding: 0 1em;
   width: 100%;
-  background-color: transparent;
+  background-color: black;
   z-index: 99;
 }
-nav img {
-  object-fit: cover;
-  width: 30%;
+nav #subBar {
+  width: 0;
+}
+nav .logo {
+  margin-top: 0.3em;
+  width: 9rem;
+}
+nav .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 nav .nav-right {
   display: flex;
@@ -52,15 +55,36 @@ nav .nav-right {
   white-space: nowrap;
   gap: 2em;
 }
-nav .logo {
-  margin-top: 1em;
-  width: 18rem;
-}
-nav .nav-left {
+nav #sideNav {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: fixed;
+  height: 100%;
+  width: 0;
+  top: 4.5%;
+  left: 0;
+  overflow-x: hidden;
+  background-color: black;
+  gap: 0.3em;
+  padding-top: 1em;
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */
 }
-nav .sign-in {
+nav #sideNav a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #999;
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+nav #sideNav .navigation-menu-settings {
+  width: 100%;
+  border-bottom: 1px solid #333;
+}
+nav .sign-in-subBar {
   background-color: #c1071e;
   color: white;
   font-weight: 400;
@@ -68,86 +92,15 @@ nav .sign-in {
   border-radius: 5px;
   border: none;
   padding: 0.5rem 1rem;
+  text-decoration: none;
 }
-nav .sign-in:hover {
+nav .sign-in-subBar:hover {
   cursor: pointer;
   background-color: white;
   color: #c1071e;
 }
-nav .browse {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  text-transform: uppercase;
-  list-style: none;
-  gap: 0.875em;
-}
-nav .browse li {
-  font-size: clamp(0.5rem, 1vw, 0.875rem);
-  text-decoration: none;
-  font-weight: 300;
-  color: #fff;
-}
-nav .browse li:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-}
 
 /* End Sidebar */
-/* Billbroad */
-.billboard {
-  display: flex;
-  min-height: 90vh;
-  flex-direction: column;
-  /* Billboard Button */
-  /* End Button */
-}
-.billboard img {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  z-index: -1;
-  min-height: 100vh;
-}
-.billboard .billboard-description {
-  font-size: 1.4vw;
-}
-.billboard .billboard-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  width: max(50%, 500px);
-  padding: 8em 2em;
-}
-.billboard .text-shadow {
-  text-shadow: 2px 2px #10141c;
-}
-.billboard .more-info,
-.billboard .button-play {
-  padding: 0.3em 0.875em;
-  border-radius: 5px;
-  border: none;
-  font-size: 1.5rem;
-}
-.billboard .more-info:hover,
-.billboard .button-play:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-}
-.billboard .button-play {
-  display: flex;
-  gap: 0.2em;
-}
-.billboard .button-container {
-  display: flex;
-  gap: 1em;
-}
-.billboard .more-info {
-  color: #fff;
-  background-color: rgba(109, 109, 110, 0.7);
-}
-
 /* Billboard */
 .movie-list {
   display: flex;
@@ -232,22 +185,116 @@ nav .browse li:hover {
 .card .card-body {
   padding-top: 0.5em;
 }
-.card .button {
-  cursor: pointer;
-  display: inline;
-  text-decoration: none;
-  border: none;
-  color: white;
-  background-color: #c1071e;
-  padding: 0.5em 1.25em;
-  border-radius: 0.5rem;
-}
-.card .button:hover,
-.card .button:focus {
-  background-color: white;
-  color: #131834;
+
+.billboard,
+.header-navigation-text,
+.sign-in-nagivation {
+  display: none;
 }
 
+@media (min-width: 62em) {
+  .header-navigation-text {
+    display: block;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  nav {
+    padding: 1em 2em;
+  }
+  nav .header-navigation-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-transform: uppercase;
+    list-style: none;
+    gap: 0.875em;
+  }
+  nav .header-navigation-text li {
+    font-size: clamp(0.5rem, 1vw, 0.875rem);
+    text-decoration: none;
+    font-weight: 300;
+    color: #fff;
+  }
+  nav .header-navigation-text li:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+  nav .sign-in-nagivation {
+    display: block;
+    background-color: #c1071e;
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+  nav .sign-in-nagivation:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #c1071e;
+  }
+
+  /* Billbroad */
+  .billboard {
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+    /* Billboard Button */
+    /* End Button */
+  }
+  .billboard img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    min-height: 100vh;
+  }
+  .billboard .billboard-description {
+    font-size: 1.4vw;
+  }
+  .billboard .billboard-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: max(50%, 500px);
+    padding: 8em 2em;
+  }
+  .billboard .text-shadow {
+    text-shadow: 2px 2px #10141c;
+  }
+  .billboard .more-info,
+.billboard .button-play {
+    padding: 0.3em 0.875em;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.5rem;
+  }
+  .billboard .more-info:hover,
+.billboard .button-play:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+  .billboard .button-play {
+    display: flex;
+    gap: 0.2em;
+  }
+  .billboard .button-container {
+    display: flex;
+    gap: 1em;
+  }
+  .billboard .more-info {
+    color: #fff;
+    background-color: rgba(109, 109, 110, 0.7);
+  }
+
+  /* Billboard */
+}
 /* Swipe */
 @media screen and (max-width: 30em) {
   aside {
