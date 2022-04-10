@@ -11,8 +11,6 @@ body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
   background-color: #131834;
-  /* background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%); */
-
 }
 
 main {
@@ -38,6 +36,7 @@ nav {
   justify-content: space-between;
   padding: 0 2em;
   top: 0;
+  width: 100%;
   background-color: transparent;
   z-index: 99;
 }
@@ -55,7 +54,7 @@ nav .nav-right {
 }
 nav .logo {
   margin-top: 1em;
-  max-width: 55%;
+  width: 18rem;
 }
 nav .nav-left {
   display: flex;
@@ -73,7 +72,7 @@ nav .sign-in {
 nav .sign-in:hover {
   cursor: pointer;
   background-color: white;
-  color: #131834;
+  color: #c1071e;
 }
 nav .browse {
   display: flex;
