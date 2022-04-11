@@ -296,15 +296,25 @@ footer a {
     top: 0;
     z-index: -1;
   }
-  .billboard .billboard-description {
-    font-size: 1.4vw;
-  }
   .billboard .billboard-details {
     display: flex;
+    position: absolute;
     flex-direction: column;
     gap: 1em;
     width: max(50%, 500px);
-    padding: 8em 2em;
+    top: 50%;
+    left: 5%;
+  }
+  .billboard .billboard-film-name {
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Quicksand", sans-serif;
+    letter-spacing: 15px;
+  }
+  .billboard .billboard-description {
+    font-size: 1.2vw;
+    font-weight: 400;
   }
   .billboard .text-shadow {
     text-shadow: 2px 2px #10141c;

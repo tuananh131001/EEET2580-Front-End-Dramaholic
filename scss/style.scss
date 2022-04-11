@@ -284,8 +284,6 @@ footer{
     display: flex;
     min-height: 90vh;
     flex-direction: column;
-
-
     .feature-movie {
       width: 100%;
       position: absolute;
@@ -293,18 +291,29 @@ footer{
       z-index: -1;
       
     }
-
-    .billboard-description {
-      font-size: 1.4vw;
-    }
-
     .billboard-details {
       display: flex;
+      position: absolute;
       flex-direction: column;
       gap: 1em;
       width: max(50%, 500px);
-      padding: 8em 2em;
+      top: 50%;
+      left: 5%;
     }
+
+    .billboard-film-name{
+      font-size: 4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: 'Quicksand', sans-serif;
+      letter-spacing: 15px;
+    }
+    .billboard-description {
+      font-size: 1.2vw;
+      font-weight: 400;
+    }
+
+
     .text-shadow {
       text-shadow: 2px 2px #10141c;
     }
