@@ -14,10 +14,11 @@ a {
 body {
   display: flex;
   flex-direction: column;
+
   color: #fff;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: colors.$blue;
+  background-color: colors.$black;
 }
 main {
   background: linear-gradient(
@@ -219,6 +220,21 @@ nav {
   display: none;
 }
 
+footer{
+  ol{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  }
+  ol,ul{
+    margin: 3em;
+    list-style: none;
+    color: colors.$side__font;
+  }
+  a{
+    color: inherit;
+  }
+}
+
 @media (min-width: 62em) {
   .header-navigation-text {
     display: block;
@@ -238,7 +254,7 @@ nav {
   nav {
     position: fixed;
     padding: 1em 2em;
-
+    background-color: transparent;
     .header-navigation-text {
       @include flex(row, center, flex-start);
       text-transform: uppercase;
@@ -269,12 +285,13 @@ nav {
     min-height: 90vh;
     flex-direction: column;
 
+
     .feature-movie {
       width: 100%;
       position: absolute;
       top: 0;
       z-index: -1;
-      min-height: 100vh;
+      
     }
 
     .billboard-description {

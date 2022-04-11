@@ -18,12 +18,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aholic Drama</title>
+    <title>DramaHolic</title>
   </head>
   <body>
     <nav class="navbar">
       <div class="nav-left">
-        <span class="hamburger"style="font-size: 30px; cursor: pointer" onclick="openNav()"
+        <span
+          class="hamburger"
+          style="font-size: 30px; cursor: pointer"
+          onclick="openNav()"
           >&#9776;</span
         >
         <div id="sideNav" class="sideNav">
@@ -39,9 +42,11 @@
             <a href="#">Clients</a>
             <a href="#">Contact</a>
           </div>
-          <a href="./login.html"><button class="sign-in-subBar">SIGN IN</button></a>
+          <a href="./login.html"
+            ><button class="sign-in-subBar">SIGN IN</button></a
+          >
         </div>
-        
+
         <div class="image-container">
           <img src="./assets/image/logo.png" alt="" class="logo" />
         </div>
@@ -55,7 +60,9 @@
           <li href="#">My List</li>
         </ul>
         <i class="ti-search"></i>
-        <a href="./login.html"><button class="sign-in-nagivation">SIGN IN</button></a>
+        <a href="./login.html"
+          ><button class="sign-in-nagivation">SIGN IN</button></a
+        >
       </div>
     </nav>
 
@@ -63,7 +70,14 @@
       <main>
         <div class="billboard">
           <div class="billboard-image">
-            <video class="feature-movie" src="http://spaceflix.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--55807998a6ab5c926054bdeb30a91587a87fa915/life_beyond_trailer.mp4" autoplay="" loop="" __idm_id__="8462337" poster="https://www.nme.com/wp-content/uploads/2022/01/Business-Proposal_slate-announcement_2022.jpg"></video>
+            <video
+              class="feature-movie"
+              src="http://spaceflix.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--55807998a6ab5c926054bdeb30a91587a87fa915/life_beyond_trailer.mp4"
+              autoplay=""
+              loop=""
+              __idm_id__="8462337"
+              poster="https://www.nme.com/wp-content/uploads/2022/01/Business-Proposal_slate-announcement_2022.jpg"
+            ></video>
           </div>
           <div class="billboard-details">
             <h1 class="billboard-title text-shadow">No.1 in TV Programmes</h1>
@@ -81,64 +95,21 @@
           </div>
         </div>
         <div class="movie-list">
-          <div class="movie-section">
-            <h2 class="thumbTitle">Popular Now</h2>
-            <div class="swiper">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper korean">
-                <!-- Slides -->
-              </div>
-
-              <!-- If we need pagination -->
-
-              <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          </div>
-          <div class="movie-section">
-            <h2 class="thumbTitle">Trending Now</h2>
-            <div class="swiper">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper trending">
-                <!-- Slides -->
-              </div>
-
-              <!-- If we need pagination -->
-
-              <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          </div>
         </div>
       </main>
     </section>
     <footer>
-      <div class="footer-container">
-        <div class="footer-left">
-          <div class="footer-left-logo">
-            <img src="./assets/image/logo.png" alt="" />
-          </div>
-          <div class="footer-left-text">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur, quisquam.
-            </p>
-          </div>
-        </div>
-        <div class="footer-right">
-          <div class="footer-right-text">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur, quisquam.
-            </p>
-          </div>
-          <div class="footer-right-logo">
-            <img src="./assets/image/logo.png" alt="" />
-          </div>
-        </div>
-      </div>
+      <ol>
+        <li>
+          <a href="https://help.netflix.com/legal/termsofuse">Terms of Use</a>
+        </li>
+        <li>
+          <a href="https://help.netflix.com/legal/privacy">Privacy Statement</a>
+        </li>
+        <li><a href="/Cookies">Cookie Preferences</a></li>
+        <li><a href="https://help.netflix.com/">Help Centre</a></li>
+      </ol>
+    </footer>
     <script src="./js/home.js"></script>
   </body>
 </html>
