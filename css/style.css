@@ -295,7 +295,6 @@ footer a {
     position: absolute;
     top: 0;
     z-index: -1;
-    min-height: 100vh;
   }
   .billboard .billboard-description {
     font-size: 1.4vw;
