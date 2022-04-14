@@ -1,0 +1,88 @@
+@use "../abstract/colors";
+@use "../utilities/mixins";
+
+.card {
+  display: grid;
+  line-height: 1.6;
+  max-width: 35ch;
+  z-index: -1;
+
+  transition: transform 500ms ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:hover .card-title:after {
+    transform: scaleX(1);
+  }
+  &:hover .card-content,
+  &:focus-within .card-content {
+    transform: translateY(0);
+    transition: transform 500ms ease;
+    transition-delay: 500ms;
+  }
+  &:focus-within .card-content {
+    transition-duration: 0ms;
+  }
+  &:hover,
+  &:focus-within {
+    transform: scale(1.05);
+  }
+
+  .card-content > *:not(.card-title) {
+    opacity: 0;
+    transition: opacity 500ms linear;
+  }
+
+  .card-content {
+    gap: 1em;
+    margin-top: -11em;
+    z-index: 1;
+    --padding: 1.5rem;
+    padding: var(--padding);
+    background: linear-gradient(
+      hsl(0 0% 0% / 0),
+      hsl(20 0% 0% / 0.3) 20%,
+      hsl(0 0% 0% / 1)
+    );
+    overflow: hidden;
+    transform: translateY(65%);
+  }
+
+  &:hover .card-content > *:not(.card-title),
+  &:focus-within .card-content > *:not(.card-title) {
+    opacity: 1;
+    transition-delay: 1000ms;
+  }
+
+  .card-title {
+    position: relative;
+    font-size: 1rem;
+    width: max-content;
+  }
+  .card-title::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    left: calc(var(--padding) * -1);
+    bottom: -3px;
+    width: calc(100% + var(--padding));
+
+    background-color: colors.$red-light;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms ease;
+  }
+  .card-body {
+    padding-top: 0.5em;
+  }
+  .button {
+    @include mixins.button-style();
+  }
+  .button:hover,
+  .button:focus {
+    cursor: pointer;
+    background-color: colors.$white;
+    color: colors.$red;
+  }
+}

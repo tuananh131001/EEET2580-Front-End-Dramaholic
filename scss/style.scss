@@ -1,4 +1,10 @@
 @use "./abstract/colors";
+@use "./components/sideBar";
+@use "./layout/card";
+@use "./utilities/mixins";
+@use "./layout/navBar";
+@use "./layout/billboard";
+
 *,
 *::before,
 *::after {
@@ -27,326 +33,23 @@ main {
     rgba(0, 0, 0, 0) 85%
   );
 }
-@mixin flex($direction, $align, $justify) {
-  display: flex;
-  flex-direction: $direction;
-  align-items: $align;
-  justify-content: $justify;
-}
-@mixin button-hover() {
-  cursor: pointer;
-  background-color: colors.$white;
-  color: colors.$red;
-}
-@mixin button-style() {
-  background-color: colors.$red;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-}
 
-/* Start side bar */
 
-nav {
-  @include flex(row, center, space-between);
-  position: relative;
-  padding: 0 1em;
-  width: 100%;
-  background-color: colors.$black;
-  z-index: 99;
-  #subBar {
-    width: 0;
-  }
-  .logo {
-    margin-top: 0.3em;
-    width: 12rem;
-  }
-  .nav-left {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-  }
-  .nav-right {
-    @include flex(row, center, flex-start);
-    white-space: nowrap;
-    gap: 2em;
-  }
-  #sideNav {
-    @include flex(column, flex-start, flex-start);
-    position: fixed;
-    height: 100%;
-    width: 0;
-    top: 4.9vh;
-    left: 0;
-    overflow-x: hidden;
-    background-color: colors.$black;
-    gap: 0.3em;
-    padding-top: 1em;
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    a {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
 
-      color: colors.$side__font;
-      padding-left: 1em;
-      padding-bottom: 1em;
-    }
-
-    .navigation-menu-settings {
-      width: 100%;
-      border-bottom: 1px solid #333;
-    }
-  }
-  .sign-in-subBar {
-    @include button-style();
-  }
-
-  .sign-in-subBar:hover {
-    @include button-hover();
-  }
-}
-/* End Sidebar */
-
-/* Billboard */
-
-.movie-list {
-  @include flex(column, left, flex-start);
-  gap: 2em;
-}
-.movie-container {
-  padding-left: 2em;
-}
-
-.thumbTile__image {
-  border-radius: 5px;
-  width: 98%;
-}
-.thumbTitle {
-  padding: 0.3em 2em;
-}
-
-.card {
-  display: grid;
-  line-height: 1.6;
-  max-width: 35ch;
-  z-index: -1;
-
-  transition: transform 500ms ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-  &:hover .card-title:after {
-    transform: scaleX(1);
-  }
-  &:hover .card-content,
-  &:focus-within .card-content {
-    transform: translateY(0);
-    transition: transform 500ms ease;
-    transition-delay: 500ms;
-  }
-  &:focus-within .card-content {
-    transition-duration: 0ms;
-  }
-  &:hover,
-  &:focus-within {
-    transform: scale(1.05);
-  }
-
-  .card-content > *:not(.card-title) {
-    opacity: 0;
-    transition: opacity 500ms linear;
-  }
-
-  .card-content {
-    gap: 1em;
-    margin-top: -11em;
-    z-index: 1;
-    --padding: 1.5rem;
-    padding: var(--padding);
-    background: linear-gradient(
-      hsl(0 0% 0% / 0),
-      hsl(20 0% 0% / 0.3) 20%,
-      hsl(0 0% 0% / 1)
-    );
-    overflow: hidden;
-    transform: translateY(65%);
-  }
-
-  &:hover .card-content > *:not(.card-title),
-  &:focus-within .card-content > *:not(.card-title) {
-    opacity: 1;
-    transition-delay: 1000ms;
-  }
-
-  .card-title {
-    position: relative;
-    font-size: 1rem;
-    width: max-content;
-  }
-  .card-title::after {
-    content: "";
-    position: absolute;
-    height: 4px;
-    left: calc(var(--padding) * -1);
-    bottom: -3px;
-    width: calc(100% + var(--padding));
-
-    background-color: colors.$red-light;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 500ms ease;
-  }
-  .card-body {
-    padding-top: 0.5em;
-  }
-  .button {
-    @include button-style();
-  }
-  .button:hover,
-  .button:focus {
-    @include button-hover();
-  }
-}
-
-.billboard,
-.header-navigation-text,
-.sign-in-nagivation {
-  display: none;
-}
-
-footer{
-  ol{
+footer {
+  ol {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
-  ol,ul{
+  ol,
+  ul {
     margin: 3em;
     list-style: none;
     color: colors.$side__font;
   }
-  a{
+  a {
     color: inherit;
   }
-}
-
-@media (min-width: 62em) {
-  .header-navigation-text {
-    display: block;
-  }
-  .hamburger {
-    display: none;
-  }
-  /* Start side bar */
-  .nav-colored {
-    background-color: #000;
-    transition: background-color 0.4s ease;
-  }
-  .nav-transparent {
-    background-color: transparent;
-    transition: background-color 0.4s ease;
-  }
-  nav {
-    position: fixed;
-    padding: 1em 2em;
-    background-color: transparent;
-    .header-navigation-text {
-      @include flex(row, center, flex-start);
-      text-transform: uppercase;
-      list-style: none;
-      gap: 0.875em;
-      li {
-        font-size: clamp(0.5rem, 1vw, 0.875rem);
-        text-decoration: none;
-        font-weight: 300;
-        color: #fff;
-      }
-      li:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-      }
-    }
-    .sign-in-nagivation {
-      display: block;
-      @include button-style();
-    }
-    .sign-in-nagivation:hover {
-      @include button-hover();
-    }
-  }
-  /* Billbroad */
-  .billboard {
-    display: flex;
-    min-height: 90vh;
-    flex-direction: column;
-    .feature-movie {
-      width: 100%;
-      position: absolute;
-      top: 0;
-      z-index: -1;
-      
-    }
-    .billboard-details {
-      display: flex;
-      position: absolute;
-      flex-direction: column;
-      gap: 1em;
-      width: max(50%, 500px);
-      top: 50%;
-      left: 5%;
-    }
-
-    .billboard-film-name{
-      font-size: 4rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-family: 'Quicksand', sans-serif;
-      letter-spacing: 15px;
-    }
-    .billboard-description {
-      font-size: 1.2vw;
-      font-weight: 400;
-    }
-
-
-    .text-shadow {
-      text-shadow: 2px 2px #10141c;
-    }
-
-    /* Billboard Button */
-    .more-info,
-    .button-play {
-      padding: 0.3em 0.875em;
-      border-radius: 5px;
-      border: none;
-      font-size: 1.5rem;
-    }
-    .more-info:hover,
-    .button-play:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-    }
-    .button-play {
-      display: flex;
-      gap: 0.2em;
-    }
-    .button-container {
-      display: flex;
-      gap: 1em;
-    }
-    .more-info {
-      color: #fff;
-      background-color: rgba(109, 109, 110, 0.7);
-    }
-    /* End Button */
-  }
-
-  /* Billboard */
 }
 
 /* Swipe */

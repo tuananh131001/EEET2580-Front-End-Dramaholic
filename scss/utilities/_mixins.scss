@@ -1,0 +1,23 @@
+@use "../abstract/colors";
+
+@mixin button-style() {
+  background-color: colors.$red;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+@mixin button-hover() {
+  cursor: pointer;
+  background-color: colors.$white;
+  color: colors.$red;
+}
+@mixin flex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
