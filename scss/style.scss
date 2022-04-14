@@ -55,3 +55,19 @@ footer {
     display: none;
   }
 }
+
+#loading {
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  background-image: url("https://c.tenor.com/fsenbjHOaksAAAAC/cat-jump.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
