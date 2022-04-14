@@ -51,7 +51,7 @@ nav {
   .nav-left {
     display: flex;
     align-items: center;
-    gap: 5em;
+    gap: 3em;
   }
   .nav-right {
     @include mixins.flex(row, center, flex-start);
@@ -84,6 +84,11 @@ nav {
   .nav-transparent {
     background-color: transparent;
     transition: background-color 0.4s ease;
+  }
+  .nav-gradient{
+    --color-start: #11111100;
+    --color-end: #111111FF;
+    background-image: linear-gradient(0deg,var(--color-start) 0,var(--color-end) 100%);
   }
   nav {
     position: fixed;
