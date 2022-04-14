@@ -1,0 +1,123 @@
+@use "../abstract/colors";
+@use "../utilities/mixins";
+
+/* Start side bar */
+
+nav {
+  @include mixins.flex(row, center, space-between);
+  position: relative;
+  padding: 0 1em;
+  width: 100%;
+  background-color: colors.$black;
+  z-index: 99;
+  .search-container {
+    @include mixins.flex(flex, center, center);
+    gap: 0.5em;
+    
+    .search-icon {
+      cursor: pointer;
+    }
+    .search-bar {
+      // display: none;
+      width: 0;
+      
+      border: 1px solid #fff;
+      background-color: #1b1b1bff;
+      color: #fff;
+    }
+  }
+  .animate-fade-right {
+    animation-name: fadeInRight;
+    animation-iteration-count: 1;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    backface-visibility: hidden;
+  }
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  #subBar {
+    width: 0;
+  }
+  .logo {
+    margin-top: 0.3em;
+    width: 12rem;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+  }
+  .nav-right {
+    @include mixins.flex(row, center, flex-start);
+    white-space: nowrap;
+    gap: 2em;
+  }
+
+  .sign-in-subBar {
+    @include mixins.button-style();
+  }
+
+  .sign-in-subBar:hover {
+    @include mixins.button-hover();
+  }
+}
+/* End Sidebar */
+
+@media (min-width: 62em) {
+  .header-navigation-text {
+    display: block;
+  }
+  .hamburger {
+    display: none;
+  }
+  /* Start side bar */
+  .nav-colored {
+    background-color: #000;
+    transition: background-color 0.4s ease;
+  }
+  .nav-transparent {
+    background-color: transparent;
+    transition: background-color 0.4s ease;
+  }
+  .nav-gradient{
+    --color-start: #11111100;
+    --color-end: #111111FF;
+    background-image: linear-gradient(0deg,var(--color-start) 0,var(--color-end) 100%);
+  }
+  nav {
+    position: fixed;
+    padding: 1em 2em;
+    background-color: transparent;
+    .header-navigation-text {
+      @include mixins.flex(row, center, flex-start);
+      text-transform: uppercase;
+      list-style: none;
+      gap: 0.875em;
+      li {
+        font-size: clamp(0.5rem, 1vw, 0.875rem);
+        text-decoration: none;
+        font-weight: 300;
+        color: #fff;
+      }
+      li:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+      }
+    }
+    .sign-in-nagivation {
+      display: block;
+      @include mixins.button-style();
+    }
+    .sign-in-nagivation:hover {
+      @include mixins.button-hover();
+    }
+  }
+}

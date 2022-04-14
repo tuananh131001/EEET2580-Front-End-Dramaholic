@@ -9,7 +9,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
-
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
@@ -18,42 +17,68 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aholic Drama</title>
+    <title>DramaHolic</title>
   </head>
-  <body>
-    <nav class="navbar">
+  <body id="body">
+    <nav class="navbar nav-gradient">
       <div class="nav-left">
+        <span
+          class="hamburger"
+          style="font-size: 30px; cursor: pointer"
+          onclick="openNav()"
+          >&#9776;</span
+        >
+
+        <div id="sideNav" class="sideNav">
+          <div class="navigation-menu-settings">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="navigation-menu-sections">
+            <a href="#">Home</a>
+            <a href="#">My List</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+          </div>
+          <a href="./login.html"
+            ><button class="sign-in-subBar">SIGN IN</button></a
+          >
+        </div>
+
         <div class="image-container">
           <img src="./assets/image/logo.png" alt="" class="logo" />
         </div>
-      </div>
-      <div class="nav-right">
-        <ul class="browse text-shadow">
+        <ul class="header-navigation-text text-shadow">
           <li href="#">Home</li>
           <li href="#">Series</li>
           <li href="#">Films</li>
           <li href="#">Trending</li>
-          <li href="#">My List</li>
         </ul>
-        <i class="ti-search"></i> <button class="sign-in">SIGN IN</button>
+      </div>
+      <div class="nav-right">
+        <div class="search-container">
+          <input type="search" class="search-bar" />
+          <span class="search-icon ti-search" onclick="openSearch()"></span>
+        </div>
+
+        <a href="./login.html"
+          ><button class="sign-in-nagivation">SIGN IN</button></a
+        >
       </div>
     </nav>
+
     <section>
       <main>
         <div class="billboard">
-          <div class="billboard-image">
-            <img
-              src="https://www.nme.com/wp-content/uploads/2022/01/Business-Proposal_slate-announcement_2022.jpg"
-              alt=""
-            />
+          <div class="bilboard-video-wrapper">
+            <div class="billboard-video"></div>
           </div>
+
           <div class="billboard-details">
-            <h1 class="billboard-title text-shadow">No.1 in TV Programmes</h1>
-            <h2 class="billboard-description text-shadow">
-              In a time when dreams seem out of reach, a teen fencer pursues big
-              ambitions and meets a hardworking young man who seeks to rebuild
-              his life.
-            </h2>
+            <h1 class="billboard-film-name"></h1>
+            <h2 class="billboard-description text-shadow"></h2>
             <div class="button-container">
               <button class="button-play">
                 <span class="ti-control-play"></span> PLAY
@@ -62,40 +87,23 @@
             </div>
           </div>
         </div>
-        <div class="movie-list">
-          <div class="movie-section">
-            <h2 class="thumbTitle">Popular Now</h2>
-            <div class="swiper">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper korean">
-                <!-- Slides -->
-              </div>
-
-              <!-- If we need pagination -->
-
-              <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          </div>
-          <div class="movie-section">
-            <h2 class="thumbTitle">Trending Now</h2>
-            <div class="swiper">
-              <!-- Additional required wrapper -->
-              <div class="swiper-wrapper trending">
-                <!-- Slides -->
-              </div>
-
-              <!-- If we need pagination -->
-
-              <!-- If we need navigation buttons -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          </div>
-        </div>
+        <div class="movie-list"></div>
       </main>
     </section>
-    <script src="./js/home.js"></script>
+    <footer>
+      <ol>
+        <li>
+          <a href="https://help.netflix.com/legal/termsofuse">Terms of Use</a>
+        </li>
+        <li>
+          <a href="https://help.netflix.com/legal/privacy">Privacy Statement</a>
+        </li>
+        <li><a href="/Cookies">Cookie Preferences</a></li>
+        <li><a href="https://help.netflix.com/">Help Centre</a></li>
+      </ol>
+    </footer>
+    <div id="loading"></div>
+    
   </body>
+  <script src="./js/home.js"></script>
 </html>
