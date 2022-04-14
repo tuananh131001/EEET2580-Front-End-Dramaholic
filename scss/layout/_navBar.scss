@@ -10,6 +10,29 @@ nav {
   width: 100%;
   background-color: colors.$black;
   z-index: 99;
+  .search-container {
+     @include mixins.flex(flex,center,center);
+     gap: .5em;
+     .search-icon{
+        cursor: pointer;
+     }
+     .search-bar{
+        // display: none;
+        width: 0;
+        border: 1px solid #fff;
+        background-color: #1b1b1bFF;
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        animation-name: fadeInRight;
+        animation-iteration-count: 1;
+        animation-duration: 1s;
+        animation-delay: 0s;
+        animation-timing-function: ease;
+        animation-fill-mode: both;
+        backface-visibility: hidden;
+     }
+     
+  }
+
   #subBar {
     width: 0;
   }

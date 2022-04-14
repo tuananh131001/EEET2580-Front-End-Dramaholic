@@ -119,6 +119,30 @@ nav {
   background-color: rgb(0, 0, 0);
   z-index: 99;
 }
+nav .search-container {
+  display: flex;
+  flex-direction: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+nav .search-container .search-icon {
+  cursor: pointer;
+}
+nav .search-container .search-bar {
+  width: 0;
+  border: 1px solid #fff;
+  background-color: #1b1b1b;
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */
+  animation-name: fadeInRight;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+  backface-visibility: hidden;
+}
 nav #subBar {
   width: 0;
 }

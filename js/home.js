@@ -118,10 +118,8 @@ async function getTrending() {
       movieListElement.appendChild(movieL);
     });
   }
-  setSwiper()
+  setSwiper();
 }
-
-
 
 var myNav = document.querySelector(".navbar");
 window.onscroll = function () {
@@ -142,6 +140,17 @@ openNav = () => {
   const subNav = document.querySelector("#sideNav");
   if (subNav.style.width === "") subNav.style.width = "80%";
   else subNav.style.width = "";
+};
+
+openSearch = () => {
+  const subNav = document.querySelector(".search-bar");
+  if (subNav.style.width === "") {
+    // subNav.style.display = "block";
+    subNav.style.width = "80%";
+  } else {
+    // subNav.style.display = "none";
+    subNav.style.width = "";
+  }
 };
 
 getTrending();
