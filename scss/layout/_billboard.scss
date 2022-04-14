@@ -27,12 +27,27 @@
 
 @media (min-width: 62em) {
   /* Billbroad Video*/
+  .billboard-video:after{
+    content: ""; // ::before and ::after both require content
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      hsl(0 0% 0% / 0),
+      hsl(20 0% 0% / 0.3) 20%,
+      hsl(0 0% 0% / 1)
+    );
+    opacity: .7;
+  }
   .billboard-video {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     width: 300%; /* enlarge beyond browser width */
     left: -100%; /* center */
+    
   }
 
   .billboard-video iframe {
@@ -46,6 +61,7 @@
     display: flex;
     min-height: 90vh;
     flex-direction: column;
+
     .feature-movie {
       width: 100%;
       position: absolute;

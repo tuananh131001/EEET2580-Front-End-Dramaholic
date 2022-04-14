@@ -13,12 +13,14 @@ nav {
   .search-container {
     @include mixins.flex(flex, center, center);
     gap: 0.5em;
+    
     .search-icon {
       cursor: pointer;
     }
     .search-bar {
       // display: none;
       width: 0;
+      
       border: 1px solid #fff;
       background-color: #1b1b1bff;
       color: #fff;
