@@ -110,12 +110,14 @@ async function getTrending() {
     );
     const data = await reponse.json();
     const embedded = await data._embedded.movies;
-    const movieListElement = await createMovieList(i);
+    const movieListElement = createMovieList(i);
     const movies = await embedded.forEach((movie) => {
       const movieL = createElementsMovieCard(movie);
       movieListElement.appendChild(movieL);
     });
   }
+  const loading = document.querySelector("#loading");
+  loading.style.display = "none";
   setSwiper();
 }
 async function getBillboardVideo(movieArray) {

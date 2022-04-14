@@ -9,7 +9,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
-
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
@@ -20,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DramaHolic</title>
   </head>
-  <body>
+  <body id="body">
     <nav class="navbar nav-gradient">
       <div class="nav-left">
         <span
@@ -74,20 +73,12 @@
       <main>
         <div class="billboard">
           <div class="bilboard-video-wrapper">
-            <div class="billboard-video">
-              <!-- <iframe
-                class="video-billboard"
-                
-                src="https://www.youtube.com/embed/tgbNymZ7vqY?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1"
-              > -->
-              </iframe>
-            </div>
+            <div class="billboard-video"></div>
           </div>
 
           <div class="billboard-details">
             <h1 class="billboard-film-name"></h1>
-            <h2 class="billboard-description text-shadow">
-            </h2>
+            <h2 class="billboard-description text-shadow"></h2>
             <div class="button-container">
               <button class="button-play">
                 <span class="ti-control-play"></span> PLAY
@@ -111,6 +102,7 @@
         <li><a href="https://help.netflix.com/">Help Centre</a></li>
       </ol>
     </footer>
+    <div id="loading"></div>
     <script src="./js/home.js"></script>
   </body>
 </html>
