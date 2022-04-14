@@ -120,7 +120,7 @@ async function getTrending() {
 }
 async function getBillboardVideo(movieArray) {
   // const random = Math.floor(Math.random() * movieArray.length);
-  const movie = movieArray[0]
+  const movie = movieArray[0];
 
   const videoContainer = document.querySelector(".billboard-video");
   const videoElement = document.createElement("iframe");
@@ -128,7 +128,9 @@ async function getBillboardVideo(movieArray) {
   videoElement.src =
     "https://www.youtube.com/embed/" +
     hrefArray[1] +
-    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1&loop=1";
+    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1&loop=1" +
+    "&playlist=" +
+    hrefArray[1];
   videoElement.classList.add("video-billboard");
   videoContainer.appendChild(videoElement);
 
