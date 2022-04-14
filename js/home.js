@@ -103,26 +103,41 @@ async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.page.totalPages;
-  getBillboardVideo(data._embedded.movies);
-
-  for (let i = 1; i < totalPages; i++) {
-    const reponse = await fetch(
-      "https://dramaholic.herokuapp.com/api/movies?page=" + i
-    );
-    const data = await reponse.json();
-    const embedded = await data._embedded.movies;
-    const movieListElement = createMovieList(i);
-    const movies = await embedded.forEach((movie) => {
-      const movieL = createElementsMovieCard(movie);
-      movieListElement.appendChild(movieL);
-    });
+  const billboardVideo = await getBillboardVideo(data._embedded.movies);
+  let movieArray = [];
+  for (let i = 0; i < totalPages; i++) {
+    movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
   }
 
-  // Loading Screen
-  const loading = document.querySelector("#loading");
-  loading.style.display = "none";
+  Promise.all(
+    movieArray.map(async (url) => {
+      const reponse = await fetch(url);
+      const json = await reponse.json();
+      const embedded = await json._embedded.movies;
+      const movieListElement = createMovieList("hel");
+      console.log(embedded);
+      const movies = embedded.forEach((movie) => {
+        const movieL = createElementsMovieCard(movie);
+        movieListElement.appendChild(movieL);
+      });
+      // Loading Screen
+      const loading = document.querySelector("#loading");
+      loading.style.display = "none";
 
-  setSwiper();
+      setSwiper();
+    })
+  );
+
+  // reponses.then((reponse) => {
+  //   const movieData = reponse.json();
+
+  //   const embedded = movieData._embedded.movies;
+  //   const movieListElement = createMovieList(i);
+  //   const movies = embedded.map((movie) => {
+  //     const movieL = createElementsMovieCard(movie);
+  //     movieListElement.appendChild(movieL);
+  //   });
+  // });
 }
 async function getBillboardVideo(movieArray) {
   // const random = Math.floor(Math.random() * movieArray.length);
