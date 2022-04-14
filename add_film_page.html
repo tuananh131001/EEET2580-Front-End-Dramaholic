@@ -21,8 +21,18 @@
     <title>Aholic Drama - Add Film</title>
     <style>
 
+      /* body {
+        display: flex;
+        flex-direction: column;
+        gap: 
+      } */
+
       #add_film_form_section {
-        padding: 80px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-items: center;
+        align-content: center;
       }
 
       #form_title {
@@ -34,7 +44,7 @@
       }
 
       .add_film_input_box {
-        width: 250px;
+        width: 21rem;
         padding: 8.5px 10px;
         border-radius: 5px;
         border: solid white 2px;
@@ -45,7 +55,8 @@
 
       .add_info {
         /* background-color: antiquewhite; */
-        display: table;
+        display: flex;
+        flex-direction: column;
         text-align: left;
         width: fit-content;
         margin: 40px auto;
@@ -67,8 +78,6 @@
         border-radius: 5px;
         border: none;
         padding: 0.5rem 1rem;
-        /* margin: 40px auto; */
-        /* align-self: center; */
       }
 
       .red_theme_button:hover {
@@ -130,7 +139,7 @@
             <tr>
               <td><label for="year">Year of Publication:</label></td>
               <td>
-                <input required class="add_film_input_box" type="text" minlength="4" maxlength="4" id="year" name="year"></td>
+                <input required class="add_film_input_box" type="number" minlength="4" maxlength="4" id="year" name="year"></td>
             </tr>
 
             <tr>
