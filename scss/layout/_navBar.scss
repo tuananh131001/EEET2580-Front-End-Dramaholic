@@ -11,28 +11,36 @@ nav {
   background-color: colors.$black;
   z-index: 99;
   .search-container {
-     @include mixins.flex(flex,center,center);
-     gap: .5em;
-     .search-icon{
-        cursor: pointer;
-     }
-     .search-bar{
-        // display: none;
-        width: 0;
-        border: 1px solid #fff;
-        background-color: #1b1b1bFF;
-        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-        animation-name: fadeInRight;
-        animation-iteration-count: 1;
-        animation-duration: 1s;
-        animation-delay: 0s;
-        animation-timing-function: ease;
-        animation-fill-mode: both;
-        backface-visibility: hidden;
-     }
-     
+    @include mixins.flex(flex, center, center);
+    gap: 0.5em;
+    .search-icon {
+      cursor: pointer;
+    }
+    .search-bar {
+      // display: none;
+      width: 0;
+      border: 1px solid #fff;
+      background-color: #1b1b1bff;
+      color: #fff;
+    }
   }
-
+  .animate-fade-right {
+    animation-name: fadeInRight;
+    animation-iteration-count: 1;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    backface-visibility: hidden;
+  }
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
   #subBar {
     width: 0;
   }
@@ -43,7 +51,7 @@ nav {
   .nav-left {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 5em;
   }
   .nav-right {
     @include mixins.flex(row, center, flex-start);

@@ -71,9 +71,6 @@ const createElementsMovieCard = (x) => {
 // let filmClassstart =
 //   '<div class="swiper-slide"><img class="thumbTile__image" src="';
 // let filmClassend = '"></div>';
-test =
-  "https://static2.vieon.vn/vieplay-image/thumbnail_v4/2020/12/27/6aiiawke_1920x1080_conangxinhdep_296_168.webp";
-
 const movieList = [];
 
 // End Swipe
@@ -106,6 +103,7 @@ async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.page.totalPages;
+  getBillboardVideo(data._embedded.movies);
   for (let i = 1; i < totalPages; i++) {
     const reponse = await fetch(
       "https://dramaholic.herokuapp.com/api/movies?page=" + i
@@ -119,6 +117,25 @@ async function getTrending() {
     });
   }
   setSwiper();
+}
+async function getBillboardVideo(movieArray) {
+  // const random = Math.floor(Math.random() * movieArray.length);
+  const movie = movieArray[0]
+
+  const videoContainer = document.querySelector(".billboard-video");
+  const videoElement = document.createElement("iframe");
+  const hrefArray = movie.href.split("https://www.youtube.com/watch?v=");
+  videoElement.src =
+    "https://www.youtube.com/embed/" +
+    hrefArray[1] +
+    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1";
+  videoElement.classList.add("video-billboard");
+  videoContainer.appendChild(videoElement);
+
+  const billboardFilmName = document.querySelector(".billboard-film-name");
+  billboardFilmName.innerHTML = movie.title;
+  const description = document.querySelector(".billboard-description");
+  description.innerHTML = movie.description;
 }
 
 var myNav = document.querySelector(".navbar");
@@ -147,9 +164,11 @@ openSearch = () => {
   if (subNav.style.width === "") {
     // subNav.style.display = "block";
     subNav.style.width = "80%";
+    subNav.classList.add("animate-fade-right");
   } else {
     // subNav.style.display = "none";
     subNav.style.width = "";
+    subNav.classList.remove("animate-fade-right");
   }
 };
 

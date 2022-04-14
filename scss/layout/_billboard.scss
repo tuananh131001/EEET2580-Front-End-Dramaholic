@@ -26,7 +26,22 @@
 }
 
 @media (min-width: 62em) {
-  /* Billbroad */
+  /* Billbroad Video*/
+  .billboard-video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    width: 300%; /* enlarge beyond browser width */
+    left: -100%; /* center */
+  }
+
+  .billboard-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   .billboard {
     display: flex;
     min-height: 90vh;
@@ -36,6 +51,7 @@
       position: absolute;
       top: 0;
       z-index: -1;
+      
     }
     .billboard-details {
       display: flex;
@@ -45,7 +61,13 @@
       width: max(50%, 500px);
       top: 50%;
       left: 5%;
+      border: none;
     }
+    .bilboard-video-wrapper {
+      overflow: hidden;
+      max-width: 100%;
+   }
+    // End video
 
     .billboard-film-name {
       font-size: 4rem;

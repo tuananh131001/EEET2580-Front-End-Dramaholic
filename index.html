@@ -29,6 +29,7 @@
           onclick="openNav()"
           >&#9776;</span
         >
+
         <div id="sideNav" class="sideNav">
           <div class="navigation-menu-settings">
             <a href="#">About</a>
@@ -50,14 +51,14 @@
         <div class="image-container">
           <img src="./assets/image/logo.png" alt="" class="logo" />
         </div>
-      </div>
-      <div class="nav-right">
         <ul class="header-navigation-text text-shadow">
           <li href="#">Home</li>
           <li href="#">Series</li>
           <li href="#">Films</li>
           <li href="#">Trending</li>
         </ul>
+      </div>
+      <div class="nav-right">
         <div class="search-container">
           <input type="search" class="search-bar" />
           <span class="search-icon ti-search" onclick="openSearch()"></span>
@@ -72,22 +73,20 @@
     <section>
       <main>
         <div class="billboard">
-          <div class="billboard-image">
-            <video
-              class="feature-movie"
-              src="http://spaceflix.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--55807998a6ab5c926054bdeb30a91587a87fa915/life_beyond_trailer.mp4"
-              autoplay=""
-              loop=""
-              __idm_id__="8462337"
-              poster="https://www.nme.com/wp-content/uploads/2022/01/Business-Proposal_slate-announcement_2022.jpg"
-            ></video>
+          <div class="bilboard-video-wrapper">
+            <div class="billboard-video">
+              <!-- <iframe
+                class="video-billboard"
+                
+                src="https://www.youtube.com/embed/tgbNymZ7vqY?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1"
+              > -->
+              </iframe>
+            </div>
           </div>
+
           <div class="billboard-details">
-            <h1 class="billboard-film-name">Business Proposal</h1>
+            <h1 class="billboard-film-name"></h1>
             <h2 class="billboard-description text-shadow">
-              In a time when dreams seem out of reach, a teen fencer pursues big
-              ambitions and meets a hardworking young man who seeks to rebuild
-              his life.
             </h2>
             <div class="button-container">
               <button class="button-play">
