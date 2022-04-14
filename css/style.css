@@ -349,7 +349,7 @@ nav .sign-in-subBar:hover {
     text-transform: uppercase;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 15px;
-    text-shadow: 5px 5px #000;
+    text-shadow: 5px 5px rgb(193, 7, 30);
   }
   .billboard .billboard-description {
     font-size: 1.2vw;
