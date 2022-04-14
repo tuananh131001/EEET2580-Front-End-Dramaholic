@@ -104,6 +104,7 @@ async function getTrending() {
   const data = await reponse.json();
   const totalPages = await data.page.totalPages;
   getBillboardVideo(data._embedded.movies);
+
   for (let i = 1; i < totalPages; i++) {
     const reponse = await fetch(
       "https://dramaholic.herokuapp.com/api/movies?page=" + i
@@ -116,8 +117,11 @@ async function getTrending() {
       movieListElement.appendChild(movieL);
     });
   }
+
+  // Loading Screen
   const loading = document.querySelector("#loading");
   loading.style.display = "none";
+
   setSwiper();
 }
 async function getBillboardVideo(movieArray) {
