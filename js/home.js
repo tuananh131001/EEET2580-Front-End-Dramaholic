@@ -111,11 +111,13 @@ async function getTrending() {
 
   Promise.all(
     movieArray.map(async (url) => {
+      // Get data
       const reponse = await fetch(url);
       const json = await reponse.json();
       const embedded = await json._embedded.movies;
       const movieListElement = createMovieList("hel");
-      console.log(embedded);
+      
+      // Get movie and put in container
       const movies = embedded.forEach((movie) => {
         const movieL = createElementsMovieCard(movie);
         movieListElement.appendChild(movieL);
@@ -127,17 +129,6 @@ async function getTrending() {
       setSwiper();
     })
   );
-
-  // reponses.then((reponse) => {
-  //   const movieData = reponse.json();
-
-  //   const embedded = movieData._embedded.movies;
-  //   const movieListElement = createMovieList(i);
-  //   const movies = embedded.map((movie) => {
-  //     const movieL = createElementsMovieCard(movie);
-  //     movieListElement.appendChild(movieL);
-  //   });
-  // });
 }
 async function getBillboardVideo(movieArray) {
   // const random = Math.floor(Math.random() * movieArray.length);
