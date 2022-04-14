@@ -1,3 +1,4 @@
+
 const movieListElement = document.querySelector(".movie-list");
 
 const createMovieList = (title) => {
@@ -167,7 +168,7 @@ window.onscroll = function () {
   }
 };
 
-openNav = () => {
+const openNav = () => {
   const subNav = document.querySelector("#sideNav");
   if (subNav.style.width === "") subNav.style.width = "80%";
   else subNav.style.width = "";
@@ -187,3 +188,4 @@ openSearch = () => {
 };
 
 getTrending();
+
