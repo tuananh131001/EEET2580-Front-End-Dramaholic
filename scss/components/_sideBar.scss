@@ -11,7 +11,6 @@ nav {
     left: 0;
     overflow-x: hidden;
     background-color: colors.$black;
-    gap: 1em;
     transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
     padding-top: 0.5em;
 
@@ -47,7 +46,10 @@ nav {
       width: 100%;
       border-bottom: 1px solid #333;
       gap: 0.3em;
-      padding: 0 1em;
+      padding:1em 1em;
+    }
+    .sign-in-subBar{
+      margin-top: 1em;
     }
   }
 }
