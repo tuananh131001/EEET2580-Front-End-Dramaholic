@@ -420,15 +420,19 @@ main {
   background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
 }
 
-footer ol {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-footer ol,
-footer ul {
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   margin: 3em;
+}
+footer ul {
+  display: grid;
+  align-items: center;
   list-style: none;
   color: #999;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
 }
 footer a {
   color: inherit;
