@@ -7,15 +7,17 @@
   @include mixins.flex(column, left, flex-start);
   gap: 2em;
 }
+
 .movie-container {
   padding-left: 2em;
-  height: 90%;
+  height: 90%;  
+
+
 }
 
 .thumbTile__image {
   border-radius: 5px;
-  width: 90%;
-
+  width: 100%;
   aspect-ratio: 9/16;
 }
 .thumbTitle {

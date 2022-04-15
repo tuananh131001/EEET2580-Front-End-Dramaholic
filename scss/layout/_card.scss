@@ -4,7 +4,7 @@
 .card {
   display: grid;
   line-height: 1.6;
-  max-width: 35ch;
+  width: 95%;
   z-index: -1;
 
   transition: transform 500ms ease;
@@ -57,8 +57,9 @@
 
   .card-title {
     position: relative;
-    font-size: 1rem;
+    font-size: .8rem;
     width: max-content;
+
   }
   .card-title::after {
     content: "";

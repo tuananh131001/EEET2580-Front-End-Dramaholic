@@ -52,7 +52,7 @@ nav #sideNav .sign-in-subBar {
 .card {
   display: grid;
   line-height: 1.6;
-  max-width: 35ch;
+  width: 95%;
   z-index: -1;
   transition: transform 500ms ease;
 }
@@ -93,7 +93,7 @@ nav #sideNav .sign-in-subBar {
 }
 .card .card-title {
   position: relative;
-  font-size: 1rem;
+  font-size: 0.8rem;
   width: max-content;
 }
 .card .card-title::after {
@@ -309,7 +309,7 @@ nav .search-bar {
 
 .thumbTile__image {
   border-radius: 5px;
-  width: 90%;
+  width: 100%;
   aspect-ratio: 9/16;
 }
 
