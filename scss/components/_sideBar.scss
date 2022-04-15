@@ -3,7 +3,7 @@
 
 nav {
   #sideNav {
-   @include mixins.flex(column, flex-start, flex-start);
+    @include mixins.flex(column, center, flex-start);
     position: fixed;
     height: 100%;
     width: 0;
@@ -11,22 +11,40 @@ nav {
     left: 0;
     overflow-x: hidden;
     background-color: colors.$black;
-    gap: 0.3em;
-    padding-top: 1em;
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    a {
+    gap: 0.1em;
+    transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
+    .navigation-menu-profile {
+      display: flex;
+      align-items: center;
+      gap: .5em;
+      .navigation-menu-profile-text{
+        font-size: .6rem;
+      }
+    }
+    
+    .header-profile-avatar{
+      height: 32px;
+      width: 32px;
+    }
+    .navigation-menu-profile-link{
       display: flex;
       flex-direction: column;
-      text-decoration: none;
+    }
 
+    a,li {
+      font-size: .8rem;
       color: colors.$side__font;
-      padding-left: 1em;
-      padding-bottom: 1em;
+      font-weight: 600;
     }
 
     .navigation-menu-settings {
+      display: flex;
+      list-style: none;
+      flex-direction: column;
       width: 100%;
       border-bottom: 1px solid #333;
+      gap: .3em;
+      padding: 1em;
     }
   }
 }

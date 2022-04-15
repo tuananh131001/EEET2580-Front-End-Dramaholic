@@ -1,7 +1,7 @@
 nav #sideNav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   position: fixed;
   height: 100%;
@@ -10,22 +10,39 @@ nav #sideNav {
   left: 0;
   overflow-x: hidden;
   background-color: rgb(0, 0, 0);
-  gap: 0.3em;
-  padding-top: 1em;
-  transition: 0.5s;
+  gap: 0.1em;
+  transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
 }
-nav #sideNav a {
+nav #sideNav .navigation-menu-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+nav #sideNav .navigation-menu-profile .navigation-menu-profile-text {
+  font-size: 0.6rem;
+}
+nav #sideNav .header-profile-avatar {
+  height: 32px;
+  width: 32px;
+}
+nav #sideNav .navigation-menu-profile-link {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+}
+nav #sideNav a, nav #sideNav li {
+  font-size: 0.8rem;
   color: #999;
-  padding-left: 1em;
-  padding-bottom: 1em;
+  font-weight: 600;
 }
 nav #sideNav .navigation-menu-settings {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
   width: 100%;
   border-bottom: 1px solid #333;
+  gap: 0.3em;
+  padding: 1em;
 }
 
 .card {
