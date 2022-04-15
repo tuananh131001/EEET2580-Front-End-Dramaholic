@@ -11,9 +11,12 @@ nav {
     left: 0;
     overflow-x: hidden;
     background-color: colors.$black;
-    gap: 0.1em;
+    gap: 1em;
     transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
+    padding-top: .5em;
+
     .navigation-menu-profile {
+
       display: flex;
       align-items: center;
       gap: .5em;
@@ -44,7 +47,8 @@ nav {
       width: 100%;
       border-bottom: 1px solid #333;
       gap: .3em;
-      padding: 1em;
+      padding: 0 1em;
+
     }
   }
 }
