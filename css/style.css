@@ -1,37 +1,58 @@
 nav #sideNav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   position: fixed;
   height: 100%;
   width: 0;
-  top: 4.9vh;
+  top: 45px;
   left: 0;
   overflow-x: hidden;
   background-color: rgb(0, 0, 0);
-  gap: 0.3em;
-  padding-top: 1em;
-  transition: 0.5s;
+  transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
+  padding-top: 0.5em;
 }
-nav #sideNav a {
+nav #sideNav .navigation-menu-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+nav #sideNav .navigation-menu-profile .navigation-menu-profile-text {
+  font-size: 0.6rem;
+}
+nav #sideNav .navigation-menu-profile .header-profile-avatar {
+  height: 32px;
+  width: 32px;
+}
+nav #sideNav .navigation-menu-profile .navigation-menu-profile-link {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+}
+nav #sideNav a,
+nav #sideNav li {
+  font-size: 0.8rem;
   color: #999;
-  padding-left: 1em;
-  padding-bottom: 1em;
+  font-weight: 600;
 }
 nav #sideNav .navigation-menu-settings {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
   width: 100%;
   border-bottom: 1px solid #333;
+  gap: 0.3em;
+  padding: 1em 1em;
+}
+nav #sideNav .sign-in-subBar {
+  margin-top: 1em;
 }
 
 .card {
   display: grid;
   line-height: 1.6;
-  max-width: 35ch;
+  width: 95%;
   z-index: -1;
   transition: transform 500ms ease;
 }
@@ -72,7 +93,7 @@ nav #sideNav .navigation-menu-settings {
 }
 .card .card-title {
   position: relative;
-  font-size: 1rem;
+  font-size: 0.8rem;
   width: max-content;
 }
 .card .card-title::after {
@@ -113,24 +134,39 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  position: fixed;
   padding: 0 1em;
   width: 100%;
   background-color: rgb(0, 0, 0);
   z-index: 99;
+}
+nav .nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  gap: 0.5em;
 }
 nav .search-container {
   display: flex;
   flex-direction: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
   gap: 0.5em;
 }
 nav .search-container .search-icon {
+  position: fixed;
   cursor: pointer;
 }
 nav .search-container .search-bar {
+  position: fixed;
   width: 0;
+  height: 3em;
+  top: 0.3em;
+  bottom: 0;
+  right: 10%;
   border: 1px solid #fff;
   background-color: #1b1b1b;
   color: #fff;
@@ -164,14 +200,6 @@ nav .nav-left {
   align-items: center;
   gap: 3em;
 }
-nav .nav-right {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  white-space: nowrap;
-  gap: 2em;
-}
 nav .sign-in-subBar {
   background-color: rgb(193, 7, 30);
   color: white;
@@ -190,6 +218,10 @@ nav .sign-in-subBar:hover {
 
 /* End Sidebar */
 @media (min-width: 62em) {
+  .search-bar {
+    display: block;
+  }
+
   .header-navigation-text {
     display: block;
   }
@@ -211,7 +243,7 @@ nav .sign-in-subBar:hover {
 
   .nav-gradient {
     --color-start: #11111100;
-    --color-end: #111111FF;
+    --color-end: #111111ff;
     background-image: linear-gradient(0deg, var(--color-start) 0, var(--color-end) 100%);
   }
 
@@ -219,6 +251,11 @@ nav .sign-in-subBar:hover {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
+  }
+  nav .search-icon,
+nav .search-bar {
+    position: relative !important;
+    top: 0 !important;
   }
   nav .header-navigation-text {
     display: flex;
@@ -267,11 +304,13 @@ nav .sign-in-subBar:hover {
 
 .movie-container {
   padding-left: 2em;
+  height: 90%;
 }
 
 .thumbTile__image {
   border-radius: 5px;
-  width: 98%;
+  width: 100%;
+  aspect-ratio: 9/16;
 }
 
 .thumbTitle {
@@ -420,15 +459,19 @@ main {
   background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
 }
 
-footer ol {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-footer ol,
-footer ul {
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   margin: 3em;
+}
+footer ul {
+  display: grid;
+  align-items: center;
   list-style: none;
   color: #999;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
 }
 footer a {
   color: inherit;
