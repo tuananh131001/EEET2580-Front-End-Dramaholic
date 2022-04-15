@@ -5,22 +5,36 @@
 
 nav {
   @include mixins.flex(row, center, space-between);
-  position: relative;
+  position: fixed;
   padding: 0 1em;
   width: 100%;
   background-color: colors.$black;
   z-index: 99;
+  .nav-right {
+    @include mixins.flex(row, center, flex-start);
+    white-space: nowrap;
+    gap: 0.5em;
+  }
   .search-container {
     @include mixins.flex(flex, center, center);
+
+    z-index: 2;
     gap: 0.5em;
-    
+
     .search-icon {
+      position: fixed;
       cursor: pointer;
     }
     .search-bar {
       // display: none;
+      position: fixed;
       width: 0;
-      
+      height: 3em;
+      // right: 5%;
+      top: 0.3em;
+      bottom: 0;
+      right: 10%;
+
       border: 1px solid #fff;
       background-color: #1b1b1bff;
       color: #fff;
@@ -55,11 +69,6 @@ nav {
     align-items: center;
     gap: 3em;
   }
-  .nav-right {
-    @include mixins.flex(row, center, flex-start);
-    white-space: nowrap;
-    gap: 2em;
-  }
 
   .sign-in-subBar {
     @include mixins.button-style();
@@ -72,6 +81,9 @@ nav {
 /* End Sidebar */
 
 @media (min-width: 62em) {
+  .search-bar {
+    display: block;
+  }
   .header-navigation-text {
     display: block;
   }
@@ -87,15 +99,24 @@ nav {
     background-color: transparent;
     transition: background-color 0.4s ease;
   }
-  .nav-gradient{
+  .nav-gradient {
     --color-start: #11111100;
-    --color-end: #111111FF;
-    background-image: linear-gradient(0deg,var(--color-start) 0,var(--color-end) 100%);
+    --color-end: #111111ff;
+    background-image: linear-gradient(
+      0deg,
+      var(--color-start) 0,
+      var(--color-end) 100%
+    );
   }
   nav {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
+    .search-icon,
+    .search-bar {
+      position: relative !important;
+      top: 0 !important;
+    }
     .header-navigation-text {
       @include mixins.flex(row, center, flex-start);
       text-transform: uppercase;

@@ -178,7 +178,7 @@ openSearch = () => {
   const subNav = document.querySelector(".search-bar");
   if (subNav.style.width === "") {
     // subNav.style.display = "block";
-    subNav.style.width = "80%";
+    subNav.style.width = "88%";
     subNav.classList.add("animate-fade-right");
   } else {
     // subNav.style.display = "none";
