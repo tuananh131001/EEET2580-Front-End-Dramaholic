@@ -13,29 +13,29 @@ nav {
     background-color: colors.$black;
     gap: 1em;
     transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
-    padding-top: .5em;
+    padding-top: 0.5em;
 
     .navigation-menu-profile {
-
       display: flex;
       align-items: center;
-      gap: .5em;
-      .navigation-menu-profile-text{
-        font-size: .6rem;
+      gap: 0.5em;
+      .navigation-menu-profile-text {
+        font-size: 0.6rem;
+      }
+
+      .header-profile-avatar {
+        height: 32px;
+        width: 32px;
+      }
+      .navigation-menu-profile-link {
+        display: flex;
+        flex-direction: column;
       }
     }
-    
-    .header-profile-avatar{
-      height: 32px;
-      width: 32px;
-    }
-    .navigation-menu-profile-link{
-      display: flex;
-      flex-direction: column;
-    }
 
-    a,li {
-      font-size: .8rem;
+    a,
+    li {
+      font-size: 0.8rem;
       color: colors.$side__font;
       font-weight: 600;
     }
@@ -46,9 +46,8 @@ nav {
       flex-direction: column;
       width: 100%;
       border-bottom: 1px solid #333;
-      gap: .3em;
+      gap: 0.3em;
       padding: 0 1em;
-
     }
   }
 }
