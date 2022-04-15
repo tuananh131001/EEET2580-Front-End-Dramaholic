@@ -304,11 +304,13 @@ nav .search-bar {
 
 .movie-container {
   padding-left: 2em;
+  height: 90%;
 }
 
 .thumbTile__image {
   border-radius: 5px;
-  width: 98%;
+  width: 90%;
+  aspect-ratio: 9/16;
 }
 
 .thumbTitle {
