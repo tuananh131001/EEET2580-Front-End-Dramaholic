@@ -21,13 +21,19 @@
     <title>My Account</title>
     <style>
 
+      body {
+        gap: 6rem;
+      } 
+
       .body_region {
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          width: 70%;
+          width: 80%;
           align-self: center;
       }
+
+      .row.page_header {align-items: center;}
 
       .section_title {
           font-size: 1.2rem;
@@ -35,7 +41,6 @@
       }
 
       .row {gap: 2rem;}
-
       .col {gap: 0.6rem;}
 
       .row.info {justify-content: space-between;}
@@ -48,9 +53,9 @@
 
   </head>
   <body>
-    <script type="module" src="./js/addHeaderFooter.js"></script>
+    <header></header>
     <main class="body_region">
-        <div class="row">
+        <div class="row page_header">
             <h1 class="page_title">Account</h1>
             <div id="membership">Member since </div>
         </div>
@@ -66,7 +71,7 @@
                 </div>
     
                 <div class="col manage_info">
-                    <a href="modify_info.html">Modify general info</a>
+                    <a href="modify_info.html">Modify general infomation</a>
                     <a href="change_password.html">Change password</a>
                 </div>
             </div>
@@ -84,11 +89,8 @@
             </div>
         </div>
     </main>
+    <footer></footer>
     <script src="./js/home.js"></script>
-    <script>
-        function redirect(page_url) {
-            window.open(page_url)
-        }
-    </script>
+    <script type="module" src="./js/addHeaderFooter.js"></script>
   </body>
 </html>
