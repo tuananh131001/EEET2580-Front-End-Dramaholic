@@ -34,15 +34,18 @@ main {
   );
 }
 footer {
-  ol {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-  ol,
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 3em;
+
   ul {
-    margin: 3em;
+    display: grid;
+    align-items: center;
     list-style: none;
     color: colors.$side__font;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1em;
   }
   a {
     color: inherit;
