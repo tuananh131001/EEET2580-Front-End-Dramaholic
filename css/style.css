@@ -452,4 +452,35 @@ footer a {
   background-position: center;
 }
 
+.row {
+  display: flex;
+
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.red_theme_button {
+  background-color: #c1071e;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.red_theme_button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #131834;
+}
+
+.page_title {
+  font-size: 3rem;
+  color: rgb(212, 14, 38);
+  font-weight: 400;
+}
 /*# sourceMappingURL=style.css.map */
