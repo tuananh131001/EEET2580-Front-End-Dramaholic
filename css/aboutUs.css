@@ -1,25 +1,27 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding:0;
-    font-family: "Poppins",sans-serif;
-    
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+
 }
 
 html {
     font-size: 62.5%;
 }
 
-body{
+body {
     background-color: black;
 }
 
-.main{
+.main {
     background-color: white;
+    width: 100%;
 }
-.aboutUs{
+
+.aboutUs {
     width: 70rem;
-    margin:auto;
+    margin: auto;
     text-align: center;
     background-color: white;
     font-size: 1.6rem;
@@ -28,59 +30,105 @@ body{
     transform: translateY(-20%);
 }
 
-.aboutUs-title,.mission-title{
+.aboutUs-title,
+.mission-title,
+.team-title {
     text-transform: uppercase;
     color: black;
     font-size: 4rem;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.aboutUs-desc{
+.aboutUs-desc {
     color: black;
     margin-top: 2em;
 }
-.mission{
-    text-align: center;
+
+.mission {
     padding-top: 5em;
 }
-.block{
+
+.block {
     display: flex;
     justify-content: space-between;
     gap: 5em;
     font-size: 1.6rem;
     padding: 0 5em;
     margin: 4em 0;
+    transition: 1s;
 }
 
-.block:nth-child(2){
+.block:nth-child(2) {
     flex-direction: row-reverse;
 }
 
-.block-img{
-    width:100em;
+.block-img {
+    flex: 50%;
 }
 
-.block-desc{
+.block-desc {
     text-align: left;
     margin: auto;
+    flex: 50%;
 }
 
-img{
-    width:100%;
+img {
+    width: 50rem;
     border-radius: 10px;
 }
 
-.team-profile{
+.team {
+    padding-top: 4em;
+}
+
+.team-profile {
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     gap: 30px;
     flex-wrap: wrap;
+    padding: 4em 0;
 }
 
-.team-profile img{
-    width:250px;
+.team-profile img {
     border-radius: 50%;
+    width: 250px;
 }
 
+.card {
+    width: 250px;
+    margin: 0 3em;
+}
 
+.card-bio {
+    margin: 1em;
+    font-size: larger;
+    text-align: center;
+}
 
+@media (max-width:1010px) {
+
+    .block,
+    .block:nth-child(2) {
+        flex-direction: column;
+        text-align: center;
+        flex: 1;
+        gap: 3em;
+        padding: 0 2em;
+    }
+
+    .block img,
+    .block-desc {
+        max-width: 50rem;
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+@media (max-width:700px) {
+
+    .aboutUs {
+        width: fit-content;
+    }
+}
