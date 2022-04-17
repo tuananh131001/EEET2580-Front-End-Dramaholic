@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+    font-family: "Poppins",sans-serif;
+    
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    background-color: black;
+}
+
+.main{
+    background-color: white;
+}
+.aboutUs{
+    width: 70rem;
+    margin:auto;
+    text-align: center;
+    background-color: white;
+    font-size: 1.6rem;
+    padding: 2em;
+    margin-top: 10rem;
+    transform: translateY(-20%);
+}
+
+.aboutUs-title,.mission-title{
+    text-transform: uppercase;
+    color: black;
+    font-size: 4rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.aboutUs-desc{
+    color: black;
+    margin-top: 2em;
+}
+.mission{
+    text-align: center;
+    padding-top: 5em;
+}
+.block{
+    display: flex;
+    justify-content: space-between;
+    gap: 5em;
+    font-size: 1.6rem;
+    padding: 0 5em;
+    margin: 4em 0;
+}
+
+.block:nth-child(2){
+    flex-direction: row-reverse;
+}
+
+.block-img{
+    width:100em;
+}
+
+.block-desc{
+    text-align: left;
+    margin: auto;
+}
+
+img{
+    width:100%;
+    border-radius: 10px;
+}
+
+.team-profile{
+    display: flex;
+    justify-content:space-evenly;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-profile img{
+    width:250px;
+    border-radius: 50%;
+}
+
+
+
