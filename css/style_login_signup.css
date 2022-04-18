@@ -4,90 +4,243 @@
   font-family: "Poppins";
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 
-body {
-  background-color: #10141c;
-  position: relative;
+.body {
+  background-color: #131834;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   height: 100vh;
-  padding: 2rem;
+  font-family: "Poppins", sans-serif;
 }
 
-.backButt {
-  position: relative;
-  top: 2rem;
-  padding-left: 3rem;
+.login-page {
+  background-color: #131834;
 }
 
-.ti-angle-double-left {
-  color: white;
-  font-size: 3.5rem;
+.signup-page {
+  background-color: white;
+}
+
+
+.logo {
+  padding: 3em 3em 0 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  padding: 3em 3em 2em 3em;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 3em;
 }
 
 img {
-  display: block;
-  max-width: 30rem;
-  height: auto;
-  margin: auto;
+  width: 180px;
 }
 
-section.main {
-  text-align: center;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+.form-content {
+  font-size: 1.6rem;
+  margin: auto;
+
+}
+
+.login-form {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  margin-top: 0.75em;
+  margin-bottom: 3.1em;
+  padding: 3.75em 4.25em 2.5em 4.25em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .title {
-  color: #dd3d3d;
-  text-transform: uppercase;
-  font-size: 3.5rem;
-  margin-bottom: 2rem;
+  font-size: 3.2rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
-input {
-  background-color: #c4c4c4;
-  height: 3.8rem;
-  width: 23rem;
+.login-page .title {
+  color: white;
+}
+
+.signup-page .title {
+  color: black;
+  margin-bottom: 0;
+}
+
+.slogan {
+  color: black;
+}
+
+.signup-form {
+  margin-bottom: 2em;
+}
+
+.form-group {
+  position: relative;
+  background-color: #333333;
+  width: 33.6rem;
+  margin-top: 1em;
   border-radius: 5px;
   border-style: none;
-  padding-left: 1em;
-  margin: 0.8rem;
+  display: flex;
 }
 
-button {
+form label {
+  position: absolute;
+  top: 30%;
+}
+
+form label {
+  color: #958f8c;
+  left: 16px;
+  pointer-events: none;
+  transition: .2s;
+}
+
+.form-input:valid~label,
+.form-input:focus~label {
+  transform: translateY(-10px);
+  font-size: 0.7em;
+  font-weight: bolder;
+}
+
+.form-input {
+  height: 3.2em;
+  width: 21em;
+  font-size: 1em;
+  padding-top: 0.8em;
+  padding-left: 1em;
+  flex: 1;
+  outline: none;
+  background-color: none;
+}
+
+.show {
+  color: #958f8c;
+  margin-right: 1px;
+  border: none;
+  display: none;
+  background-color: #333333;
+  cursor: pointer;
+
+}
+
+.form-input:focus~.show,
+.form-input:valid~.show {
+  display: block;
+  font-size: 0.9em;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.login-form .form-input {
+  background-color: #333333;
+  border-radius: 5px;
+  border-style: none;
   color: white;
-  margin: 1.5em;
-  font-size: 1.4rem;
-  background-color: #dd3d3d;
-  height: 3rem;
-  width: 7rem;
+}
+
+.signup-form .form-input {
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 1.3px;
+  outline-color: #e50914;
+  outline-width: 1.5px;
+  color: black;
+}
+
+.signup-form .form-input:focus {
+  border-style: none;
+  outline-style: solid;
+}
+
+.form-submit {
+  color: white;
+  margin-top: 1.7em;
+  font-size: 1em;
+  background-color: #e50914;
+  height: 3.2em;
+  width: 21em;
   border-radius: 5px;
   border-style: none;
   cursor: pointer;
 }
 
-div.messages {
-  color: white;
-  margin-top: 10px;
-  font-size: 15px;
+.form-submit:hover {
+  background-color: red;
+}
+
+.signup-form .form-submit {
+  border-radius: 0;
+}
+
+.content-other {
+  color: #c4c4c4;
+  font-size: 1.5rem;
+  margin-top: .6em;
+}
+
+.login-rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sign-up {
+  margin-top: 2em;
+  text-align: center;
 }
 
 a {
-  color: #b73537;
+  color: white;
   font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.header a {
+  color: #131834;
+  font-size: 2em;
+  font-weight: 600;
 }
 
 footer {
-  width: 100%;
-  color: #b63537;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0 30px;
-  margin-top:auto;
-  font-size: 1.6rem;
+  margin-top: 5em;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.signup-page footer {
+  background-color: #f3f3f3;
+  color: #7d7d7d;
+}
+
+footer ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  font-size: 16px;
+}
+
+footer ol,
+footer ul {
+  margin: 3em;
+  list-style: none;
+  color: #999;
+}
+
+
+footer a {
+  color: inherit;
+  font-size: inherit;
+  font-weight: lighter;
 }

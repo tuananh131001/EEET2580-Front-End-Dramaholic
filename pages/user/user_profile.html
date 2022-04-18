@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account</title>
+    <style>
+
+      body {
+        gap: 6rem;
+      } 
+
+      .body_region {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 80%;
+          align-self: center;
+      }
+
+      .row.page_header {align-items: center;}
+
+      .section_title {
+          font-size: 1.2rem;
+          color: rgb(212, 14, 38);
+      }
+
+      .row {gap: 2rem;}
+      .col {gap: 0.6rem;}
+
+      .row.info {justify-content: space-between;}
+      .col.manage_info {align-items: flex-end;}
+
+      a {
+          color: rgb(118, 206, 247);
+      }
+    </style>
+
+  </head>
+  <body>
+    <header></header>
+    <main class="body_region">
+        <div class="row page_header">
+            <h1 class="page_title">Account</h1>
+            <div id="membership">Member since </div>
+        </div>
+        <hr>
+        <div class="col">
+            <div class="section_title">General infomation</div>
+            <div class="row info">
+                <div class="col info">
+                    <div id="user_name">Full name: </div>
+                    <div id="user_mail">Email: </div>
+                    <div id="user_password">Password: </div>
+                    <div id="user_phone">Phone number: </div>
+                </div>
+    
+                <div class="col manage_info">
+                    <a href="modify_info.html">Modify general infomation</a>
+                    <a href="change_password.html">Change password</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="col">
+            <div class="section_title">Payment</div>
+            <div class="row info">
+                <div class="col info" id="payment_info"></div>
+    
+                <div class="col manage_info">
+                    <a href="manage_payment.html">Manage payment method</a>
+                    <a href="add_payment.html">Add payment method</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="./js/home.js"></script>
+    <script type="module" src="/js/addHeaderFooter.js"></script>
+  </body>
+</html>
