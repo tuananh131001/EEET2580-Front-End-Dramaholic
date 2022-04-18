@@ -60,8 +60,12 @@ const createElementsMovieCard = (x) => {
 
   // Button
   let button = document.createElement("button");
+
   button.textContent = "More Detail";
   button.className = "button";
+  button.onclick = function () {
+    location.href = "/pages/movie/movie_detail.html";
+};
   cardContent.appendChild(button);
 
   return col;
@@ -109,7 +113,6 @@ async function getTrending() {
   for (let i = 0; i < totalPages; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
   }
-
   Promise.all(
     movieArray.map(async (url) => {
       // Get data

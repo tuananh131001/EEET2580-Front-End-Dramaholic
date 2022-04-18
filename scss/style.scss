@@ -52,6 +52,11 @@ footer {
   }
 }
 
+.swiper-button-prev:hover,.swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20,20,20,.5);
+  color: #fff !important;
+}
 /* Swipe */
 @media screen and (max-width: 30em) {
   aside {

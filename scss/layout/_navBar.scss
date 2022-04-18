@@ -25,6 +25,13 @@ nav {
       position: fixed;
       cursor: pointer;
     }
+    .search-bar.animate-fade-right .auto-box{
+      display: block;
+    } 
+    .search-bar.animate-fade-right .auto-box li{
+      display: block;
+    } 
+
     .search-bar {
       // display: none;
       position: fixed;

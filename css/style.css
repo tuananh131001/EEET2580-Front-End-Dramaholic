@@ -160,6 +160,12 @@ nav .search-container .search-icon {
   position: fixed;
   cursor: pointer;
 }
+nav .search-container .search-bar.animate-fade-right .auto-box {
+  display: block;
+}
+nav .search-container .search-bar.animate-fade-right .auto-box li {
+  display: block;
+}
 nav .search-container .search-bar {
   position: fixed;
   width: 0;
@@ -477,6 +483,12 @@ footer a {
   color: inherit;
 }
 
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20, 20, 20, 0.5);
+  color: #fff !important;
+}
+
 /* Swipe */
 @media screen and (max-width: 30em) {
   aside {
@@ -495,35 +507,4 @@ footer a {
   background-position: center;
 }
 
-.row {
-  display: flex;
-
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-
-.red_theme_button {
-  background-color: #c1071e;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
-.red_theme_button:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #131834;
-}
-
-.page_title {
-  font-size: 3rem;
-  color: rgb(212, 14, 38);
-  font-weight: 400;
-}
 /*# sourceMappingURL=style.css.map */
