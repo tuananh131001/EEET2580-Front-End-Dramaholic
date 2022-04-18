@@ -21,6 +21,54 @@
     <title>My Account</title>
     <style>
 
+      .modal {
+        display: none; /* Hidden by default */
+        position:fixed;
+        align-self: center;
+        overflow:auto; /* Enable scroll if needed */
+        background-color: #dedede; /* Black w/ opacity */
+        padding: 3rem;
+        color: #000;
+      }
+
+      .modal_body.add_film_input_box {
+        border-color: #000;
+        background-color: rgba(189, 189, 189, 00.5rem);
+        /* background-color: rgba(247, 247, 247, 0.199); */
+        color: black;
+      }
+
+      .modal_body {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+      }
+
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .add_film_input_box, textarea{
+        width: 20rem;
+        height: 2.5rem;
+        border-radius: 5px;
+        border: solid white 2px;
+        background-color: rgba(247, 247, 247, 0.7);
+        color: white;
+        padding: 0 0.5rem;
+      }
+
       body {
         gap: 6rem;
       } 
@@ -43,12 +91,14 @@
       .row {gap: 2rem;}
       .col {gap: 0.6rem;}
 
-      .row.info {justify-content: space-between;}
-      .col.manage_info {align-items: flex-end;}
-
-      a {
-          color: rgb(118, 206, 247);
+      .row.info, .row.modal_header {justify-content: space-between;}
+      .col.manage_info {
+        align-items: flex-end; 
+        color: rgb(118, 206, 247);
       }
+
+      .col.manage_info *:hover {cursor: pointer; color: white;}
+
     </style>
 
   </head>
@@ -71,8 +121,8 @@
                 </div>
     
                 <div class="col manage_info">
-                    <a href="modify_info.html">Modify general infomation</a>
-                    <a href="change_password.html">Change password</a>
+                    <div onclick="open_modal('#modal_edit_info')">Edit information</div>
+                    <div onclick="open_modal('#modal_change_pw')">Change password</div>
                 </div>
             </div>
         </div>
@@ -83,14 +133,178 @@
                 <div class="col info" id="payment_info"></div>
     
                 <div class="col manage_info">
-                    <a href="manage_payment.html">Manage payment method</a>
-                    <a href="add_payment.html">Add payment method</a>
+                    <div onclick="open_modal('#modal_manage_payment')">Manage payment</div>
+                    <div onclick="open_modal('#modal_add_payment')">Add payment</div>
                 </div>
             </div>
         </div>
+
+        <!-- MODAL EDIT INFO -->
+        <div class="modal" id="modal_edit_info">
+          <div class="modal_body">
+            <div class="row modal_header">
+              <h2>Edit personal information</h2>
+              <div class="close" onclick="close_modal('#modal_edit_info')">&times;</div>   
+            </div>
+            <hr>
+            <form class="col" style="gap: 1.5rem;">
+              <div class="col">
+                <label>Full name:</label>
+                <input required type="text" class="modal_body add_film_input_box" id="modal_name" value=""/>
+              </div> 
+              <div class="col">
+                <label>Email address:</label>
+                <input required type="email" class="modal_body add_film_input_box" id="modal_email" value=""/>
+              </div>      
+              <div class="col">
+                <label>Phone number:</label>
+                <input required type="number" class="modal_body add_film_input_box" id="modal_phone" value=""/>
+              </div>   
+
+              <div>
+                <input class="red_theme_button" type="submit" value="Save">
+              </div>  
+            </form>
+          </div>
+        </div>
+        <!-- END MODAL EDIT INFO -->
+
+        <!-- MODAL CHANGE PASSWORD -->
+        <div class="modal"  id="modal_change_pw">
+          <div class="modal_body">
+            <div class="row modal_header">
+              <h2>Change password</h2>    
+              <div class="close" onclick="close_modal('#modal_change_pw')">&times;</div>   
+            </div>
+
+            <hr>
+            <form class="col" style="gap: 1.5rem;">
+              <div class="col">
+                <label>Enter current password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="current_pw_modal" />
+              </div> 
+              <div class="col">
+                <label>Enter new password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="new_pw_modal" />
+              </div>      
+              <div class="col">
+                <label>Confirm current password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="confirm_pw_modal" />
+              </div>   
+              <div class="row" style="align-items: center; gap: 0.6rem;">
+                <input type="checkbox" id="show_checkbox" onclick="show_pw('.password')">
+                <label for="show_checkbox">Show password</label>
+              </div>
+              <div>
+                <input class="red_theme_button" type="submit" value="Save">
+              </div>  
+            </form>
+          </div>
+        </div>
+        <!-- END MODAL CHANGE PASSWORD -->
+
+        <!-- MODAL MANAGE PAYMENT -->
+        <div class="modal"  id="modal_manage_payment">
+          <div class="modal_body">
+            <div class="row modal_header">
+              <h2>Manage payment </h2>    
+              <div class="close" onclick="close_modal('#modal_manage_payment')">&times;</div>   
+            </div>
+
+            <hr>
+            <form class="col" style="gap: 1.5rem;">
+              <div class="col">
+                <label>Enter current password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="current_pw_modal" />
+              </div> 
+              <div class="col">
+                <label>Enter new password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="new_pw_modal" />
+              </div>      
+              <div class="col">
+                <label>Confirm current password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="confirm_pw_modal" />
+              </div>   
+              <div class="row" style="align-items: center; gap: 0.6rem;">
+                <input type="checkbox" id="show_checkbox" onclick="show_pw('.password')">
+                <label for="show_checkbox">Show password</label>
+              </div>
+              <div>
+                <input class="red_theme_button" type="submit" value="Save">
+              </div>  
+            </form>
+          </div>
+        </div>
+        <!-- END MODAL MANAGE PAYMENT -->
+
+        <!-- MODAL ADD PAYMENT -->
+        <div class="modal"  id="modal_add_payment">
+          <div class="modal_body">
+            <div class="row modal_header">
+              <h2>Add payment </h2>    
+              <div class="close" onclick="close_modal('#modal_add_payment')">&times;</div>   
+            </div>
+
+            <hr>
+            <form class="col" style="gap: 1.5rem;">
+              <div class="col">
+                <label>Enter current password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="current_pw_modal" />
+              </div> 
+              <div class="col">
+                <label>Enter new password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="new_pw_modal" />
+              </div>      
+              <div class="col">
+                <label>Confirm current password:</label>
+                <input required type="password" class="modal_body add_film_input_box password" id="confirm_pw_modal" />
+              </div>   
+              <div class="row" style="align-items: center; gap: 0.6rem;">
+                <input type="checkbox" id="show_checkbox" onclick="show_pw('.password')">
+                <label for="show_checkbox">Show password</label>
+              </div>
+              <div>
+                <input class="red_theme_button" type="submit" value="Save">
+              </div>  
+            </form>
+          </div>
+        </div>
+        <!-- END MODAL ADD PASSWORD -->
+
     </main>
+    
     <footer></footer>
+
     <script src="./js/home.js"></script>
     <script type="module" src="./js/addHeaderFooter.js"></script>
+    <script>
+      function show_pw(selector) {
+        var pw = document.querySelectorAll(selector);
+        console.log(pw[0].getAttribute("type"));
+
+        if (pw[0].type == "password") {
+          for (var i= 0; i<pw.length; i++)
+            pw[i].type = "text";
+
+        } else {
+          for (var i= 0; i<pw.length; i++)
+            pw[i].type = "password";
+        }
+      }
+
+      function open_modal(modal_id) {
+        var modal = document.querySelector(modal_id);
+        modal.style.display = "block";
+      }
+
+      function close_modal(modal_id) {
+        var modal = document.querySelector(modal_id);
+        modal.style.display = "none";
+      }
+
+      $("#modal_change_pw").on('hidden.bs.modal', function () {
+      $(this).find('form').trigger('reset');
+});
+    </script>
   </body>
 </html>
