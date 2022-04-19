@@ -1,4 +1,3 @@
-
 const movieListElement = document.querySelector(".movie-list");
 
 const createMovieList = (title) => {
@@ -64,8 +63,9 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
+    localStorage.setItem("dbid", x.dbID)
     location.href = "/pages/movie/movie_detail.html";
-};
+  };
   cardContent.appendChild(button);
 
   return col;
@@ -120,7 +120,7 @@ async function getTrending() {
       const json = await reponse.json();
       const embedded = await json.content;
       const movieListElement = createMovieList("hel");
-      
+
       // Get movie and put in container
       const movies = embedded.forEach((movie) => {
         const movieL = createElementsMovieCard(movie);
@@ -173,8 +173,9 @@ window.onscroll = function () {
 
 const openNav = () => {
   const subNav = document.querySelector("#sideNav");
-  if (subNav.style.width === "") subNav.style.width = "60%";
-  else subNav.style.width = "";
+  subNav.style.width === ""
+    ? (subNav.style.width = "60%")
+    : (subNav.style.width = "");
 };
 
 openSearch = () => {
@@ -191,4 +192,3 @@ openSearch = () => {
 };
 
 getTrending();
-
