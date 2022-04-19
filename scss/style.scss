@@ -52,11 +52,25 @@ footer {
   }
 }
 
+.swiper-button-prev:hover,.swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20,20,20,.5);
+  color: #fff !important;
+}
 /* Swipe */
 @media screen and (max-width: 30em) {
   aside {
     display: none;
   }
+}
+
+.movie-image{
+  width: 30%;
+}
+.search-content{
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
 }
 
 #loading {

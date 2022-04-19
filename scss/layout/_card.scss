@@ -59,6 +59,7 @@
     position: relative;
     font-size: .8rem;
     width: max-content;
+    overflow-wrap: break-word;
 
   }
   .card-title::after {

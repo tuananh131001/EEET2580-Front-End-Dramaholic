@@ -95,6 +95,7 @@ nav #sideNav .sign-in-subBar {
   position: relative;
   font-size: 0.8rem;
   width: max-content;
+  overflow-wrap: break-word;
 }
 .card .card-title::after {
   content: "";
@@ -112,7 +113,7 @@ nav #sideNav .sign-in-subBar {
   padding-top: 0.5em;
 }
 .card .button {
-  background-color: rgb(193, 7, 30);
+  background-color: #c1071e;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -125,7 +126,7 @@ nav #sideNav .sign-in-subBar {
 .card .button:focus {
   cursor: pointer;
   background-color: rgb(255, 255, 255);
-  color: rgb(193, 7, 30);
+  color: #c1071e;
 }
 
 /* Start side bar */
@@ -159,6 +160,12 @@ nav .search-container {
 nav .search-container .search-icon {
   position: fixed;
   cursor: pointer;
+}
+nav .search-container .search-bar.animate-fade-right .auto-box {
+  display: block;
+}
+nav .search-container .search-bar.animate-fade-right .auto-box li {
+  display: block;
 }
 nav .search-container .search-bar {
   position: fixed;
@@ -201,7 +208,7 @@ nav .nav-left {
   gap: 3em;
 }
 nav .sign-in-subBar {
-  background-color: rgb(193, 7, 30);
+  background-color: #c1071e;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -213,7 +220,7 @@ nav .sign-in-subBar {
 nav .sign-in-subBar:hover {
   cursor: pointer;
   background-color: rgb(255, 255, 255);
-  color: rgb(193, 7, 30);
+  color: #c1071e;
 }
 
 /* End Sidebar */
@@ -278,7 +285,7 @@ nav .search-bar {
   }
   nav .sign-in-nagivation {
     display: block;
-    background-color: rgb(193, 7, 30);
+    background-color: #c1071e;
     color: white;
     font-weight: 400;
     font-size: 1rem;
@@ -290,7 +297,7 @@ nav .search-bar {
   nav .sign-in-nagivation:hover {
     cursor: pointer;
     background-color: rgb(255, 255, 255);
-    color: rgb(193, 7, 30);
+    color: #c1071e;
   }
 }
 /* Billboard */
@@ -398,7 +405,7 @@ nav .search-bar {
     text-transform: uppercase;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 15px;
-    text-shadow: 5px 5px rgb(193, 7, 30);
+    text-shadow: 5px 5px #c1071e;
   }
   .billboard .billboard-description {
     font-size: 1.2vw;
@@ -477,12 +484,28 @@ footer a {
   color: inherit;
 }
 
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20, 20, 20, 0.5);
+  color: #fff !important;
+}
+
 /* Swipe */
 @media screen and (max-width: 30em) {
   aside {
     display: none;
   }
 }
+.movie-image {
+  width: 30%;
+}
+
+.search-content {
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
 #loading {
   display: flex;
   position: fixed;
@@ -495,35 +518,4 @@ footer a {
   background-position: center;
 }
 
-.row {
-  display: flex;
-
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-
-.red_theme_button {
-  background-color: #c1071e;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
-.red_theme_button:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #131834;
-}
-
-.page_title {
-  font-size: 3rem;
-  color: rgb(212, 14, 38);
-  font-weight: 400;
-}
 /*# sourceMappingURL=style.css.map */
