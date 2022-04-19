@@ -107,8 +107,8 @@ async function setSwiper() {
 async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
-  const totalPages = await data.page.totalPages;
-  const billboardVideo = await getBillboardVideo(data._embedded.movies);
+  const totalPages = await data.totalPages;
+  const billboardVideo = await getBillboardVideo(data.content);
   let movieArray = [];
   for (let i = 0; i < totalPages; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
@@ -118,7 +118,7 @@ async function getTrending() {
       // Get data
       const reponse = await fetch(url);
       const json = await reponse.json();
-      const embedded = await json._embedded.movies;
+      const embedded = await json.content;
       const movieListElement = createMovieList("hel");
       
       // Get movie and put in container
