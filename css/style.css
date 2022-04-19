@@ -499,7 +499,7 @@ footer a {
 }
 .search-content {
   margin-top: 5%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   place-content: center;
   gap: 2em;

@@ -108,7 +108,7 @@ async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.totalPages;
-  const billboardVideo = await getBillboardVideo(data.content);
+  const billboardVideo = await getBillboardVideo();
   let movieArray = [];
   for (let i = 0; i < totalPages; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
@@ -134,9 +134,11 @@ async function getTrending() {
     })
   );
 }
-async function getBillboardVideo(movieArray) {
+async function getBillboardVideo() {
   // const random = Math.floor(Math.random() * movieArray.length);
-  const movie = movieArray[0];
+  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/99966");
+  const movie = await url.json();
+  console.log(movie)
 
   const videoContainer = document.querySelector(".billboard-video");
   const videoElement = document.createElement("iframe");
