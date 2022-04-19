@@ -43,32 +43,27 @@ const createMovieCard = (x) => {
 
   return wrapper;
 };
-async function searchSuggest(suggestionList, title) {
+async function searchSuggest(title) {
   searchContent.style.display = "grid";
-  searchContent.innerHTML = ""
+  searchContent.innerHTML = "";
   const reponse = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
   );
   const { content } = await reponse.json();
   content.forEach((movie) => {
-    suggestionList.push(createMovieCard(movie));
+    searchContent.appendChild(createMovieCard(movie));
   });
   mainContent.style.display = "none";
-  suggestionList.forEach((movie) => {
-    searchContent.appendChild(movie);
-  });
-
 }
 
 inputValue.onkeyup = (e) => {
   let current_search = e.target.value;
-  const suggestionList = [];
+
   titleList = [];
   if (current_search) {
-    searchSuggest(suggestionList, current_search);
+    searchSuggest(current_search);
   } else {
     mainContent.style.display = "block";
     searchContent.innerHTML = "";
   }
-
 };
