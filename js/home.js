@@ -1,4 +1,3 @@
-
 const movieListElement = document.querySelector(".movie-list");
 
 const createMovieList = (title) => {
@@ -60,8 +59,13 @@ const createElementsMovieCard = (x) => {
 
   // Button
   let button = document.createElement("button");
+
   button.textContent = "More Detail";
   button.className = "button";
+  button.onclick = function () {
+    localStorage.setItem("dbid", x.dbID)
+    location.href = "/pages/movie/movie_detail.html";
+  };
   cardContent.appendChild(button);
 
   return col;
@@ -103,21 +107,20 @@ async function setSwiper() {
 async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
-  const totalPages = await data.page.totalPages;
-  const billboardVideo = await getBillboardVideo(data._embedded.movies);
+  const totalPages = await data.totalPages;
+  const billboardVideo = await getBillboardVideo(data.content);
   let movieArray = [];
   for (let i = 0; i < totalPages; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
   }
-
   Promise.all(
     movieArray.map(async (url) => {
       // Get data
       const reponse = await fetch(url);
       const json = await reponse.json();
-      const embedded = await json._embedded.movies;
+      const embedded = await json.content;
       const movieListElement = createMovieList("hel");
-      
+
       // Get movie and put in container
       const movies = embedded.forEach((movie) => {
         const movieL = createElementsMovieCard(movie);
@@ -170,8 +173,11 @@ window.onscroll = function () {
 
 const openNav = () => {
   const subNav = document.querySelector("#sideNav");
-  if (subNav.style.width === "") subNav.style.width = "60%";
-  else subNav.style.width = "";
+  subNav.style.width === ""
+    ? (subNav.style.width = "60%")
+    : (subNav.style.width = "");
+    const input = document.querySelector(".search-bar")
+    input.nodeValue = ""
 };
 
 openSearch = () => {
@@ -185,7 +191,9 @@ openSearch = () => {
     subNav.style.width = "";
     subNav.classList.remove("animate-fade-right");
   }
+  subNav.value =''
+  mainContent.style.display = "block";
+  searchContent.innerHTML = ""
 };
 
 getTrending();
-
