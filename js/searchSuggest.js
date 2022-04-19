@@ -44,6 +44,7 @@ const createMovieCard = (x) => {
   return wrapper;
 };
 async function searchSuggest(suggestionList, title) {
+  searchContent.style.display = "grid";
   searchContent.innerHTML = ""
   const reponse = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
