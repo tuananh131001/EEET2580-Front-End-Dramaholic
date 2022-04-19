@@ -66,5 +66,8 @@ inputValue.onkeyup = (e) => {
   titleList = [];
   if (current_search) {
     searchSuggest(suggestionList, current_search);
+  }else {
+    mainContent.style.display = "block";
+    searchContent.innerHTML = ""
   }
 };
