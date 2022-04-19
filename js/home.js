@@ -176,6 +176,8 @@ const openNav = () => {
   subNav.style.width === ""
     ? (subNav.style.width = "60%")
     : (subNav.style.width = "");
+    const input = document.querySelector(".search-bar")
+    input.nodeValue = ""
 };
 
 openSearch = () => {
@@ -189,6 +191,9 @@ openSearch = () => {
     subNav.style.width = "";
     subNav.classList.remove("animate-fade-right");
   }
+  subNav.value =''
+  mainContent.style.display = "block";
+  searchContent.innerHTML = ""
 };
 
 getTrending();
