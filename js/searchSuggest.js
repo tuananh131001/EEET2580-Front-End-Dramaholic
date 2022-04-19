@@ -44,6 +44,7 @@ const createMovieCard = (x) => {
   return wrapper;
 };
 async function searchSuggest(title) {
+  mainContent.style.display = "none";
   searchContent.style.display = "grid";
   searchContent.innerHTML = "";
   const reponse = await fetch(
@@ -53,7 +54,7 @@ async function searchSuggest(title) {
   content.forEach((movie) => {
     searchContent.appendChild(createMovieCard(movie));
   });
-  mainContent.style.display = "none";
+  
 }
 
 inputValue.onkeyup = (e) => {

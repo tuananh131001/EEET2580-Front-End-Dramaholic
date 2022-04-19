@@ -149,51 +149,51 @@ nav .nav-right {
   white-space: nowrap;
   gap: 0.5em;
 }
-nav .search-container {
-  display: flex;
-  flex-direction: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  gap: 0.5em;
+nav .search-box {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #2C3441;
+  height: 40px;
+  border-radius: 40px;
 }
-nav .search-container .search-icon {
-  position: fixed;
-  cursor: pointer;
+nav .search-box:hover > input {
+  width: 200px;
+  padding: 0 10px;
 }
-nav .search-container .search-bar.animate-fade-right .auto-box {
-  display: block;
+nav .search-box:hover > .icon {
+  background: #536179;
 }
-nav .search-container .search-bar.animate-fade-right .auto-box li {
-  display: block;
+nav .icon:hover {
+  transform: rotate(360deg) scale(0.8);
 }
-nav .search-container .search-bar {
-  position: fixed;
+nav input {
   width: 0;
-  height: 3em;
-  top: 0.3em;
-  bottom: 0;
-  right: 10%;
-  border: 1px solid #fff;
-  background-color: #1b1b1b;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: none;
+  font-size: 1.1rem;
+  transition: 0.5s ease;
+  line-height: 40px;
   color: #fff;
 }
-nav .animate-fade-right {
-  animation-name: fadeInRight;
-  animation-iteration-count: 1;
-  animation-duration: 0.5s;
-  animation-delay: 0s;
-  backface-visibility: hidden;
-}
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+nav .icon {
+  color: #21DFCD;
+  float: right;
+  width: 40px;
+  font-size: 1.3rem;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  cursor: pointer;
+  text-decoration: none;
 }
 nav #subBar {
   width: 0;
@@ -225,10 +225,6 @@ nav .sign-in-subBar:hover {
 
 /* End Sidebar */
 @media (min-width: 62em) {
-  .search-bar {
-    display: block;
-  }
-
   .header-navigation-text {
     display: block;
   }
@@ -258,11 +254,6 @@ nav .sign-in-subBar:hover {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
-  }
-  nav .search-icon,
-nav .search-bar {
-    position: relative !important;
-    top: 0 !important;
   }
   nav .header-navigation-text {
     display: flex;

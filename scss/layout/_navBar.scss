@@ -15,55 +15,54 @@ nav {
     white-space: nowrap;
     gap: 0.5em;
   }
-  .search-container {
-    @include mixins.flex(flex, center, center);
+  .search-box{
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #2C3441;
+    height: 40px;
+    border-radius: 40px;
 
-    z-index: 2;
-    gap: 0.5em;
-
-    .search-icon {
-      position: fixed;
-      cursor: pointer;
-    }
-    .search-bar.animate-fade-right .auto-box{
-      display: block;
-    } 
-    .search-bar.animate-fade-right .auto-box li{
-      display: block;
-    } 
-
-    .search-bar {
-      // display: none;
-      position: fixed;
-      width: 0;
-      height: 3em;
-      // right: 5%;
-      top: 0.3em;
-      bottom: 0;
-      right: 10%;
-
-      border: 1px solid #fff;
-      background-color: #1b1b1bff;
-      color: #fff;
-    }
   }
-  .animate-fade-right {
-    animation-name: fadeInRight;
-    animation-iteration-count: 1;
-    animation-duration: 0.5s;
-    animation-delay: 0s;
-    backface-visibility: hidden;
+  .search-box:hover > input{
+    width: 200px;
+    padding: 0 10px;
   }
-  @keyframes fadeInRight {
-    0% {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .search-box:hover > .icon{
+    background: #536179;
   }
+  .icon:hover{
+    transform: rotate(360deg) scale(0.8);
+  }
+  input{
+    width: 0;
+    border: none;
+    outline: none;
+    padding: 0;
+    background: none;
+    font-size: 1.1rem;
+    transition: 0.5s ease;
+    line-height: 40px;
+    color: #fff;
+  }
+  .icon{
+    color: #21DFCD;
+    float: right;
+    width: 40px;
+    font-size: 1.3rem;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
   #subBar {
     width: 0;
   }
@@ -88,9 +87,7 @@ nav {
 /* End Sidebar */
 
 @media (min-width: 62em) {
-  .search-bar {
-    display: block;
-  }
+
   .header-navigation-text {
     display: block;
   }
@@ -119,11 +116,7 @@ nav {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
-    .search-icon,
-    .search-bar {
-      position: relative !important;
-      top: 0 !important;
-    }
+
     .header-navigation-text {
       @include mixins.flex(row, center, flex-start);
       text-transform: uppercase;
