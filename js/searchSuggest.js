@@ -86,7 +86,7 @@ async function searchSuggest(title) {
   mainContent.style.display = "none";
 }
 
-inputValue.onkeyup = (e) => {
+inputValue.addEventListener("input", (e) => {
   let current_search = e.target.value;
   if (current_search) {
     searchSuggest(current_search);
@@ -95,4 +95,4 @@ inputValue.onkeyup = (e) => {
     emptyPage.classList.add("hidden");
     searchContent.style.display = "none";
   }
-};
+});
