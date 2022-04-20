@@ -16,37 +16,39 @@ nav {
     gap: 0.5em;
   }
   .search-box{
-
+    display: flex;
     background: colors.$black;
-    border: 1px solid colors.$white;
     height: 40px;
     border-radius: 40px;
+    border: 1px solid colors.$white;
   }
 
   .search-box:hover > .icon{
     background: #536179;
   }
-  .icon:hover{
-    transform: rotate(360deg) scale(0.8);
-  }
+ 
   input{
-    width: 200px;
+    width: 0;
     border: none;
     outline: none;
-    padding: 0;
     background: none;
     font-size: 1.1rem;
-    transition: 0.5s ease;
+    transition: .5s;
     line-height: 40px;
     color: #fff;
+ 
+  }
+  .open{
+    width: 100%;
     padding: 0 10px;
   }
   .icon{
     color: #21DFCD;
-    width: 40px;
+    width: 45px;
     font-size: 1.3rem;
     height: 40px;
     border-radius: 50%;
+    background: colors.$black;
     display: flex;
     justify-content: center;
     align-items: center;

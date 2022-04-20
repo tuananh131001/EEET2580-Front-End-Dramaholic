@@ -9,7 +9,7 @@ nav #sideNav {
   top: 45px;
   left: 0;
   overflow-x: hidden;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
   padding-top: 0.5em;
@@ -83,7 +83,7 @@ nav #sideNav .sign-in-subBar {
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
+  background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
   overflow: hidden;
   transform: translateY(65%);
 }
@@ -125,7 +125,7 @@ nav #sideNav .sign-in-subBar {
 .card .button:hover,
 .card .button:focus {
   cursor: pointer;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: #c1071e;
 }
 
@@ -138,7 +138,7 @@ nav {
   position: fixed;
   padding: 0 1em;
   width: 100%;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   z-index: 99;
 }
 nav .nav-right {
@@ -150,35 +150,36 @@ nav .nav-right {
   gap: 0.5em;
 }
 nav .search-box {
-  background: black;
-  border: 1px solid white;
+  display: flex;
+  background: rgb(0, 0, 0);
   height: 40px;
   border-radius: 40px;
+  border: 1px solid rgb(255, 255, 255);
 }
 nav .search-box:hover > .icon {
   background: #536179;
 }
-nav .icon:hover {
-  transform: rotate(360deg) scale(0.8);
-}
 nav input {
-  width: 200px;
+  width: 0;
   border: none;
   outline: none;
-  padding: 0;
   background: none;
   font-size: 1.1rem;
-  transition: 0.5s ease;
+  transition: 0.5s;
   line-height: 40px;
   color: #fff;
+}
+nav .open {
+  width: 100%;
   padding: 0 10px;
 }
 nav .icon {
   color: #21DFCD;
-  width: 40px;
+  width: 45px;
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
+  background: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -210,7 +211,7 @@ nav .sign-in-subBar {
 }
 nav .sign-in-subBar:hover {
   cursor: pointer;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: #c1071e;
 }
 
@@ -278,7 +279,7 @@ nav .sign-in-subBar:hover {
   }
   nav .sign-in-nagivation:hover {
     cursor: pointer;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     color: #c1071e;
   }
 }
@@ -321,7 +322,7 @@ nav .sign-in-subBar:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
+    background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
     opacity: 0.7;
   }
 
@@ -431,6 +432,10 @@ nav .sign-in-subBar:hover {
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -441,7 +446,7 @@ body {
   color: #fff;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
 }
 
 main {
@@ -489,7 +494,6 @@ footer a {
 }
 
 .movie-search-card {
-  max-width: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -511,7 +515,7 @@ footer a {
   cursor: pointer;
 }
 .movie-search-card .card-body {
-  color: #dedede;
+  color: rgb(222, 222, 222);
 }
 
 #loading {
