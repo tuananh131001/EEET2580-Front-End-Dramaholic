@@ -3,9 +3,10 @@ let inputValue = searchWrapper.querySelector("input");
 const searchContent = document.querySelector(".search-content");
 const mainContent = document.querySelector("main");
 const logo = document.querySelector(".image-container");
+const footer = document.querySelector("footer")
 let titleList = [];
 const isHover = (e) => e.parentElement.querySelector(":hover") === e;
-
+const emptyPage = document.querySelector('.error-search-page')
 const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
 function openSearch() {
@@ -14,7 +15,6 @@ function openSearch() {
 
   // matched or not
   var matched = window.matchMedia(media_query).matches;
-
   matched && !searchBar.classList.contains("open")
     ? logo.classList.add("hidden")
     : logo.classList.remove("hidden");
@@ -59,10 +59,12 @@ const createMovieCard = (x) => {
 
   return card;
 };
+function isEmpty(value) {
+  return Boolean(value && typeof value === 'object') && !Object.keys(value).length;
+}
 async function searchSuggest(title) {
-  mainContent.style.display = "none";
-  searchContent.style.display = "grid";
   searchContent.innerHTML = "";
+  footer.style.display = "none";
   const reponse = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
   );
@@ -70,6 +72,16 @@ async function searchSuggest(title) {
   content.forEach((movie) => {
     searchContent.appendChild(createMovieCard(movie));
   });
+  
+  if(isEmpty(searchContent.childNodes)){
+   
+    emptyPage.classList.remove('hidden')
+  }else{
+    emptyPage.classList.add('hidden')
+  }
+  searchContent.style.display = "grid";
+  footer.style.display = "block";
+  mainContent.style.display = "none";
 }
 
 inputValue.onkeyup = (e) => {
@@ -78,6 +90,6 @@ inputValue.onkeyup = (e) => {
     searchSuggest(current_search);
   } else {
     mainContent.style.display = "block";
-    searchContent.innerHTML = "";
+    searchContent.style.display = "none";
   }
 };

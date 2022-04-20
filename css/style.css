@@ -175,7 +175,7 @@ nav .open {
 }
 nav .icon {
   color: #21DFCD;
-  width: 45px;
+  width: 40px;
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
@@ -186,6 +186,7 @@ nav .icon {
   transition: 0.4s;
   cursor: pointer;
   text-decoration: none;
+  transform: scale(0.9);
 }
 nav #subBar {
   width: 0;
@@ -433,7 +434,7 @@ nav .sign-in-subBar:hover {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 a {
@@ -487,7 +488,7 @@ footer a {
 .search-content {
   margin-top: 5%;
   display: none;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   place-content: center;
   gap: 2em;
   padding: 1em;
@@ -516,6 +517,12 @@ footer a {
 }
 .movie-search-card .card-body {
   color: rgb(222, 222, 222);
+}
+
+.error-search-page {
+  display: grid;
+  place-content: center;
+  text-align: center;
 }
 
 #loading {
