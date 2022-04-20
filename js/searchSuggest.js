@@ -1,6 +1,5 @@
-let searchWrapper = document.querySelector(".search-container");
+let searchWrapper = document.querySelector(".search-box");
 let inputValue = searchWrapper.querySelector("input");
-let suggest = searchWrapper.querySelector(".auto-box");
 const searchContent = document.querySelector(".search-content");
 const mainContent = document.querySelector("main");
 let titleList = [];
@@ -59,8 +58,6 @@ async function searchSuggest(title) {
 
 inputValue.onkeyup = (e) => {
   let current_search = e.target.value;
-
-  titleList = [];
   if (current_search) {
     searchSuggest(current_search);
   } else {

@@ -70,12 +70,7 @@ const createElementsMovieCard = (x) => {
 
   return col;
 };
-// let filmClassstart =
-//   '<div class="swiper-slide"><a class="thumbTile" href="#"><img class="thumbTile__image" src="';
-// let filmClassend = '" alt="Suits"></a></div>';
-// let filmClassstart =
-//   '<div class="swiper-slide"><img class="thumbTile__image" src="';
-// let filmClassend = '"></div>';
+
 const movieList = [];
 
 // End Swipe
@@ -110,7 +105,7 @@ async function getTrending() {
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
   let movieArray = [];
-  for (let i = 0; i < totalPages; i++) {
+  for (let i = 0; i < 3; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
   }
   Promise.all(
@@ -180,22 +175,6 @@ const openNav = () => {
     : (subNav.style.width = "");
     const input = document.querySelector(".search-bar")
     input.nodeValue = ""
-};
-
-openSearch = () => {
-  const subNav = document.querySelector(".search-bar");
-  if (subNav.style.width === "") {
-    // subNav.style.display = "block";
-    subNav.style.width = "88%";
-    subNav.classList.add("animate-fade-right");
-  } else {
-    // subNav.style.display = "none";
-    subNav.style.width = "";
-    subNav.classList.remove("animate-fade-right");
-  }
-  subNav.value =''
-  mainContent.style.display = "block";
-  searchContent.innerHTML = ""
 };
 
 getTrending();
