@@ -33,7 +33,7 @@ const createMovieCard = (x) => {
   img.src = x.thumbnail;
   img.onclick = function () {
     localStorage.setItem("dbid", x.dbID);
-    location.href = "./pages/movie/movie_detail.html";
+    location.href = "pages/movie/movie_detail.html";
   };
   card.appendChild(img);
 
@@ -47,7 +47,7 @@ const createMovieCard = (x) => {
   title.textContent = x.title;
   title.onclick = function () {
     localStorage.setItem("dbid", x.dbID);
-    location.href = "./pages/movie/movie_detail.html";
+    location.href = "pages/movie/movie_detail.html";
   };
   cardContent.appendChild(title);
 
