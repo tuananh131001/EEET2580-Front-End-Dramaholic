@@ -147,14 +147,14 @@ nav .nav-right {
   align-items: center;
   justify-content: flex-start;
   white-space: nowrap;
-  gap: 0.5em;
+  gap: 1em;
 }
 nav .search-box {
   display: flex;
   background: rgb(0, 0, 0);
   height: 40px;
   border-radius: 40px;
-  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 0.1rem 0.75rem #c1071e;
 }
 nav .search-box:hover > .icon {
   background: #536179;
@@ -174,7 +174,7 @@ nav .open {
   padding: 0 20px;
 }
 nav .icon {
-  color: #21DFCD;
+  color: rgb(255, 255, 255);
   width: 40px;
   font-size: 1.3rem;
   height: 40px;

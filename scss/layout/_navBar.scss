@@ -13,14 +13,14 @@ nav {
   .nav-right {
     @include mixins.flex(row, center, flex-start);
     white-space: nowrap;
-    gap: 0.5em;
+    gap: 1em;
   }
   .search-box{
     display: flex;
     background: colors.$black;
     height: 40px;
     border-radius: 40px;
-    border: 1px solid colors.$white;
+    box-shadow: 0 0.1rem 0.75rem colors.$red;
   }
 
   .search-box:hover > .icon{
@@ -37,6 +37,7 @@ nav {
     line-height: 40px;
     color: #fff;
     
+    
  
   }
   .open{
@@ -44,7 +45,7 @@ nav {
     padding: 0 20px;
   }
   .icon{
-    color: #21DFCD;
+    color: colors.$white;
     width: 40px;
     font-size: 1.3rem;
     height: 40px;
@@ -57,6 +58,7 @@ nav {
     cursor: pointer;
     text-decoration: none;
     transform: scale(0.90);
+    
   }
   
   #subBar {
