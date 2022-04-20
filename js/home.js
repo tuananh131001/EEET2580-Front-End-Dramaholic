@@ -8,7 +8,7 @@ const createMovieList = (title) => {
   // Title
   let sliderHeading = document.createElement("h2");
   sliderHeading.classList.add("thumbTitle");
-  sliderHeading.textContent = "Page " + title;
+  sliderHeading.textContent = title;
   movieSection.appendChild(sliderHeading);
 
   // Class swiper
@@ -108,13 +108,15 @@ async function getTrending() {
   for (let i = 0; i < 3; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
   }
+  let titleIndex = 0
+  let movieListTitle = ["Trending","New Release","Award-winning"]
   Promise.all(
     movieArray.map(async (url) => {
       // Get data
       const reponse = await fetch(url);
       const json = await reponse.json();
       const embedded = await json.content;
-      const movieListElement = createMovieList("hel");
+      const movieListElement = createMovieList(movieListTitle[titleIndex]);
 
       // Get movie and put in container
       const movies = embedded.forEach((movie) => {
@@ -126,6 +128,7 @@ async function getTrending() {
       loading.style.display = "none";
 
       setSwiper();
+      titleIndex++;
     })
   );
 }
@@ -133,7 +136,6 @@ async function getBillboardVideo() {
   // const random = Math.floor(Math.random() * movieArray.length);
   const url = await fetch("https://dramaholic.herokuapp.com/api/movies/99966");
   const movie = await url.json();
-  console.log(movie)
 
   const videoContainer = document.querySelector(".billboard-video");
   const videoElement = document.createElement("iframe");

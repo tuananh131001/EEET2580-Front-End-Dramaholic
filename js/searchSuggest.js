@@ -3,12 +3,13 @@ let inputValue = searchWrapper.querySelector("input");
 const searchContent = document.querySelector(".search-content");
 const mainContent = document.querySelector("main");
 const logo = document.querySelector(".image-container");
-const footer = document.querySelector("footer")
+const footer = document.querySelector("footer");
 let titleList = [];
 const isHover = (e) => e.parentElement.querySelector(":hover") === e;
-const emptyPage = document.querySelector('.error-search-page')
+const emptyPage = document.querySelector(".error-search-page");
 const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
+
 function openSearch() {
   // media query to check
   var media_query = "screen and (min-width:320px) and (max-width:1023px)";
@@ -60,7 +61,9 @@ const createMovieCard = (x) => {
   return card;
 };
 function isEmpty(value) {
-  return Boolean(value && typeof value === 'object') && !Object.keys(value).length;
+  return (
+    Boolean(value && typeof value === "object") && !Object.keys(value).length
+  );
 }
 async function searchSuggest(title) {
   searchContent.innerHTML = "";
@@ -72,12 +75,11 @@ async function searchSuggest(title) {
   content.forEach((movie) => {
     searchContent.appendChild(createMovieCard(movie));
   });
-  
-  if(isEmpty(searchContent.childNodes)){
-   
-    emptyPage.classList.remove('hidden')
-  }else{
-    emptyPage.classList.add('hidden')
+
+  if (isEmpty(searchContent.childNodes)) {
+    emptyPage.classList.remove("hidden");
+  } else {
+    emptyPage.classList.add("hidden");
   }
   searchContent.style.display = "grid";
   footer.style.display = "block";
@@ -90,6 +92,7 @@ inputValue.onkeyup = (e) => {
     searchSuggest(current_search);
   } else {
     mainContent.style.display = "block";
+    emptyPage.classList.add("hidden");
     searchContent.style.display = "none";
   }
 };
