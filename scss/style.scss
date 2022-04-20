@@ -13,7 +13,19 @@
 
   box-sizing: border-box;
 }
+@font-face {
+  font-family: 'averta_pe_black';
+  src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
+  font-style: normal;
+  font-weight: 100;
+}
 
+@font-face {
+  font-family: 'averta_pe';
+  src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
+  font-style: normal;
+  font-weight: 100;
+}
 .hidden{
   display: none !important;
 }
