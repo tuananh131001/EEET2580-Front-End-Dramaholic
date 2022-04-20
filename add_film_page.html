@@ -25,6 +25,10 @@
         gap: 6rem;
       }
 
+      /* html, body :not(header) {
+        background-color: #131834;
+      } */
+
       #add_film_form {
         display: flex;
         flex-direction: column;
@@ -58,7 +62,7 @@
     <header></header>
     <main>
       <section>
-        <form action="/action_page.php" method="get" id="add_film_form">
+        <form action="https://dramaholic.herokuapp.com/api/movies" method="post" id="add_film_form">
           <div  class= "page_title">ADD NEW CONTENT</div>
 
           <table class="add_info_table" style="border-spacing: 2rem 1.2rem;">
@@ -68,60 +72,13 @@
             </tr>
 
             <tr>
-              <td><label for="description">Description:</label></td>
-              <td><textarea required id="description" name="description" style="height: 6rem;"></textarea></td>
+              <td><label for="originalTitle">Original Title:</label></td>
+              <td><input required class="add_film_input_box" type="text" id="original_title" name="original_title" /></td>
             </tr>
-
+            
             <tr>
-              <td><label for="category">Genres/Categories:</label></td>
-              <td>
-                <div class="row" style="gap: 2.5rem;">
-                  <div class="col cate">
-                    <div class="row cate">
-                      <input type="checkbox" id="c_horror" name="category" value="horror">Horror
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_action" name="category" value="action">Action
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_crime" name="category" value="crime">Crime
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_drama"  name="category" value="drama">Drama
-                    </div>
-                  </div>
-                
-                  <div class="col cate">
-                    <div class="row cate">
-                      <input type="checkbox" id="c_comedy" name="category" value="comedy">Comedy
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_tragedy" name="category" value="tragegy">Tragedy
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_fiction" name="category" value="fiction">Fiction
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_anime" name="category" value="anime">Anime
-                    </div>
-                  </div>
-
-                  <div class="col cate">
-                    <div class="row cate">
-                      <input type="checkbox" id="c_series" name="category" value="series">Series
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_romance"  name="category" value="romance">Romance
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_adventure" name="category" value="adventure">Adventure
-                    </div>
-                    <div class="row cate">
-                      <input type="checkbox" id="c_documentary" name="category" value="documentary">Documentary
-                    </div>
-                  </div>
-                </div>
-              </td>
+              <td><label for="href">Href to film:</label></td>
+              <td><input required class="add_film_input_box" type="url" id="href" name="href"/></td>
             </tr>
 
             <tr>
@@ -130,29 +87,65 @@
             </tr>
 
             <tr>
-              <td><label for="film_url">Film File (URL):</label></td>
-              <td><input required class="add_film_input_box" type="url" id="film_url" name="film_url"/></td>
+              <td><label for="description">Description:</label></td>
+              <td><textarea required id="description" name="description" style="height: 7rem;"></textarea></td>
             </tr>
 
             <tr>
-              <td><label for="country">Country:</label></td>
-              <td><input required class="add_film_input_box" type="text" id="country" name="country"/></td>
-            </tr>
-
-            <tr>
-              <td><label for="year">Year of Publication:</label></td>
-              <td><input required class="add_film_input_box" type="number" minlength="4" maxlength="4" id="year" name="year"/></td>
-            </tr>
-
-            <tr>
-              <td><label for="director">Director:</label></td>
-              <td><input class="add_film_input_box" type="text" id="director" name="director"/></td>
-            </tr>
-
-            <tr>
-              <td><label for="cast">Cast:</label></td>
+              <td><label for="genres">Genres/Categories:</label></td>
               <td>
-                <input class="add_film_input_box" type="text" id="cast" name="cast"/></td>
+                <div class="row" style="gap: 2.5rem;">
+                  <div class="col cate">
+                    <div class="row cate">
+                      <input type="checkbox" id="c_horror" name="genres" value="horror">Horror
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_action" name="genres" value="action">Action
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_crime" name="genres" value="crime">Crime
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_drama"  name="genres" value="drama">Drama
+                    </div>
+                  </div>
+                
+                  <div class="col cate">
+                    <div class="row cate">
+                      <input type="checkbox" id="c_comedy" name="genres" value="comedy">Comedy
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_tragedy" name="genres" value="tragegy">Tragedy
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_fiction" name="genres" value="fiction">Fiction
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_anime" name="genres" value="anime">Anime
+                    </div>
+                  </div>
+
+                  <div class="col cate">
+                    <div class="row cate">
+                      <input type="checkbox" id="c_series" name="genres" value="series">Series
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_romance"  name="genres" value="romance">Romance
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_adventure" name="genres" value="adventure">Adventure
+                    </div>
+                    <div class="row cate">
+                      <input type="checkbox" id="c_documentary" name="genres" value="documentary">Documentary
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="rating">Rating:</label></td>
+              <td><input required class="add_film_input_box" type="number" id="rating" name="rating"/></td>
             </tr>
 
             <tr>
@@ -161,9 +154,35 @@
             </tr>
 
             <tr>
+              <td><label for="episodes">Episodes:</label></td>
+              <td><input class="add_film_input_box" type="text" id="episodes" name="episodes"/></td>
+            </tr>
+
+            <tr>
+              <td><label for="country">Country:</label></td>
+              <td><input required class="add_film_input_box" type="text" id="country" name="country"/></td>
+            </tr>
+
+            <tr>
+              <td><label for="date">Publication Date:</label></td>
+              <td><input required class="add_film_input_box" type="date" id="date" name="date"/></td>
+            </tr>
+
+            <tr>
+              <td><label for="director">Directors :</label></td>
+              <td><input class="add_film_input_box" type="text" id="director" name="director"/></td>
+            </tr>
+
+            <tr>
+              <td><label for="actor">Actors:</label></td>
+              <td>
+                <input class="add_film_input_box" type="text" id="actor" name="actor"/></td>
+            </tr>
+
+            <!-- <tr>
               <td><label for="season">Number of Seasons<br>(if available):</label></td>
               <td><input class="add_film_input_box" type="text" id="year" name="year"/></td>
-            </tr>
+            </tr> -->
 
           </table>
 
