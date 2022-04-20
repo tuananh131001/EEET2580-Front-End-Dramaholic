@@ -101,15 +101,11 @@
         </ul>
       </div>
       <div class="nav-right">
-        <div class="search-container">
-          <input type="search" class="search-bar" />
-          <div class="auto-box">
-            <!-- <li>temp1</li>
-          <li>temp2</li>
-          <li>temp3</li>
-          <li>temp4</li> -->
-          </div>
-          <span class="search-icon ti-search" onclick="openSearch()"></span>
+        <div class="search-box">
+          <input class="search-bar" />
+          <a href="##" class="icon"
+            ><i class="search-icon ti-search" onclick="openSearch()"></i
+          ></a>
         </div>
         <a href="./pages/user/login.html"
           ><button class="sign-in-nagivation">SIGN IN</button></a
@@ -121,6 +117,15 @@
   <body id="body">
     <section>
       <div class="search-content"></div>
+      <div class="error-search-page hidden">
+        <div class="content">
+          <img
+            src="https://i.pinimg.com/originals/08/e9/1c/08e91c41f605afe38c114149c690fee2.gif"
+            alt="Empty content"
+          />
+          <p class="text">No movie is founded</p>
+        </div>
+      </div>
       <main>
         <div class="billboard">
           <div class="bilboard-video-wrapper">
