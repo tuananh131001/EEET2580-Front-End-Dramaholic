@@ -9,7 +9,7 @@ nav #sideNav {
   top: 45px;
   left: 0;
   overflow-x: hidden;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
   padding-top: 0.5em;
@@ -33,7 +33,7 @@ nav #sideNav .navigation-menu-profile .navigation-menu-profile-link {
 nav #sideNav a,
 nav #sideNav li {
   font-size: 0.8rem;
-  color: #999;
+  color: #999999;
   font-weight: 600;
 }
 nav #sideNav .navigation-menu-settings {
@@ -47,6 +47,11 @@ nav #sideNav .navigation-menu-settings {
 }
 nav #sideNav .sign-in-subBar {
   margin-top: 1em;
+}
+
+.wrapper-footer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .card {
@@ -83,7 +88,7 @@ nav #sideNav .sign-in-subBar {
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
   overflow: hidden;
   transform: translateY(65%);
 }
@@ -113,7 +118,7 @@ nav #sideNav .sign-in-subBar {
   padding-top: 0.5em;
 }
 .card .button {
-  background-color: #c1071e;
+  background-color: #c0071d;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -125,8 +130,8 @@ nav #sideNav .sign-in-subBar {
 .card .button:hover,
 .card .button:focus {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: #c1071e;
+  background-color: white;
+  color: #c0071d;
 }
 
 /* Start side bar */
@@ -138,7 +143,7 @@ nav {
   position: fixed;
   padding: 0 1em;
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   z-index: 99;
 }
 nav .nav-right {
@@ -151,10 +156,10 @@ nav .nav-right {
 }
 nav .search-box {
   display: flex;
-  background: rgb(0, 0, 0);
+  background: black;
   height: 40px;
   border-radius: 40px;
-  box-shadow: 0 0.1rem 0.75rem #c1071e;
+  box-shadow: 0 0.1rem 0.75rem #c0071d;
 }
 nav .search-box:hover > .icon {
   background: #536179;
@@ -174,12 +179,12 @@ nav .open {
   padding: 0 20px;
 }
 nav .icon {
-  color: rgb(255, 255, 255);
+  color: white;
   width: 40px;
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
-  background: rgb(0, 0, 0);
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -201,7 +206,7 @@ nav .nav-left {
   gap: 3em;
 }
 nav .sign-in-subBar {
-  background-color: #c1071e;
+  background-color: #c0071d;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -212,8 +217,8 @@ nav .sign-in-subBar {
 }
 nav .sign-in-subBar:hover {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: #c1071e;
+  background-color: white;
+  color: #c0071d;
 }
 
 /* End Sidebar */
@@ -269,7 +274,7 @@ nav .sign-in-subBar:hover {
   }
   nav .sign-in-nagivation {
     display: block;
-    background-color: #c1071e;
+    background-color: #c0071d;
     color: white;
     font-weight: 400;
     font-size: 1rem;
@@ -280,8 +285,8 @@ nav .sign-in-subBar:hover {
   }
   nav .sign-in-nagivation:hover {
     cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color: #c1071e;
+    background-color: white;
+    color: #c0071d;
   }
 }
 /* Billboard */
@@ -323,7 +328,7 @@ nav .sign-in-subBar:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
     opacity: 0.7;
   }
 
@@ -389,7 +394,7 @@ nav .sign-in-subBar:hover {
     text-transform: uppercase;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 15px;
-    text-shadow: 5px 5px #c1071e;
+    text-shadow: 5px 5px #c0071d;
   }
   .billboard .billboard-description {
     font-size: 1.2vw;
@@ -459,7 +464,7 @@ body {
   color: #fff;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
 }
 
 main {
@@ -476,7 +481,7 @@ footer ul {
   display: grid;
   align-items: center;
   list-style: none;
-  color: #999;
+  color: #999999;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1em;
 }
@@ -528,7 +533,7 @@ footer a {
   cursor: pointer;
 }
 .movie-search-card .card-body {
-  color: rgb(222, 222, 222);
+  color: #dedede;
 }
 
 .error-search-page {

@@ -10,19 +10,6 @@ const emptyPage = document.querySelector(".error-search-page");
 const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
 
-function openSearch() {
-  // media query to check
-  var media_query = "screen and (min-width:320px) and (max-width:1023px)";
-  // matched or not
-  var matched = window.matchMedia(media_query).matches;
-  matched && !searchBar.classList.contains("open")
-    ? logo.classList.add("hidden")
-    : logo.classList.remove("hidden");
-  !searchBar.classList.contains("open")
-    ? searchBar.classList.add("open")
-    : searchBar.classList.remove("open");
-}
-
 const createMovieCard = (x) => {
   let card = document.createElement("div");
   card.className = "movie-search-card";
@@ -65,6 +52,18 @@ function isEmpty(value) {
   );
 }
 
+function openSearch() {
+  // media query to check
+  var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+  // matched or not
+  var matched = window.matchMedia(media_query).matches;
+  matched && !searchBar.classList.contains("open")
+    ? logo.classList.add("hidden")
+    : logo.classList.remove("hidden");
+  !searchBar.classList.contains("open")
+    ? searchBar.classList.add("open")
+    : searchBar.classList.remove("open");
+}
 async function getMovieListSearch(title, list) {
   const url = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
