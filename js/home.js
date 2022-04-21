@@ -8,7 +8,7 @@ const createMovieList = (title) => {
   // Title
   let sliderHeading = document.createElement("h2");
   sliderHeading.classList.add("thumbTitle");
-  sliderHeading.textContent = "Page " + title;
+  sliderHeading.textContent = title;
   movieSection.appendChild(sliderHeading);
 
   // Class swiper
@@ -64,18 +64,13 @@ const createElementsMovieCard = (x) => {
   button.className = "button";
   button.onclick = function () {
     localStorage.setItem("dbid", x.dbID)
-    location.href = "/pages/movie/movie_detail.html";
+    location.href = "pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
 
   return col;
 };
-// let filmClassstart =
-//   '<div class="swiper-slide"><a class="thumbTile" href="#"><img class="thumbTile__image" src="';
-// let filmClassend = '" alt="Suits"></a></div>';
-// let filmClassstart =
-//   '<div class="swiper-slide"><img class="thumbTile__image" src="';
-// let filmClassend = '"></div>';
+
 const movieList = [];
 
 // End Swipe
@@ -108,18 +103,20 @@ async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.totalPages;
-  const billboardVideo = await getBillboardVideo(data.content);
+  const billboardVideo = await getBillboardVideo();
   let movieArray = [];
-  for (let i = 0; i < totalPages; i++) {
+  for (let i = 0; i < 3; i++) {
     movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
   }
+  let titleIndex = 0
+  let movieListTitle = ["Trending","New Release","Award-winning"]
   Promise.all(
     movieArray.map(async (url) => {
       // Get data
       const reponse = await fetch(url);
       const json = await reponse.json();
       const embedded = await json.content;
-      const movieListElement = createMovieList("hel");
+      const movieListElement = createMovieList(movieListTitle[titleIndex]);
 
       // Get movie and put in container
       const movies = embedded.forEach((movie) => {
@@ -131,12 +128,14 @@ async function getTrending() {
       loading.style.display = "none";
 
       setSwiper();
+      titleIndex++;
     })
   );
 }
-async function getBillboardVideo(movieArray) {
+async function getBillboardVideo() {
   // const random = Math.floor(Math.random() * movieArray.length);
-  const movie = movieArray[0];
+  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/99966");
+  const movie = await url.json();
 
   const videoContainer = document.querySelector(".billboard-video");
   const videoElement = document.createElement("iframe");
@@ -178,22 +177,6 @@ const openNav = () => {
     : (subNav.style.width = "");
     const input = document.querySelector(".search-bar")
     input.nodeValue = ""
-};
-
-openSearch = () => {
-  const subNav = document.querySelector(".search-bar");
-  if (subNav.style.width === "") {
-    // subNav.style.display = "block";
-    subNav.style.width = "88%";
-    subNav.classList.add("animate-fade-right");
-  } else {
-    // subNav.style.display = "none";
-    subNav.style.width = "";
-    subNav.classList.remove("animate-fade-right");
-  }
-  subNav.value =''
-  mainContent.style.display = "block";
-  searchContent.innerHTML = ""
 };
 
 getTrending();
