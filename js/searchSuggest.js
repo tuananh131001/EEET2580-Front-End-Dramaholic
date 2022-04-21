@@ -64,30 +64,32 @@ function isEmpty(value) {
     Boolean(value && typeof value === "object") && !Object.keys(value).length
   );
 }
+
+async function getMovieListSearch(title, list) {
+  const url = await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
+  );
+  const { content } = await url.json();
+  searchContent.innerHTML = "";
+  for (let i = 0; i < content.length; i++) {
+    await list.push(createMovieCard(content[i]));
+  }
+  for (let i = 0; i < list.length; i++) {
+    await searchContent.appendChild(list[i]);
+  }
+  isEmpty(searchContent.childNodes)
+    ? emptyPage.classList.remove("hidden")
+    : emptyPage.classList.add("hidden");
+  searchContent.style.display = "grid";
+  footer.style.display = "block";
+  mainContent.style.display = "none";
+}
+
 inputValue.addEventListener("input", (e) => {
   let current_search = e.target.value;
   const suggestionList = [];
   if (current_search) {
-    fetch(
-      `https://dramaholic.herokuapp.com/api/movies/search?title=${current_search}`
-    )
-      .then((response) => response.json())
-      .then((data) => data.content)
-      .then((content) => {
-        searchContent.innerHTML = "";
-        for (let i = 0; i < content.length; i++) {
-          suggestionList.push(createMovieCard(content[i]));
-        }
-        for (let i = 0; i < suggestionList.length; i++) {
-          searchContent.appendChild(suggestionList[i]);
-        }
-        isEmpty(searchContent.childNodes)
-          ? emptyPage.classList.remove("hidden")
-          : emptyPage.classList.add("hidden");
-        searchContent.style.display = "grid";
-        footer.style.display = "block";
-        mainContent.style.display = "none";
-      });
+    getMovieListSearch(current_search, suggestionList);
   } else {
     mainContent.style.display = "block";
     emptyPage.classList.add("hidden");
