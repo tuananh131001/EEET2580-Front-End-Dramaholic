@@ -9,7 +9,7 @@ nav #sideNav {
   top: 45px;
   left: 0;
   overflow-x: hidden;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
   padding-top: 0.5em;
@@ -33,7 +33,7 @@ nav #sideNav .navigation-menu-profile .navigation-menu-profile-link {
 nav #sideNav a,
 nav #sideNav li {
   font-size: 0.8rem;
-  color: #999999;
+  color: rgb(153, 153, 153);
   font-weight: 600;
 }
 nav #sideNav .navigation-menu-settings {
@@ -59,7 +59,7 @@ footer ul {
   display: grid;
   align-items: center;
   list-style: none;
-  color: #999999;
+  color: rgb(153, 153, 153);
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1em;
 }
@@ -105,7 +105,7 @@ footer .wrapper-footer {
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
+  background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
   overflow: hidden;
   transform: translateY(65%);
 }
@@ -135,7 +135,7 @@ footer .wrapper-footer {
   padding-top: 0.5em;
 }
 .card .button {
-  background-color: #c0071d;
+  background-color: rgb(192, 7, 29);
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -147,8 +147,8 @@ footer .wrapper-footer {
 .card .button:hover,
 .card .button:focus {
   cursor: pointer;
-  background-color: white;
-  color: #c0071d;
+  background-color: rgb(255, 255, 255);
+  color: rgb(192, 7, 29);
 }
 
 /* Start side bar */
@@ -159,8 +159,8 @@ nav {
   justify-content: space-between;
   position: fixed;
   padding: 0 1em;
-  width: 100%;
-  background-color: black;
+  gap: 1em;
+  background-color: rgb(0, 0, 0);
   z-index: 99;
 }
 nav .nav-right {
@@ -173,10 +173,10 @@ nav .nav-right {
 }
 nav .search-box {
   display: flex;
-  background: black;
+  background: rgb(0, 0, 0);
   height: 40px;
   border-radius: 40px;
-  box-shadow: 0 0.1rem 0.75rem #c0071d;
+  box-shadow: 0 0.1rem 0.75rem rgb(192, 7, 29);
 }
 nav .search-box:hover > .icon {
   background: #536179;
@@ -196,12 +196,12 @@ nav .open {
   padding: 0 20px;
 }
 nav .icon {
-  color: white;
+  color: rgb(255, 255, 255);
   width: 40px;
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
-  background: black;
+  background: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,7 +223,7 @@ nav .nav-left {
   gap: 3em;
 }
 nav .sign-in-subBar {
-  background-color: #c0071d;
+  background-color: rgb(192, 7, 29);
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -234,8 +234,8 @@ nav .sign-in-subBar {
 }
 nav .sign-in-subBar:hover {
   cursor: pointer;
-  background-color: white;
-  color: #c0071d;
+  background-color: rgb(255, 255, 255);
+  color: rgb(192, 7, 29);
 }
 
 /* End Sidebar */
@@ -291,7 +291,7 @@ nav .sign-in-subBar:hover {
   }
   nav .sign-in-nagivation {
     display: block;
-    background-color: #c0071d;
+    background-color: rgb(192, 7, 29);
     color: white;
     font-weight: 400;
     font-size: 1rem;
@@ -302,8 +302,8 @@ nav .sign-in-subBar:hover {
   }
   nav .sign-in-nagivation:hover {
     cursor: pointer;
-    background-color: white;
-    color: #c0071d;
+    background-color: rgb(255, 255, 255);
+    color: rgb(192, 7, 29);
   }
 }
 /* Billboard */
@@ -345,7 +345,7 @@ nav .sign-in-subBar:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
+    background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
     opacity: 0.7;
   }
 
@@ -411,7 +411,7 @@ nav .sign-in-subBar:hover {
     text-transform: uppercase;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 15px;
-    text-shadow: 5px 5px #c0071d;
+    text-shadow: 5px 5px rgb(192, 7, 29);
   }
   .billboard .billboard-description {
     font-size: 1.2vw;
@@ -448,7 +448,7 @@ nav .sign-in-subBar:hover {
   /* Billboard */
 }
 .search-content {
-  margin-top: 5%;
+  margin-top: 10%;
   display: none;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   place-content: center;
@@ -478,13 +478,14 @@ nav .sign-in-subBar:hover {
   cursor: pointer;
 }
 .movie-search-card .card-body {
-  color: #dedede;
+  color: rgb(222, 222, 222);
 }
 
 .error-search-page {
   display: grid;
   place-content: center;
   text-align: center;
+  margin-top: 15%;
 }
 
 *,
@@ -525,7 +526,7 @@ body {
   color: #fff;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
 }
 
 main {

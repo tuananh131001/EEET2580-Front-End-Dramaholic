@@ -1,7 +1,7 @@
 @use "../abstract/colors";
 
 .search-content {
-    margin-top: 5%;
+    margin-top: 10%;
     display: none;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     place-content: center;
@@ -37,4 +37,6 @@
     display: grid;
     place-content: center;
     text-align: center;
+    margin-top: 15%;
+
   }
