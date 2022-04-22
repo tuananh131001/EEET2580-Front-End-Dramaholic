@@ -103,7 +103,7 @@ form {
 }
 
 .icon img {
-  height: 20px;
+  height: 2rem;
   margin: 0.5rem 0 0 0.9rem;
   opacity: 0.5;
 }
@@ -137,8 +137,8 @@ form {
 }
 
 .show {
-  width: 20px;
-  height: 20px;
+  width: 2rem;
+  height: 2rem;
   border: none;
   display: block;
   cursor: pointer;
@@ -229,7 +229,14 @@ a:hover {
   }
 
   .contentBox {
+    overflow: unset;
     margin: auto;
     width: auto;
+  }
+}
+
+@media  screen and (max-width:350px) {
+  html {
+    font-size: 2.5vw;
   }
 }
