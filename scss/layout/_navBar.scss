@@ -36,8 +36,6 @@ nav {
     transition: .5s;
     line-height: 40px;
     color: #fff;
-    
-    
  
   }
   .open{
@@ -81,6 +79,7 @@ nav {
   .sign-in-subBar:hover {
     @include mixins.button-hover();
   }
+
 }
 /* End Sidebar */
 
