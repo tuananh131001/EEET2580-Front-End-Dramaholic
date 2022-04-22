@@ -1,0 +1,23 @@
+@use "../abstract/colors";
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 3em;
+
+  ul {
+    display: grid;
+    align-items: center;
+    list-style: none;
+    color: colors.$side__font;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1em;
+  }
+  a {
+    color: inherit;
+  }
+  .wrapper-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
