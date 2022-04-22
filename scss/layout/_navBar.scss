@@ -113,6 +113,7 @@ nav {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
+    width: 100%;
 
     .header-navigation-text {
       @include mixins.flex(row, center, flex-start);

@@ -1,42 +1,46 @@
 @use "../abstract/colors";
 
 .search-content {
-    margin-top: 10%;
-    display: none;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    place-content: center;
-    gap: 2em;
-    padding: 1em;
-  }
-  
-  .movie-search-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.5em;
-    .card-content {
-      display: grid;
-      gap: 0.5em;
-    }
-    .movie-search-image {
-      width: 100%;
-      border-radius: 1rem;
-      aspect-ratio: 10/16;
-    }
-    .movie-search-image:hover,
-    .card-title:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-    .card-body {
-      color: colors.$grey;
-    }
-  }
-  .error-search-page{
-    display: grid;
-    place-content: center;
-    text-align: center;
-    margin-top: 15%;
+  margin-top: 10%;
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  place-content: center;
+  gap: 2em;
+  padding: 1em;
+}
 
+.movie-search-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5em;
+  .card-content {
+    display: grid;
+    gap: 0.5em;
   }
+  .movie-search-image {
+    width: 100%;
+    border-radius: 1rem;
+    aspect-ratio: 10/16;
+  }
+  .movie-search-image:hover,
+  .card-title:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  .card-body {
+    color: colors.$grey;
+  }
+}
+.error-search-page {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  margin-top: 15%;
+}
+@media (min-width: 62em) {
+  .search-content {
+    margin-top: 5%;
+  }
+}
