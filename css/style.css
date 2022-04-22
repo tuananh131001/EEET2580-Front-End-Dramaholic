@@ -269,6 +269,7 @@ nav .sign-in-subBar:hover {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
+    width: 100%;
   }
   nav .header-navigation-text {
     display: flex;
@@ -488,6 +489,11 @@ nav .sign-in-subBar:hover {
   margin-top: 15%;
 }
 
+@media (min-width: 62em) {
+  .search-content {
+    margin-top: 5%;
+  }
+}
 *,
 *::before,
 *::after {
