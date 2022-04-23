@@ -1,76 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Landing Page</title>
-    <link rel="stylesheet" href="\css\style_login_signup.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
-  </head>
-  <body class="body login-page">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Landing Page</title>
+  <link rel="stylesheet" href="/css/style_login_signup.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
+</head>
+
+<body class="body login-page">
+  <!-- left img box -->
+  <div class="imgBox" id="collumnOne"></div>
+  <div class="contentBox" id="collumnTwo">
     <div class="logo">
-      <img src="\assets\image\logo.png" alt=""/>
+      <img src="/assets/image/logo.png" alt="" />
     </div>
     <div class="form-content login-form">
-        <div class="content-main">
-            <h1 class="title">Sign in</h1>
-            
-            <form action=""  class="form" id="form">
-              <div class="form-group">
-                  <input type="text" id="username" class="form-input" required />
-                  <label for="username">Username</label>
-              </div>
-              <div class="form-group">
-                  <input type="password" id="password" class="form-input" required />
-                  <button class="show" id="show" onclick="togglePassword()" type="button">SHOW</button>
-                  <label for="password">Password</label>
-              </div>
-              <button type="submit" class="form-submit">Sign in</button>
-            </form>
+      <div class="content-main">
+        <div class="heading">
+          <h3 class="welcomeText">Welcome back</h3>
+          <h1 class="title">Log in to your account</h1>
         </div>
-        <div class="content-other">
-          <div class="login-rememberMe">
-            <input type="checkbox" id="rememberMe">
-            <label for="rememberMe">Remember me</label>
+        <form action="" class="form" id="form">
+          <div class="form-group">
+            <span class="icon">
+              <img src="/assets/image/at_sign.png" alt="">
+            </span>
+            <input type="text" id="email" class="form-input" required />
+            <label for="email">Email address</label>
           </div>
-          <div class="sign-up">
-            <p>Not have an account yet?</p>
-            <a href="signup.html" class="link-page">Sign up</a>
-            for a free account
+          <div class="form-group">
+            <span class="icon">
+              <img src="/assets/image/password.png" alt="">
+            </span>
+            <input type="password" id="password" class="form-input" required />
+            <label for="password">Password</label>
+            <span onclick="togglePassword()" class="passShow">
+              <img src="/assets/image/eye.png" alt="" class="show" id="show" type="button">
+              <!-- <img src="assets\image\closed-eye.png" alt="" class="show" id="hide" type="button"> -->
+            </span>
           </div>
-        </div>
-      </section>
+          <div class="content-other">
+            <div class="login-rememberMe">
+              <input type="checkbox" id="rememberMe" />
+              <label for="rememberMe">Remember me</label>
+            </div>
+            <div class="forgetPass">
+              <a href="">Forgot password</a>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Sign in</button>
+        </form>
+      </div>
     </div>
+    <div class="footer">
+      Don't have an account?
+      <a href="signup.html" class="link-page">Join free today</a>
+    </div>
+  </div>
 
-    <footer>
-      <ol>
-        <li>
-          <a href="https://help.netflix.com/legal/termsofuse">Terms of Use</a>
-        </li>
-        <li>
-          <a href="https://help.netflix.com/legal/privacy">Privacy Statement</a>
-        </li>
-        <li><a href="/Cookies">Cookie Preferences</a></li>
-        <li><a href="https://help.netflix.com/">Help Centre</a></li>
-      </ol>
-    </footer>
-    <script>
-      function togglePassword(){
-        var input = document.getElementById("password");
-        // When an input is checked, or whatever...
-        if (input.type === "password") {
-          input.setAttribute("type", "text");
-          document.getElementById("show").innerHTML="HIDE";
-        } else {
-          input.setAttribute("type", "password");
-          document.getElementById("show").innerHTML = "SHOW";
-        }
+  <script>
+
+    function togglePassword() {
+      var input = document.getElementById("password");
+      // When an input is checked, or whatever...
+      if (input.type === "password") {
+        input.setAttribute("type", "text");
+        document.getElementById("show").src = "/assets/image/closed-eye.png";
+
+      } else {
+        input.setAttribute("type", "password");
+        document.getElementById("show").src = "/assets/image/eye.png";
+
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>
