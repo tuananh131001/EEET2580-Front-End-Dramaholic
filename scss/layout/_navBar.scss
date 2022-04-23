@@ -7,6 +7,7 @@ nav {
   @include mixins.flex(row, center, space-between);
   position: fixed;
   padding: 0 1em;
+  width: 100%;
   gap:1em;
   background-color: colors.$black;
   z-index: 99;

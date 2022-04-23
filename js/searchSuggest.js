@@ -79,9 +79,15 @@ async function getMovieListSearch(title, list) {
   if(isEmpty(searchContent.childNodes)){
     searchContent.style.display = "none";
     emptyPage.classList.remove("hidden")
+    const navBar = document.querySelector(".navbar");
+    navBar.style.position = "relative";
+
   }else {
+    // display cat image
     emptyPage.classList.add("hidden");
     searchContent.style.display = "grid";
+    
+    
   }
     
   
