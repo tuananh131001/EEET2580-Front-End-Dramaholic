@@ -13,50 +13,54 @@ nav {
   .nav-right {
     @include mixins.flex(row, center, flex-start);
     white-space: nowrap;
-    gap: 0.5em;
+    gap: 1em;
   }
-  .search-container {
-    @include mixins.flex(flex, center, center);
+  .search-box{
+    display: flex;
+    background: colors.$black;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 0.1rem 0.75rem colors.$red;
+  }
 
-    z-index: 2;
-    gap: 0.5em;
-
-    .search-icon {
-      position: fixed;
-      cursor: pointer;
-    }
-    .search-bar {
-      // display: none;
-      position: fixed;
-      width: 0;
-      height: 3em;
-      // right: 5%;
-      top: 0.3em;
-      bottom: 0;
-      right: 10%;
-
-      border: 1px solid #fff;
-      background-color: #1b1b1bff;
-      color: #fff;
-    }
+  .search-box:hover > .icon{
+    background: #536179;
   }
-  .animate-fade-right {
-    animation-name: fadeInRight;
-    animation-iteration-count: 1;
-    animation-duration: 0.5s;
-    animation-delay: 0s;
-    backface-visibility: hidden;
+ 
+  input{
+    width: 0;
+    border: none;
+    outline: none;  
+    background: none;
+    font-size: 1.1rem;
+    transition: .5s;
+    line-height: 40px;
+    color: #fff;
+    
+    
+ 
   }
-  @keyframes fadeInRight {
-    0% {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .open{
+    width: 100%;
+    padding: 0 20px;
   }
+  .icon{
+    color: colors.$white;
+    width: 40px;
+    font-size: 1.3rem;
+    height: 40px;
+    border-radius: 50%;
+    background: colors.$black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    transform: scale(0.90);
+    
+  }
+  
   #subBar {
     width: 0;
   }
@@ -81,9 +85,7 @@ nav {
 /* End Sidebar */
 
 @media (min-width: 62em) {
-  .search-bar {
-    display: block;
-  }
+
   .header-navigation-text {
     display: block;
   }
@@ -112,11 +114,7 @@ nav {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
-    .search-icon,
-    .search-bar {
-      position: relative !important;
-      top: 0 !important;
-    }
+
     .header-navigation-text {
       @include mixins.flex(row, center, flex-start);
       text-transform: uppercase;

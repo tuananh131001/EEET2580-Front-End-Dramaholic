@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/css/styles_movieDetail.css">
+    <title>Movie Detail</title>
+
+
+</head>
+
+<body>
+    <div id="youtube_frame" class="youtube_div">
+        <!-- <iframe class="youtube" src="https://www.youtube.com/embed/" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>; -->
+    </div>
+    <div class="screen" onclick="stop_movie()"></div>
+    <div id="blur_frame" class="blur">
+
+        <!-- title -->
+        <div id="movie_title" class="title"></div>
+
+        <div id="movie_rating" class="regular_setting rating">
+            <input type="radio" id="star1"><label for="star1"></label>
+            <input type="radio" id="star2"><label for="star2"></label>
+            <input type="radio" id="star3"><label for="star3"></label>
+            <input type="radio" id="star4"><label for="star4"></label>
+            <input type="radio" id="star5"><label for="star5"></label>
+            <input type="radio" id="star6"><label for="star6"></label>
+            <input type="radio" id="star7"><label for="star7"></label>
+            <input type="radio" id="star8"><label for="star8"></label>
+            <input type="radio" id="star9"><label for="star9"></label>
+            <input type="radio" id="star10"><label for="star10"></label>
+            <div id="movie_star" class="star">4.3 / 5</div>
+            <div id="movie_info" class="info"></div>
+
+        </div>
+        <div id="movie_description" class="regular_setting description">A film that explores the ark and miserable town,
+            Basin City, and tells the
+            story of three different people, all caught up in violent corruption.</div>
+        <div class="regular_setting button_container">
+            <!-- youtube -->
+            <button class="button btn1" onclick="play_movie()">PLAY MOVIE</button>
+            <!-- f04b -->
+            <button class="button btn2">WATCH LATER</button>
+            <!-- f02e -->
+        </div>
+        <div id="movie_crew" class="equipe regular_setting">
+            <div id="movie_actor" class="cast">
+                CAST
+                <!-- actor -->
+                <br>
+                <br>
+                <div class="panel">
+                    <div class="sub_panel">
+                        <img class="img_cast" src="/assets/image for movie_details and policy/melaine.jpg" alt="img can't be loaded">
+                    </div>
+                    <div class="cast_name">Jessica Alba</div>
+                </div>
+                <div class="panel">
+                    <div class="sub_panel">
+                        <img class="img_cast" src="/assets/image for movie_details and policy/josh.jpg" alt="img can't be loaded">
+                    </div>
+                    <div class="cast_name">Devon Aoki</div>
+                </div>
+                <div class="panel">
+                    <div class="sub_panel">
+                        <img class="img_cast" src="/assets/image for movie_details and policy/timothee.jpg" alt="img can't be loaded">
+                    </div>
+                    <div class="cast_name">Benicio Del Toro</div>
+
+                </div>
+                <div class="panel">
+                    <div class="sub_panel">
+                        <img class="img_cast" src="/assets/image for movie_details and policy/john.jpg" alt="img can't be loaded">
+                    </div>
+                    <div class="cast_name">John Frunsciante</div>
+
+                </div>
+            </div>
+
+            <!-- director -->
+            <div id="movie_director" class="director">
+                DIRECTOR BY
+                <br>
+                <br>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script src="https://unpkg.com/split.js/dist/split.min.js"></script> -->
+    <!-- <script>
+        Split(['.a', '.b'], {
+            gutterSize: 0.5,
+            sizes: [80, 20],
+            // minSize: [500,30]
+        });
+    </script> -->
+    <script>
+        // const API_KEY = "AIzaSyDfSUer7BQO3OZCpqnbs0KM5bDddgpcEK0";
+        // let search = "";
+        // let maxResults = "1";
+        // let afterdate = "";
+        // let beforedate = "";
+        // let order = "";
+        // let duration = "";
+
+        let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
+        // let youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${search}&maxResults=${maxResults}&publishedAfter=${afterdate}&publishedBefore=${beforedate}&order=${order}&videoDuration=${duration}&type=video`;
+
+        let id = "4";
+        let film_title = "";
+        let film_youtube = "";
+        const urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.has("id") ? urlParams.get('id') : id;
+        var fetchingURL = originalURL + id;
+        fetch(fetchingURL)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                //parse year
+                let text = json.date;
+                const json_year = text.split("-");
+                let year = json_year[0];
+                //
+                film_title = json.title;
+                let href_cut = json.href.split("https://www.youtube.com/watch?v=");
+                film_youtube = "https://www.youtube.com/embed/" + href_cut[1] + "?enablejsapi=1";
+                console.log(film_youtube);
+                document.querySelector("#movie_title").innerHTML = json.title;
+                document.querySelector("#movie_star").innerHTML = `${json.rating}/10`;
+                for (let i = 0; i < json.genres.length; i++) {
+                    document.querySelector("#movie_info").innerHTML += `${json.genres[i]} . `;
+                }
+                document.querySelector("#movie_description").innerHTML = json.description;
+                document.querySelector(".screen").style.background = `url('${json.thumbnail}')`;
+                // for (let i = 0; i < 8; i++){
+                // document.querySelector("label").innerHTML += `<div class="director_name">${json.director[i]}</div>`;
+                // }
+                // document.querySelector("#star1").checked = true;
+                for (let i = 0; i < json.director.length; i++) {
+                    document.querySelector("#movie_director").innerHTML += `<div class="director_name">${json.director[i]}</div>`;
+                }
+
+                //nation name
+                const regionNames = new Intl.DisplayNames(
+                    ['de'], { type: 'region' }
+                );
+                let country = regionNames.of(json.country.toUpperCase());
+                document.querySelector("#movie_info").innerHTML += `${json.duration} . ${year} . ${country}`;
+
+
+                //PLAY MOVIE
+                //         var API_KEY = "AIzaSyDfSUer7BQO3OZCpqnbs0KM5bDddgpcEK0";
+                //         var search = json.title;
+                //         var duration = "any";
+                //         var order = "relevance";
+                //         var beforedate = new Date().toISOString();
+                //         var afterdate = new Date().toISOString();
+                //         var maxResults = 1;
+                //         var url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}
+                //   &part=snippet&q=${search}&maxResults=${maxResults}&publishedAfter=${afterdate}&publishedBefore=${beforedate}&order=${order}&videoDuration=${duration}&type=video`;
+                document.querySelector("#youtube_frame").innerHTML = `<iframe id = "iframe_frame" class="youtube" src="${film_youtube}" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>`;
+            });
+
+
+        function play_movie() {
+            document.getElementById("youtube_frame").style.visibility = "visible";
+        }
+        function stop_movie() {
+            if (document.getElementById("youtube_frame").style.visibility == "visible") {
+                var frame = document.getElementById("iframe_frame");
+                frame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                document.getElementById("youtube_frame").style.visibility = "collapse";
+            }
+        }
+
+
+    </script>
+    <!-- script for youtube frame -->
+    <script>
+
+        var tag = document.createElement('script');
+        tag.scr = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYoutubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateReady': onPlayerStateChange
+                }
+            });
+        }
+        function onPlayerReady(e) {
+            e.target.playVideo();
+        }
+        function onPlayerStateChange(e) {
+            console.log('player state changed');
+        }
+
+    </script>
+
+
+    <!-- <script>
+        fetch(youtubeURL)
+            .then(response => response.json())
+            .then(json => {
+
+            });
+    </script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="jquery.twbsPagination.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> -->
+    <!-- <script>
+        $("#beforedate").datepicker({
+   
+        })
+        $("#afterdate").datepicker({
+   
+  })
+   
+    </script> -->
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>

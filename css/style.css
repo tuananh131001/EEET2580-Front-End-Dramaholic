@@ -95,6 +95,7 @@ nav #sideNav .sign-in-subBar {
   position: relative;
   font-size: 0.8rem;
   width: max-content;
+  overflow-wrap: break-word;
 }
 .card .card-title::after {
   content: "";
@@ -112,7 +113,7 @@ nav #sideNav .sign-in-subBar {
   padding-top: 0.5em;
 }
 .card .button {
-  background-color: rgb(193, 7, 30);
+  background-color: #c1071e;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -125,7 +126,7 @@ nav #sideNav .sign-in-subBar {
 .card .button:focus {
   cursor: pointer;
   background-color: rgb(255, 255, 255);
-  color: rgb(193, 7, 30);
+  color: #c1071e;
 }
 
 /* Start side bar */
@@ -146,47 +147,46 @@ nav .nav-right {
   align-items: center;
   justify-content: flex-start;
   white-space: nowrap;
-  gap: 0.5em;
+  gap: 1em;
 }
-nav .search-container {
+nav .search-box {
   display: flex;
-  flex-direction: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  gap: 0.5em;
+  background: rgb(0, 0, 0);
+  height: 40px;
+  border-radius: 40px;
+  box-shadow: 0 0.1rem 0.75rem #c1071e;
 }
-nav .search-container .search-icon {
-  position: fixed;
-  cursor: pointer;
+nav .search-box:hover > .icon {
+  background: #536179;
 }
-nav .search-container .search-bar {
-  position: fixed;
+nav input {
   width: 0;
-  height: 3em;
-  top: 0.3em;
-  bottom: 0;
-  right: 10%;
-  border: 1px solid #fff;
-  background-color: #1b1b1b;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.1rem;
+  transition: 0.5s;
+  line-height: 40px;
   color: #fff;
 }
-nav .animate-fade-right {
-  animation-name: fadeInRight;
-  animation-iteration-count: 1;
-  animation-duration: 0.5s;
-  animation-delay: 0s;
-  backface-visibility: hidden;
+nav .open {
+  width: 100%;
+  padding: 0 20px;
 }
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+nav .icon {
+  color: rgb(255, 255, 255);
+  width: 40px;
+  font-size: 1.3rem;
+  height: 40px;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(0.9);
 }
 nav #subBar {
   width: 0;
@@ -201,7 +201,7 @@ nav .nav-left {
   gap: 3em;
 }
 nav .sign-in-subBar {
-  background-color: rgb(193, 7, 30);
+  background-color: #c1071e;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -213,15 +213,11 @@ nav .sign-in-subBar {
 nav .sign-in-subBar:hover {
   cursor: pointer;
   background-color: rgb(255, 255, 255);
-  color: rgb(193, 7, 30);
+  color: #c1071e;
 }
 
 /* End Sidebar */
 @media (min-width: 62em) {
-  .search-bar {
-    display: block;
-  }
-
   .header-navigation-text {
     display: block;
   }
@@ -252,11 +248,6 @@ nav .sign-in-subBar:hover {
     padding: 1em 2em;
     background-color: transparent;
   }
-  nav .search-icon,
-nav .search-bar {
-    position: relative !important;
-    top: 0 !important;
-  }
   nav .header-navigation-text {
     display: flex;
     flex-direction: row;
@@ -278,7 +269,7 @@ nav .search-bar {
   }
   nav .sign-in-nagivation {
     display: block;
-    background-color: rgb(193, 7, 30);
+    background-color: #c1071e;
     color: white;
     font-weight: 400;
     font-size: 1rem;
@@ -290,7 +281,7 @@ nav .search-bar {
   nav .sign-in-nagivation:hover {
     cursor: pointer;
     background-color: rgb(255, 255, 255);
-    color: rgb(193, 7, 30);
+    color: #c1071e;
   }
 }
 /* Billboard */
@@ -310,7 +301,7 @@ nav .search-bar {
 .thumbTile__image {
   border-radius: 5px;
   width: 100%;
-  aspect-ratio: 9/16;
+  aspect-ratio: 10/16;
 }
 
 .thumbTitle {
@@ -398,7 +389,7 @@ nav .search-bar {
     text-transform: uppercase;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 15px;
-    text-shadow: 5px 5px rgb(193, 7, 30);
+    text-shadow: 5px 5px #c1071e;
   }
   .billboard .billboard-description {
     font-size: 1.2vw;
@@ -442,6 +433,10 @@ nav .search-bar {
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none !important;
+}
+
 a {
   text-decoration: none;
 }
@@ -455,9 +450,9 @@ body {
   background-color: rgb(0, 0, 0);
 }
 
-main {
+/* main {
   background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
-}
+} */
 
 footer {
   display: flex;
@@ -477,12 +472,60 @@ footer a {
   color: inherit;
 }
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20, 20, 20, 0.5);
+  color: #fff !important;
+}
+
 /* Swipe */
 @media screen and (max-width: 30em) {
   aside {
     display: none;
   }
 }
+
+.search-content {
+  margin-top: 5%;
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  place-content: center;
+  gap: 2em;
+  padding: 1em;
+}
+
+.movie-search-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5em;
+}
+.movie-search-card .card-content {
+  display: grid;
+  gap: 0.5em;
+}
+.movie-search-card .movie-search-image {
+  width: 100%;
+  border-radius: 1rem;
+  aspect-ratio: 10/16;
+}
+.movie-search-card .movie-search-image:hover,
+.movie-search-card .card-title:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.movie-search-card .card-body {
+  color: rgb(222, 222, 222);
+}
+
+.error-search-page {
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
 #loading {
   display: flex;
   position: fixed;
@@ -495,35 +538,4 @@ footer a {
   background-position: center;
 }
 
-.row {
-  display: flex;
-
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-
-.red_theme_button {
-  background-color: #c1071e;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 1rem;
-}
-
-.red_theme_button:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #131834;
-}
-
-.page_title {
-  font-size: 3rem;
-  color: rgb(212, 14, 38);
-  font-weight: 400;
-}
 /*# sourceMappingURL=style.css.map */

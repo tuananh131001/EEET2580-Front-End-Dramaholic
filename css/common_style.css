@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    min-width: max-content;
+    color: white;
+}
+
+.body_region {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: black;
+    /* font-size: 0.8rem; */
+}
+
+.page_title {
+    font-size: 3rem;
+    color: rgb(212, 14, 38);
+    font-weight: 400;
+}
+
+footer {
+    background-color: black;
+    margin: 0;
+    padding: 2rem;
+}
+
+.input_box, textarea{
+    height: 2.5rem;
+    border-radius: 5px;
+    border: solid rgb(211, 211, 211) 1px;
+    background-color: rgba(247, 247, 247, 0.7);
+    padding: 0 0.5rem;
+} 
+
+.flex_row {
+    display: flex;
+}
+
+.flex_col {
+    display: flex;
+    flex-direction: column;
+}
+
+.red_theme_button {
+    background-color: #c1071e;
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.red_theme_button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #131834;
+    border: #c1071e solid 1.5px;
+
+}
+
+label {
+    font-size: 0.95rem;
+    font-weight: 500;
+}

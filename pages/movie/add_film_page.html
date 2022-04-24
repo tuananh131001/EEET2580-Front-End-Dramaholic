@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <link rel="stylesheet" href="../../css/style.css" /> -->
+    <!-- <link rel="stylesheet" href="../../assets/icons/themify-icons.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Film</title>
+    <style>
+
+      body {
+        gap: 6rem;
+      }
+
+      #add_film_form {
+        width: fit-content;
+        align-self: flex-start;
+        margin-left: 10%;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .input_box, textarea{
+        width: 18rem;
+        height: 2.5rem;
+        border-radius: 5px;
+        border: solid white 2px;
+        background-color: rgba(247, 247, 247, 0.7);
+        color: white;
+        padding: 0 0.5rem;
+      }
+
+      .add_info_table * {
+        font-size: 1rem;
+      }
+
+      .row.cate, .col.cate, .col.info {
+        gap: 0.3rem;
+      }
+
+      .row.cate {
+        align-items: center;
+      }
+
+      .row {
+        gap: 6rem;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <header></header>
+    <main class="body_region">
+        <form action="https://dramaholic.herokuapp.com/api/movies" method="post" id="add_film_form">
+          <div  class= "page_title">ADD NEW MOVIE</div>
+          <!-- <hr> -->
+          <div class="col" style="gap: 1.5rem;">
+            <div class="row">
+              <div class="col info">
+                <label for="title">Title:</label>
+                <input required class="input_box" type="text" id="title" name="title" />
+              </div>
+              
+              <div class="col info">
+                <label for="originalTitle">Original Title:</label>
+                <input required class="input_box" type="text" id="original_title" name="original_title" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col info">
+                <label for="href">Href to film:</label>
+                <input required class="input_box" type="url" id="href" name="href"/>
+              </div>
+
+              <div class="col info">
+                <label for="thumbnail">Thumbnail (URL):</label>
+                <input required class="input_box" type="url" id="thumbnail" name="thumnail"/>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col info">
+                <label for="description">Description:</label>
+                <textarea required id="description" name="description" style="height: 7rem;"></textarea>
+              </div>
+
+              <div class="col info">
+                <label for="genres">Genres/Categories:</label>
+                <div class="row" style="gap: 1rem;" id="genres_selection"></div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col info">
+                <label for="duration">Duration:</label>
+                <input class="input_box" type="text" id="duartion" name="duaration"/>
+              </div>    
+              
+              <div class="col info">
+                <label for="episodes">Episodes:</label>
+                <input class="input_box" type="text" id="episodes" name="episodes"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col info">
+                <label for="country">Country:</label>
+                <select required class="input_box" id="country" name="country" form="add_film_form"></select>
+              </div>     
+
+              <div class="col info">
+                <label for="date">Publication Date:</label>
+                <input required class="input_box" type="date" id="date" name="date"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col info">
+                <label for="director">Directors :</label>
+                <input class="input_box" type="text" id="director" name="director"/>
+              </div>   
+
+              <div class="col info">
+                <label for="actor">Actors:</label>
+                <input class="input_box" type="text" id="actor" name="actor"/>
+              </div>
+            </div>
+
+            <div class="col info">
+              <label for="rating">Rating:</label>
+              <input required class="input_box" type="number" id="rating" name="rating"/>
+            </div>
+          </div>
+
+          <div>
+            <input class="red_theme_button" type="submit" value="Submit">
+          </div>
+        </form>
+    </main>
+    <footer></footer>
+    <script type="module" src="../../js/components/"></script>
+<script src="../../js/searchSuggest.js"></script>
+<script>
+  fetch("https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6d7c06dbe16&language=en-US")
+  .then(response => response.json())
+  .then(json => {
+    var html = ''
+      var length = json.genres.length
+      console.log(length)
+      for (let i=0; i < length; i++) {
+        var genre_id = json.genres[i].id
+        var genre_name = json.genres[i].name
+        temp = '<div class="row cate"><input type="checkbox" id="'+genre_id+'" name="genres" value="'+genre_name+'">'+genre_name+'</div>'
+        if (i%4==0) {
+          html += '<div class="col cate">'+temp
+        }
+        else if (i%4==3) {
+          html += temp+'</div>'
+        }
+        else html+=temp
+      }
+      document.querySelector("#genres_selection").innerHTML = html
+  })
+
+  fetch("../../language.json")
+  .then(response => response.json())
+  .then(json => {
+    var html = ''
+      var length = json.languages.length
+      console.log(length)
+      for (let i=0; i < length; i++) {
+        var language_code = json.languages[i].code
+        var language_name = json.languages[i].name
+        html += '<option id="'+language_code+'" value="'+language_code+'">'+language_names+'</option>'
+      }
+      document.querySelector("#country").innerHTML = html
+  })
+</script>
+
+
+  </body>
+</html>

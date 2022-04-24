@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DramaHolic</title>
   </head>
-  <body id="body">
+  <header>
     <nav class="navbar nav-gradient">
       <div class="nav-left">
         <span
@@ -36,16 +36,22 @@
                 src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
                 class="header-profile-avatar"
               />
-              <div class="navigation-menu-profile-link" data-href="/ProfilesGate">
+              <div
+                class="navigation-menu-profile-link"
+                data-href="/ProfilesGate"
+              >
                 <p
                   class="navigation-menu-profile-name"
                   data-href="/ProfilesGate"
-                  >Tuan Anh</p
-                ><p
+                >
+                  Tuan Anh
+                </p>
+                <p
                   class="navigation-menu-profile-text"
                   data-href="/ProfilesGate"
-                  >Switch Profiles</p
                 >
+                  Switch Profiles
+                </p>
               </div>
             </li>
             <li
@@ -79,13 +85,15 @@
             <a href="#">Clients</a>
             <a href="#">Contact</a>
           </div>
-          <a href="./login.html"
+          <a href="./pages/user/login.html"
             ><button class="sign-in-subBar">SIGN IN</button></a
           >
         </div>
 
         <div class="image-container">
-          <img src="./assets/image/logo.png" alt="" class="logo" />
+          <a href="javascript:window.location.reload(true)"
+            ><img src="./assets/image/logo.png" alt="DramaHolic" class="logo"
+          /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
           <li href="#">Home</li>
@@ -95,18 +103,31 @@
         </ul>
       </div>
       <div class="nav-right">
-        <div class="search-container">
-          <input type="search" class="search-bar" />
-          <span class="search-icon ti-search" onclick="openSearch()"></span>
+        <div class="search-box">
+          <input class="search-bar" />
+          <a href="##" class="icon"
+            ><i class="search-icon ti-search" onclick="openSearch()"></i
+          ></a>
         </div>
-
-        <a href="./login.html"
+        <a href="./pages/user/login.html"
           ><button class="sign-in-nagivation">SIGN IN</button></a
         >
       </div>
     </nav>
+  </header>
 
+  <body id="body">
     <section>
+      <div class="search-content"></div>
+      <div class="error-search-page hidden">
+        <div class="content">
+          <img
+            src="https://i.pinimg.com/originals/08/e9/1c/08e91c41f605afe38c114149c690fee2.gif"
+            alt="Empty content"
+          />
+          <p class="text">No movie is founded</p>
+        </div>
+      </div>
       <main>
         <div class="billboard">
           <div class="bilboard-video-wrapper">
@@ -209,88 +230,13 @@
       </div>
       <ul class="member-footer-links">
         <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="/browse/subtitles"
-            ><span class="member-footer-link-content"
-              >Audio and Subtitles</span
-            ></a
+          <a class="member-footer-link" href="/pages/info/aboutUs.html"
+            ><span class="member-footer-link-content">About Us</span></a
           >
         </li>
         <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="/browse/audio-description"
-            ><span class="member-footer-link-content"
-              >Audio Description</span
-            ></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="https://help.netflix.com/"
-            ><span class="member-footer-link-content">Help Centre</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="/redeem"
-            ><span class="member-footer-link-content">Gift Cards</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="https://media.netflix.com/"
-            ><span class="member-footer-link-content">Media Centre</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="http://ir.netflix.com/"
-            ><span class="member-footer-link-content"
-              >Investor Relations</span
-            ></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="https://jobs.netflix.com/"
-            ><span class="member-footer-link-content">Jobs</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a
-            class="member-footer-link"
-            href="https://help.netflix.com/legal/termsofuse"
-            ><span class="member-footer-link-content">Terms of Use</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a
-            class="member-footer-link"
-            href="https://help.netflix.com/legal/privacy"
-            ><span class="member-footer-link-content">Privacy</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a
-            class="member-footer-link"
-            href="https://help.netflix.com/legal/notices"
-            ><span class="member-footer-link-content">Legal Notices</span></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a class="member-footer-link" href="/Cookies"
-            ><span class="member-footer-link-content"
-              >Cookie Preferences</span
-            ></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a
-            class="member-footer-link"
-            href="https://help.netflix.com/legal/corpinfo"
-            ><span class="member-footer-link-content"
-              >Corporate Information</span
-            ></a
-          >
-        </li>
-        <li class="member-footer-link-wrapper">
-          <a
-            class="member-footer-link"
-            href="https://help.netflix.com/contactus"
-            ><span class="member-footer-link-content">Contact Us</span></a
+          <a class="member-footer-link" href="/pages/info/policy.html"
+            ><span class="member-footer-link-content">Policy</span></a
           >
         </li>
       </ul>
@@ -305,4 +251,5 @@
     <div id="loading"></div>
   </body>
   <script src="./js/home.js"></script>
+  <script src="./js/searchSuggest.js"></script>
 </html>
