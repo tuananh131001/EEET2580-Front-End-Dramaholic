@@ -8,6 +8,7 @@ nav {
   position: fixed;
   padding: 0 1em;
   width: 100%;
+  gap:1em;
   background-color: colors.$black;
   z-index: 99;
   .nav-right {
@@ -113,6 +114,7 @@ nav {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
+    width: 100%;
 
     .header-navigation-text {
       @include mixins.flex(row, center, flex-start);

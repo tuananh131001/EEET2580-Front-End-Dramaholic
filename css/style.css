@@ -160,6 +160,7 @@ nav {
   position: fixed;
   padding: 0 1em;
   width: 100%;
+  gap: 1em;
   background-color: black;
   z-index: 99;
 }
@@ -269,6 +270,7 @@ nav .sign-in-subBar:hover {
     position: fixed;
     padding: 1em 2em;
     background-color: transparent;
+    width: 100%;
   }
   nav .header-navigation-text {
     display: flex;
@@ -448,7 +450,7 @@ nav .sign-in-subBar:hover {
   /* Billboard */
 }
 .search-content {
-  margin-top: 5%;
+  margin-top: 10%;
   display: none;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   place-content: center;
@@ -485,8 +487,14 @@ nav .sign-in-subBar:hover {
   display: grid;
   place-content: center;
   text-align: center;
+  margin-top: 15%;
 }
 
+@media (min-width: 62em) {
+  .search-content {
+    margin-top: 5%;
+  }
+}
 *,
 *::before,
 *::after {

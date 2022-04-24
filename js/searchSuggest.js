@@ -76,10 +76,21 @@ async function getMovieListSearch(title, list) {
   for (let i = 0; i < list.length; i++) {
     await searchContent.appendChild(list[i]);
   }
-  isEmpty(searchContent.childNodes)
-    ? emptyPage.classList.remove("hidden")
-    : emptyPage.classList.add("hidden");
-  searchContent.style.display = "grid";
+  if(isEmpty(searchContent.childNodes)){
+    searchContent.style.display = "none";
+    emptyPage.classList.remove("hidden")
+    const navBar = document.querySelector(".navbar");
+    navBar.style.position = "relative";
+
+  }else {
+    // display cat image
+    emptyPage.classList.add("hidden");
+    searchContent.style.display = "grid";
+    
+    
+  }
+    
+  
   footer.style.display = "block";
   mainContent.style.display = "none";
 }
