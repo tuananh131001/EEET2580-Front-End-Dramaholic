@@ -49,86 +49,88 @@ nav #sideNav {
     margin-top: 1em;
   }
   
-  .card {
-    display: grid;
-    line-height: 1.6;
-    width: 95%;
-    z-index: -1;
-    transition: transform 500ms ease;
-  }
-  .card:hover {
-    transform: scale(1.05);
-  }
-  .card:hover .card-title:after {
-    transform: scaleX(1);
-  }
-  .card:hover .card-content, .card:focus-within .card-content {
-    transform: translateY(0);
-    transition: transform 500ms ease;
-    transition-delay: 500ms;
-  }
-  .card:focus-within .card-content {
-    transition-duration: 0ms;
-  }
-  .card:hover, .card:focus-within {
-    transform: scale(1.05);
-  }
-  .card .card-content > *:not(.card-title) {
-    opacity: 0;
-    transition: opacity 500ms linear;
-  }
-  .card .card-content {
-    gap: 1em;
-    margin-top: -11em;
-    z-index: 1;
-    --padding: 1.5rem;
-    padding: var(--padding);
-    background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
-    overflow: hidden;
-    transform: translateY(65%);
-  }
-  .card:hover .card-content > *:not(.card-title), .card:focus-within .card-content > *:not(.card-title) {
-    opacity: 1;
-    transition-delay: 1000ms;
-  }
-  .card .card-title {
-    position: relative;
-    font-size: 0.8rem;
-    width: max-content;
-    overflow-wrap: break-word;
-  }
-  .card .card-title::after {
-    content: "";
-    position: absolute;
-    height: 4px;
-    left: calc(var(--padding) * -1);
-    bottom: -3px;
-    width: calc(100% + var(--padding));
-    background-color: #ffcccb;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 500ms ease;
-  }
-  .card .card-body {
-    padding-top: 0.5em;
-  }
-  .card .button {
-    background-color: #c1071e;
-    color: white;
-    font-weight: 400;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-  }
-  .card .button:hover,
-  .card .button:focus {
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color: #c1071e;
-  }
-  
+.card {
+  display: grid;
+  line-height: 1.6;
+  width: 95%;
+  z-index: -1;
+  transition: transform 500ms ease;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card:hover .card-title:after {
+  transform: scaleX(1);
+}
+.card:hover .card-content, .card:focus-within .card-content {
+  transform: translateY(0);
+  transition: transform 500ms ease;
+  transition-delay: 500ms;
+}
+.card:focus-within .card-content {
+  transition-duration: 0ms;
+}
+.card:hover, .card:focus-within {
+  transform: scale(0.95);
+}
+.card .card-content > *:not(.card-title) {
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
+.card .card-content {
+  gap: 1em;
+  margin-top: -11em;
+  z-index: 1;
+  --padding: 1.5rem;
+  padding: var(--padding);
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, #0e1217);
+  overflow: hidden;
+  transform: translateY(65%);
+}
+.card:hover .card-content > *:not(.card-title), .card:focus-within .card-content > *:not(.card-title) {
+  opacity: 1;
+  transition-delay: 1000ms;
+}
+.card .card-title {
+  position: relative;
+  font-size: 1.2rem;
+  width: max-content;
+  overflow-wrap: break-word;
+}
+.card .card-title::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  left: calc(var(--padding) * -1);
+  bottom: -3px;
+  width: calc(100% + var(--padding));
+  background-color: #ffcccb;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
+}
+.card .card-body {
+  padding-top: 0.5em;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+.card .button {
+  background-color: #c0071d;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.card .button:hover,
+.card .button:focus {
+  cursor: pointer;
+  background-color: white;
+  color: #c0071d;
+}
   /* Start side bar */
   nav {
     display: flex;
@@ -460,7 +462,7 @@ nav #sideNav {
     color: #fff;
     height: 100vh;
     font-family: "Poppins", sans-serif;
-    background-color: rgb(0, 0, 0);
+    background-color: #0e1217;
   }
   
   main {
