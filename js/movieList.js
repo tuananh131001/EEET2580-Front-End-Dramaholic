@@ -18,10 +18,29 @@ fetch("https://dramaholic.herokuapp.com/api/movies")
     DisplayList(data.content, list_element);
   });
 function createDivMovie(x) {
+  let wrapper = document.createElement("div");
+  wrapper.classList.add("movie-wrapper")
+  
   let title = document.createElement("h2");
   title.className = "card-title";
   title.textContent = x.title;
-  return title;
+
+  let buttonWrapper = document.createElement("div");
+  buttonWrapper.classList.add("button-wrapper")
+
+  let editButton = document.createElement("button");
+  editButton.classList.add("edit-button")
+  editButton.innerText = "EDIT"
+
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button")
+  deleteButton.innerText = "DELETE"
+
+  wrapper.appendChild(title);
+  wrapper.appendChild(buttonWrapper)
+  buttonWrapper.appendChild(editButton);
+  buttonWrapper.appendChild(deleteButton);
+  return wrapper;
 }
 function getPage(index, list) {}
 function DisplayList(items, wrapper) {

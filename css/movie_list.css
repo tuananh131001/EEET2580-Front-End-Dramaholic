@@ -16,4 +16,11 @@ main {
   width: 90%;
 }
 
+.list .movie-wrapper {
+  display: flex;
+}
+.list .button-wrapper {
+  margin-left: auto;
+}
+
 /*# sourceMappingURL=movie_list.css.map */

@@ -13,3 +13,11 @@ aside{
 main{
     width: 90%;
 }
+.list{
+    .movie-wrapper{
+        display: flex;
+    }
+    .button-wrapper{
+        margin-left: auto;
+    }
+}
