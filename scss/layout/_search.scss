@@ -37,10 +37,14 @@
   display: grid;
   place-content: center;
   text-align: center;
-  margin-top: 15%;
+  margin-bottom: 0;
 }
 @media (min-width: 62em) {
   .search-content {
     margin-top: 5%;
+  }
+  .error-search-page {
+    margin-top: auto;
+    margin-bottom: 30vh;
   }
 }

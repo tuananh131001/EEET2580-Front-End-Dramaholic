@@ -42,7 +42,7 @@ nav #sideNav .navigation-menu-settings {
   flex-direction: column;
   width: 100%;
   border-bottom: 1px solid #333;
-  gap: 0.3em;
+  gap: 0.5em;
   padding: 1em 1em;
 }
 nav #sideNav .sign-in-subBar {
@@ -490,12 +490,17 @@ nav .sign-in-subBar:hover {
   display: grid;
   place-content: center;
   text-align: center;
-  margin-top: 15%;
+  margin-bottom: 0;
 }
 
 @media (min-width: 62em) {
   .search-content {
     margin-top: 5%;
+  }
+
+  .error-search-page {
+    margin-top: auto;
+    margin-bottom: 30vh;
   }
 }
 *,
@@ -520,6 +525,7 @@ nav .sign-in-subBar:hover {
 }
 .active {
   font-weight: 700 !important;
+  color: color !important;
 }
 
 .hidden {
