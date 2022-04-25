@@ -47,14 +47,14 @@ const createElementsMovieCard = (x) => {
   card.appendChild(cardContent);
 
   // Title
-  let title = document.createElement("h2");
+  let title = document.createElement("h1");
   title.className = "card-title";
   title.textContent = x.title;
   cardContent.appendChild(title);
   //description
   let description = document.createElement("p");
   description.className = "card-body";
-  description.textContent = x.originalTitle;
+  description.textContent = x.description;
   cardContent.appendChild(description);
 
   // Button
