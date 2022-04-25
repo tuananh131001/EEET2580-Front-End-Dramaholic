@@ -100,7 +100,9 @@ footer .wrapper-footer {
   transition: opacity 500ms linear;
 }
 .card .card-content {
-  gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
   margin-top: -11em;
   z-index: 1;
   --padding: 1.5rem;
@@ -116,8 +118,8 @@ footer .wrapper-footer {
 .card .card-title {
   position: relative;
   font-size: 1.2rem;
-  width: max-content;
-  overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden !important;
 }
 .card .card-title::after {
   content: "";
@@ -146,6 +148,7 @@ footer .wrapper-footer {
   border: none;
   padding: 0.5rem 1rem;
   text-decoration: none;
+  width: 8rem;
 }
 .card .button:hover,
 .card .button:focus {
@@ -154,6 +157,14 @@ footer .wrapper-footer {
   color: #c0071d;
 }
 
+@media (min-width: 62em) {
+  .card-title {
+    position: relative;
+    font-size: 1.2rem;
+    width: max-content;
+    overflow-wrap: break-word;
+  }
+}
 /* Start side bar */
 nav {
   display: flex;
