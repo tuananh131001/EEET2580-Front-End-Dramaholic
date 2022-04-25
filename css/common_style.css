@@ -43,6 +43,10 @@ footer {
     flex-direction: column;
 }
 
+.align_items_center {
+    align-items: center;
+}
+
 .red_theme_button {
     background-color: #c1071e;
     color: white;
@@ -65,3 +69,35 @@ label {
     font-size: 0.95rem;
     font-weight: 500;
 }
+
+#account_navigate > *:hover {
+    cursor: pointer;
+}
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #dedede;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }

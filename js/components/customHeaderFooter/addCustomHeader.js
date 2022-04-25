@@ -1,11 +1,3 @@
-const openNav = () => {
-  const subNav = document.querySelector("#sideNav");
-  subNav.style.width === ""
-    ? (subNav.style.width = "60%")
-    : (subNav.style.width = "");
-    const input = document.querySelector(".search-bar")
-    input.nodeValue = ""
-};
 document.querySelector("header").innerHTML = `
 <nav class="navbar nav-colored">
       <div class="nav-left">
