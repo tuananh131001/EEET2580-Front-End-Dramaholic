@@ -10,29 +10,66 @@ html, body {
 }
 @font-face {
     font-family: 'averta_pe_black';
-    src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
+    src: url(../fonts/AvertaPE/Averta\ PE\ Black.otf);
     font-style: normal;
     font-weight: 100;
 }
 
 @font-face {
     font-family: 'averta_pe';
-    src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
+    src: url(../fonts/AvertaPE/Averta\ PE\ Regular.otf);
     font-style: normal;
     font-weight: 100;
 }
+.split {
+    width: 100%;
+    /* height: 100%; */
+    padding: 30px;
+} 
+.a{
+    background: url("../assets/image_detail/background4.jpg") no-repeat center center scroll; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    opacity: 20%;
+    background-attachment: fixed;
+    /* width: 100vw; */
+    /* height: 100%; */
+    background-size: cover;
+    background-position: top;
+}
+
+.b{
+    background: url("../assets/image_detail/background4.jpg") no-repeat center center scroll; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;    
+    background-attachment: fixed;
+    /* height: 100%; */
+    /* width: 100vw; */
+    /* height: 100%; */
+    background-size: cover;
+    background-position: top;
+} 
+
+
+.gutter {
+    cursor: e-resize;
+    height: 100vh;
+    background: black;
+    opacity: 40%;
+} 
 .screen {
     background-size: cover;
     position: fixed;
-    margin-bottom: 0;
-    padding-bottom: 350vh;
+    display: flex;
+    margin: 0;
     width: 100vw;
-    height: 100vh;
-    animation: moving 30s linear infinite;
+    height: 100%;
 }
 #youtube_frame{
     position: fixed;
-    margin: 0 5%;
+    margin: 7vh 5%;
     width: 90%;
     height: 86%;
     overflow: hidden;
@@ -45,13 +82,12 @@ html, body {
     height: 100%;
 }
 #blur_frame{
-    margin: 7vh 5%;
+    /* position: absolute; */
+    /* margin: 7vh 5%; */
+    padding-top: 10vh;
     padding-bottom: 2vh;
-    /* opacity: 20%; */
     width: 90%;
-    height: 86%;
-    /* background-color: white; */
-    overflow: hidden;
+    height: 100%;
 }
 
 .regular_setting {
@@ -61,13 +97,15 @@ html, body {
     font-size: 12px;
 }
 .title {
+    position: relative;
     font-family: averta_pe_black;
     width: fit-content;
     color: white;
     font-size: 60px;
     font-weight: 100;
     margin-left: 10%;
-    margin-top: 4vh;
+    /* margin-top: 4vh; */
+    /* z-index: 1; */
 }
 .star{
     margin-left: 2%;
@@ -89,7 +127,7 @@ html, body {
 }
 .rating label{
     display: block;
-    cursor: pointer;
+    pointer-events: none;
     width: 13px;
 }
 .rating label:before{
@@ -120,19 +158,18 @@ html, body {
     opacity: 0;
 }
 
-/* input[type="checkbox"]:checked + label {
-    color: #1d1c1c;
-} */
 
 .description {
-    width: 45%;
-    height: 12vh;
+    position: relative;
+    width: 55%;
+    height: 11vh;
     margin-left: 10%; 
     margin-top: 3vh;
     overflow: hidden;
 }
 
 .button_container{
+    position: relative;
     margin-left: 10%; 
     margin-top: 2vh;
 }
@@ -144,7 +181,9 @@ html, body {
     padding: 10px 20px;
     cursor: pointer;
     margin-right: 10px;
+    margin-bottom: 4px;
     transition: 0.8s;
+    z-index: 1;
 }
 .button:hover{
     color: #fff;
@@ -177,6 +216,7 @@ html, body {
 }
 
 .equipe{
+    position: relative;
     margin-top: 4vh; 
     /* display: inline; */
     margin-left: 10%;
@@ -188,15 +228,123 @@ html, body {
     margin-right: 7%;
     float: left;
     width: 500px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: space-between;
+}
+.cover {
+    position: relative;
+    width: 90%;
+    height: 50%;
+    margin-bottom: 20px;
+}
+/* 
+.cover::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    z-index: 99;
+    height: 100%;
+    width: 150px;
+    background-image: linear-gradient(90deg, black, transparent);
+}
+
+.cover::after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    z-index: 99;
+    height: 100%;
+    width: 150px;
+    background-image: linear-gradient(-90deg, black, transparent);
+} */
+
+.scroll-images {
+    width: 75%;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    overflow: auto;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.child {
+    width: 80px;
+    min-width: 80px;
+    height: 140px;
+    padding: 0;
+    margin: 0;
+    margin-right: 5px;
+    font-family: averta_pe;
+    font-size: 12px;
+    /* cursor: pointer; */
+    pointer-events: none;
+    border: none;
+    overflow: none;
+}
+
+.scroll-images::-webkit-scrollbar {
+    width: 0%;
+}
+
+.child-img {
+    width: 80px;
+    min-width: 80px;
+    height: 100px;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.icon_container{
+    display: flex;
+}
+p{
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.icon {
+    margin-top: 5px ;
+    width: fit-content;
+    color: white;
+    display: flex;
+    background-color: transparent;
+    font-size: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+button{
+    margin: 0;
+    padding: 0;
+}
+#iconl{
+    padding-right: 5px;
+}
+#iconr{
+    padding-left: 5px;
+}
+
+.icon:hover {
+    color: #3498db;
 }
 .panel{
     font-family: averta_pe;
+    font-size: 12px;
     width: 80px;
     height: 140px;
     /* background-color: red; */
     margin-right: 20px;
     /* text-align: start; */
-    font-size: 12px;
     display: inline-flex;
     flex-direction: column;
 }
@@ -208,6 +356,7 @@ html, body {
     align-self: flex-start;
 }
 .img_cast{
+    position: absolute;
     width: 100%;
     object-fit: cover;
 }
@@ -229,18 +378,5 @@ html, body {
     font-size: 12px;
     padding-bottom: 1vh;
 }
-@keyframes moving {
-    from{
-        transform: translateY(0);
-    }
-    to{
-        transform: translateY(-250vh);
-    }
-}
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-    .blur {
-      background-color: rgba(0, 0, 0, 0.5);
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
-    }
-  }
+
+
