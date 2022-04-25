@@ -26,7 +26,7 @@
   }
   &:hover,
   &:focus-within {
-    transform: scale(1.05);
+    transform: scale(0.95);
   }
 
   .card-content > *:not(.card-title) {
@@ -43,7 +43,7 @@
     background: linear-gradient(
       hsl(0 0% 0% / 0),
       hsl(20 0% 0% / 0.3) 20%,
-      hsl(0 0% 0% / 1)
+      colors.$black
     );
     overflow: hidden;
     transform: translateY(65%);

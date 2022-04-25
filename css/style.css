@@ -93,7 +93,7 @@ footer .wrapper-footer {
   transition-duration: 0ms;
 }
 .card:hover, .card:focus-within {
-  transform: scale(1.05);
+  transform: scale(0.95);
 }
 .card .card-content > *:not(.card-title) {
   opacity: 0;
@@ -105,7 +105,7 @@ footer .wrapper-footer {
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, #0e1217);
   overflow: hidden;
   transform: translateY(65%);
 }
