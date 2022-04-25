@@ -57,7 +57,7 @@
 
   .card-title {
     position: relative;
-    font-size: .8rem;
+    font-size: 1.2rem;
     width: max-content;
     overflow-wrap: break-word;
 
@@ -77,6 +77,9 @@
   }
   .card-body {
     padding-top: 0.5em;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
   }
   .button {
     @include mixins.button-style();
