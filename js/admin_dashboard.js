@@ -48,12 +48,17 @@ function createDivMovie(x) {
       {
         method: "DELETE",
       }
+      
     );
-
+    alert("Sucess deleted " + x.title)
+    getMovieListAdmin();
+    
     const data = await response.json();
 
     // now do whatever you want with the data
     console.log(data);
+    
+    
   };
 
   wrapper.appendChild(title);
