@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "sass": "^1.49.10"
+  },
+  "dependencies": {
+    "tui-pagination": "^3.4.1"
   }
 }

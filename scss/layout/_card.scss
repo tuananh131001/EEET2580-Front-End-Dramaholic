@@ -26,7 +26,7 @@
   }
   &:hover,
   &:focus-within {
-    transform: scale(1.05);
+    transform: scale(0.95);
   }
 
   .card-content > *:not(.card-title) {
@@ -35,7 +35,9 @@
   }
 
   .card-content {
-    gap: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
     margin-top: -11em;
     z-index: 1;
     --padding: 1.5rem;
@@ -43,7 +45,7 @@
     background: linear-gradient(
       hsl(0 0% 0% / 0),
       hsl(20 0% 0% / 0.3) 20%,
-      hsl(0 0% 0% / 1)
+      colors.$black
     );
     overflow: hidden;
     transform: translateY(65%);
@@ -57,10 +59,9 @@
 
   .card-title {
     position: relative;
-    font-size: .8rem;
-    width: max-content;
-    overflow-wrap: break-word;
-
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden !important;
   }
   .card-title::after {
     content: "";
@@ -77,14 +78,26 @@
   }
   .card-body {
     padding-top: 0.5em;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
   }
   .button {
     @include mixins.button-style();
+    width: 8rem;
   }
   .button:hover,
   .button:focus {
     cursor: pointer;
     background-color: colors.$white;
     color: colors.$red;
+  }
+}
+@media (min-width: 62em) {
+  .card-title {
+    position: relative;
+    font-size: 1.2rem;
+    width: max-content;
+    overflow-wrap: break-word;
   }
 }

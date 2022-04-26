@@ -47,14 +47,14 @@ const createElementsMovieCard = (x) => {
   card.appendChild(cardContent);
 
   // Title
-  let title = document.createElement("h2");
+  let title = document.createElement("h1");
   title.className = "card-title";
   title.textContent = x.title;
   cardContent.appendChild(title);
   //description
   let description = document.createElement("p");
   description.className = "card-body";
-  description.textContent = x.originalTitle;
+  description.textContent = x.description;
   cardContent.appendChild(description);
 
   // Button
@@ -63,13 +63,18 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    localStorage.setItem("dbid", x.dbID)
+    localStorage.setItem("dbid", x.dbID);
     location.href = "pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
 
   return col;
 };
+// Billboard
+function setdbID() {
+  localStorage.setItem("dbid", 99966);
+  location.href = "pages/movie/movie_detail.html";
+}
 
 const movieList = [];
 
@@ -104,12 +109,14 @@ async function getTrending() {
   const data = await reponse.json();
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-  let movieArray = [];
-  for (let i = 0; i < 3; i++) {
-    movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
-  }
-  let titleIndex = 0
-  let movieListTitle = ["Trending","New Release","Award-winning"]
+  let movieArray = [
+    "https://dramaholic.herokuapp.com/api/movies/search?sort=rating&desc",
+    "https://dramaholic.herokuapp.com/api/movies/search?sort=date&asc",
+    "https://dramaholic.herokuapp.com/api/movies/search?sort=rating&desc"
+  ];
+
+  let titleIndex = 0;
+  let movieListTitle = ["Highest Rating", "New Release", "Movie"];
   Promise.all(
     movieArray.map(async (url) => {
       // Get data
@@ -175,8 +182,8 @@ const openNav = () => {
   subNav.style.width === ""
     ? (subNav.style.width = "60%")
     : (subNav.style.width = "");
-    const input = document.querySelector(".search-bar")
-    input.nodeValue = ""
+  const input = document.querySelector(".search-bar");
+  input.nodeValue = "";
 };
 
 getTrending();

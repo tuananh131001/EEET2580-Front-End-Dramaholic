@@ -1,0 +1,57 @@
+@use "../abstract/colors";
+@use "../utilities/mixins";
+.account-wrapper {
+  display: none;
+}
+
+
+@media (min-width: 62em) {
+  .account-wrapper {
+    position: relative;
+    display: none;
+    align-items: center;
+    gap: 0.5em;
+    .avatar,
+    .down-arrow {
+      cursor: pointer;
+    }
+    
+  }
+  .drop-down {
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    border-radius: 0.5rem;
+    padding: 1em;
+    position: absolute;
+    right: 1rem;
+    top: 5rem;
+    background-color: colors.$black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: .5em;
+    a{
+        color: colors.$white;
+    }
+  }
+  .button {
+    @include mixins.button-style();
+  }
+  .button:hover,
+  .button:focus {
+    cursor: pointer;
+    background-color: colors.$white;
+    color: colors.$red;
+  }
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+}
