@@ -1,7 +1,27 @@
 @use "../abstract/colors";
 @use "../utilities/mixins";
 
+.account-menu{
+  display:none;
+}
+.sign-in-subBar {
+  background-color: colors.$red;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.sign-in-subBar:hover {
+  @include mixins.button-hover();
+}
 /* Start side bar */
+
+
 
 nav {
   @include mixins.flex(row, center, space-between);
@@ -73,13 +93,7 @@ nav {
     gap: 3em;
   }
 
-  .sign-in-subBar {
-    @include mixins.button-style();
-  }
 
-  .sign-in-subBar:hover {
-    @include mixins.button-hover();
-  }
 
 }
 /* End Sidebar */
