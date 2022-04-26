@@ -129,7 +129,8 @@ nav {
       }
       li:hover {
         cursor: pointer;
-        transform: scale(1.05);
+        transition: color 0.4s;
+       color: colors.$fade;
       }
     }
     .sign-in-nagivation {
