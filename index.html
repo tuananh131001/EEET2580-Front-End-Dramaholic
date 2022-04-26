@@ -31,7 +31,7 @@
         >
 
         <div id="sideNav" class="sideNav">
-          <ol class="navigation-menu-settings">
+          <ol class="account-menu">
             <li class="has-inline-left-gutter navigation-menu-profile">
               <img
                 src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
@@ -63,12 +63,12 @@
             </li>
             <li
               class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/SignOut?lnkctr=mL"
+              onclick="handleSignOut()"
             >
               Sign out of Netflix
             </li>
           </ol>
-          <div class="navigation-menu-settings">
+          <div class="navigation-menu-settings ">
             <a href="#" class="active">Home</a>
             <a href="#">My List</a>
             <a href="/pages/movie/trending.html">Trending</a>
@@ -101,14 +101,15 @@
         <a href="./pages/user/login.html"
           ><button class="sign-in-nagivation">SIGN IN</button></a
         >
+        <div class="drop-down hidden">
+          <a href="/pages/user/user_profile.html">Account</a
+          ><button class="button" onclick="handleSignOut()">Sign Out</button>
+        </div>
         <div class="account-wrapper">
           <img
             class="avatar"
             src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
           /><span class="down-arrow ti-angle-down"></span>
-        </div>
-        <div class="drop-down hidden">
-          <a>Account</a><button>Sign Out</button>
         </div>
       </div>
     </nav>

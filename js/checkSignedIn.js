@@ -2,46 +2,26 @@ let isLogin = JSON.parse(localStorage.getItem("isLogin"));
 const signInButton = document.querySelector(".sign-in-nagivation");
 const navRight = document.querySelector(".nav-right");
 const accountWrapper = document.querySelector(".account-wrapper");
-const dropDown = document.querySelector(".drop-down")
-
+const dropDown = document.querySelector(".drop-down");
+const signInSubbar = document.querySelector(".sign-in-subBar");
+const accountMenu = document.querySelector(".account-menu");
 function removeSignIn() {
-  signInButton.classList.add("hidden");
-}
-// const accountWrapper = document.createElement("div");
-// function createProfileElement() {
-//   accountWrapper.classList.add("account-wrapper");
-// }
-// function createDropDownList(){
-//     const dropDown = document.createElement("div");
-//     dropDown.classList.add("drop-down")
-//     const accountSetting = document.createElement("a")
-//     accountSetting.innerText =  "Account"
-//     dropDown.appendChild(accountSetting)
-//     const signOut = document.createElement("button")
-//     signOut.innerText =  "Sign Out"
-//     dropDown.appendChild(signOut)
-//     accountWrapper.appendChild(dropDown)
-//     const avatar = document.createElement("img");
-//     avatar.classList.add("avatar")
-//     const downArrow = document.createElement("span");
-//     downArrow.classList.add("avatar")
-//     downArrow.onclick = function () {
-//         !dropDown.classList.contains("hidden")?
-//         dropDown.classList.add("hidden"):
-//         dropDown.classList.remove("hidden")
-//       };
-//     avatar.onclick = function () {
-//         !dropDown.classList.contains("hidden")?
-//         dropDown.classList.add("hidden"):
-//         dropDown.classList.remove("hidden")
-//       };
-//     accountWrapper.appendChild(avatar);
-//     accountWrapper.appendChild(downArrow);
-//     avatar.src =
-//       "https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71";
-//       downArrow.classList.add("ti-angle-down")
+  // media query to check
+  var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+  // matched or not
+  var matched = window.matchMedia(media_query).matches;
+  if (isLogin) {
+    signInButton.classList.add("hidden");;
+    signInSubbar.style.display = "none";
+    accountMenu.style.display = "flex";
+  }  
+  if(!matched && isLogin){
+    console.log(matched)
+    accountWrapper.style.display = "flex";
+  }
 
-// }
+  // Not Login
+}
 function openDropList() {
   accountWrapper.onclick = function () {
     !dropDown.classList.contains("hidden")
@@ -49,7 +29,12 @@ function openDropList() {
       : dropDown.classList.remove("hidden");
   };
 }
+
+function handleSignOut() {
+  localStorage.removeItem("isLogin");
+  location.reload();
+}
 if (isLogin) {
   removeSignIn();
-  openDropList()
+  openDropList();
 }
