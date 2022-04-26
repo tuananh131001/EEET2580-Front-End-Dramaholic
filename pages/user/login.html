@@ -54,7 +54,7 @@
               <a href="">Forgot password</a>
             </div>
           </div>
-          <button type="submit" class="form-submit">Sign in</button>
+          <button onclick="handleSignIn()" type="submit" class="form-submit">Sign in</button>
         </form>
       </div>
     </div>
@@ -64,7 +64,11 @@
     </div>
   </div>
 
-  <script>
+  <script>  
+    function handleSignIn(){
+      location.href = "/index.html"
+      localStorage.setItem("isLogin",true)
+    }
 
     function togglePassword() {
       var input = document.getElementById("password");

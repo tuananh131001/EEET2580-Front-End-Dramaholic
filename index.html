@@ -14,6 +14,7 @@
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
     />
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="/js/checkSignedIn.js" defer></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -62,28 +63,16 @@
             </li>
             <li
               class="has-inline-left-gutter navigation-menu-setting"
-              data-href="https://help.netflix.com/"
-            >
-              Help Centre
-            </li>
-            <li
-              class="has-inline-left-gutter navigation-menu-setting"
               data-href="/SignOut?lnkctr=mL"
             >
               Sign out of Netflix
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-          </div>
-          <div class="navigation-menu-settings">
             <a href="#" class="active">Home</a>
             <a href="#">My List</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <a href="/pages/movie/trending.html">Trending</a>
+            <a href="#">Series</a>
           </div>
           <a href="./pages/user/login.html"
             ><button class="sign-in-subBar">SIGN IN</button></a
@@ -112,6 +101,15 @@
         <a href="./pages/user/login.html"
           ><button class="sign-in-nagivation">SIGN IN</button></a
         >
+        <div class="account-wrapper">
+          <img
+            class="avatar"
+            src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
+          /><span class="down-arrow ti-angle-down"></span>
+        </div>
+        <div class="drop-down hidden">
+          <a>Account</a><button>Sign Out</button>
+        </div>
       </div>
     </nav>
   </header>
@@ -121,10 +119,7 @@
       <div class="search-content"></div>
       <div class="error-search-page hidden">
         <div class="content">
-          <img
-            src="./assets/image/cat-sleep.gif"
-            alt="Empty content"
-          />
+          <img src="./assets/image/cat-sleep.gif" alt="Empty content" />
           <p class="text">No movie is founded</p>
         </div>
       </div>
@@ -138,10 +133,9 @@
             <h1 class="billboard-film-name"></h1>
             <h2 class="billboard-description text-shadow"></h2>
             <div class="button-container">
-              <button class="button-play">
-                <span class="ti-control-play"></span> PLAY
+              <button class="more-info" onclick="setdbID()">
+                <span class="ti-info-alt"></span> MORE INFO
               </button>
-              <button class="more-info" onclick="setdbID()">MORE INFO</button>
             </div>
           </div>
         </div>

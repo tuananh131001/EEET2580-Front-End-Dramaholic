@@ -125,22 +125,20 @@
       border: none;
       font-size: 1.5rem;
     }
-    .more-info:hover,
-    .button-play:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-    }
-    .button-play {
-      display: flex;
-      gap: 0.2em;
-    }
     .button-container {
       display: flex;
       gap: 1em;
     }
     .more-info {
+      display: flex;
+      align-items: center;
+      gap: .3em;
       color: #fff;
       background-color: rgba(109, 109, 110, 0.7);
+    }
+    .more-info:hover{
+      background-color: colors.$red;
+      cursor: pointer;
     }
     /* End Button */
   }

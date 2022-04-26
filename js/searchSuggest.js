@@ -9,6 +9,7 @@ const isHover = (e) => e.parentElement.querySelector(":hover") === e;
 const emptyPage = document.querySelector(".error-search-page");
 const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
+const navBar = document.querySelector(".navbar");
 
 const createMovieCard = (x) => {
   let card = document.createElement("div");
@@ -63,6 +64,8 @@ function openSearch() {
   !searchBar.classList.contains("open")
     ? searchBar.classList.add("open")
     : searchBar.classList.remove("open");
+    searchBar.value = ''
+    disableSearch()
 }
 async function getMovieListSearch(title, list) {
   const url = await fetch(
@@ -76,23 +79,15 @@ async function getMovieListSearch(title, list) {
   for (let i = 0; i < list.length; i++) {
     await searchContent.appendChild(list[i]);
   }
-  if(isEmpty(searchContent.childNodes)){
-    searchContent.style.display = "none";
-    emptyPage.classList.remove("hidden")
-    const navBar = document.querySelector(".navbar");
-    navBar.style.position = "relative";
+}
 
-  }else {
-    // display cat image
-    emptyPage.classList.add("hidden");
-    searchContent.style.display = "grid";
-    
-    
-  }
-    
-  
-  footer.style.display = "block";
-  mainContent.style.display = "none";
+function disableSearch() {
+  // No Input in search bar
+  navBar.style.position = "fixed";
+  mainContent.style.display = "block";
+  emptyPage.classList.add("hidden");
+  searchContent.innerHTML = "";
+  searchContent.style.display = "none";
 }
 
 inputValue.addEventListener("input", (e) => {
@@ -100,9 +95,19 @@ inputValue.addEventListener("input", (e) => {
   const suggestionList = [];
   if (current_search) {
     getMovieListSearch(current_search, suggestionList);
+    //Check no result
+    if (isEmpty(searchContent.childNodes)) {
+      // No result found , display cat
+      searchContent.style.display = "none";
+      emptyPage.classList.remove("hidden");
+      navBar.style.position = "relative";
+    }
+    // Found results and display
+    searchContent.style.display = "grid";
+    footer.style.display = "block";
+    mainContent.style.display = "none";
   } else {
-    mainContent.style.display = "block";
-    emptyPage.classList.add("hidden");
-    searchContent.style.display = "none";
+    // No Input in search bar
+    disableSearch();
   }
 });
