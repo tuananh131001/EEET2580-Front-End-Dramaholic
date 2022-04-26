@@ -64,6 +64,8 @@ function openSearch() {
   !searchBar.classList.contains("open")
     ? searchBar.classList.add("open")
     : searchBar.classList.remove("open");
+    searchBar.value = ''
+    disableSearch()
 }
 async function getMovieListSearch(title, list) {
   const url = await fetch(
@@ -77,7 +79,15 @@ async function getMovieListSearch(title, list) {
   for (let i = 0; i < list.length; i++) {
     await searchContent.appendChild(list[i]);
   }
+}
 
+function disableSearch() {
+  // No Input in search bar
+  navBar.style.position = "fixed";
+  mainContent.style.display = "block";
+  emptyPage.classList.add("hidden");
+  searchContent.innerHTML = "";
+  searchContent.style.display = "none";
 }
 
 inputValue.addEventListener("input", (e) => {
@@ -91,17 +101,13 @@ inputValue.addEventListener("input", (e) => {
       searchContent.style.display = "none";
       emptyPage.classList.remove("hidden");
       navBar.style.position = "relative";
-    } 
+    }
     // Found results and display
     searchContent.style.display = "grid";
     footer.style.display = "block";
     mainContent.style.display = "none";
   } else {
     // No Input in search bar
-    navBar.style.position = "fixed";
-    mainContent.style.display = "block";
-    emptyPage.classList.add("hidden");
-    searchContent.innerHTML = ""
-    searchContent.style.display = "none";
+    disableSearch();
   }
 });
