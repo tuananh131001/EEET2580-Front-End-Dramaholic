@@ -64,8 +64,8 @@ function openSearch() {
   !searchBar.classList.contains("open")
     ? searchBar.classList.add("open")
     : searchBar.classList.remove("open");
-    searchBar.value = ''
-    disableSearch()
+  searchBar.value = "";
+  disableSearch();
 }
 async function getMovieListSearch(title, list) {
   const url = await fetch(
@@ -101,6 +101,9 @@ inputValue.addEventListener("input", (e) => {
       searchContent.style.display = "none";
       emptyPage.classList.remove("hidden");
       navBar.style.position = "relative";
+    } 
+    if (!isEmpty(searchContent.childNodes))  {
+      emptyPage.classList.add("hidden");
     }
     // Found results and display
     searchContent.style.display = "grid";
