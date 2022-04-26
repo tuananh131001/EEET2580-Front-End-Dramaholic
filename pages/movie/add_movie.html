@@ -5,14 +5,9 @@
     <link rel="stylesheet" href="../../css/common_style.css" />
     <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"/> 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-        rel="stylesheet"
-    />
-
-
     <link
         rel="stylesheet"
         href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
@@ -73,6 +68,7 @@
             color: black;
             font-weight: 500;
             font-size: 3rem;
+            width: 17rem;
         }
 
         .input_title_area {
@@ -90,14 +86,9 @@
         }
 
         #submit_btn {
-            width: 8rem;
+            width: 9rem;
             height: 3rem;
-        }
-
-        input[type="checkbox"] {
-            accent-color: rgb(212, 14, 38);
-            width: 1rem;
-            height: 1rem;
+            /* margin-top: 2rem; */
         }
 
         .checkbox {
@@ -105,7 +96,7 @@
         }
     </style>
 </head>
-<body>
+<body class="body">
     <header></header>
     <main class="body_region align_items_center">
         <form class="flex_col align_items_center" id="add_film_form">
@@ -143,16 +134,17 @@
                         <input required class="input_box" type="url" id="thumbnail" name="thumbnail" placeholder="URL"/>
                     </div>
 
+                    <div>
+                        <label for="rating">Rating</label>
+                        <input class="input_box" type="number" step="any" id="rating" name="rating" placeholder="Rating"/>
+                    </div>   
+
                     <!-- <div>
                         <input class="red_theme_button" type="submit" value="Submit" id="submit_btn">
                     </div> -->
                 </div>
 
                 <div class="flex_col form_col" id="right_col">
-                    <div>
-                        <label for="rating">Rating</label>
-                        <input class="input_box" type="number" step="any" id="rating" name="rating" placeholder="Rating"/>
-                    </div>   
 
                     <div>
                         <label for="duration">Duration</label>
@@ -173,12 +165,17 @@
 
                     <div>
                         <label for="director">Directors</label>
-                        <input class="input_box" type="text" id="director" name="director" placeholder="Directors"/>
+                        <input class="input_box" type="text" id="director" name="director" placeholder="Name separated by comma"/>
                     </div>   
 
                     <div>
                         <label for="actor">Actors</label>
-                        <input class="input_box" type="text" id="actor" name="actor" placeholder="Actors"/>
+                        <input class="input_box" type="text" id="actor" name="actor" placeholder="Names separated by comma"/>
+                    </div>
+
+                    <div>
+                        <label for="actor">Actor Image</label>
+                        <input class="input_box" type="text" id="actor_image" name="actor_image" placeholder="URLs separated by comma"/>
                     </div>
 
                     <div>
@@ -188,7 +185,7 @@
 
                     <div>
                         <label for="tags">Tags</label>
-                        <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags"/>
+                        <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma"/>
                     </div>
                 </div>
             </div>
@@ -258,7 +255,6 @@
         var selected = ''
         var total = checkboxes.length
         for (var i = 0; i < total; i++) {
-            console.log(checkboxes[i])
             if (i == (total-1))
                 selected += checkboxes[i].value;
             else

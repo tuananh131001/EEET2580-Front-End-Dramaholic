@@ -1,3 +1,7 @@
+header, footer {
+    color: white;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -6,11 +10,16 @@ body {
     color: white;
 }
 
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .body_region {
     display: flex;
     flex-direction: column;
     width: 100%;
     color: black;
+    background-color: white;
     /* font-size: 0.8rem; */
 }
 
@@ -30,7 +39,7 @@ footer {
     height: 2.5rem;
     border-radius: 5px;
     border: solid rgb(211, 211, 211) 1px;
-    background-color: rgba(247, 247, 247, 0.7);
+    /* background-color: rgba(247, 247, 247, 0.7); */
     padding: 0 0.5rem;
 } 
 
@@ -63,6 +72,12 @@ footer {
     color: #131834;
     border: #c1071e solid 1.5px;
 
+}
+
+input[type="checkbox"] {
+    accent-color: rgb(212, 14, 38);
+    width: 1rem;
+    height: 1rem;
 }
 
 label {
