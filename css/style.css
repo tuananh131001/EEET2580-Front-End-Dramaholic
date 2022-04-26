@@ -454,6 +454,9 @@ nav .sign-in-subBar:hover {
     gap: 1em;
   }
   .billboard .more-info {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
     color: #fff;
     background-color: rgba(109, 109, 110, 0.7);
   }

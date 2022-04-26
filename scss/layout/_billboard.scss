@@ -130,6 +130,9 @@
       gap: 1em;
     }
     .more-info {
+      display: flex;
+      align-items: center;
+      gap: .3em;
       color: #fff;
       background-color: rgba(109, 109, 110, 0.7);
     }
