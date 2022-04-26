@@ -72,8 +72,8 @@ const createElementsMovieCard = (x) => {
 };
 // Billboard
 function setdbID() {
-    localStorage.setItem("dbid", 99966);
-    location.href = "pages/movie/movie_detail.html";
+  localStorage.setItem("dbid", 99966);
+  location.href = "pages/movie/movie_detail.html";
 }
 
 const movieList = [];
@@ -109,12 +109,14 @@ async function getTrending() {
   const data = await reponse.json();
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-  let movieArray = [];
-  for (let i = 0; i < 3; i++) {
-    movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
-  }
+  let movieArray = [
+    "https://dramaholic.herokuapp.com/api/movies/search?sort=rating&desc",
+    "https://dramaholic.herokuapp.com/api/movies/search?sort=date&asc",
+    "https://dramaholic.herokuapp.com/api/movies/search?sort=rating&desc"
+  ];
+
   let titleIndex = 0;
-  let movieListTitle = ["Trending", "New Release", "Award-winning"];
+  let movieListTitle = ["Highest Rating", "New Release", "Movie"];
   Promise.all(
     movieArray.map(async (url) => {
       // Get data
