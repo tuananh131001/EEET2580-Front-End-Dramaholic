@@ -110,9 +110,9 @@ async function getTrending() {
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
   let movieArray = [
-    "https://dramaholic.herokuapp.com/api/movies/search?sort=rating&desc",
-    "https://dramaholic.herokuapp.com/api/movies/search?sort=date&asc",
-    "https://dramaholic.herokuapp.com/api/movies/search?sort=rating&desc"
+    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
+    "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
+    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc"
   ];
 
   let titleIndex = 0;
