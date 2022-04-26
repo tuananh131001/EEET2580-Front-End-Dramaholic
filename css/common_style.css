@@ -1,0 +1,118 @@
+header, footer {
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    min-width: max-content;
+    color: white;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.body_region {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: black;
+    background-color: white;
+    /* font-size: 0.8rem; */
+}
+
+.page_title {
+    font-size: 3rem;
+    color: rgb(212, 14, 38);
+    font-weight: 400;
+}
+
+footer {
+    background-color: black;
+    margin: 0;
+    padding: 2rem;
+}
+
+.input_box, textarea{
+    height: 2.5rem;
+    border-radius: 5px;
+    border: solid rgb(211, 211, 211) 1px;
+    /* background-color: rgba(247, 247, 247, 0.7); */
+    padding: 0 0.5rem;
+} 
+
+.flex_row {
+    display: flex;
+}
+
+.flex_col {
+    display: flex;
+    flex-direction: column;
+}
+
+.align_items_center {
+    align-items: center;
+}
+
+.red_theme_button {
+    background-color: #c1071e;
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+}
+
+.red_theme_button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #131834;
+    border: #c1071e solid 1.5px;
+
+}
+
+input[type="checkbox"] {
+    accent-color: rgb(212, 14, 38);
+    width: 1rem;
+    height: 1rem;
+}
+
+label {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+#account_navigate > *:hover {
+    cursor: pointer;
+}
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #dedede;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }
