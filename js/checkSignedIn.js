@@ -31,7 +31,7 @@ function openDropList() {
 }
 
 function handleSignOut() {
-  localStorage.removeItem("isLogin");
+  localStorage.clear();
   location.reload();
 }
 if (isLogin) {
