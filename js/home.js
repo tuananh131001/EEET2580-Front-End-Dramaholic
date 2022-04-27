@@ -150,7 +150,7 @@ async function getBillboardVideo() {
   videoElement.src =
     "https://www.youtube.com/embed/" +
     hrefArray[1] +
-    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1&loop=1" +
+    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1&loop=1&end=136" +
     "&playlist=" +
     hrefArray[1];
   videoElement.classList.add("video-billboard");

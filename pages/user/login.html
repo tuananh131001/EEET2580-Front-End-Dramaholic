@@ -24,7 +24,14 @@
           <div class="heading">
             <h3 class="welcomeText">Welcome back</h3>
             <h1 class="title">Log in to your account</h1>
+            <div class="ui-message-container hidden">
+              <div class="ui-message-icon"></div>
+              <div class="ui-message-contents">
+                <b>Incorrect password.</b> Please try again
+              </div>
+            </div>
           </div>
+
           <form name="myForm" action="" class="form" id="form">
             <div class="form-group">
               <span class="icon">
@@ -120,6 +127,10 @@
             location.href = "/index.html";
           })
           .catch((err) => {
+            const errorElement = document.querySelector(
+              ".ui-message-container"
+            );
+            errorElement.classList.remove("hidden");
             if (err === "server") return;
             console.log(err);
           });
