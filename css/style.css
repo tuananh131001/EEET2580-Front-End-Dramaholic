@@ -641,9 +641,9 @@ body {
   background-color: #0e1217;
 }
 
-/* main {
+main {
   background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
-} */
+}
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
@@ -658,7 +658,6 @@ body {
     display: none;
   }
 }
-
 #loading {
   display: flex;
   position: fixed;
@@ -672,7 +671,7 @@ body {
 }
 
 #body::-webkit-scrollbar {
-  width: 20px;
+  width: 15px;
 }
 
 #body::-webkit-scrollbar-track {
