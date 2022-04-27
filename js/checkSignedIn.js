@@ -40,12 +40,12 @@ if (isLogin) {
   const userid = localStorage.getItem("UserID");
   fetch("https://dramaholic.herokuapp.com/api/customers/" + userid)
     .then((res) => res.json())
-    .then((content) => {
+    .then(({username}) => {
       const accountName = document.querySelectorAll(
         ".navigation-menu-profile-name"
       );
       accountName.forEach(
-        (name) => (name.innerHTML = content.username.toUpperCase())
+        (name) => (name.innerHTML = username.toUpperCase())
       );
     });
 }
