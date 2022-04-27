@@ -1,89 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Landing Page</title>
+    <link rel="stylesheet" href="/css/style_login_signup.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Landing Page</title>
-  <link rel="stylesheet" href="/css/style_login_signup.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
-</head>
-
-<body class="body login-page">
-  <!-- left img box -->
-  <div class="imgBox" id="collumnOne"></div>
-  <div class="contentBox" id="collumnTwo">
-    <div class="logo">
-      <img src="/assets/image/logo.png" alt="" />
-    </div>
-    <div class="form-content login-form">
-      <div class="content-main">
-        <div class="heading">
-          <h3 class="welcomeText">Welcome back</h3>
-          <h1 class="title">Log in to your account</h1>
+  <body class="body login-page">
+    <!-- left img box -->
+    <div class="imgBox" id="collumnOne"></div>
+    <div class="contentBox" id="collumnTwo">
+      <div class="logo">
+        <img src="/assets/image/logo.png" alt="" />
+      </div>
+      <div class="form-content login-form">
+        <div class="content-main">
+          <div class="heading">
+            <h3 class="welcomeText">Welcome back</h3>
+            <h1 class="title">Log in to your account</h1>
+          </div>
+          <form name="myForm" action="" class="form" id="form">
+            <div class="form-group">
+              <span class="icon">
+                <img src="/assets/image/at_sign.png" alt="" />
+              </span>
+              <input
+                name="email"
+                type="text"
+                id="email"
+                class="form-input"
+                required
+              />
+              <label for="email">Username</label>
+            </div>
+            <div class="form-group">
+              <span class="icon">
+                <img src="/assets/image/password.png" alt="" />
+              </span>
+              <input
+                name="password"
+                type="password"
+                id="password"
+                class="form-input"
+                required
+              />
+              <label for="password">Password</label>
+              <span onclick="togglePassword()" class="passShow">
+                <img
+                  src="/assets/image/eye.png"
+                  alt=""
+                  class="show"
+                  id="show"
+                  type="button"
+                />
+                <!-- <img src="assets\image\closed-eye.png" alt="" class="show" id="hide" type="button"> -->
+              </span>
+            </div>
+            <div class="content-other">
+              <div class="login-rememberMe">
+                <input type="checkbox" id="rememberMe" />
+                <label for="rememberMe">Remember me</label>
+              </div>
+              <div class="forgetPass">
+                <a href="">Forgot password</a>
+              </div>
+            </div>
+            <button
+              onclick="handleSignIn(event)"
+              type="submit"
+              class="form-submit"
+            >
+              Sign in
+            </button>
+          </form>
         </div>
-        <form action="" class="form" id="form">
-          <div class="form-group">
-            <span class="icon">
-              <img src="/assets/image/at_sign.png" alt="">
-            </span>
-            <input type="text" id="email" class="form-input" required />
-            <label for="email">Email address</label>
-          </div>
-          <div class="form-group">
-            <span class="icon">
-              <img src="/assets/image/password.png" alt="">
-            </span>
-            <input type="password" id="password" class="form-input" required />
-            <label for="password">Password</label>
-            <span onclick="togglePassword()" class="passShow">
-              <img src="/assets/image/eye.png" alt="" class="show" id="show" type="button">
-              <!-- <img src="assets\image\closed-eye.png" alt="" class="show" id="hide" type="button"> -->
-            </span>
-          </div>
-          <div class="content-other">
-            <div class="login-rememberMe">
-              <input type="checkbox" id="rememberMe" />
-              <label for="rememberMe">Remember me</label>
-            </div>
-            <div class="forgetPass">
-              <a href="">Forgot password</a>
-            </div>
-          </div>
-          <button onclick="handleSignIn()" type="submit" class="form-submit">Sign in</button>
-        </form>
+      </div>
+      <div class="footer">
+        Don't have an account?
+        <a href="signup.html" class="link-page">Join free today</a>
       </div>
     </div>
-    <div class="footer">
-      Don't have an account?
-      <a href="signup.html" class="link-page">Join free today</a>
-    </div>
-  </div>
 
-  <script>  
-    function handleSignIn(){
-      location.href = "/index.html"
-      localStorage.setItem("isLogin",true)
-    }
+    <script>
+      function handleSignIn(e) {
+        e.preventDefault();
+        let emailValue = document.forms["myForm"]["email"].value;
+        let pass = document.forms["myForm"]["password"].value;
+        const dataToSend = JSON.stringify({
+          username: emailValue,
+          password: pass,
+        });
+        console.log(dataToSend);
+        let dataReceived = [];
+        fetch("https://dramaholic.herokuapp.com/api/customers/login", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: dataToSend,
+        })
+          .then((resp) => {
+            if (resp.status === 200) {
+              return resp.json();
+            } else {
+              console.log("Status: " + resp.status);
+              return Promise.reject("server");
+            }
+          })
+          .then((dataJson) => {
+            localStorage.setItem("isLogin", true);
+            localStorage.setItem("UserID", dataJson.id);
+            // if (x == "") {
+            //   return false;
+            // }
+            location.href = "/index.html";
+          })
+          .catch((err) => {
+            if (err === "server") return;
+            console.log(err);
+          });
 
-    function togglePassword() {
-      var input = document.getElementById("password");
-      // When an input is checked, or whatever...
-      if (input.type === "password") {
-        input.setAttribute("type", "text");
-        document.getElementById("show").src = "/assets/image/closed-eye.png";
-
-      } else {
-        input.setAttribute("type", "password");
-        document.getElementById("show").src = "/assets/image/eye.png";
-
+        localStorage.setItem("data", dataReceived);
       }
-    }
-  </script>
-</body>
 
+      function togglePassword() {
+        var input = document.getElementById("password");
+        // When an input is checked, or whatever...
+        if (input.type === "password") {
+          input.setAttribute("type", "text");
+          document.getElementById("show").src = "/assets/image/closed-eye.png";
+        } else {
+          input.setAttribute("type", "password");
+          document.getElementById("show").src = "/assets/image/eye.png";
+        }
+      }
+    </script>
+  </body>
 </html>
