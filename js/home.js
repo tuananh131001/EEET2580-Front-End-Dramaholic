@@ -64,7 +64,7 @@ const createElementsMovieCard = (x) => {
   button.className = "button";
   button.onclick = function () {
     localStorage.setItem("dbid", x.dbID);
-    location.href = "pages/movie/movie_detail.html";
+    location.href = "/pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
 
@@ -112,11 +112,11 @@ async function getTrending() {
   let movieArray = [
     "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
     "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
-    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
+    "https://dramaholic.herokuapp.com/api/movies/search?genre=Action%20%26%20Adventure",
   ];
 
   let titleIndex = 0;
-  let movieListTitle = ["Highest Rating", "New Release", "Movie"];
+  let movieListTitle = ["Highest Rating", "New Release", "Action & Adventure Movie"];
   Promise.all(
     movieArray.map(async (url) => {
       // Get data
