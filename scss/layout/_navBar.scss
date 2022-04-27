@@ -129,6 +129,17 @@ nav {
     padding: 1em 2em;
     background-color: transparent;
     width: 100%;
+    .account-container{
+      @include mixins.flex(row, center, center);
+      gap: .5em;
+      cursor: pointer;
+      padding: .5em;
+      border-radius: 5px;
+    }
+    .account-container:hover{
+      background-color: #fff;
+      color: colors.$black;
+    }
 
     .header-navigation-text {
       @include mixins.flex(row, center, flex-start);

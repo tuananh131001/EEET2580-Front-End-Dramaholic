@@ -71,9 +71,9 @@ const createElementsMovieCard = (x) => {
   return col;
 };
 // Billboard
-function setdbID() {
-  localStorage.setItem("dbid", 99966);
-  location.href = "pages/movie/movie_detail.html";
+function setdbID(x) {
+  localStorage.setItem("dbid", x);
+  location.href = "/pages/movie/movie_detail.html";
 }
 
 const movieList = [];
@@ -112,7 +112,7 @@ async function getTrending() {
   let movieArray = [
     "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
     "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
-    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc"
+    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
   ];
 
   let titleIndex = 0;
@@ -140,8 +140,11 @@ async function getTrending() {
   );
 }
 async function getBillboardVideo() {
-  // const random = Math.floor(Math.random() * movieArray.length);
-  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/99966");
+  const movieBillboard = [99966, 76662, 2778, 1396];
+  const random = Math.floor(Math.random() * movieBillboard.length);
+  const url = await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/" + movieBillboard[random]
+  );
   const movie = await url.json();
 
   const videoContainer = document.querySelector(".billboard-video");
@@ -160,6 +163,10 @@ async function getBillboardVideo() {
   billboardFilmName.innerHTML = movie.title;
   const description = document.querySelector(".billboard-description");
   description.innerHTML = movie.description;
+  const button = document.querySelector(".button-container");
+  button.innerHTML = `<button class="more-info" onclick="setdbID(${movieBillboard[random]})">
+  <span class="ti-info-alt"></span> MORE INFO
+</button>`;
 }
 
 var myNav = document.querySelector(".navbar");
