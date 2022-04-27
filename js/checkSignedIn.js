@@ -37,4 +37,12 @@ function handleSignOut() {
 if (isLogin) {
   removeSignIn();
   openDropList();
+  const userid = localStorage.getItem('UserID');
+
+  fetch('https://dramaholic.herokuapp.com/api/customers/' + userid)
+  .then(res => res.json())
+  .then(content => {
+    const accountName = document.querySelector('.navigation-menu-profile-name')
+    accountName.innerHTML = content.name
+  })
 }
