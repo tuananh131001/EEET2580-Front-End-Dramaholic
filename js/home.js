@@ -73,7 +73,7 @@ const createElementsMovieCard = (x) => {
 // Billboard
 function setdbID(x) {
   localStorage.setItem("dbid", x);
-  location.href = "pages/movie/movie_detail.html";
+  location.href = "/pages/movie/movie_detail.html";
 }
 
 const movieList = [];
