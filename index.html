@@ -68,7 +68,7 @@
               Sign out of Netflix
             </li>
           </ol>
-          <div class="navigation-menu-settings ">
+          <div class="navigation-menu-settings">
             <a href="#" class="active">Home</a>
             <a href="#">My List</a>
             <a href="/pages/movie/trending.html">Trending</a>
@@ -102,14 +102,21 @@
           ><button class="sign-in-nagivation">SIGN IN</button></a
         >
         <div class="drop-down hidden">
-          <a href="/pages/user/user_profile.html">Account</a
-          ><button class="button" onclick="handleSignOut()">Sign Out</button>
+          <a href="/pages/user/user_profile.html" class="account-container">
+            <figure class="ti-user"></figure>
+            <p>Account</p>
+          </a>
+          <a href="/pages/user/watch_history.html" class="account-container">
+            <figure class="ti-time"></figure>
+            <p>History</p>
+          </a>
+          <button class="button" onclick="handleSignOut()">Sign Out</button>
         </div>
         <div class="account-wrapper">
-          <img
-            class="avatar"
-            src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
-          /><span class="down-arrow ti-angle-down"></span>
+          <p class="avatar">
+            Hi, <span class="navigation-menu-profile-name"></span>
+          </p>
+          <span class="down-arrow ti-angle-down"></span>
         </div>
       </div>
     </nav>
