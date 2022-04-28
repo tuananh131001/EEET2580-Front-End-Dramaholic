@@ -103,41 +103,47 @@ async function setSwiper() {
     },
   });
 }
-
+let movieArray = [
+  "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
+  "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Action%20%26%20Adventure",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Animation",
+];
+let movieListTitle = [
+  "Highest Rating",
+  "New Release",
+  "Action & Adventure Movie",
+  "Animation",
+];
+const movieSliders = [];
+async function getAllSlider() {
+  for (let i = 0; i < movieArray.length; i++) {
+    const movieListElement = createMovieList(movieListTitle[i]);
+    const response = await fetch(movieArray[i]);
+    const json = await response.json();
+    const embedded = await json.content;
+    Promise.all(
+      embedded.map((movie) => {
+        const movieL = createElementsMovieCard(movie);
+        movieListElement.appendChild(movieL);
+      })
+    );
+  }
+}
 async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-  let movieArray = [
-    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
-    "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
-    "https://dramaholic.herokuapp.com/api/movies/search?genre=Action%20%26%20Adventure",
-  ];
 
   let titleIndex = 0;
-  let movieListTitle = ["Highest Rating", "New Release", "Action & Adventure Movie"];
-  Promise.all(
-    movieArray.map(async (url) => {
-      // Get data
-      const reponse = await fetch(url);
-      const json = await reponse.json();
-      const embedded = await json.content;
-      const movieListElement = createMovieList(movieListTitle[titleIndex]);
 
-      // Get movie and put in container
-      const movies = embedded.forEach((movie) => {
-        const movieL = createElementsMovieCard(movie);
-        movieListElement.appendChild(movieL);
-      });
-      // Loading Screen
-      const loading = document.querySelector("#loading");
-      loading.style.display = "none";
+  await getAllSlider();
+  const loading = document.querySelector("#loading");
+  loading.style.display = "none";
 
-      setSwiper();
-      titleIndex++;
-    })
-  );
+  setSwiper();
+  titleIndex++;
 }
 async function getBillboardVideo() {
   const movieBillboard = [99966, 76662, 2778, 1396];
