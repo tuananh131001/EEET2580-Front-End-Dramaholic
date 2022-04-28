@@ -19,8 +19,11 @@ body {
     flex-direction: column;
     width: 100%;
     color: black;
-    background-color: white;
     /* font-size: 0.8rem; */
+}
+
+main {
+    background-color: white;
 }
 
 .page_title {
@@ -69,7 +72,7 @@ footer {
 .red_theme_button:hover {
     cursor: pointer;
     background-color: white;
-    color: #131834;
+    color: #c1071e;
     border: #c1071e solid 1.5px;
 
 }

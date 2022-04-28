@@ -641,10 +641,6 @@ body {
   background-color: #0e1217;
 }
 
-main {
-  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
-}
-
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   transform: scale(1.1);
