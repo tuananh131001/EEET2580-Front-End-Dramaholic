@@ -1,4 +1,3 @@
-
 const historyContent = document.querySelector(".movie-list-grid");
 const createCardHistory = (x) => {
   let card = document.createElement("div");
@@ -35,15 +34,13 @@ const createCardHistory = (x) => {
 
   return card;
 };
-async function displayCategory(list,type) {
-  const userID = localStorage.getItem("UserID");
-  const url = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?genre=" + "Sci-Fi"
+async function displayCategory(list, categoryType) {
+  const res = await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/search?genre=" + encodeURIComponent(categoryType)
   );
-  console.log(history)
-  const { history } = await url.json();
-  for (let i = 0; i < history.length; i++) {
-    await list.push(createCardHistory(history[i]));
+  const { content } = await res.json();
+  for (let i = 0; i < content.length; i++) {
+    await list.push(createCardHistory(content[i]));
   }
   for (let i = 0; i < list.length; i++) {
     await historyContent.appendChild(list[i]);
@@ -51,4 +48,22 @@ async function displayCategory(list,type) {
 }
 
 const movieList = [];
-displayCategory(movieList,);
+
+const category = document.querySelector(".category");
+// select category
+category.addEventListener("click", function () {
+  var options = category.querySelectorAll("option");
+  var count = options.length;
+  if (typeof count === "undefined" || count < 2) {
+    addActivityItem();
+  }
+});
+
+category.addEventListener("change", function () {
+  addActivityItem(category.value);
+});
+
+function addActivityItem(option) {
+  historyContent.innerHTML = "";
+  displayCategory(movieList, option);
+}

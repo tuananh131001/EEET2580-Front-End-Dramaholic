@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./q3.js" defer></script>
+    <link rel="stylesheet" href="q3.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hongkong SAS Transport Service Parking Information</h1>
+    <label for="cars">Choose a car types:</label>
+    <select name="cars" id="cars">
+      <option value="none">None</option>
+      <option value="off-street">Off-street Car</option>
+      <option value="multi-storey">Multi-Storey Vehicle</option>
+    </select>
+    <label for="cars">Choose district name:</label>
+    <select name="district" id="district">
+      <option value="none">None</option>
+      <option value="Sham Shui Po">Sham Shui Po</option>
+      <option value="Kwun Tong District">Kwun Tong District</option>
+      <option value="Wong Tai Sin District">Wong Tai Sin District</option>
+      <option value="Central & Western">Central & Western</option>
+    </select>
+    <label for="cars">Choose language:</label>
+    <select name="lang" id="lang">
+      <option value="none">None</option>
+      <option value="en_US">English</option>
+      <option value="zh_TW">Traditional Chinese</option>
+      <option value="zh_CN">Simplified Chinese</option>
+    </select>
+    <button class="filter">Filter</button>
+    <input class="searchDistrict" type="text" placeholder="Search District" />
+    <button class="filter">Search District </button>
+    <input class="searchName" type="text" placeholder="Search Name" />
+    <button class="filter">Search Name</button>
+    <div class="list" id="list"></div>
+    <div class="pagenumbers" id="pagination"></div>
+    
+  </body>
+  
+</html>

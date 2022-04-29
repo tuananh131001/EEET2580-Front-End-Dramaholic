@@ -1,4 +1,3 @@
-
 const historyContent = document.querySelector(".movie-list-grid");
 const createCardHistory = (x) => {
   let card = document.createElement("div");
@@ -36,7 +35,6 @@ const createCardHistory = (x) => {
   return card;
 };
 async function getMovieListSearch(list) {
-  const userID = localStorage.getItem("UserID");
   const url = await fetch(
     "https://dramaholic.herokuapp.com/api/customers/" + userID
   );
