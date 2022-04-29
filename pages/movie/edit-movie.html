@@ -16,7 +16,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Movie</title>
+    <title>Edit Movie</title>
     <style>
         body { 
             gap: 10rem;
@@ -101,11 +101,11 @@
     <header></header>
     <main class="body_region align_items_center">
         <form class="flex_col align_items_center" id="add_film_form">
-            <!-- <div  class= "page_title" >ADD NEW MOVIE</div> -->
+            <div  class= "page_title" >EDIT MOVIE</div>
             <div class="form flex_row">
                 <div class="flex_col form_col" id="left_col">
                     <div class="input_title_area align_items_center">
-                        <input disabled class="input_box input_title" type="text" id="title" name="title" value="Movie title"/>
+                        <input disabled class="input_box input_title" type="text" id="title" name="title" value=""/>
                         <div id="edit_title" onclick="change_title()">Edit</div>
                     </div>
                     
@@ -192,7 +192,7 @@
                 </div>
             </div>
             <div>
-                <input class="red_theme_button" type="submit" value="Submit" id="submit_btn">
+                <input class="red_theme_button" type="submit" value="Save changes" id="submit_btn">
             </div>
         </form>
     </main>
@@ -213,7 +213,7 @@
         for (let i=0; i < length; i++) {
             var genre_id = json.genres[i].id
             var genre_name = json.genres[i].name
-            temp = '<div class="flex_row align_items_center checkbox"><input type="checkbox" id="'+genre_id+'" value="'+genre_name+'">'+genre_name+'</div>'
+            temp = '<div class="flex_row align_items_center checkbox"><input type="checkbox" id="genre_'+genre_id+'" value="'+genre_name+'">'+genre_name+'</div>'
             if (i%per_col==0) {
             html += '<div class="flex_col">'+temp
             }
@@ -224,6 +224,9 @@
         }
         document.querySelector("#genres_select").innerHTML = html
     })
+    .catch((error) => {
+          console.log("Failed get genres: ",error); 
+    });
 
     fetch("../../language.json")
     .then(response => response.json())
@@ -237,6 +240,41 @@
         html += '<option id="'+language_code+'" value="'+language_code+'">'+language_name+'</option>'
         }
         document.querySelector("#country").innerHTML += html
+    })
+    .catch((error) => {
+          console.log("Failed get languages: ",error); 
+    });
+
+    // let current_movie = JSON.parse(localStorage.getItem(""));
+    let current_movie = localStorage.getItem("edit_dbid");
+    fetch(`https://dramaholic.herokuapp.com/api/movies/${current_movie}`)
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector("#title").value = data.title
+        document.querySelector("#originalTitle").value = data.originalTitle
+        document.querySelector("#href").value = data.href
+        document.querySelector("#description").value = data.description
+        document.querySelector("#rating").value = data.rating
+        document.querySelector("#duration").value = data.duration
+        document.querySelector("#episodes").value = data.episodes
+        document.querySelector("#country").value = data.country
+        document.querySelector("#date").value = data.date
+        // document.querySelector("#actor").value = data.actor
+        document.querySelector("#director").value = data.director
+        document.querySelector("#thumbnail").value = data.thumbnail
+        let checked_genres = data.genres
+        let genre_list = document.querySelectorAll(('input[type="checkbox"]'))
+        for (let i=0; i < checked_genres.length; i++) {
+            for (let j=0; j < genre_list.length; j++) {
+                if (genre_list[j].value == checked_genres[i]) {
+                    genre_list[j].checked = true;
+                    break;
+                }
+            }
+        }
+    })
+    .catch((error) => {
+          console.log("Failed get movie info: ",error); 
     });
 
     function change_title() {
@@ -265,23 +303,13 @@
         document.getElementById("genres").value = selected
     }
 
-    function formatDate(s_date) {
-        let d_date = new Date(s_date)
-        let d = d_date.getDate().toString()
-        let m = d_date.getMonth().toString()
-        m = m.length > 1 ? m : "0".concat(m)
-        let y = d_date.getFullYear().toString()
-        return (d+"-"+m+"-"+y)
-    }
-
     add_film_form.onsubmit = async (e) => {
         document.getElementById("title").disabled = false
         generalize_genres()
-        document.querySelector("#date_format").value = formatDate(document.querySelector("#date").value)
         e.preventDefault();
 
         let response = await fetch('https://dramaholic.herokuapp.com/api/movies/', {
-        method: 'POST',
+        method: 'PUT',
         body: new FormData(add_film_form)
         });
 
