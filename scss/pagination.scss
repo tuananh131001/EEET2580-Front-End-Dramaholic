@@ -1,0 +1,41 @@
+
+@use "./abstract/colors";
+
+main {
+  padding: 4em 0 0 0;
+  .movie-list-grid{
+      margin-top: 0;
+  }
+}
+.active{
+    background-color: colors.$red !important;
+}
+.select-category {
+  padding: 2.5em;
+}
+footer {
+  margin-top: auto;
+}
+
+.pagenumbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  padding: 2em 0 0 0;
+  button{
+      display: flex;
+      
+      padding: 1em;
+      border-radius: 10px;
+      border: 1px solid colors.$white;
+      color: colors.$white;
+      background-color: colors.$black;
+  }
+  button:hover{
+      cursor: pointer;
+      background-color: colors.$red;
+      color: colors.$white;
+  }
+
+}

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/pagination.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,22 +15,12 @@
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
     />
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DramaHolic</title>
   </head>
-  <style>
-      main{
-          padding: 4em 0 0 0 ;
-      }
-      .select-category{
-          padding:2.5em;
-      }
-    footer {
-      margin-top: auto;
-    }
-  </style>
   <header>
     <nav class="navbar nav-gradient">
       <div class="nav-left">
@@ -142,27 +133,27 @@
         </div>
       </div>
       <main>
-          <div class="select-category">
-            <label for="category">Category:</label>
-              <select name="category" id="" class="category">
-                  <option value="Action & Adventure">Action & Adventure</option>
-                  <option value="Animation">Animation</option> 
-                  <option value="Comedy">Comedy</option> 
-                  <option value="Crime">Crime</option> 
-                  <option value="Documentary">Documentary</option> 
-                  <option value="Drama">Drama</option> 
-                  <option value="Family">Family</option> 
-                  <option value="Kids">Kids</option> 
-                  <option value="Mystery">Mystery</option> 
-                  <option value="News">News</option> 
-                  <option value="Reality">Reality</option> 
-                  <option value="Sci-Fi & Fantasy">Sci</option> 
-                  <option value="Soap">Soap</option> 
-                  <option value="Talk">Talk</option> 
-                  <option value="War & Politics">War</option>  
-                  <option value="Western">Western</option> 
-                </select>
-          </div>
+        <div class="select-category">
+          <label for="category">Category:</label>
+          <select name="category" id="" class="category">
+            <option value="Action & Adventure">Action & Adventure</option>
+            <option value="Animation">Animation</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Drama">Drama</option>
+            <option value="Family">Family</option>
+            <option value="Kids">Kids</option>
+            <option value="Mystery">Mystery</option>
+            <option value="News">News</option>
+            <option value="Reality">Reality</option>
+            <option value="Sci-Fi & Fantasy">Sci</option>
+            <option value="Soap">Soap</option>
+            <option value="Talk">Talk</option>
+            <option value="War & Politics">War</option>
+            <option value="Western">Western</option>
+          </select>
+        </div>
         <div class="movie-list-grid"></div>
         <div class="pagenumbers" id="pagination"></div>
       </main>
