@@ -35,11 +35,12 @@ const createCardHistory = (x) => {
 
   return card;
 };
-async function getMovieListSearch(list) {
+async function displayCategory(list,type) {
   const userID = localStorage.getItem("UserID");
   const url = await fetch(
-    "https://dramaholic.herokuapp.com/api/customers/" + userID
+    "https://dramaholic.herokuapp.com/api/movies/search?genre=" + "Sci-Fi"
   );
+  console.log(history)
   const { history } = await url.json();
   for (let i = 0; i < history.length; i++) {
     await list.push(createCardHistory(history[i]));
@@ -50,4 +51,4 @@ async function getMovieListSearch(list) {
 }
 
 const movieList = [];
-getMovieListSearch(movieList);
+displayCategory(movieList,);
