@@ -1,13 +1,22 @@
 @use "../abstract/colors";
 
 .search-content {
-  margin-top: 10%;
   display: none;
+  margin-top: 5%;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   place-content: center;
   gap: 2em;
   padding: 1em;
 }
+.movie-list-grid {
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  place-content: center;
+  gap: 2em;
+  padding: 1em;
+}
+
 
 .movie-search-card {
   display: flex;
@@ -37,10 +46,14 @@
   display: grid;
   place-content: center;
   text-align: center;
-  margin-top: 15%;
+  margin-bottom: 0;
 }
 @media (min-width: 62em) {
   .search-content {
     margin-top: 5%;
+  }
+  .error-search-page {
+    margin-top: auto;
+    margin-bottom: 30vh;
   }
 }

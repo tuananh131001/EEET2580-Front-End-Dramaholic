@@ -1,0 +1,26 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+}
+
+aside {
+  width: 10%;
+}
+
+main {
+  width: 90%;
+}
+
+.list .movie-wrapper {
+  display: flex;
+}
+.list .button-wrapper {
+  margin-left: auto;
+}
+
+/*# sourceMappingURL=movie_list.css.map */

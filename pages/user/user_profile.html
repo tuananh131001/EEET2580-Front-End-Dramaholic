@@ -1,53 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../../css/common_style.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+        rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/icons/themify-icons.css" />
 
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
     />
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Account</title>
     <style>
 
-      body {
-        gap: 6rem;
-      } 
+      .modal label {
+        font-weight: normal;
+      }
 
-      .body_region {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
+      body {
+          gap: 2rem;
+      }
+
+      .body_region { 
           width: 80%;
           align-self: center;
       }
 
-      .row.page_header {align-items: center;}
-
-      .section_title {
-          font-size: 1.2rem;
-          color: rgb(212, 14, 38);
+      .body_region * :not(.page_title, .section_title){
+        font-size: 1rem;
       }
 
-      .row {gap: 2rem;}
-      .col {gap: 0.6rem;}
+      .section_title {
+        font-size: 1.2rem;
+        color: rgb(212, 14, 38);
+        padding-top: 0.7rem;
+      }
 
-      .row.info {justify-content: space-between;}
-      .col.manage_info {align-items: flex-end;}
+      .avatar {
+        width: 170px;
+        height: 170px;
+      }
+
+      .btn {
+        white-space: nowrap
+      }
 
       a {
-          color: rgb(118, 206, 247);
+        text-decoration: none;
+      }
+
+      .d-flex.page_header, .d-flex.left_col {gap: 1.5rem} 
+      .d-flex.right_col, .d-flex.left_info{gap: 0.7rem;}
+      #sign_out_button {text-decoration: none;}
+      .left_info > * {
+        display: flex;
+        gap: 1rem;
+        white-space: nowrap;
+      }
+
+      .form.flex_col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem ;
+      }
+
+      .btn.text_icon {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .info {
+        color: gray;
       }
     </style>
 
@@ -55,42 +92,509 @@
   <body>
     <header></header>
     <main class="body_region">
-        <div class="row page_header">
+        <div class="d-flex align-items-center page_header">
             <h1 class="page_title">Account</h1>
-            <div id="membership">Member since </div>
+            <div id="membership"></div>
         </div>
         <hr>
-        <div class="col">
-            <div class="section_title">General infomation</div>
-            <div class="row info">
-                <div class="col info">
-                    <div id="user_name">Full name: </div>
-                    <div id="user_mail">Email: </div>
-                    <div id="user_password">Password: </div>
-                    <div id="user_phone">Phone number: </div>
+        
+        <div class="d-flex flex-column page_content gap-5">
+          <div class="section_title">General infomation</div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex left_col" >
+              <div class="d-flex flex-column gap-3">
+                <i class="fa-solid fa-circle-user avatar" style="font-size: 150px;"></i>
+                <!-- <img class="avatar" id="user_avt" src="" alt="User Avatar"> -->
+                <!-- <button type="button" class="btn btn-danger btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#modal_change_avt">
+                  Change avatar
+                </button> -->
+              </div>
+              <div class="d-flex flex-column left_info">
+                <div>
+                  <label for="user_username">Username:</label>
+                  <div class="info" id="user_username"></div>                    
                 </div>
-    
-                <div class="col manage_info">
-                    <a href="modify_info.html">Modify general infomation</a>
-                    <a href="change_password.html">Change password</a>
+                <div>
+                  <label for="user_name">Full name:</label>
+                  <div class="info" id="user_name"></div>                    
                 </div>
+                <div>
+                  <label for="user_email">Email:</label>
+                  <div class="info" id="user_email"></div>                   
+                </div>
+                <div>
+                  <label for="user_password">Password:</label>
+                  <input class="info" disabled type="text" id="user_password" style="clear: both; border: none; background-color: transparent;">             
+                </div>
+                <!-- <div>
+                  <label for="user_phone">Phone number:</label>
+                  <div class="info" id="user_phone"></div>
+                </div> -->
+                <div>
+                  <label for="user_dob">Date of birth:</label>
+                  <div class="info" id="user_dob"></label  >               
+                </div>
+              </div>
             </div>
-        </div>
-        <hr>
-        <div class="col">
-            <div class="section_title">Payment</div>
-            <div class="row info">
-                <div class="col info" id="payment_info"></div>
-    
-                <div class="col manage_info">
-                    <a href="manage_payment.html">Manage payment method</a>
-                    <a href="add_payment.html">Add payment method</a>
-                </div>
             </div>
+
+            <div class="d-flex flex-column right_col" >
+                <button type="button" class="btn btn-outline-dark btn-sm shadow-none text_icon" data-bs-toggle="modal" data-bs-target="#modal_edit_info" id="edit_info_btn">
+                  <i class="fas fa-edit" style="font-size: 20px;" ></i>Edit information
+                </button>
+                <button type="button" class="btn btn-outline-dark btn-sm text_icon" data-bs-toggle="modal" data-bs-target="#modal_change_pw">
+                  <i class="fas fa-lock" style="font-size: 20px;"></i>Change password
+                </button>
+            </div>
+          </div>
         </div>
+
+        <!-- MODAL EDIT INFO -->
+        <div class="modal fade" id="modal_edit_info" tabindex="-1" aria-labelledby="modal_edit_info_label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal_edit_info_label">Edit personal information</h5>
+                <button type="button" class="close btn btn-outline-dark btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="gap: 1.5rem;">
+                <form class="form flex_col edit_info" id="edit_info_form">
+                  <div class="flex_col">
+                    <label>Username:</label>
+                    <input disabled type="text" class="input_box" id="modal_username" style="color: gray;" value=""/>
+                  </div> 
+                  <div class="flex_col">
+                    <label>Full name:</label>
+                    <input required type="text" class="input_box" id="modal_name" value="" name="name"/>
+                  </div> 
+                  <div class="flex_col">
+                    <label>Email address:</label>
+                    <input required type="email" class="input_box" id="modal_email" value="" name="email"/>
+                  </div>      
+                  <!-- <div class="flex_col">
+                    <label>Phone number:</label>
+                    <input required type="number" class="input_box" id="modal_phone" value=""/>
+                  </div>  -->
+                  <div class="flex_col">
+                    <label>Date of birth:</label>
+                    <input type="date" class="input_box" id="modal_dob" value="" name="dob"/>
+                  </div>   
+                  <div>
+                    <input class="red_theme_button" type="submit" value="Save">
+                  </div>  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END MODAL EDIT INFO -->
+
+        <!-- MODAL CHANGE PASSWORD -->
+        <div class="modal fade" id="modal_change_pw" tabindex="-1" aria-labelledby="modal_change_pw_label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal_change_pw_label">Change password</h5>
+                <button type="button" class="close btn btn-outline-dark btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="gap: 1.5rem;">
+                <form class="form flex_col change_pw" id="change_pw_form" >
+                  <div class="flex_col">
+                    <label>Enter current password:</label>
+                    <input required type="password" class="input_box password" id="current_pw_modal" />
+                  </div> 
+                  <div class="flex_col">
+                    <label>Enter new password:</label>
+                    <input required type="password" class="input_box password" id="new_pw_modal" name="password"/>
+                  </div>      
+                  <div class="flex_col">
+                    <label>Confirm current password:</label>
+                    <input required type="password" class="input_box password" id="confirm_pw_modal" />
+                  </div>   
+                  <div class="d-flex justify-content-between" style="align-items: center;">
+                  <div>
+                    <input type="checkbox" id="show_checkbox" onclick="show_pw('.password')">
+                    <label required for="show_checkbox">Show password</label>
+                  </div>
+                  <div>
+                    <input class="red_theme_button" id="save_pw" type="submit" value="Save">
+                  </div>
+                  </div>  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END MODAL CHANGE PASSWORD -->
+
+        
+        <!-- MODAL CHANGE AVATAR -->
+        <div class="modal fade" id="modal_change_avt" tabindex="-1" aria-labelledby="modal_change_avt_label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal_change_avt_label">Change avatar</h5>
+                <button type="button" class="close btn btn-outline-dark btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="gap: 1.5rem;">
+                <form class="form flex_col" id="change_avt_form">
+                  <div class="flex_col" style="gap: 1rem;">
+                    <label>Upload picture:</label>
+                    <input required type="file" class="" id="upload_avt" />
+                  </div>
+                  <div>
+                    <input class="red_theme_button" type="submit" value="Save" onclick="change_avt('')">
+                  </div> 
+                  <!-- <div class="alert alert-success alert-dismissible fade show" role="alert" >
+                    <strong>Updated!</strong>
+                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div> -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END MODAL CHANGE AVATAR -->
+
     </main>
-    <footer></footer>
-    <script src="./js/home.js"></script>
-    <script type="module" src="/js/addHeaderFooter.js"></script>
+    
+    <!-- <footer></footer> -->
+
+    <!-- <script type="module" src="../../js/addHeaderFooter.js"></script> -->
+    <script type="module" src="../../js/components/customHeaderFooter/add_movie_header.js"></script>
+    <!-- <script type="module" src="../../js/components/customHeaderFooter/addCustomHeader.js"></script> -->
+    <!-- <script type="module" src="../../js/components/customHeaderFooter/addFooter.js"></script> -->
+    <!-- <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script> -->
+    <!-- <script type="module" src="../../js/user_profile.js"></script> -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+      let current_user = localStorage.getItem('UserID')
+      fetch(`https://dramaholic.herokuapp.com/api/customers/${current_user}`)
+      .then((response) => response.json())
+      .then((user) => {
+          // document.querySelector("#membership").innerHTML = 'Member since ' + user.membership
+          // document.querySelector("#user_avt").src = localStorage.getItem('avt')
+          document.querySelector("#user_username").innerHTML = user.username
+          document.querySelector("#user_name").innerHTML = user.name
+          document.querySelector("#user_email").innerHTML = user.email
+          document.querySelector("#user_password").value = user.password
+          // document.querySelector("#user_phone").innerHTML = user.phone
+          document.querySelector("#user_dob").innerHTML = user.dob
+      })
+      .catch((error) => {
+          console.log(error); 
+      });
+
+
+      document.querySelector("#edit_info_btn").addEventListener('click', init_modal_edit_info);
+      function init_modal_edit_info() {
+          document.querySelector("#modal_username").value = document.querySelector("#user_username").innerHTML;
+          document.querySelector("#modal_name").value = document.querySelector("#user_name").innerHTML;
+          document.querySelector("#modal_email").value = document.querySelector("#user_email").innerHTML;
+          // document.querySelector("#modal_phone").value = document.querySelector("#user_phone").innerHTML;
+          document.querySelector("#modal_dob").value = document.querySelector("#user_dob").innerHTML;
+      }
+
+      // document.querySelector("#show_checkbox").addEventListener('click', show_pw('.password'));
+      function show_pw(selector) {
+      var pw = document.querySelectorAll(selector);
+
+      if (pw[0].type == "password") {
+          for (var i= 0; i<pw.length; i++)
+          pw[i].type = "text";
+
+      } else {
+          for (var i= 0; i<pw.length; i++)
+          pw[i].type = "password";
+      }
+      }
+
+      function change_avt() {
+        localStorage.setItem('avt') = document.querySelector("#upload_avt").value;
+        $('.alert').alert()
+        location.reload();
+      }
+
+      //reset modal form after close
+      $(".modal").on('hidden.bs.modal', function () {
+        var pw = document.querySelectorAll(".password");
+          for (var i= 0; i<pw.length; i++)
+            pw[i].type = "password";
+        $(this).find('form').trigger('reset');
+      });
+
+      function formatDate(s_date) {
+        let d_date = new Date(s_date)
+        let d = d_date.getDate().toString()
+        let m = d_date.getMonth().toString()
+        m = m.length > 1 ? m : "0".concat(m)
+        let y = d_date.getFullYear().toString()
+        return (d+"-"+m+"-"+y)
+      }
+
+      edit_info_form.onsubmit = async (e) => {
+        e.preventDefault();
+        let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
+            method: 'PUT',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify(
+              {
+                name:document.querySelector("#modal_name").value,
+                email:document.querySelector("#modal_email").value,
+                dob:formatDate(document.querySelector("#modal_dob").value)
+              }
+            )
+        });
+
+        let result = await response.json(); 
+        alert(result.message);
+      };
+
+      // document.querySelector("#save_pw").onclick = async function() {
+      //   // e.preventDefault();
+
+      //   if (valid_pw()) {
+      //     let data = {
+      //         password:document.querySelector("#new_pw_modal").value
+      //     }
+      //     console.log(JSON.stringify(data))
+
+      //     let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //       method: "PUT",
+      //       headers:{"Content-Type":"application/json"},
+      //       body: JSON.stringify(data)
+      //     })
+      //     .then(response => response.json())
+      //     .then(json => {
+      //         console.log(json.message)
+      //     })
+      //     .catch(e=>{
+      //      console.log("Error")
+ 
+      //  })
+
+
+
+      //     // let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //     // method: "PUT",
+      //     // headers:{"Content-Type":"application/json"},
+      //     // body: JSON.stringify(data)
+      //     // });
+
+      //     // let result = await response.json();
+      //     // alert(result.message);
+      //   } 
+      // };
+
+
+      //-----------
+      // change_pw_form.onsubmit = function (e) {
+      //   e.preventDefault();
+
+      //   if (!valid_pw()) {
+      //     console.log("wrong pw")
+      //     return;
+      //   }
+
+      //   // if (valid_pw()) {
+      //   let data = {
+      //       password:document.querySelector("#new_pw_modal").value
+      //   }
+      //   console.log(JSON.stringify(data))
+
+      //   edit_info_fetch(data)
+
+      //     // let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //     // method: "PUT",
+      //     // headers:{"Content-Type":"application/json"},
+      //     // body: JSON.stringify(data)
+      //     // });
+
+      //     // let result = await response.json();
+      //     // alert(result.message);
+      //   // } 
+      // };
+
+      // async function edit_info_fetch(data) {
+      //   try {
+      //     let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //     method: "PUT",
+      //     headers:{"Content-Type":"application/json"},
+      //     body: JSON.stringify(data)
+      //     });
+
+      //     let result = await response.json();
+      //     alert(result.message);
+            
+      //   } catch (error) {
+      //     console.log('Failed to fetch: ', error);
+      //   }
+      // }
+
+      // change_pw_form.onsubmit = () => {
+      //   return valid_pw(); 
+      // }
+
+      // document.querySelector("#save_pw").onclick = () => {
+      //   if (valid_pw()) {
+      //   console.log("huhu")
+
+      //     let data = {
+      //       password:document.querySelector("#new_pw_modal").value
+      //     }
+      //     console.log(JSON.stringify(data))
+      //     fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //     method: "PUT",
+      //     headers:{"Content-Type":"application/json"},
+      //     body: JSON.stringify(data)
+      //   })
+      //   .then(function(res) {
+      // var response = res;
+      // console.log(response);
+      // // return response.json();
+      //   })
+      //   .catch((error) => {
+      //     console.log('Failed to fetch: ', error);
+      //   });
+      //   return true;
+      //   }
+      //   else return false;
+      // }
+
+
+      
+
+      // document.querySelector("#save_pw").onclick = () => {
+      //   if (valid_pw()) {
+      //   console.log("huhu")
+
+      //     let data = {
+      //       password:document.querySelector("#new_pw_modal").value
+      //     }
+      //     console.log(JSON.stringify(data))
+      //     fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //     method: "PUT",
+      //     headers:{"Content-Type":"application/json"},
+      //     body: JSON.stringify(data)
+      //   })
+      //   .then(function(res) {
+      // var response = res;
+      // console.log(response);
+      // // return response.json();
+      //   })
+      //   .catch((error) => {
+      //     console.log('Failed to fetch: ', error);
+      //   });
+      //   return true;
+      //   }
+      //   else return false;
+      // }
+
+
+        function valid_pw() {
+          var current_pw = document.querySelector("#current_pw_modal");
+          var new_pw = document.querySelector("#new_pw_modal");
+          var confirm_pw = document.querySelector("#confirm_pw_modal");
+          var pw_api = document.querySelector("#user_password").value
+          console.log(current_pw.value, pw_api, current_pw.value == pw_api)
+
+          if (current_pw.value != pw_api) {
+            current_pw.setCustomValidity("Wrong password");
+            return  Promise.resolve(false);
+          }
+          current_pw.setCustomValidity("");
+          if (new_pw.value.length < 5 || new_pw.value.length > 15 || new_pw.value == pw_api) {
+            new_pw.setCustomValidity("New password must have 5-15 characters and different from current password");
+            return  Promise.resolve(false);
+          }
+          new_pw.setCustomValidity("");
+          if (new_pw.value != confirm_pw.value) {
+            confirm_pw.setCustomValidity("Confirm password doesn't match");
+            return Promise.resolve(false);
+          }
+          confirm_pw.setCustomValidity("");
+          return Promise.resolve(true);
+        }
+
+        async function check_put(state) {
+          console.log(state)
+          if (state == true) {
+          console.log(state)
+
+            return await put_pw().then(print_msg)
+          }
+          else {
+          console.log(state)
+
+            return await print_msg_fail()
+          }
+        }
+
+        async function put_pw() {
+          let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+              method: "PUT",
+              headers:{"Content-Type":"application/json"},
+              body: JSON.stringify(
+                {
+                  password:document.querySelector("#new_pw_modal").value
+                }
+              )
+              })
+              .catch((error) => {
+                console.log('Failed to fetch: ', error);
+              });
+          let result = await response.json();
+          console.log(result.message)
+          return Promise.resolve(result.message)
+        }
+
+        function print_msg(message) {
+          console.log("after put:",message)
+          return Promise.resolve()
+        }
+
+        function print_msg_fail() {
+          console.log("pw invalid")
+          return Promise.resolve()
+        }
+
+      // async function valid_pw() {
+      document.querySelector("#save_pw").addEventListener("click", async function(e) {
+        let valid_response = await valid_pw()
+        let final_result = await valid_response
+        await valid_pw().then(check_put).then(function() {
+          console.log("done")
+        })
+        .catch((error) => {
+                console.log('Failed huhu: ', error);
+              });
+            })
+        // e.preventDefault()
+      //   valid_pw().then(put_pw)
+      //   let valid_state = await valid_pw();
+      //   const change_pw = await async function() {
+      //     if(valid_state == true) {
+      //     console.log("valid state:", valid_state)
+      //       await put_data()
+      //     }
+      //     else return;
+      //   }
+        
+      //   change_pw()
+        
+      // });
+
+
+    </script>
   </body>
 </html>

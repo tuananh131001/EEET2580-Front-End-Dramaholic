@@ -47,14 +47,14 @@ const createElementsMovieCard = (x) => {
   card.appendChild(cardContent);
 
   // Title
-  let title = document.createElement("h2");
+  let title = document.createElement("h1");
   title.className = "card-title";
   title.textContent = x.title;
   cardContent.appendChild(title);
   //description
   let description = document.createElement("p");
   description.className = "card-body";
-  description.textContent = x.originalTitle;
+  description.textContent = x.description;
   cardContent.appendChild(description);
 
   // Button
@@ -64,16 +64,16 @@ const createElementsMovieCard = (x) => {
   button.className = "button";
   button.onclick = function () {
     localStorage.setItem("dbid", x.dbID);
-    location.href = "pages/movie/movie_detail.html";
+    location.href = "/pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
 
   return col;
 };
 // Billboard
-function setdbID() {
-    localStorage.setItem("dbid", 99966);
-    location.href = "pages/movie/movie_detail.html";
+function setdbID(x) {
+  localStorage.setItem("dbid", x);
+  location.href = "/pages/movie/movie_detail.html";
 }
 
 const movieList = [];
@@ -103,43 +103,54 @@ async function setSwiper() {
     },
   });
 }
-
+let movieArray = [
+  "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
+  "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Action%20%26%20Adventure",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Animation",
+];
+let movieListTitle = [
+  "Highest Rating",
+  "New Release",
+  "Action & Adventure Movie",
+  "Animation",
+];
+const movieSliders = [];
+async function getAllSlider() {
+  for (let i = 0; i < movieArray.length; i++) {
+    const movieListElement = createMovieList(movieListTitle[i]);
+    const response = await fetch(movieArray[i]);
+    const json = await response.json();
+    const embedded = await json.content;
+    Promise.all(
+      embedded.map((movie) => {
+        const movieL = createElementsMovieCard(movie);
+        movieListElement.appendChild(movieL);
+      })
+    );
+  }
+}
 async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-  let movieArray = [];
-  for (let i = 0; i < 3; i++) {
-    movieArray[i] = "https://dramaholic.herokuapp.com/api/movies?page=" + i;
-  }
+
   let titleIndex = 0;
-  let movieListTitle = ["Trending", "New Release", "Award-winning"];
-  Promise.all(
-    movieArray.map(async (url) => {
-      // Get data
-      const reponse = await fetch(url);
-      const json = await reponse.json();
-      const embedded = await json.content;
-      const movieListElement = createMovieList(movieListTitle[titleIndex]);
 
-      // Get movie and put in container
-      const movies = embedded.forEach((movie) => {
-        const movieL = createElementsMovieCard(movie);
-        movieListElement.appendChild(movieL);
-      });
-      // Loading Screen
-      const loading = document.querySelector("#loading");
-      loading.style.display = "none";
+  await getAllSlider();
+  const loading = document.querySelector("#loading");
+  loading.style.display = "none";
 
-      setSwiper();
-      titleIndex++;
-    })
-  );
+  setSwiper();
+  titleIndex++;
 }
 async function getBillboardVideo() {
-  // const random = Math.floor(Math.random() * movieArray.length);
-  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/99966");
+  const movieBillboard = [99966, 76662, 2778, 1396];
+  const random = Math.floor(Math.random() * movieBillboard.length);
+  const url = await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/" + movieBillboard[random]
+  );
   const movie = await url.json();
 
   const videoContainer = document.querySelector(".billboard-video");
@@ -148,7 +159,7 @@ async function getBillboardVideo() {
   videoElement.src =
     "https://www.youtube.com/embed/" +
     hrefArray[1] +
-    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1&loop=1" +
+    "?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1&mute=1&loop=1&end=136" +
     "&playlist=" +
     hrefArray[1];
   videoElement.classList.add("video-billboard");
@@ -158,6 +169,10 @@ async function getBillboardVideo() {
   billboardFilmName.innerHTML = movie.title;
   const description = document.querySelector(".billboard-description");
   description.innerHTML = movie.description;
+  const button = document.querySelector(".button-container");
+  button.innerHTML = `<button class="more-info" onclick="setdbID(${movieBillboard[random]})">
+  <span class="ti-info-alt"></span> MORE INFO
+</button>`;
 }
 
 var myNav = document.querySelector(".navbar");

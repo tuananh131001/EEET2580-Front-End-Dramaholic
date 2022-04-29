@@ -6,6 +6,7 @@
 @use "./layout/navBar";
 @use "./layout/billboard";
 @use "./layout/search";
+@use "./components/accountMenu";
 
 *,
 *::before,
@@ -30,6 +31,7 @@
 }
 .active{
   font-weight: 700 !important;
+  color: color!important;
 }
 .hidden{
   display: none !important;
@@ -43,18 +45,13 @@ body {
   display: flex;
   flex-direction: column;
 
-  color: #fff;
+  color: colors.$white;
   height: 100vh;
   font-family: "Poppins", sans-serif;
   background-color: colors.$black;
+
 }
-main {
-  background: linear-gradient(
-    77deg,
-    rgba(0, 0, 0, 0.6) 0,
-    rgba(0, 0, 0, 0) 85%
-  );
-}
+
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
@@ -76,8 +73,23 @@ main {
   z-index: 100;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: colors.$white;
   background-image: url("https://c.tenor.com/fsenbjHOaksAAAAC/cat-jump.gif");
   background-repeat: no-repeat;
   background-position: center;
+}
+#body::-webkit-scrollbar {
+  width: 15px;
+}
+
+#body::-webkit-scrollbar-track {
+  background-color: colors.$black;
+  border-radius: 100px;
+}
+
+#body::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: colors.$red;
 }

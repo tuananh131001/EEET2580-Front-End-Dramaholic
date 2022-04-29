@@ -1,3 +1,13 @@
+.account-menu {
+  display: none;
+  list-style: none;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  gap: 0.5em;
+  padding: 1em 1em;
+}
+
 nav #sideNav {
   display: flex;
   flex-direction: column;
@@ -9,7 +19,7 @@ nav #sideNav {
   top: 45px;
   left: 0;
   overflow-x: hidden;
-  background-color: black;
+  background-color: #0e1217;
   transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
   padding-top: 0.5em;
@@ -42,7 +52,7 @@ nav #sideNav .navigation-menu-settings {
   flex-direction: column;
   width: 100%;
   border-bottom: 1px solid #333;
-  gap: 0.3em;
+  gap: 0.5em;
   padding: 1em 1em;
 }
 nav #sideNav .sign-in-subBar {
@@ -54,6 +64,7 @@ footer {
   flex-direction: column;
   gap: 1em;
   margin: 3em;
+  padding: 1em;
 }
 footer ul {
   display: grid;
@@ -69,6 +80,10 @@ footer a {
 footer .wrapper-footer {
   display: flex;
   justify-content: space-between;
+}
+footer .social-links {
+  display: flex;
+  gap: 0.5em;
 }
 
 .card {
@@ -93,19 +108,21 @@ footer .wrapper-footer {
   transition-duration: 0ms;
 }
 .card:hover, .card:focus-within {
-  transform: scale(1.05);
+  transform: scale(0.95);
 }
 .card .card-content > *:not(.card-title) {
   opacity: 0;
   transition: opacity 500ms linear;
 }
 .card .card-content {
-  gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
   margin-top: -11em;
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, #0e1217);
   overflow: hidden;
   transform: translateY(65%);
 }
@@ -115,9 +132,9 @@ footer .wrapper-footer {
 }
 .card .card-title {
   position: relative;
-  font-size: 0.8rem;
-  width: max-content;
-  overflow-wrap: break-word;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden !important;
 }
 .card .card-title::after {
   content: "";
@@ -133,6 +150,9 @@ footer .wrapper-footer {
 }
 .card .card-body {
   padding-top: 0.5em;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 .card .button {
   background-color: #c0071d;
@@ -143,9 +163,40 @@ footer .wrapper-footer {
   border: none;
   padding: 0.5rem 1rem;
   text-decoration: none;
+  width: 8rem;
 }
 .card .button:hover,
 .card .button:focus {
+  cursor: pointer;
+  background-color: white;
+  color: #c0071d;
+}
+
+@media (min-width: 62em) {
+  .card-title {
+    position: relative;
+    font-size: 1.2rem;
+    width: max-content;
+    overflow-wrap: break-word;
+  }
+}
+.account-menu {
+  display: none;
+}
+
+.sign-in-subBar {
+  background-color: #c0071d;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.sign-in-subBar:hover {
   cursor: pointer;
   background-color: white;
   color: #c0071d;
@@ -161,7 +212,7 @@ nav {
   padding: 0 1em;
   width: 100%;
   gap: 1em;
-  background-color: black;
+  background-color: #0e1217;
   z-index: 99;
 }
 nav .nav-right {
@@ -174,7 +225,7 @@ nav .nav-right {
 }
 nav .search-box {
   display: flex;
-  background: black;
+  background: #0e1217;
   height: 40px;
   border-radius: 40px;
   box-shadow: 0 0.1rem 0.75rem #c0071d;
@@ -202,7 +253,7 @@ nav .icon {
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
-  background: black;
+  background: #0e1217;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,21 +274,6 @@ nav .nav-left {
   align-items: center;
   gap: 3em;
 }
-nav .sign-in-subBar {
-  background-color: #c0071d;
-  color: white;
-  font-weight: 400;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-}
-nav .sign-in-subBar:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #c0071d;
-}
 
 /* End Sidebar */
 @media (min-width: 62em) {
@@ -251,7 +287,7 @@ nav .sign-in-subBar:hover {
 
   /* Start side bar */
   .nav-colored {
-    background-color: #000;
+    background-color: #0e1217;
     transition: background-color 0.4s ease;
   }
 
@@ -272,6 +308,20 @@ nav .sign-in-subBar:hover {
     background-color: transparent;
     width: 100%;
   }
+  nav .account-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 5px;
+  }
+  nav .account-container:hover {
+    background-color: #fff;
+    color: #0e1217;
+  }
   nav .header-navigation-text {
     display: flex;
     flex-direction: row;
@@ -289,7 +339,8 @@ nav .sign-in-subBar:hover {
   }
   nav .header-navigation-text li:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transition: color 0.4s;
+    color: #b3b3b3;
   }
   nav .sign-in-nagivation {
     display: block;
@@ -429,29 +480,36 @@ nav .sign-in-subBar:hover {
     border: none;
     font-size: 1.5rem;
   }
-  .billboard .more-info:hover,
-.billboard .button-play:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-  }
-  .billboard .button-play {
-    display: flex;
-    gap: 0.2em;
-  }
   .billboard .button-container {
     display: flex;
     gap: 1em;
   }
   .billboard .more-info {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
     color: #fff;
     background-color: rgba(109, 109, 110, 0.7);
+  }
+  .billboard .more-info:hover {
+    background-color: #c0071d;
+    cursor: pointer;
   }
 
   /* Billboard */
 }
 .search-content {
-  margin-top: 10%;
   display: none;
+  margin-top: 5%;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  place-content: center;
+  gap: 2em;
+  padding: 1em;
+}
+
+.movie-list-grid {
+  margin-top: 5%;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   place-content: center;
   gap: 2em;
@@ -487,12 +545,85 @@ nav .sign-in-subBar:hover {
   display: grid;
   place-content: center;
   text-align: center;
-  margin-top: 15%;
+  margin-bottom: 0;
 }
 
 @media (min-width: 62em) {
   .search-content {
     margin-top: 5%;
+  }
+
+  .error-search-page {
+    margin-top: auto;
+    margin-bottom: 30vh;
+  }
+}
+.account-wrapper {
+  display: none;
+}
+
+@media (min-width: 62em) {
+  .account-wrapper {
+    position: relative;
+    display: none;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .account-wrapper .avatar,
+.account-wrapper .down-arrow {
+    cursor: pointer;
+  }
+
+  .account-wrapper:hover {
+    color: #b3b3b3;
+  }
+
+  .drop-down {
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    border-radius: 0.5rem;
+    padding: 1em;
+    position: absolute;
+    right: 1rem;
+    top: 5rem;
+    background-color: #0e1217;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.8em;
+  }
+  .drop-down a {
+    color: white;
+  }
+
+  .button {
+    background-color: #c0071d;
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+
+  .button:hover,
+.button:focus {
+    cursor: pointer;
+    background-color: white;
+    color: #c0071d;
+  }
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
   }
 }
 *,
@@ -517,6 +648,7 @@ nav .sign-in-subBar:hover {
 }
 .active {
   font-weight: 700 !important;
+  color: color !important;
 }
 
 .hidden {
@@ -530,14 +662,10 @@ a {
 body {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: white;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: black;
-}
-
-main {
-  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
+  background-color: #0e1217;
 }
 
 .swiper-button-prev:hover,
@@ -559,10 +687,26 @@ main {
   z-index: 100;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: white;
   background-image: url("https://c.tenor.com/fsenbjHOaksAAAAC/cat-jump.gif");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#body::-webkit-scrollbar {
+  width: 15px;
+}
+
+#body::-webkit-scrollbar-track {
+  background-color: #0e1217;
+  border-radius: 100px;
+}
+
+#body::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: #c0071d;
 }
 
 /*# sourceMappingURL=style.css.map */
