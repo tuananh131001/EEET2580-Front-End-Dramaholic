@@ -11,7 +11,7 @@ const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
 const navBar = document.querySelector(".navbar");
 
-const createMovieCard = (x) => {
+const createCardSearch = (x) => {
   let card = document.createElement("div");
   card.className = "movie-search-card";
 
@@ -74,7 +74,7 @@ async function getMovieListSearch(title, list) {
   const { content } = await url.json();
   searchContent.innerHTML = "";
   for (let i = 0; i < content.length; i++) {
-    await list.push(createMovieCard(content[i]));
+    await list.push(createCardSearch(content[i]));
   }
   for (let i = 0; i < list.length; i++) {
     await searchContent.appendChild(list[i]);
@@ -101,8 +101,8 @@ inputValue.addEventListener("input", (e) => {
       searchContent.style.display = "none";
       emptyPage.classList.remove("hidden");
       navBar.style.position = "relative";
-    } 
-    if (!isEmpty(searchContent.childNodes))  {
+    }
+    if (!isEmpty(searchContent.childNodes)) {
       emptyPage.classList.add("hidden");
     }
     // Found results and display

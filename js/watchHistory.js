@@ -1,6 +1,5 @@
 const historyContent = document.querySelector(".movie-list-grid");
-
-const createCard = (x) => {
+const createCardHistory = (x) => {
   let card = document.createElement("div");
   card.className = "movie-search-card";
   // Image
@@ -35,16 +34,13 @@ const createCard = (x) => {
 
   return card;
 };
-
 async function getMovieListSearch(list) {
-  const userID = localStorage.getItem("UserID");
   const url = await fetch(
     "https://dramaholic.herokuapp.com/api/customers/" + userID
   );
   const { history } = await url.json();
-  console.log(history[0]);
   for (let i = 0; i < history.length; i++) {
-    await list.push(createCard(history[i]));
+    await list.push(createCardHistory(history[i]));
   }
   for (let i = 0; i < list.length; i++) {
     await historyContent.appendChild(list[i]);

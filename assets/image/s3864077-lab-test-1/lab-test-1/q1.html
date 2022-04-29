@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+
+      function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 1rem;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>How to play:</h1>
+    <p>
+      Drap the box and drop on top of target box will insert on the left of that
+      box
+    </p>
+    <p>
+      Drap the box and drop on bottom of target box will insert on the right of
+      that box
+    </p>
+    <table class="box-border">
+      <tr>
+        <td class="box" draggable="true">6</td>
+        <td class="box" draggable="true">3</td>
+        <td class="box" draggable="true">2</td>
+        <td class="box" draggable="true">4</td>
+        <td class="box" draggable="true">19</td>
+        <td class="box" draggable="true">5</td>
+        <td class="box" draggable="true">1</td>
+        <td class="box" draggable="true">24</td>
+        <td class="box" draggable="true">14</td>
+        <td class="box" draggable="true">23</td>
+      </tr>
+    </table>
+  </body>
+  <script>
+    var dragging = null;
+
+    document.addEventListener("dragstart", function (event) {
+      var target = getTD(event.target);
+      dragging = target;
+      event.dataTransfer.setData("text/plain", null);
+      event.dataTransfer.setDragImage(self.dragging, 0, 0);
+    });
+
+    document.addEventListener("dragover", function (event) {
+      event.preventDefault();
+      var target = getTD(event.target);
+      var bounding = target.getBoundingClientRect();
+      var offset = bounding.y + bounding.height / 2;
+      if (event.clientY - offset > 0) {
+        target.style["border-bottom"] = "solid 4px red";
+        target.style["border-top"] = "";
+      } else {
+        target.style["border-top"] = "solid 4px red";
+        target.style["border-bottom"] = "";
+      }
+    });
+
+    document.addEventListener("dragleave", function (event) {
+      var target = getTD(event.target);
+      target.style["border-bottom"] = "";
+      target.style["border-top"] = "";
+    });
+
+    document.addEventListener("drop", function (event) {
+      event.preventDefault();
+      var target = getTD(event.target);
+      if (target.style["border-bottom"] !== "") {
+        target.style["border-bottom"] = "";
+        target.parentNode.insertBefore(dragging, event.target.nextSibling);
+      } else {
+        target.style["border-top"] = "";
+        target.parentNode.insertBefore(dragging, event.target);
+      }
+    });
+
+    function getTD(target) {
+      while (
+        target.nodeName.toLowerCase() != "td" &&
+        target.nodeName.toLowerCase() != "body"
+      ) {
+        target = target.parentNode;
+      }
+      if (target.nodeName.toLowerCase() == "body") {
+        return false;
+      } else {
+        return target;
+      }
+    }
+  </script>
+</html>
