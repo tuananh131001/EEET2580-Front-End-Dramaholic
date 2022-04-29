@@ -19,7 +19,7 @@ nav #sideNav {
   top: 45px;
   left: 0;
   overflow-x: hidden;
-  background-color: #0e1217;
+  background-color: #0e1116;
   transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
   padding-top: 0.5em;
@@ -122,7 +122,7 @@ footer .social-links {
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, #0e1217);
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, #0e1116);
   overflow: hidden;
   transform: translateY(65%);
 }
@@ -212,7 +212,7 @@ nav {
   padding: 0 1em;
   width: 100%;
   gap: 1em;
-  background-color: #0e1217;
+  background-color: #0e1116;
   z-index: 99;
 }
 nav .nav-right {
@@ -225,7 +225,7 @@ nav .nav-right {
 }
 nav .search-box {
   display: flex;
-  background: #0e1217;
+  background: #0e1116;
   height: 40px;
   border-radius: 40px;
   box-shadow: 0 0.1rem 0.75rem #c0071d;
@@ -253,7 +253,7 @@ nav .icon {
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
-  background: #0e1217;
+  background: #0e1116;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -287,7 +287,7 @@ nav .nav-left {
 
   /* Start side bar */
   .nav-colored {
-    background-color: #0e1217;
+    background-color: #0e1116;
     transition: background-color 0.4s ease;
   }
 
@@ -320,7 +320,7 @@ nav .nav-left {
   }
   nav .account-container:hover {
     background-color: #fff;
-    color: #0e1217;
+    color: #0e1116;
   }
   nav .header-navigation-text {
     display: flex;
@@ -586,7 +586,7 @@ nav .nav-left {
     position: absolute;
     right: 1rem;
     top: 5rem;
-    background-color: #0e1217;
+    background-color: #0e1116;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -665,7 +665,7 @@ body {
   color: white;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: #0e1217;
+  background-color: #0e1116;
 }
 
 .swiper-button-prev:hover,
@@ -698,7 +698,7 @@ body {
 }
 
 #body::-webkit-scrollbar-track {
-  background-color: #0e1217;
+  background-color: #0e1116;
   border-radius: 100px;
 }
 

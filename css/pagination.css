@@ -1,0 +1,41 @@
+main {
+  padding: 4em 0 0 0;
+}
+main .movie-list-grid {
+  margin-top: 0;
+}
+
+.active {
+  background-color: #c0071d !important;
+}
+
+.select-category {
+  padding: 2.5em;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.pagenumbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 2em 0 0 0;
+}
+.pagenumbers button {
+  display: flex;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  background-color: #0e1116;
+}
+.pagenumbers button:hover {
+  cursor: pointer;
+  background-color: #c0071d;
+  color: white;
+}
+
+/*# sourceMappingURL=pagination.css.map */
