@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- <script src="../../js/movie_detail.js"></script> -->
     <link rel="stylesheet" type="text/css" href="../../css/styles_movieDetail.css">
     <script src="https://kit.fontawesome.com/a59b9b09ab.js" crossorigin="anonymous"></script>
     <title>Movie Detail</title>
@@ -87,13 +88,7 @@
 
 
     <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
-    <script>
-        Split(['.a', '.b'], {
-            gutterSize: 0.5,
-            sizes: [80, 20]
-            // minSize: [500,30]
-        });
-    </script>
+
     <script>
         let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
         // let youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${search}&maxResults=${maxResults}&publishedAfter=${afterdate}&publishedBefore=${beforedate}&order=${order}&videoDuration=${duration}&type=video`;
@@ -124,7 +119,7 @@
     -o-background-size: cover;
     opacity: 20%;
     background-attachment: fixed;
-    width: 100vw;
+    width: 100%;
     background-size: cover;
     background-position: top;`;
                 document.querySelector(".b").style = `    
@@ -133,9 +128,14 @@
     -moz-background-size: cover;
     -o-background-size: cover;    
     background-attachment: fixed;
-    width: 100vw;
+    width: 100%;
     background-size: cover;
     background-position: top;`;
+                Split(['.a', '.b'], {
+                    gutterSize: 0.5,
+                    sizes: [80, 20]
+                    // minSize: [500,30]
+                });
                 document.querySelector("#movie_title").innerHTML = json.title;
                 document.querySelector("#movie_star").innerHTML = `${json.rating}/10`;
                 for (let i = 0; i < json.genres.length; i++) {
@@ -205,22 +205,27 @@
             let movieID = JSON.parse(localStorage.getItem("dbid"));
             var fetchingURL = originalURL + userID;
 
-            fetch(fetchingURL)
+            if (userID == null){
+                alert("Please sign in or sign up to add movie to watch later")
+            }
+            else {
+                fetch(fetchingURL)
                 .then(response => response.json())
                 .then(json => {
-                    fetch('https://dramaholic.herokuapp.com/api/customers/wachtlater', {
-                        method: 'POST',
-                        body: {
-                            "username": "zerbra",
-                            "password": "123321",
-                            "dbID": movieID
-                            // "username": json.username,
-                            // "password": json.password,
-                            // "dbID": movieID
-                        }
-                    })
-                    .then(response => {console.log(response)})
+                    const dataToSend = JSON.stringify({
+                        username: json.username,
+                        password: json.password,
+                        dbID: movieID,
+                    });
+                    fetch("https://dramaholic.herokuapp.com/api/customers/watchlater", {
+                        method: "post",
+                        headers: { "Content-Type": "application/json" },
+                        body: dataToSend,
+                    }).then((response) => {
+                        console.log(response);
+                    });
                 })
+            }
         };
     </script>
 
@@ -263,7 +268,12 @@
         const responsive_rating = document.querySelector('.star');
         const responsive_star = document.querySelector('#movie_radio');
         function responsiveRating() {
-            if (window.outerWidth < 780) {
+            if (window.outerWidth <= 375) {
+                responsive_star.style.visibility = "collapse";
+                responsive_rating.style.marginLeft = "0";
+                responsive_star.style.width = "0";
+            }
+            else if (window.outerWidth < 780) {
                 responsive_star.style.visibility = "collapse";
                 responsive_rating.style.marginLeft = "0";
                 responsive_star.style.width = "0";
