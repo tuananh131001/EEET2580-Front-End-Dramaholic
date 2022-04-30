@@ -2,6 +2,66 @@ header, footer {
     color: white;
 }
 
+nav {
+    padding: 0.65em 2em;
+}
+
+nav #page_title_nav {
+    font-weight: 600;
+    font-size: 2.5rem;
+    white-space: nowrap;
+}
+
+nav .logo {
+    width: 150px;
+}
+
+nav #page_title_nav{
+    font-size: 2rem;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+#account_navigate > *:hover {
+    cursor: pointer;
+}
+
+nav #sideNav {
+    visibility: hidden;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 8rem;
+    font-size: 0.8rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+  /* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #dedede;
+}
+  
+  /* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 body {
     display: flex;
     flex-direction: column;
@@ -10,8 +70,9 @@ body {
     color: white;
 }
 
-* {
-  font-family: "Poppins", sans-serif;
+
+main {
+    background-color: white;
 }
 
 .body_region {
@@ -19,11 +80,6 @@ body {
     flex-direction: column;
     width: 100%;
     color: black;
-    /* font-size: 0.8rem; */
-}
-
-main {
-    background-color: white;
 }
 
 .page_title {
@@ -33,18 +89,60 @@ main {
 }
 
 footer {
+    font-size: 0.8rem;
     background-color: black;
     margin: 0;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }
 
-.input_box, textarea{
+.input_box, .myTextarea {
+    width: 25rem;
     height: 2.5rem;
     border-radius: 5px;
     border: solid rgb(211, 211, 211) 1px;
-    /* background-color: rgba(247, 247, 247, 0.7); */
     padding: 0 0.5rem;
 } 
+
+::placeholder {color: rgb(204, 202, 202);}
+
+.input_title {
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-weight: 500;
+    font-size: 3rem;
+    width: 22rem;
+    height: 5rem;
+}
+
+.input_title_area {
+    display: flex;
+    gap: 1rem;
+}
+
+#edit_title {
+    color: gray;
+}
+
+#edit_title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.checkbox {
+    gap: 0.5rem;
+}
+
+input[type="checkbox"] {
+    accent-color: rgb(212, 14, 38);
+    width: 1rem;
+    height: 1rem;
+}
+
+label {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
 
 .flex_row {
     display: flex;
@@ -77,45 +175,56 @@ footer {
 
 }
 
-input[type="checkbox"] {
-    accent-color: rgb(212, 14, 38);
-    width: 1rem;
-    height: 1rem;
+#submit_btn {
+    margin-top: 2%;
+    width: 25rem;
+    height: 3rem;
 }
 
-label {
-    font-size: 0.95rem;
-    font-weight: 500;
-}
+.form_input, .form_whole, .form_col{gap: 1.5rem;} /*gap btw input boxes*/
 
-#account_navigate > *:hover {
-    cursor: pointer;
-}
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    font-size: 0.8rem;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 0.9rem;
+.form_whole {align-items: center;}
+
+.form_body {gap: 9rem;} /*include .form_col#left_col & .form_col#right_col*/
+
+.form_col > *   {
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
-  }
+    flex-direction: column;
+}
 
-  /* Add a grey background color to dropdown links on hover */
-  .dropdown-content a:hover {
-    background-color: #dedede;
-  }
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-      display: block;
-  }
+#genres_select {
+    font-size: 0.8rem;
+    gap: 1rem;
+}
+
+
+@media screen and (max-width: 55em) {
+    body {min-width: min-content;}
+
+    nav {padding: 0.4rem 1.3rem;}
+
+    nav .logo {width: 100px;}
+
+    nav .nav-left {gap: 1rem;}
+
+    nav #page_title_nav{
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    nav .nav-right {visibility: hidden;}
+
+    .logo {visibility: visible;}
+
+    .form_whole {align-items: flex-start;}
+
+    .form_body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    nav #sideNav {
+        visibility: visible;
+    }
+}
