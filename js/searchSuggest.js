@@ -79,6 +79,20 @@ async function getMovieListSearch(title, list) {
   for (let i = 0; i < list.length; i++) {
     await searchContent.appendChild(list[i]);
   }
+  //Check no result
+  if (isEmpty(searchContent.childNodes)) {
+    // No result found , display cat
+    searchContent.style.display = "none";
+    emptyPage.classList.remove("hidden");
+    navBar.style.position = "relative";
+  }
+  if (!isEmpty(searchContent.childNodes)) {
+    emptyPage.classList.add("hidden");
+  }
+  // Found results and display
+  searchContent.style.display = "grid";
+  footer.style.display = "block";
+  mainContent.style.display = "none";
 }
 
 function disableSearch() {
@@ -95,20 +109,6 @@ inputValue.addEventListener("input", (e) => {
   const suggestionList = [];
   if (current_search) {
     getMovieListSearch(current_search, suggestionList);
-    //Check no result
-    if (isEmpty(searchContent.childNodes)) {
-      // No result found , display cat
-      searchContent.style.display = "none";
-      emptyPage.classList.remove("hidden");
-      navBar.style.position = "relative";
-    }
-    if (!isEmpty(searchContent.childNodes)) {
-      emptyPage.classList.add("hidden");
-    }
-    // Found results and display
-    searchContent.style.display = "grid";
-    footer.style.display = "block";
-    mainContent.style.display = "none";
   } else {
     // No Input in search bar
     disableSearch();
