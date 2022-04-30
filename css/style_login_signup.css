@@ -140,6 +140,16 @@ form {
   background-color: none;
 }
 
+.form-input[type=date]{
+  padding-right: .5rem;
+  color: white;
+}
+
+input[type=date]:valid {
+  color: black;
+}
+
+
 .show {
   width: 2rem;
   height: 2rem;
