@@ -40,6 +40,20 @@
               />
               <label for="name">Your name</label>
             </div>
+            <!-- Email -->
+            <div class="form-group">
+              <span class="icon">
+                <img src="/assets/image/at_sign.png" alt="" />
+              </span>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+              />
+              <label for="email">Email address</label>
+            </div>
             <!-- Username -->
             <div class="form-group">
               <span class="icon">
@@ -97,7 +111,7 @@
 
             <div class="content-other">
               <div class="agreement">
-                <input type="checkbox" id="agreement" required/>
+                <input type="checkbox" id="agreement" required />
                 <label for="agreement"
                   >I agree with <a href="">Terms</a> and
                   <a href="">Privacy</a></label
@@ -192,11 +206,14 @@
         var nameValue = document.getElementById("name").value;
         var passValue = document.getElementById("password").value;
         var dobValue = document.getElementById("dob").value;
+        var emailValue = document.getElementById("email").value;
+
         const data = JSON.stringify({
           username: usernameValue,
           name: nameValue,
           password: passValue,
           dob: dobValue,
+          email: emailValue
         });
         return data;
       };

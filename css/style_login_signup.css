@@ -57,7 +57,7 @@ html {
 .logo {
   margin: auto;
   margin-bottom: 0;
-  padding-top: 5em;
+  padding-top: 3em;
 }
 
 .heading {
@@ -91,7 +91,7 @@ form {
 }
 
 .signup-form .content-main form {
-  gap: 1.3em;
+  gap: 1em;
 }
 
 .form-group {
@@ -194,6 +194,10 @@ input[type=date]:valid {
   align-items: center;
 }
 
+.signup-form .content-other{
+  padding: .2em 0;
+}
+
 .login-rememberMe,
 .agreement {
   display: flex;
@@ -222,7 +226,7 @@ input[type=checkbox] {
   font-size: 1.6rem;
   margin-top: auto;
   text-align: center;
-  padding: 3em 0 1em;
+  padding: 1em 0 1em;
 }
 
 .footer a {
