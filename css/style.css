@@ -626,6 +626,34 @@ nav .nav-left {
     }
   }
 }
+button[class=active] {
+  background-color: #c0071d !important;
+}
+
+.pagination-search,
+.pagenumbers {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 2em 0 0 0;
+}
+.pagination-search button,
+.pagenumbers button {
+  display: flex;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  background-color: #0e1116;
+}
+.pagination-search button:hover,
+.pagenumbers button:hover {
+  cursor: pointer;
+  background-color: #c0071d;
+  color: white;
+}
+
 *,
 *::before,
 *::after {
@@ -634,18 +662,6 @@ nav .nav-left {
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: "averta_pe_black";
-  src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
-  font-style: normal;
-  font-weight: 100;
-}
-@font-face {
-  font-family: "averta_pe";
-  src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
-  font-style: normal;
-  font-weight: 100;
-}
 .active {
   font-weight: 700 !important;
   color: color !important;

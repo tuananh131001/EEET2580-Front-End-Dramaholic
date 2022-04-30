@@ -1,0 +1,17 @@
+
+@use "./abstract/colors";
+@use "./components/pagination";
+
+main {
+  padding: 4em 0 0 0;
+  .movie-list-grid{
+      margin-top: 0;
+  }
+}
+
+.select-category {
+  padding: 2.5em;
+}
+footer {
+  margin-top: auto;
+}

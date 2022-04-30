@@ -1,0 +1,27 @@
+@use "../abstract/colors";
+button[class="active"] {
+  background-color: colors.$red !important;
+}
+
+.pagination-search,
+.pagenumbers {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 2em 0 0 0;
+  button {
+    display: flex;
+
+    padding: 1em;
+    border-radius: 10px;
+    border: 1px solid colors.$white;
+    color: colors.$white;
+    background-color: colors.$black;
+  }
+  button:hover {
+    cursor: pointer;
+    background-color: colors.$red;
+    color: colors.$white;
+  }
+}

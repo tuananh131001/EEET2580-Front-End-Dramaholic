@@ -1,6 +1,6 @@
 const historyContent = document.querySelector(".movie-list-grid");
 const pagination_element = document.getElementById("pagination");
-let current_page = 1;
+let current_page = 0;
 let rows = 5;
 
 const createCardHistory = (x) => {
@@ -42,41 +42,23 @@ const movieList = [];
 
 const category = document.querySelector(".category");
 
-function DisplayList(items, wrapper, rows_per_page, page) {
+function SetupPagination(items, wrapper, pages, categoryType) {
   wrapper.innerHTML = "";
-  page--;
-
-  let start = rows_per_page * page;
-  let end = start + rows_per_page;
-  let paginatedItems = items.slice(start, end);
-
-  for (let i = 0; i < paginatedItems.length; i++) {
-    let item = paginatedItems[i];
-    console.log(item)
-
-    historyContent.appendChild(item);
-  }
-}
-
-function SetupPagination(items, wrapper, rows_per_page) {
-  wrapper.innerHTML = "";
-  console.log(items);
-  let page_count = Math.ceil(items.length / rows_per_page);
-  for (let i = 1; i < page_count + 1; i++) {
-    let btn = PaginationButton(i, items);
+  for (let i = 1; i < pages + 1; i++) {
+    let btn = PaginationButton(i, items, categoryType);
     wrapper.appendChild(btn);
   }
 }
 
-function PaginationButton(page, items) {
+function PaginationButton(page, items, categoryType) {
   let button = document.createElement("button");
   button.innerText = page;
 
-  if (current_page == page) button.classList.add("active");
+  if (current_page == page - 1) button.classList.add("active");
 
   button.addEventListener("click", function () {
-    current_page = page;
-    DisplayList(items, historyContent, rows, current_page);
+    current_page = page - 1;
+    displayCategory(items, categoryType, current_page);
 
     let current_btn = document.querySelector(".pagenumbers button.active");
     current_btn.classList.remove("active");
@@ -87,18 +69,26 @@ function PaginationButton(page, items) {
   return button;
 }
 
-async function displayCategory(list, categoryType) {
+async function displayCategory(list, categoryType, current_page) {
+  historyContent.innerHTML = "";
   const res = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
-      encodeURIComponent(categoryType)
+      encodeURIComponent(categoryType) +
+      "&page=" +
+      current_page
   );
   list = [];
-  const { content } = await res.json();
+
+  const { content, totalPages } = await res.json();
+
+  console.log(totalPages);
   for (let i = 0; i < content.length; i++) {
     await list.push(createCardHistory(content[i]));
   }
-  SetupPagination(list, pagination_element, rows);
-  DisplayList(list, historyContent, rows, current_page);
+  SetupPagination(list, pagination_element, totalPages, categoryType);
+  for (let i = 0; i < list.length; i++) {
+    historyContent.appendChild(list[i]);
+  }
 }
 
 // select category
@@ -109,13 +99,12 @@ category.addEventListener("click", function () {
     addActivityItem();
   }
 });
-
 category.addEventListener("change", function () {
   addActivityItem(category.value);
 });
 
 function addActivityItem(option) {
   historyContent.innerHTML = "";
-  displayCategory(movieList, option);
+  displayCategory(movieList, option, 1);
 }
-displayCategory(movieList, "Action & Adventure");
+displayCategory(movieList, "", 1);
