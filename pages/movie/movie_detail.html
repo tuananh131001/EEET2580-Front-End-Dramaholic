@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -98,6 +99,7 @@
 
     <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
 
+
     <script>
       const closeVideo = document.querySelector(".close-video");
       let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
@@ -153,6 +155,7 @@
             document.querySelector(
               ".scroll-images"
             ).innerHTML += `<div class="child">
+
                             <img class="child-img" src="${json.actors[i].image}" alt="image">
                             <div class="cast_name">${json.actors[i].name}</div>
                         </div>`;
@@ -214,24 +217,29 @@
         let movieID = JSON.parse(localStorage.getItem("dbid"));
         var fetchingURL = originalURL + userID;
 
-        fetch(fetchingURL)
-          .then((response) => response.json())
-          .then((json) => {
-            fetch("https://dramaholic.herokuapp.com/api/customers/wachtlater", {
-              method: "POST",
-              body: {
-                username: "zerbra",
-                password: "123321",
-                dbID: movieID,
-                // "username": json.username,
-                // "password": json.password,
-                // "dbID": movieID
-              },
-            }).then((response) => {
-              console.log(response);
-            });
-          });
-      }
+            if (userID == null){
+                alert("Please sign in or sign up to add movie to watch later")
+            }
+            else {
+                fetch(fetchingURL)
+                .then(response => response.json())
+                .then(json => {
+                    const dataToSend = JSON.stringify({
+                        username: json.username,
+                        password: json.password,
+                        dbID: movieID,
+                    });
+                    fetch("https://dramaholic.herokuapp.com/api/customers/watchlater", {
+                        method: "post",
+                        headers: { "Content-Type": "application/json" },
+                        body: dataToSend,
+                    }).then((response) => {
+                        console.log(response);
+                    });
+                })
+            }
+        };
+
     </script>
 
     <!-- script for youtube frame  -->
@@ -267,17 +275,27 @@
     </script>
     <!-- Responsive star and rating -->
     <script>
-      const responsive_rating = document.querySelector(".star");
-      const responsive_star = document.querySelector("#movie_radio");
-      function responsiveRating() {
-        if (window.outerWidth < 780) {
-          responsive_star.style.visibility = "collapse";
-          responsive_rating.style.marginLeft = "0";
-          responsive_star.style.width = "0";
-        } else if (window.outerWidth >= 780) {
-          responsive_star.style.visibility = "visible";
-          responsive_rating.style.marginLeft = "2%";
-          responsive_star.style.width = "130px";
+
+
+        const responsive_rating = document.querySelector('.star');
+        const responsive_star = document.querySelector('#movie_radio');
+        function responsiveRating() {
+            if (window.outerWidth <= 375) {
+                responsive_star.style.visibility = "collapse";
+                responsive_rating.style.marginLeft = "0";
+                responsive_star.style.width = "0";
+            }
+            else if (window.outerWidth < 780) {
+                responsive_star.style.visibility = "collapse";
+                responsive_rating.style.marginLeft = "0";
+                responsive_star.style.width = "0";
+            }
+            else if (window.outerWidth >= 780) {
+                responsive_star.style.visibility = "visible";
+                responsive_rating.style.marginLeft = "2%";
+                responsive_star.style.width = "130px";
+            }
+
         }
       }
       window.onresize = responsiveRating;
