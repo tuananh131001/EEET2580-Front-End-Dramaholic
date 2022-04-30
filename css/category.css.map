@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["../scss/components/_pagination.scss","../scss/abstract/_colors.scss","../scss/category.scss"],"names":[],"mappings":"AACA;EACE;;;AAGF;AAAA;EAEE;EACA;EACA;EACA;EACA;;AACA;AAAA;EACE;EAEA;EACA;EACA;EACA,OChBI;EDiBJ,kBCbI;;ADeN;AAAA;EACE;EACA,kBCvBE;EDwBF,OCtBI;;;ACER;EACE;;AACA;EACI;;;AAIN;EACE;;;AAEF;EACE","file":"category.css"}

@@ -10,6 +10,7 @@ const emptyPage = document.querySelector(".error-search-page");
 const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
 const navBar = document.querySelector(".navbar");
+const paginationSearch = document.querySelector(".pagination-search");
 
 const createCardSearch = (x) => {
   let card = document.createElement("div");
@@ -67,11 +68,15 @@ function openSearch() {
   searchBar.value = "";
   disableSearch();
 }
-async function getMovieListSearch(title, list) {
+async function getMovieListSearch(title, list, current_page) {
   const url = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
+    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+      title +
+      "&page=" +
+      current_page
   );
-  const { content } = await url.json();
+  const { content, totalPages } = await url.json();
+  list = [];
   searchContent.innerHTML = "";
   for (let i = 0; i < content.length; i++) {
     await list.push(createCardSearch(content[i]));
@@ -83,6 +88,7 @@ async function getMovieListSearch(title, list) {
   if (isEmpty(searchContent.childNodes)) {
     // No result found , display cat
     searchContent.style.display = "none";
+    paginationSearch.style.display = "none";
     emptyPage.classList.remove("hidden");
     navBar.style.position = "relative";
   }
@@ -90,7 +96,9 @@ async function getMovieListSearch(title, list) {
     emptyPage.classList.add("hidden");
   }
   // Found results and display
+  SetupPagination(list, paginationSearch, totalPages, title);
   searchContent.style.display = "grid";
+  paginationSearch.style.display = "flex";
   footer.style.display = "block";
   mainContent.style.display = "none";
 }
@@ -102,13 +110,43 @@ function disableSearch() {
   emptyPage.classList.add("hidden");
   searchContent.innerHTML = "";
   searchContent.style.display = "none";
+  paginationSearch.style.display = "none";
+}
+// Pagination
+let current_page = 0;
+
+function SetupPagination(items, wrapper, pages, categoryType) {
+  wrapper.innerHTML = "";
+  for (let i = 1; i < pages + 1; i++) {
+    let btn = PaginationButton(i, items, categoryType);
+    wrapper.appendChild(btn);
+  }
+}
+
+function PaginationButton(page, items, title) {
+  let button = document.createElement("button");
+  button.innerText = page;
+
+  if (current_page == page - 1) button.classList.add("active");
+
+  button.addEventListener("click", function () {
+    current_page = page - 1;
+    getMovieListSearch(title, items, current_page);
+
+    let current_btn = document.querySelector(".pagenumbers button.active");
+    current_btn.classList.remove("active");
+
+    button.classList.add("active");
+  });
+
+  return button;
 }
 
 inputValue.addEventListener("input", (e) => {
   let current_search = e.target.value;
   const suggestionList = [];
   if (current_search) {
-    getMovieListSearch(current_search, suggestionList);
+    getMovieListSearch(current_search, suggestionList, 0);
   } else {
     // No Input in search bar
     disableSearch();

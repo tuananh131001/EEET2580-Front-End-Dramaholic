@@ -99,7 +99,6 @@ category.addEventListener("click", function () {
     addActivityItem();
   }
 });
-
 category.addEventListener("change", function () {
   addActivityItem(category.value);
 });
