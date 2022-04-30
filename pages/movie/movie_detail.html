@@ -13,9 +13,9 @@
       referrerpolicy="no-referrer"
     />
     <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-    rel="stylesheet"
-  />
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -29,78 +29,79 @@
   </head>
 
   <body>
+    <div class="close-video" onclick="stop_movie()"></div>
     <div id="blur_frame" class="blur">
-      <!-- title -->
-      <div id="movie_title" class="title"></div>
+      <div class="movie-info">
+        <div class="thumbnail_portrait"></div>
+        <!-- title -->
+        <div class="right-container">
+          <div id="movie_title" class="title"></div>
 
-      <div id="movie_rating" class="regular_setting rating">
-        <div id="movie_radio">
-          <input type="radio" id="star0" /><label for="star0"></label>
-          <input type="radio" id="star1" /><label for="star1"></label>
-          <input type="radio" id="star2" /><label for="star2"></label>
-          <input type="radio" id="star3" /><label for="star3"></label>
-          <input type="radio" id="star4" /><label for="star4"></label>
-          <input type="radio" id="star5" /><label for="star5"></label>
-          <input type="radio" id="star6" /><label for="star6"></label>
-          <input type="radio" id="star7" /><label for="star7"></label>
-          <input type="radio" id="star8" /><label for="star8"></label>
-          <input type="radio" id="star9" /><label for="star9"></label>
-        </div>
-        <div id="movie_star" class="star"></div>
-        <div id="movie_info" class="info"></div>
-      </div>
-      <div id="movie_description" class="regular_setting description"></div>
-      <div class="regular_setting button_container">
-        <button class="button btn1" onclick="play_movie()">PLAY MOVIE</button>
-        <button class="button btn2" onclick="add_watch_later()">
-          WATCH LATER
-        </button>
-      </div>
-      <div id="movie_crew" class="equipe regular_setting">
-        <div id="movie_actor" class="cast">
-          <div class="icon_container">
-            <div>
-              <button id="iconl" class="icon" onclick="scrolll()">
-                <i class="fas fa-angle-double-left"></i>
-              </button>
+          <div id="movie_rating" class="regular_setting rating">
+            <div id="movie_radio">
+              <input type="radio" id="star0" /><label for="star0"></label>
+              <input type="radio" id="star1" /><label for="star1"></label>
+              <input type="radio" id="star2" /><label for="star2"></label>
+              <input type="radio" id="star3" /><label for="star3"></label>
+              <input type="radio" id="star4" /><label for="star4"></label>
+              <input type="radio" id="star5" /><label for="star5"></label>
+              <input type="radio" id="star6" /><label for="star6"></label>
+              <input type="radio" id="star7" /><label for="star7"></label>
+              <input type="radio" id="star8" /><label for="star8"></label>
+              <input type="radio" id="star9" /><label for="star9"></label>
             </div>
-            <p>CAST</p>
-            <div>
-              <button id="iconr" class="icon" onclick="scrollr()">
-                <i class="fas fa-angle-double-right"></i>
-              </button>
+            <div id="movie_star" class="star"></div>
+            <div id="movie_info" class="info"></div>
+          </div>
+          <div id="movie_description" class="regular_setting description"></div>
+          <div class="regular_setting button_container">
+            <button class="button btn1" onclick="play_movie()">
+              PLAY MOVIE
+            </button>
+            <button class="button btn2" onclick="add_watch_later()">
+              WATCH LATER
+            </button>
+          </div>
+          <div id="movie_crew" class="equipe regular_setting">
+            <div id="movie_actor" class="cast">
+              <div class="icon_container">
+                <div>
+                  <button id="iconl" class="icon" onclick="scrolll()">
+                    <i class="fas fa-angle-double-left"></i>
+                  </button>
+                </div>
+                <p>CAST</p>
+                <div>
+                  <button id="iconr" class="icon" onclick="scrollr()">
+                    <i class="fas fa-angle-double-right"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="cover">
+                <div class="scroll-images"></div>
+              </div>
+            </div>
+
+            <!-- director -->
+            <div id="movie_director" class="director">
+              DIRECTOR BY
+              <br />
+              <br />
             </div>
           </div>
-          <div class="cover">
-            <div class="scroll-images"></div>
-          </div>
-        </div>
-
-        <!-- director -->
-        <div id="movie_director" class="director">
-          DIRECTOR BY
-          <br />
-          <br />
         </div>
       </div>
     </div>
-    <div id="youtube_frame" class="youtube_div">
-      <!-- <iframe class="youtube" src="https://www.youtube.com/embed/" title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>; -->
-    </div>
-    <div class="screen" onclick="stop_movie()">
-      <div
-        class="split a"
-
-      ></div>
+    <div id="youtube_frame" class="youtube_div"></div>
+    <div class="screen">
+      <div class="split a"></div>
     </div>
 
     <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
 
 
     <script>
+      const closeVideo = document.querySelector(".close-video");
       let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
       let id = JSON.parse(localStorage.getItem("dbid"));
@@ -122,6 +123,9 @@
           film_youtube =
             "https://www.youtube.com/embed/" + href_cut[1] + "?enablejsapi=1";
           console.log(film_youtube);
+          document.querySelector(
+            ".thumbnail_portrait"
+          ).innerHTML = `<img src="${json.thumbnail}" alt="">`;
           document.querySelector(".screen").style.background =
             "url(" +
             json.thumbnail_landscape +
@@ -147,7 +151,6 @@
           ).outerHTML = `<input type="radio" id="star${parseInt(
             json.rating
           )}" checked>`;
-          // document.querySelector(".screen").style.background = `url('${json.thumbnail}')`;
           for (let i = 0; i < json.actors.length; i++) {
             document.querySelector(
               ".scroll-images"
@@ -188,6 +191,7 @@
 
       function play_movie() {
         document.getElementById("youtube_frame").style.visibility = "visible";
+        closeVideo.style.display = "block";
       }
       function stop_movie() {
         if (
@@ -200,6 +204,7 @@
           );
           document.getElementById("youtube_frame").style.visibility =
             "collapse";
+          closeVideo.style.display = "none";
         }
       }
     </script>
