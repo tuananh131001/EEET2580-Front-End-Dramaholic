@@ -2,6 +2,7 @@ const closeVideo = document.querySelector(".close-video");
 let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
 let id = JSON.parse(localStorage.getItem("dbid"));
+
 let film_title = "";
 let film_youtube = "";
 var fetchingURL = originalURL + id;
@@ -95,6 +96,7 @@ function stop_movie() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
+  userID == null ? userID = JSON.parse(sessionStorage.getItem("dbid")) : alert("You are not logged in");
   let movieID = JSON.parse(localStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
