@@ -31,7 +31,13 @@
               <span class="icon">
                 <img src="/assets/image/nametag.png" alt="" />
               </span>
-              <input type="text" id="name" name="name" class="form-input" required />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+              />
               <label for="name">Your name</label>
             </div>
             <!-- Username -->
@@ -48,7 +54,7 @@
               />
               <label for="username">Username</label>
             </div>
-            
+
             <!-- Password -->
             <div class="form-group">
               <span class="icon">
@@ -91,7 +97,7 @@
 
             <div class="content-other">
               <div class="agreement">
-                <input type="checkbox" id="agreement" />
+                <input type="checkbox" id="agreement" required/>
                 <label for="agreement"
                   >I agree with <a href="">Terms</a> and
                   <a href="">Privacy</a></label
@@ -133,80 +139,67 @@
         }
       }
 
-      form.onsubmit = async (e) => {
+      // Add new user ///////
+      const userURL = "https://dramaholic.herokuapp.com/api/customers";
+
+      var form = document.getElementById("form");
+
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
+        // get data from input
+        let data = getData();
+        console.log(data);
+        var usernameValue = document.getElementById("username").value;
 
-        // let nameValue = document.querySelector('#name').value;
-        let usernameValue = document.querySelector("#username").value;
-        // if (!checkUser(usernameValue)) return;
-        fetch(
-          "https://dramaholic.herokuapp.com/api/customers",
-          {
-            method: "POST",
-            body: new FormData(form),
-          }
-        )
-        .then((resp) => {
-                if (resp.status === 415) {
-                    console.log("Status: " + resp.status); 
-                } else {
-                    console.log("Statu: " + resp.status);
-                    return Promise.reject("server");
-                }
-            })
-        .catch(error => {
-         
-                console.log("Error");
-            
-        })
-
-        // let result = await response.json();
-
-        // alert(result.message);
-      };
-
-      function submitForm() {
-        let emailValue = document.querySelector("#email").value;
-        let usernameValue = document.querySelector("#username").value;
-        checkUser(emailValue, usernameValue);
-        // Should return if error
-        // <type here>
-
-        let passValue = document.querySelector("#password").value;
-        addUser(emailValue, usernameValue, passValue);
-      }
-
-      function checkUser(usernameValue) {
-        var userURL = "https://dramaholic.herokuapp.com/api/customers";
-        // e.preventDefault();
-        // console.log(emailValue);
-        // console.log(usernameValue);
-
+        //check for username already exist
         fetch(userURL)
           .then((response) => response.json())
           .then((user) => {
-            // console.log(user.content[0]);
-            for (let i = 0; i < user.content.length; i++) {
-              let username = user.content[i].username;
-              // let email = user.content[i].email;
-              // console.log(username);
-              // console.log(email);
-              if (usernameValue == username) {
-                return Promise.reject("This username has been used");
+            return new Promise(function (resolve, reject) {
+              for (let i = 0; i < user.content.length; i++) {
+                //check for username already exist
+                if (user.content[i].username == usernameValue)
+                  reject("Enter new username");
               }
-            }
-            return 1;
+              //username is valid
+              resolve();
+            });
           })
-          .catch((err) => {
-            console.log(err);
-            return 0;
-            // return new Promise;
-          });
-      }
+          .then((resp) => {
+            //creae new account with the data
+            add_user(data);
+          })
+          .catch((rej) => alert(rej));
+      });
 
-      async function addUser() {
-        console.log(usernameValue);
-      }
+      //create account function
+      var add_user = function (data) {
+        fetch(userURL, {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: data,
+        })
+          .then((resp) => {
+            if (resp.status == 201) alert("Success create account");
+            else return Promise.reject("Fail create account user");
+          })
+          .catch((error) => alert(error));
+      };
+
+      //get data from input
+      var getData = function () {
+        var usernameValue = document.getElementById("username").value;
+        var nameValue = document.getElementById("name").value;
+        var passValue = document.getElementById("password").value;
+        var dobValue = document.getElementById("dob").value;
+        const data = JSON.stringify({
+          username: usernameValue,
+          name: nameValue,
+          password: passValue,
+          dob: dobValue,
+        });
+        return data;
+      };
     </script>
   </body>
 </html>
