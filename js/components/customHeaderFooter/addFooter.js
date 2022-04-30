@@ -80,44 +80,13 @@ document.querySelector("footer").innerHTML = `
 </div>
 <ul class="member-footer-links">
 <li class="member-footer-link-wrapper">
-  <a class="member-footer-link" href="/browse/subtitles"
-    ><span class="member-footer-link-content"
-      >Audio and Subtitles</span
-    ></a
-  >
-</li>
-<li class="member-footer-link-wrapper">
-  <a class="member-footer-link" href="/browse/audio-description"
-    ><span class="member-footer-link-content"
-      >Audio Description</span
-    ></a
-  >
-</li>
-<li class="member-footer-link-wrapper">
   <a class="member-footer-link" href="https://help.netflix.com/"
     ><span class="member-footer-link-content">Help Centre</span></a
   >
 </li>
 <li class="member-footer-link-wrapper">
-  <a class="member-footer-link" href="/redeem"
-    ><span class="member-footer-link-content">Gift Cards</span></a
-  >
-</li>
-<li class="member-footer-link-wrapper">
   <a class="member-footer-link" href="https://media.netflix.com/"
     ><span class="member-footer-link-content">Media Centre</span></a
-  >
-</li>
-<li class="member-footer-link-wrapper">
-  <a class="member-footer-link" href="http://ir.netflix.com/"
-    ><span class="member-footer-link-content"
-      >Investor Relations</span
-    ></a
-  >
-</li>
-<li class="member-footer-link-wrapper">
-  <a class="member-footer-link" href="https://jobs.netflix.com/"
-    ><span class="member-footer-link-content">Jobs</span></a
   >
 </li>
 <li class="member-footer-link-wrapper">

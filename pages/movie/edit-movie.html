@@ -19,191 +19,121 @@
     <title>Edit Movie</title>
     <style>
         body { 
-            gap: 10rem;
+            gap: 7rem;
         }
 
-        .page_title {
-            font-weight: 500;
-        }
-
-        #add_film_form {
-            /* align-items: flex-start; */
-            gap: 4rem;
-        }
-
-        label {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .input_box, textarea {
-           width: 15rem;
-        }
-
-        .form {
-            gap: 5rem;
-        }
-        
-        .form_col {
-            gap: 1.5rem;
-        }
-
-        .form_col > *   {
-            display: flex;
-            flex-direction: column;
-        }
-
-        ::placeholder {
-            color: rgb(204, 202, 202);
-        }
-
-        #genres_select {
-            font-size: 0.8rem;
-            gap: 1rem;
-        }
-
-        .input_title {
-            border: none;
-            background-color: transparent;
-            color: black;
-            font-weight: 500;
-            font-size: 3rem;
-            width: 17rem;
-            height: 5rem;
-        }
-
-        .input_title_area {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-        }
-
-        #edit_title {
-            color: gray;
-        }
-
-        #edit_title:hover {
-            cursor: pointer;
-        }
-
-        #submit_btn {
-            width: 9rem;
-            height: 3rem;
-            /* margin-top: 2rem; */
-        }
-
-        .checkbox {
-            gap: 0.5rem;
-        }
     </style>
 </head>
 <body class="body">
     <header></header>
     <main class="body_region align_items_center">
-        <form class="flex_col align_items_center" id="add_film_form">
-            <div  class= "page_title" >EDIT MOVIE</div>
-            <div class="form flex_row">
-                <div class="flex_col form_col" id="left_col">
-                    <div class="input_title_area align_items_center">
-                        <input disabled class="input_box input_title" type="text" id="title" name="title" value=""/>
-                        <div id="edit_title" onclick="change_title()">Edit</div>
-                    </div>
-                    
-                    <div>
-                        <label for="originalTitle">Original Title</label>
-                        <input required class="input_box" type="text" id="originalTitle" name="originalTitle" placeholder="Original title"/>
-                    </div>
-
-                    <div>
-                        <label for="description">Description</label>
-                        <textarea required id="description" name="description" style="height: 7rem;" placeholder="Desciption"></textarea>
-                    </div>
-
-                    <div>
-                        <label for="genres">Genres</label>
-                        <input type="hidden" class="flex_row" id="genres" name="genres"/>
-                        <div class="flex_row" id="genres_select"></div>
-                    </div>
-
-                    <div>
-                        <label for="href">Href To Movie</label>
-                        <input required class="input_box" type="url" id="href" name="href" placeholder="URL"/>
-                    </div>
-
-                    <div>
-                        <label for="thumbnail">Thumbnail</label>
-                        <input required class="input_box" type="url" id="thumbnail" name="thumbnail" placeholder="URL"/>
-                    </div>
-
-                    <div>
-                        <label for="rating">Rating</label>
-                        <input class="input_box" type="number" step="any" id="rating" name="rating" placeholder="Rating"/>
-                    </div>   
-
-                    <!-- <div>
-                        <input class="red_theme_button" type="submit" value="Submit" id="submit_btn">
-                    </div> -->
+        <form class="flex_col form_whole" id="add_film_form">
+            <div class="flex_col form_input">
+                <div class="input_title_area align_items_center">
+                    <input disabled class="input_box input_title" type="text" id="title" name="title" value="Movie title" placeholder="Movie title"/>
+                    <div id="edit_title" onclick="change_title()">Edit</div>
                 </div>
+                <div class="form_body flex_row">
+                    <div class="flex_col form_col" id="left_col">
+                        <div>
+                            <label for="originalTitle">Original Title</label>
+                            <input required class="input_box" type="text" id="originalTitle" name="originalTitle" placeholder="Original title"/>
+                        </div>
 
-                <div class="flex_col form_col" id="right_col">
+                        <div>
+                            <label for="description">Description</label>
+                            <textarea class="myTextarea" required id="description" name="description" style="height: 8.6rem;" placeholder="Desciption"></textarea>
+                        </div>
 
-                    <div>
-                        <label for="duration">Duration</label>
-                        <input class="input_box" type="text" id="duration" name="duration" placeholder="Duration"/>
-                    </div>    
-                    
-                    <div>
-                        <label for="episodes">Episodes</label>
-                        <input class="input_box" type="number" id="episodes" name="episodes" placeholder="Epsisodes"/>
+                        <div>
+                            <label for="genres">Genres</label>
+                            <input type="hidden" class="flex_row" id="genres" name="genres"/>
+                            <div class="flex_row" id="genres_select"></div>
+                        </div>
+
+                        <div>
+                            <label for="href">Href To Movie</label>
+                            <input required class="input_box" type="url" id="href" name="href" placeholder="URL"/>
+                        </div>
+
+                        <div>
+                            <label for="thumbnail">Thumbnail</label>
+                            <input required class="input_box" type="url" id="thumbnail" name="thumbnail" placeholder="URL"/>
+                        </div>
+
+                        <div>
+                            <label for="duration">Duration</label>
+                            <input class="input_box" type="text" id="duration" name="duration" placeholder="Duration"/>
+                        </div>    
+                        
+                        <div>
+                            <label for="episodes">Episodes</label>
+                            <input class="input_box" type="number" id="episodes" name="episodes" placeholder="Epsisodes"/>
+                        </div> 
                     </div>
 
-                    <div>
-                        <label for="country">Country</label>
-                        <select required class="input_box" id="country" name="country" form="add_film_form">
-                            <option disabled>Country</option>
-                        </select>
-                    </div>     
+                    <div class="flex_col form_col" id="right_col">
 
-                    <div>
-                        <label for="director">Directors</label>
-                        <input class="input_box" type="text" id="director" name="director" placeholder="Name separated by comma"/>
-                    </div>   
+                        <div>
+                            <label for="rating">Rating</label>
+                            <input class="input_box" type="number" step="any" id="rating" name="rating" placeholder="Rating"/>
+                        </div>   
 
-                    <div>
-                        <label for="actor">Actors</label>
-                        <input class="input_box" type="text" id="actor" name="actor" placeholder="Names separated by comma"/>
-                    </div>
+                        <div>
+                            <label for="rating">Age Restriction</label>
+                            <select required class="input_box" id="adult" name="adult" form="add_film_form">
+                                <option id="adult_false" value="false">False</option>
+                                <option id="adult_true" value="true">True</option>
+                            </select>
+                        </div>  
 
-                    <div>
-                        <label for="actor">Actor Image</label>
-                        <input class="input_box" type="text" id="actor_image" name="actor_image" placeholder="URLs separated by comma"/>
-                    </div>
+                        <div>
+                            <label for="country">Country</label>
+                            <select required class="input_box" id="country" name="country" form="add_film_form">
+                                <option disabled>Country</option>
+                            </select>
+                        </div>     
 
-                    <div>
-                        <label for="date">Publication Date</label>
-                        <input class="input_box" type="date" id="date"/>
-                        <input hidden class="input_box" type="text" id="date_format" name="date"/>
-                    </div>
+                        <div>
+                            <label for="date">Publication Date</label>
+                            <input class="input_box" type="date" id="date" name="date"/>
+                        </div>
 
-                    <div>
-                        <label for="tags">Tags</label>
-                        <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma"/>
+                        <div>
+                            <label for="director">Directors</label>
+                            <input class="input_box" type="text" id="director" name="director" placeholder="Names separated by comma"/>
+                        </div>   
+
+                        <div>
+                            <label for="actor">Actors</label>
+                            <!-- <input class="input_box" type="text" id="actor" name="actors" placeholder="Names separated by comma"/> -->
+                            <input class="input_box" type="text" id="actors"placeholder="Names separated by comma"/>
+                        </div>
+
+                        <!-- <div>
+                            <label for="actor">Actor Images</label>
+                            <input class="input_box" type="text" id="actor_image" name="actor_image" placeholder="URLs separated by comma"/>
+                        </div> -->
+
+                        <div>
+                            <label for="tags">Tags</label>
+                            <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma"/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <input class="red_theme_button" type="submit" value="Save changes" id="submit_btn">
-            </div>
+            <input class="red_theme_button" type="submit" value="Submit" id="submit_btn">
         </form>
     </main>
 
     <footer></footer>
 
-    <script type="module" src="../../js/components/customHeaderFooter/add_movie_header.js"></script>
-    <!-- <script type="module" src="../../js/components/customHeaderFooter/addCustomHeader.js"></script> -->
+
+    <script type="module" src="../../js/components/customHeaderFooter/edit_movie_header.js"></script>
     <script type="module" src="../../js/components/customHeaderFooter/addFooter.js"></script>
     <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
     <script>
+        console.log(document.querySelector("header").innerHTML)
     fetch("https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6d7c06dbe16&language=en-US")
     .then(response => response.json())
     .then(json => {
@@ -213,7 +143,7 @@
         for (let i=0; i < length; i++) {
             var genre_id = json.genres[i].id
             var genre_name = json.genres[i].name
-            temp = '<div class="flex_row align_items_center checkbox"><input type="checkbox" id="genre_'+genre_id+'" value="'+genre_name+'">'+genre_name+'</div>'
+            temp = '<div class="flex_row align_items_center checkbox"><input type="checkbox" id="'+genre_id+'" value="'+genre_name+'">'+genre_name+'</div>'
             if (i%per_col==0) {
             html += '<div class="flex_col">'+temp
             }
@@ -224,9 +154,6 @@
         }
         document.querySelector("#genres_select").innerHTML = html
     })
-    .catch((error) => {
-          console.log("Failed get genres: ",error); 
-    });
 
     fetch("../../language.json")
     .then(response => response.json())
@@ -240,12 +167,8 @@
         html += '<option id="'+language_code+'" value="'+language_code+'">'+language_name+'</option>'
         }
         document.querySelector("#country").innerHTML += html
-    })
-    .catch((error) => {
-          console.log("Failed get languages: ",error); 
     });
 
-    // let current_movie = JSON.parse(localStorage.getItem(""));
     let current_movie = localStorage.getItem("edit_dbid");
     fetch(`https://dramaholic.herokuapp.com/api/movies/${current_movie}`)
     .then(response => response.json())
@@ -259,7 +182,7 @@
         document.querySelector("#episodes").value = data.episodes
         document.querySelector("#country").value = data.country
         document.querySelector("#date").value = data.date
-        // document.querySelector("#actor").value = data.actor
+        // document.querySelector("#actors").value = data.actors
         document.querySelector("#director").value = data.director
         document.querySelector("#thumbnail").value = data.thumbnail
         let checked_genres = data.genres
@@ -302,15 +225,34 @@
         }
         document.getElementById("genres").value = selected
     }
+    
 
     add_film_form.onsubmit = async (e) => {
         document.getElementById("title").disabled = false
-        generalize_genres()
+        generalize_genres();
         e.preventDefault();
 
         let response = await fetch('https://dramaholic.herokuapp.com/api/movies/', {
         method: 'PUT',
-        body: new FormData(add_film_form)
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+            title: document.getElementById("title").value,
+            originalTitle: document.getElementById("originalTitle").value,
+            description: document.getElementById("description").value,
+            genres: [document.getElementById("genres").value],
+            href: document.getElementById("href").value,
+            thumbnail: document.getElementById("thumbnail").value,
+            duration: document.getElementById("duration").value,
+            episodes: document.getElementById("episodes").value,
+            rating: document.getElementById("rating").value,
+            adult: document.getElementById("adult").value,
+            date: document.getElementById("date").value,
+            adult: document.getElementById("adult").value,
+            country: document.getElementById("country").value,
+            director: [document.getElementById("director").value],
+            country: document.getElementById("country").value,
+            tags: [document.getElementById("tags").value]
+        })
         });
 
         let result = await response.json();
