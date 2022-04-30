@@ -303,6 +303,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>
       let current_user = localStorage.getItem('UserID')
+      current_user == null ? current_user = sessionStorage.getItem('UserID') : console.log(current_user)
       fetch(`https://dramaholic.herokuapp.com/api/customers/${current_user}`)
       .then((response) => response.json())
       .then((user) => {

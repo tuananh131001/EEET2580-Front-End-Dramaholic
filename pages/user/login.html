@@ -103,8 +103,6 @@
           username: emailValue,
           password: pass,
         });
-        console.log(dataToSend);
-        let dataReceived = [];
         fetch("https://dramaholic.herokuapp.com/api/customers/login", {
           method: "post",
           headers: { "Content-Type": "application/json" },
@@ -119,8 +117,15 @@
             }
           })
           .then((dataJson) => {
-            localStorage.setItem("isLogin", true);
-            localStorage.setItem("UserID", dataJson.id);
+            const checkMe = document.querySelector("#rememberMe");
+            if (checkMe.checked) {
+              localStorage.setItem("isLogin", true);
+              localStorage.setItem("UserID", dataJson.id);
+            } else {
+              sessionStorage.setItem("isLogin", true);
+              sessionStorage.setItem("UserID", dataJson.id);
+            }
+
             // if (x == "") {
             //   return false;
             // }
@@ -135,7 +140,6 @@
             console.log(err);
           });
 
-        localStorage.setItem("data", dataReceived);
       }
 
       function togglePassword() {
