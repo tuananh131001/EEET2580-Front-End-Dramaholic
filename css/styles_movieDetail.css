@@ -33,7 +33,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     gap: 1em;
-    width:min-content;
+    width:40vw;
 }
 .rating {
   display: flex;
@@ -294,4 +294,12 @@ button {
   overflow: hidden;
   font-size: .8rem;
   padding-bottom: 1vh;
+}
+@media screen and (max-width: 768px) {
+  .movie-info{
+      flex-direction: column;
+  }
+  .right-container{
+      width: 80%;
+  }
 }
