@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/pagination.css">
+    <link rel="stylesheet" href="/css/category.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -48,17 +48,11 @@
                 >
                   Tuan Anh
                 </p>
-                <p
-                  class="navigation-menu-profile-text"
-                  data-href="/ProfilesGate"
-                >
-                  Switch Profiles
-                </p>
               </div>
             </li>
             <li
               class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/YourAccount"
+              data-href="/pages/user/user_profile.html"
             >
               Account
             </li>
@@ -70,10 +64,9 @@
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="#" class="active">Home</a>
-            <a href="#">My List</a>
+            <a href="/index.html" class="active">Home</a>
+            <a href="/pages/movie/category.html">Category</a>
             <a href="/pages/movie/trending.html">Trending</a>
-            <a href="#">Series</a>
           </div>
           <a href="/pages/user/login.html"
             ><button class="sign-in-subBar">SIGN IN</button></a
@@ -81,14 +74,13 @@
         </div>
 
         <div class="image-container">
-          <a href="/index.html">
+          <a href="/index.html"
             ><img src="/assets/image/logo.png" alt="DramaHolic" class="logo"
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <li href="#" class="active">Home</li>
-          <li href="#">Series</li>
-          <li href="#">Films</li>
+          <a href="/index.html" ><li class="active">Home</li></a>
+          <a href="/pages/movie/category.html"><li>Category</li></a>
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
       </div>
@@ -125,7 +117,10 @@
 
   <body id="body">
     <section>
-      <div class="search-content"></div>
+      <div class="search-content">
+        <div class="pagination-search"></div>
+      </div>
+
       <div class="error-search-page hidden">
         <div class="content">
           <img src="/assets/image/cat-sleep.gif" alt="Empty content" />
@@ -136,6 +131,7 @@
         <div class="select-category">
           <label for="category">Category:</label>
           <select name="category" id="" class="category">
+            <option value="">All</option>
             <option value="Action & Adventure">Action & Adventure</option>
             <option value="Animation">Animation</option>
             <option value="Comedy">Comedy</option>
