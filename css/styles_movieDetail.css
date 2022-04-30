@@ -26,31 +26,27 @@ html, body {
     /* height: 100%; */
     padding: 30px;
 } 
-.a{
-    background: url("../assets/image_detail/background4.jpg") no-repeat center center scroll; 
+/* .a{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     opacity: 20%;
     background-attachment: fixed;
-    /* width: 100vw; */
-    /* height: 100%; */
+
     background-size: cover;
     background-position: top;
-}
-
-.b{
     background: url("../assets/image_detail/background4.jpg") no-repeat center center scroll; 
+} */
+
+/* .b{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;    
     background-attachment: fixed;
-    /* height: 100%; */
-    /* width: 100vw; */
-    /* height: 100%; */
     background-size: cover;
     background-position: top;
-} 
+    background: url("../assets/image_detail/background4.jpg") no-repeat center center scroll; 
+}  */
 
 
 .gutter {
@@ -106,6 +102,14 @@ html, body {
     margin-left: 10%;
     /* margin-top: 4vh; */
     /* z-index: 1; */
+}
+#movie_radio{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
+    /* width: 120px; */
+    
 }
 .star{
     margin-left: 2%;
@@ -217,7 +221,8 @@ html, body {
 
 .equipe{
     position: relative;
-    margin-top: 4vh; 
+    margin-top: 4vh;
+    /* margin-bottom: 10vh;  */
     /* display: inline; */
     margin-left: 10%;
     font-family: averta_pe_black;
