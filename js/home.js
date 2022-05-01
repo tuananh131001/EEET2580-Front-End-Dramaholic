@@ -2,12 +2,12 @@ const movieListElement = document.querySelector(".movie-list");
 
 const createMovieList = (title) => {
   let movieSection = document.createElement("div");
-  movieSection.classList.add("movie-section");
+  movieSection.className = "movie-section";
   movieListElement.appendChild(movieSection);
 
   // Title
   let sliderHeading = document.createElement("h2");
-  sliderHeading.classList.add("thumbTitle");
+  sliderHeading.className = "thumbTitle ";
   sliderHeading.textContent = title;
   movieSection.appendChild(sliderHeading);
 
@@ -34,7 +34,7 @@ const createElementsMovieCard = (x) => {
   col.className = "swiper-slide";
 
   let card = document.createElement("div");
-  card.className = "card";
+  card.className = "card skeleton";
   col.appendChild(card);
   // Image
   let img = document.createElement("img");
@@ -105,28 +105,31 @@ async function setSwiper() {
 }
 let movieArray = [
   "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
-  "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
-  "https://dramaholic.herokuapp.com/api/movies/search?genre=Action%20%26%20Adventure",
+  "https://dramaholic.herokuapp.com/api/movies?sort=date,desc",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Drama&sort=date,desc",
   "https://dramaholic.herokuapp.com/api/movies/search?genre=Animation",
+  "https://dramaholic.herokuapp.com/api/movies/search?country=ko&sort=date,desc",
 ];
 let movieListTitle = [
   "Highest Rating",
   "New Release",
-  "Action & Adventure Movie",
+  "Lastest Drama Movies",
   "Animation",
+  "Newest Korean Movie",
 ];
 const movieSliders = [];
 async function getAllMovie(i) {
-  const movieListElement = createMovieList(movieListTitle[i]);
   const response = await fetch(movieArray[i]);
   const json = await response.json();
   const embedded = await json.content;
+  const movieListElement = createMovieList(movieListTitle[i]);
   Promise.all(
     embedded.map((movie) => {
       const movieL = createElementsMovieCard(movie);
       movieListElement.appendChild(movieL);
     })
   );
+
   setSwiper();
 }
 async function getTrending() {
@@ -141,9 +144,10 @@ async function getTrending() {
   let scrollCount = 1;
   window.addEventListener("scroll", () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    console.log(scrollTop + clientHeight + " " + scrollHeight);
-    if (scrollTop + clientHeight >= scrollHeight -300 && scrollCount < 4) {
-      
+    if (
+      scrollTop + clientHeight >= scrollHeight - 400 &&
+      scrollCount < movieListTitle.length
+    ) {
       getAllMovie(scrollCount);
       scrollCount++;
     }
