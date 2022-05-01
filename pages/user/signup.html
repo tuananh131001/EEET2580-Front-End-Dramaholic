@@ -37,6 +37,8 @@
                   id="name"
                   name="name"
                   class="form-input"
+                  placeholder=" "
+
                   oninput="clearError(event)"
                   required
                 />
@@ -61,6 +63,8 @@
                   id="email"
                   name="email"
                   class="form-input"
+                  placeholder=" "
+
                   oninput="clearError(event)"
                   required
                 />
@@ -85,6 +89,8 @@
                   id="username"
                   name="username"
                   class="form-input"
+                  placeholder=" "
+
                   oninput="clearError(event)"
                   required
                 />
@@ -109,6 +115,8 @@
                   id="password"
                   name="password"
                   class="form-input"
+                  placeholder=" "
+
                   oninput="clearError(event)"
                   required
                 />
@@ -138,11 +146,13 @@
                   <img src="/assets/image/dob.png" alt="" />
                 </span>
                 <input
-                  type="date"
+                  type="text"
                   id="dob"
                   name="dob"
                   class="form-input"
                   placeholder=" "
+                  onfocus="(this.type='date')"
+                  onblur="(this.type='text')"
                   oninput="clearError(event)"
                   required
                 />
