@@ -1,6 +1,24 @@
 @use "../abstract/colors";
 @use "../utilities/mixins";
 
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-color: #1a1a1a;
+  }
+  25% {
+    background-color: #333;
+  }
+  50% {
+    background-color: #1a1a1a;
+  }
+  100% {
+    background-color: #1a1a1a;
+  }
+}
+
 .card {
   display: grid;
   line-height: 1.6;
