@@ -124,7 +124,11 @@ form {
 
 .form-input:valid~label,
 .form-input:focus~label {
-  display: none;
+  transform: translateY(-110%);
+  background-color: white;
+  padding: 0 5px;
+  font-weight: 450;
+  z-index: 1;
 }
 
 .form-input {
@@ -263,8 +267,10 @@ a:hover {
   }
 }
 .ui-message-container{
+  position: relative;
   background: #e87c03;
   color: #fff;
   padding: 1em;
   border-radius: 5px;
+  z-index: 999;
 }
