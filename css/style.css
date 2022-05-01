@@ -190,6 +190,14 @@ footer .social-links {
   color: #c0071d;
 }
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20, 20, 20, 0.5);
+  color: #fff !important;
+}
+
+/* Swipe */
 @media (min-width: 62em) {
   .card-title {
     position: relative;

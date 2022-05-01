@@ -84,6 +84,7 @@ async function setSwiper() {
     // Optional parameters
     spaceBetween: 5,
     slidesPerView: 2,
+    slidesPerGroup: 2,
     loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
@@ -96,7 +97,6 @@ async function setSwiper() {
     breakpoints: {
       // when window width is >= 640px
       640: {
-        
         slidesPerView: 5,
         slidesPerGroup: 5,
         freeMode: false,
