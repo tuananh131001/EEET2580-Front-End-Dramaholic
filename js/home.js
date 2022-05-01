@@ -63,7 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    sessionStorage.setItem("dbid", x.dbID);
+    localStorage.setItem("dbid", x.dbID);
     location.href = "/pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
@@ -72,7 +72,7 @@ const createElementsMovieCard = (x) => {
 };
 // Billboard
 function setdbID(x) {
-  sessionStorage.setItem("dbid", x);
+  localStorage.setItem("dbid", x);
   location.href = "/pages/movie/movie_detail.html";
 }
 
@@ -83,7 +83,7 @@ async function setSwiper() {
   const swiper = new Swiper(".swiper", {
     // Optional parameters
     spaceBetween: 5,
-    slidesPerView: 2,
+    slidesPerView: 1,
     loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
@@ -142,10 +142,20 @@ async function getTrending() {
   const loading = document.querySelector("#loading");
   loading.style.display = "none";
   let scrollCount = 1;
+  // media query to check
+  var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+  // matched or not
+  var matched = window.matchMedia(media_query).matches;
+  if (matched) {
+    for (let i = 1; i < totalPages; i++) {
+      await getAllMovie(i);
+    }
+  }
   window.addEventListener("scroll", () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    console.log(scrollTop, clientHeight, scrollHeight);
     if (
-      scrollTop + clientHeight >= scrollHeight - 400 &&
+      scrollTop + clientHeight >= scrollHeight &&
       scrollCount < movieListTitle.length
     ) {
       getAllMovie(scrollCount);
