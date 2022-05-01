@@ -38,7 +38,7 @@ const createElementsMovieCard = (x) => {
   col.appendChild(card);
   // Image
   let img = document.createElement("img");
-  img.className = "thumbTile__image";
+  img.className = "thumbTile__image skeleton";
   img.src = x.thumbnail;
   card.appendChild(img);
 
@@ -116,19 +116,18 @@ let movieListTitle = [
   "Animation",
 ];
 const movieSliders = [];
-async function getAllSlider() {
-  for (let i = 0; i < movieArray.length; i++) {
-    const movieListElement = createMovieList(movieListTitle[i]);
-    const response = await fetch(movieArray[i]);
-    const json = await response.json();
-    const embedded = await json.content;
-    Promise.all(
-      embedded.map((movie) => {
-        const movieL = createElementsMovieCard(movie);
-        movieListElement.appendChild(movieL);
-      })
-    );
-  }
+async function getAllMovie(i) {
+  const movieListElement = createMovieList(movieListTitle[i]);
+  const response = await fetch(movieArray[i]);
+  const json = await response.json();
+  const embedded = await json.content;
+  Promise.all(
+    embedded.map((movie) => {
+      const movieL = createElementsMovieCard(movie);
+      movieListElement.appendChild(movieL);
+    })
+  );
+  setSwiper();
 }
 async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
@@ -136,14 +135,19 @@ async function getTrending() {
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
 
-  let titleIndex = 0;
-
-  await getAllSlider();
+  await getAllMovie(0);
   const loading = document.querySelector("#loading");
   loading.style.display = "none";
-
-  setSwiper();
-  titleIndex++;
+  let scrollCount = 1;
+  window.addEventListener("scroll", () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    console.log(scrollTop + clientHeight + " " + scrollHeight);
+    if (scrollTop + clientHeight >= scrollHeight -300 && scrollCount < 4) {
+      
+      getAllMovie(scrollCount);
+      scrollCount++;
+    }
+  });
 }
 async function getBillboardVideo() {
   const movieBillboard = [99966, 76662, 2778, 1396];
