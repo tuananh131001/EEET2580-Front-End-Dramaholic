@@ -194,8 +194,10 @@
           body: data,
         })
           .then((resp) => {
-            if (resp.status == 201) alert("Success create account");
-            else return Promise.reject("Fail create account user");
+            if (resp.status == 201) {
+              alert("Success create account");
+              window.location.href = "/pages/user/login.html";
+            } else return Promise.reject("Fail create account user");
           })
           .catch((error) => alert(error));
       };
@@ -213,7 +215,7 @@
           name: nameValue,
           password: passValue,
           dob: dobValue,
-          email: emailValue
+          email: emailValue,
         });
         return data;
       };
