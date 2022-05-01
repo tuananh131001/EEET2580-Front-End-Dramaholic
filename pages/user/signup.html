@@ -27,86 +27,133 @@
           </div>
           <form action="" class="form" id="form">
             <!-- Name -->
-            <div class="form-group">
-              <span class="icon">
-                <img src="/assets/image/nametag.png" alt="" />
-              </span>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="form-input"
-                required
-              />
-              <label for="name">Your name</label>
+            <div class="formElement name">
+              <div class="form-group">
+                <span class="icon">
+                  <img src="/assets/image/nametag.png" alt="" />
+                </span>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  oninput="clearError(event)"
+                  required
+                />
+                <label for="name">Your name</label>
+              </div>
+              <div class="ui-message-container hidden">
+                <div class="ui-message-icon"></div>
+                <div class="ui-message-contents">
+                  <b>Incorrect password.</b> Please try again
+                </div>
+              </div>
             </div>
+
             <!-- Email -->
-            <div class="form-group">
-              <span class="icon">
-                <img src="/assets/image/at_sign.png" alt="" />
-              </span>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                class="form-input"
-                required
-              />
-              <label for="email">Email address</label>
+            <div class="formElement email">
+              <div class="form-group">
+                <span class="icon">
+                  <img src="/assets/image/at_sign.png" alt="" />
+                </span>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  oninput="clearError(event)"
+                  required
+                />
+                <label for="email">Email address</label>
+              </div>
+              <div class="ui-message-container hidden">
+                <div class="ui-message-icon"></div>
+                <div class="ui-message-contents">
+                  <b>Incorrect password.</b> Please try again
+                </div>
+              </div>
             </div>
+
             <!-- Username -->
-            <div class="form-group">
-              <span class="icon">
-                <img src="/assets/image/user.png" alt="" />
-              </span>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                class="form-input"
-                required
-              />
-              <label for="username">Username</label>
+            <div class="formElement username">
+              <div class="form-group">
+                <span class="icon">
+                  <img src="/assets/image/user.png" alt="" />
+                </span>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  class="form-input"
+                  oninput="clearError(event)"
+                  required
+                />
+                <label for="username">Username</label>
+              </div>
+              <div class="ui-message-container hidden">
+                <div class="ui-message-icon"></div>
+                <div class="ui-message-contents">
+                  <b>Incorrect password.</b> Please try again
+                </div>
+              </div>
             </div>
 
             <!-- Password -->
-            <div class="form-group">
-              <span class="icon">
-                <img src="/assets/image/password.png" alt="" />
-              </span>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="form-input"
-                required
-              />
-              <label for="password">Password</label>
-              <span onclick="togglePassword()" class="passShow">
-                <img
-                  src="/assets/image/eye.png"
-                  alt=""
-                  class="show"
-                  id="show"
-                  type="button"
+            <div class="formElement password">
+              <div class="form-group">
+                <span class="icon">
+                  <img src="/assets/image/password.png" alt="" />
+                </span>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-input"
+                  oninput="clearError(event)"
+                  required
                 />
-                <!-- <img src="assets\image\closed-eye.png" alt="" class="show" id="hide" type="button"> -->
-              </span>
+                <label for="password">Password</label>
+                <span onclick="togglePassword()" class="passShow">
+                  <img
+                    src="/assets/image/eye.png"
+                    alt=""
+                    class="show"
+                    id="show"
+                    type="button"
+                  />
+                </span>
+              </div>
+              <div class="ui-message-container hidden">
+                <div class="ui-message-icon"></div>
+                <div class="ui-message-contents">
+                  <b>Incorrect password.</b> Please try again
+                </div>
+              </div>
             </div>
+
             <!-- DOB -->
-            <div class="form-group">
-              <span class="icon">
-                <img src="/assets/image/dob.png" alt="" />
-              </span>
-              <input
-                type="date"
-                id="dob"
-                name="dob"
-                class="form-input"
-                placeholder=" "
-                required
-              />
-              <label for="dob">Date of birth</label>
+            <div class="formElement dob">
+              <div class="form-group">
+                <span class="icon">
+                  <img src="/assets/image/dob.png" alt="" />
+                </span>
+                <input
+                  type="date"
+                  id="dob"
+                  name="dob"
+                  class="form-input"
+                  placeholder=" "
+                  oninput="clearError(event)"
+                  required
+                />
+                <label for="dob">Date of birth</label>
+              </div>
+              <div class="ui-message-container hidden">
+                <div class="ui-message-icon"></div>
+                <div class="ui-message-contents">
+                  <b>Incorrect password.</b> Please try again
+                </div>
+              </div>
             </div>
 
             <div class="content-other">
@@ -173,17 +220,20 @@
               for (let i = 0; i < user.content.length; i++) {
                 //check for username already exist
                 if (user.content[i].username == usernameValue)
-                  reject("Enter new username");
+                  reject("Username existed");
               }
               //username is valid
               resolve();
             });
           })
           .then((resp) => {
-            //creae new account with the data
+            //create new account with the data
             add_user(data);
           })
-          .catch((rej) => alert(rej));
+          .catch((rej) => {
+            // send out message
+            sendError(rej, "username");
+          });
       });
 
       //create account function
@@ -219,6 +269,42 @@
         });
         return data;
       };
+
+      function sendError(message, inputField) {
+        var input = document.getElementById(inputField);
+        var parent = input;
+        var form_group;
+        while (!parent.classList.contains("formElement")) {
+          parent = parent.parentElement;
+          if (parent.classList.contains("form-group")) form_group = parent;
+        }
+        var message_container = parent.querySelector(".ui-message-container");
+        if (message_container) {
+          message_container.classList.remove("hidden");
+          form_group.classList.add("invalid");
+          var message_content = message_container.querySelector(
+            ".ui-message-contents"
+          );
+          if (message_content) {
+            message_content.innerText = message;
+          }
+        }
+      }
+
+      function clearError(event) {
+        var form_group = event.target.parentElement;
+        var parent = form_group;
+        while (!parent.classList.contains("formElement")) {
+          parent = parent.parentElement;
+        }
+        if (form_group && form_group.classList.contains("invalid")) {
+          var message_container = parent.querySelector(".ui-message-container");
+          if (message_container) {
+            message_container.classList.add("hidden");
+            form_group.classList.remove("invalid");
+          }
+        }
+      }
     </script>
   </body>
 </html>

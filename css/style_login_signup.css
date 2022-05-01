@@ -8,8 +8,8 @@
 html {
   font-size: 62.5%;
 }
-.hidden{
-  display:none;
+.hidden {
+  display: none;
 }
 
 .body {
@@ -20,7 +20,7 @@ html {
   background-color: white;
 }
 
-.login-page{
+.login-page {
   flex-direction: row-reverse;
 }
 
@@ -73,7 +73,6 @@ html {
   font-size: 2.8rem;
 }
 
-
 .form-content {
   margin: auto;
   margin-top: 0;
@@ -91,7 +90,7 @@ form {
 }
 
 .signup-form .content-main form {
-  gap: 1em;
+  gap: 0.5em;
 }
 
 .form-group {
@@ -101,9 +100,13 @@ form {
 
   border-width: 3px;
   border-style: solid;
-  border-color: #C2D1D4;
+  border-color: #c2d1d4;
   display: flex;
   align-items: center;
+}
+
+.invalid {
+  border-color: #e87c03;
 }
 
 .icon img {
@@ -122,9 +125,14 @@ form {
   transition: 0.2s;
 }
 
-.form-input:valid~label,
-.form-input:focus~label {
-  display: none;
+.form-input:valid ~ label,
+.form-input:focus ~ label {
+  font-size: 1.5em;
+  transform: translateY(-120%);
+  background-color: white;
+  padding: 0 5px;
+  font-weight: 450;
+  z-index: 1;
 }
 
 .form-input {
@@ -140,15 +148,14 @@ form {
   background-color: none;
 }
 
-.form-input[type=date]{
-  padding-right: .5rem;
+.form-input[type="date"] {
+  padding-right: 0.5rem;
   color: white;
 }
 
-input[type=date]:valid {
+input[type="date"]:valid {
   color: black;
 }
-
 
 .show {
   width: 2rem;
@@ -163,14 +170,13 @@ input[type=date]:valid {
   display: none;
 }
 
-.form-input:focus~.passShow,
-.form-input:valid~.passShow {
+.form-input:focus ~ .passShow,
+.form-input:valid ~ .passShow {
   display: block;
   font-size: 0.9em;
   border-radius: 5px;
   border-style: none;
 }
-
 
 .form-submit {
   color: white;
@@ -194,8 +200,8 @@ input[type=date]:valid {
   align-items: center;
 }
 
-.signup-form .content-other{
-  padding: .2em 0;
+.signup-form .content-other {
+  padding: 0.2em 0;
 }
 
 .login-rememberMe,
@@ -213,11 +219,11 @@ input[type=date]:valid {
 }
 
 .agreement a {
-  color: #07B464;
+  color: #07b464;
   text-decoration: none;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   width: 18px;
   height: 18px;
 }
@@ -230,13 +236,13 @@ input[type=checkbox] {
 }
 
 .footer a {
-  color: #07B464;
+  color: #07b464;
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 400;
 }
 
-.login-page .footer a{
+.login-page .footer a {
   color: #2c5282;
 }
 
@@ -244,8 +250,7 @@ a:hover {
   text-decoration: underline;
 }
 
-
-@media screen and (max-width:900px) {
+@media screen and (max-width: 900px) {
   .imgBox {
     display: none;
   }
@@ -257,14 +262,21 @@ a:hover {
   }
 }
 
-@media  screen and (max-width:350px) {
+@media screen and (max-width: 350px) {
   html {
     font-size: 2.5vw;
   }
 }
-.ui-message-container{
+
+.ui-message-container {
+  position: relative;
   background: #e87c03;
   color: #fff;
   padding: 1em;
   border-radius: 5px;
+  z-index: 999;
+}
+
+.formElement .ui-message-container {
+  margin-top: 0.3em;
 }
