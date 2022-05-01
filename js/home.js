@@ -83,7 +83,8 @@ async function setSwiper() {
   const swiper = new Swiper(".swiper", {
     // Optional parameters
     spaceBetween: 5,
-    slidesPerView: 1,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
     loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
@@ -99,6 +100,7 @@ async function setSwiper() {
         slidesPerView: 5,
         slidesPerGroup: 5,
         freeMode: false,
+
       },
     },
   });
@@ -147,7 +149,7 @@ async function getTrending() {
   // matched or not
   var matched = window.matchMedia(media_query).matches;
   if (matched) {
-    for (let i = 1; i < totalPages; i++) {
+    for (let i = 1; i < movieListTitle.length; i++) {
       await getAllMovie(i);
     }
   }
