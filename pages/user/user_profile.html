@@ -304,7 +304,7 @@
     <script>
       let current_user = localStorage.getItem('UserID')
 
-      current_user === null ? current_user = sessionStorage.getItem('UserID') : alert("You are not logged in");
+      current_user === null ? current_user = sessionStorage.getItem('UserID') : null;
       fetch(`https://dramaholic.herokuapp.com/api/customers/${current_user}`)
       .then((response) => response.json())
       .then((user) => {
