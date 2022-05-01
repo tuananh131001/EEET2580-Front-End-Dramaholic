@@ -33,7 +33,7 @@ function displayMovieList() {
   let current_btn = document.querySelector(".pagenumbers button.active");
   current_btn.classList.remove("active");
 
-  button.classList.add("active");
+
 }
 function createDivMovie(x) {
   let wrapper = document.createElement("div");
@@ -64,6 +64,7 @@ function createDivMovie(x) {
         method: "DELETE",
       }
     );
+    console.log(x.dbId)
     displayMovieList()
   };
 
@@ -88,6 +89,7 @@ function PaginationButton(page, items) {
   button.addEventListener("click", function () {
     current_page = page;
     displayMovieList()
+    button.classList.add("active");
   });
 
   return button;
