@@ -103,7 +103,7 @@ footer {
     padding: 0 0.5rem;
 } 
 
-::placeholder {color: rgb(204, 202, 202);}
+::placeholder, #no_country_option {color: rgb(204, 202, 202);}
 
 .input_title {
     border: none;
@@ -139,7 +139,7 @@ input[type="checkbox"] {
     height: 1rem;
 }
 
-label {
+label, th {
     font-size: 0.95rem;
     font-weight: 500;
 }
@@ -197,7 +197,7 @@ label {
     gap: 1rem;
 }
 
-
+.require_symbol {color: #c1071e;}
 @media screen and (max-width: 55em) {
     body {min-width: min-content;}
 
