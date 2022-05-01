@@ -47,17 +47,11 @@
                 >
                   Tuan Anh
                 </p>
-                <p
-                  class="navigation-menu-profile-text"
-                  data-href="/ProfilesGate"
-                >
-                  Switch Profiles
-                </p>
               </div>
             </li>
             <li
               class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/YourAccount"
+              data-href="/pages/user/user_profile.html"
             >
               Account
             </li>
@@ -69,10 +63,9 @@
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="#" class="active">Home</a>
-            <a href="#">My List</a>
+            <a href="/index.html" class="active">Home</a>
+            <a href="/pages/movie/category.html">Category</a>
             <a href="/pages/movie/trending.html">Trending</a>
-            <a href="#">Series</a>
           </div>
           <a href="/pages/user/login.html"
             ><button class="sign-in-subBar">SIGN IN</button></a
@@ -80,14 +73,13 @@
         </div>
 
         <div class="image-container">
-          <a href="javascript:window.location.reload(true)"
+          <a href="/index.html"
             ><img src="/assets/image/logo.png" alt="DramaHolic" class="logo"
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <li href="#" class="active">Home</li>
-          <li href="#">Series</li>
-          <li href="#">Films</li>
+          <a href="/index.html" ><li class="active">Home</li></a>
+          <a href="/pages/movie/category.html"><li>Category</li></a>
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
       </div>
@@ -125,6 +117,7 @@
   <body id="body">
     <section>
       <div class="search-content"></div>
+      <div class="pagination-search"></div>
       <div class="error-search-page hidden">
         <div class="content">
           <img src="/assets/image/cat-sleep.gif" alt="Empty content" />

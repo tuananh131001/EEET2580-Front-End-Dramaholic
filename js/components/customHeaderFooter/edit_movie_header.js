@@ -31,7 +31,7 @@ document.querySelector("header").innerHTML = `
         >
         </div>
 
-        <div class="page_title_nav" id="page_title_nav">ADD NEW MOVIE</div>
+        <div class="page_title_nav" id="page_title_nav">EDIT MOVIE</div>
     </div>
 
    

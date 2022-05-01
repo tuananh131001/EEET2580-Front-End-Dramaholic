@@ -26,6 +26,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Account</title>
     <style>
+      .input_box {
+          width: unset;
+      } 
+
+      nav .logo {width: 150px; margin-top: 0rem;}
+
+      nav {
+        height: 3.5rem;
+      }
 
       .modal label {
         font-weight: normal;
@@ -49,12 +58,7 @@
         color: rgb(212, 14, 38);
         padding-top: 0.7rem;
       }
-
-      .avatar {
-        width: 170px;
-        height: 170px;
-      }
-
+      
       .btn {
         white-space: nowrap
       }
@@ -63,12 +67,13 @@
         text-decoration: none;
       }
 
-      .d-flex.page_header, .d-flex.left_col {gap: 1.5rem} 
+      .d-flex.page_header {gap: 1.5rem} 
       .d-flex.right_col, .d-flex.left_info{gap: 0.7rem;}
+      .d-flex.left_col {gap: 3rem;}
       #sign_out_button {text-decoration: none;}
       .left_info > * {
         display: flex;
-        gap: 1rem;
+        gap: 0.7rem;
         white-space: nowrap;
       }
 
@@ -86,6 +91,32 @@
       .info {
         color: gray;
       }
+
+      .general_content {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      
+      @media screen and (max-width: 55em) {
+
+          /* nav .logo {width: 100px;} */
+
+          .body_region{ width: 90%;}
+
+          .general_content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+          }
+          
+          .d-flex.left_col {
+            gap: 2rem;
+          }
+
+          .btn.edit {width: 12rem;}
+          .modal{width: 90%; justify-self: center;}
+      }
     </style>
 
   </head>
@@ -100,15 +131,13 @@
         
         <div class="d-flex flex-column page_content gap-5">
           <div class="section_title">General infomation</div>
-          <div class="d-flex justify-content-between">
+          <div class="general_content">
             <div class="d-flex left_col" >
-              <div class="d-flex flex-column gap-3">
-                <i class="fa-solid fa-circle-user avatar" style="font-size: 150px;"></i>
+                <i class="fa-solid fa-circle-user avatar" style="font-size: 140px;"></i>
                 <!-- <img class="avatar" id="user_avt" src="" alt="User Avatar"> -->
                 <!-- <button type="button" class="btn btn-danger btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#modal_change_avt">
                   Change avatar
                 </button> -->
-              </div>
               <div class="d-flex flex-column left_info">
                 <div>
                   <label for="user_username">Username:</label>
@@ -139,10 +168,10 @@
             </div>
 
             <div class="d-flex flex-column right_col" >
-                <button type="button" class="btn btn-outline-dark btn-sm shadow-none text_icon" data-bs-toggle="modal" data-bs-target="#modal_edit_info" id="edit_info_btn">
+                <button type="button" class="edit btn btn-outline-dark btn-sm shadow-none text_icon" data-bs-toggle="modal" data-bs-target="#modal_edit_info" id="edit_info_btn">
                   <i class="fas fa-edit" style="font-size: 20px;" ></i>Edit information
                 </button>
-                <button type="button" class="btn btn-outline-dark btn-sm text_icon" data-bs-toggle="modal" data-bs-target="#modal_change_pw">
+                <button type="button" class="edit btn btn-outline-dark btn-sm text_icon" data-bs-toggle="modal" data-bs-target="#modal_change_pw">
                   <i class="fas fa-lock" style="font-size: 20px;"></i>Change password
                 </button>
             </div>
@@ -265,30 +294,24 @@
         <!-- END MODAL CHANGE AVATAR -->
 
     </main>
-    
-    <!-- <footer></footer> -->
 
-    <!-- <script type="module" src="../../js/addHeaderFooter.js"></script> -->
-    <script type="module" src="../../js/components/customHeaderFooter/add_movie_header.js"></script>
-    <!-- <script type="module" src="../../js/components/customHeaderFooter/addCustomHeader.js"></script> -->
+    <script type="module" src="../../js/components/customHeaderFooter/user_profile_header.js"></script>
     <!-- <script type="module" src="../../js/components/customHeaderFooter/addFooter.js"></script> -->
-    <!-- <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script> -->
-    <!-- <script type="module" src="../../js/user_profile.js"></script> -->
+    <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>
       let current_user = localStorage.getItem('UserID')
+
+      current_user === null ? current_user = sessionStorage.getItem('UserID') : null;
       fetch(`https://dramaholic.herokuapp.com/api/customers/${current_user}`)
       .then((response) => response.json())
       .then((user) => {
-          // document.querySelector("#membership").innerHTML = 'Member since ' + user.membership
-          // document.querySelector("#user_avt").src = localStorage.getItem('avt')
           document.querySelector("#user_username").innerHTML = user.username
           document.querySelector("#user_name").innerHTML = user.name
           document.querySelector("#user_email").innerHTML = user.email
           document.querySelector("#user_password").value = user.password
-          // document.querySelector("#user_phone").innerHTML = user.phone
           document.querySelector("#user_dob").innerHTML = user.dob
       })
       .catch((error) => {
@@ -336,7 +359,7 @@
       function formatDate(s_date) {
         let d_date = new Date(s_date)
         let d = d_date.getDate().toString()
-        let m = d_date.getMonth().toString()
+        let m = (d_date.getMonth()+1).toString()
         m = m.length > 1 ? m : "0".concat(m)
         let y = d_date.getFullYear().toString()
         return (d+"-"+m+"-"+y)
@@ -344,30 +367,38 @@
 
       edit_info_form.onsubmit = async (e) => {
         e.preventDefault();
-        let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
-            method: 'PUT',
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify(
-              {
-                name:document.querySelector("#modal_name").value,
-                email:document.querySelector("#modal_email").value,
-                dob:formatDate(document.querySelector("#modal_dob").value)
-              }
-            )
-        });
-
-        let result = await response.json(); 
-        alert(result.message);
+        try {
+          let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
+              method: 'PUT',
+              headers:{"Content-Type":"application/json"},
+              body: JSON.stringify(
+                {
+                  name:document.querySelector("#modal_name").value,
+                  email:document.querySelector("#modal_email").value,
+                  dob:formatDate(document.querySelector("#modal_dob").value)
+                  // dob:document.querySelector("#modal_dob").value
+                }
+              )
+          })
+          .then(response => {
+            if(response.status==200) {
+              alert("updated")
+              location.reload();
+            }
+            else {
+              alert("sorry, update failed")
+            }
+          })
+        } catch(error) {console.log(error)}
       };
 
       // document.querySelector("#save_pw").onclick = async function() {
-      //   // e.preventDefault();
-
       //   if (valid_pw()) {
       //     let data = {
       //         password:document.querySelector("#new_pw_modal").value
       //     }
       //     console.log(JSON.stringify(data))
+      //   e.preventDefault();
 
       //     let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
       //       method: "PUT",
@@ -396,82 +427,63 @@
       //   } 
       // };
 
-
-      //-----------
-      // change_pw_form.onsubmit = function (e) {
-      //   e.preventDefault();
-
-      //   if (!valid_pw()) {
-      //     console.log("wrong pw")
-      //     return;
-      //   }
-
-      //   // if (valid_pw()) {
-      //   let data = {
-      //       password:document.querySelector("#new_pw_modal").value
-      //   }
-      //   console.log(JSON.stringify(data))
-
-      //   edit_info_fetch(data)
-
-      //     // let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
-      //     // method: "PUT",
-      //     // headers:{"Content-Type":"application/json"},
-      //     // body: JSON.stringify(data)
-      //     // });
-
-      //     // let result = await response.json();
-      //     // alert(result.message);
-      //   // } 
-      // };
-
-      // async function edit_info_fetch(data) {
-      //   try {
-      //     let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
-      //     method: "PUT",
-      //     headers:{"Content-Type":"application/json"},
-      //     body: JSON.stringify(data)
-      //     });
-
-      //     let result = await response.json();
-      //     alert(result.message);
-            
-      //   } catch (error) {
-      //     console.log('Failed to fetch: ', error);
-      //   }
-      // }
-
-      // change_pw_form.onsubmit = () => {
-      //   return valid_pw(); 
-      // }
-
-      // document.querySelector("#save_pw").onclick = () => {
-      //   if (valid_pw()) {
-      //   console.log("huhu")
-
-      //     let data = {
-      //       password:document.querySelector("#new_pw_modal").value
-      //     }
-      //     console.log(JSON.stringify(data))
-      //     fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
-      //     method: "PUT",
-      //     headers:{"Content-Type":"application/json"},
-      //     body: JSON.stringify(data)
-      //   })
-      //   .then(function(res) {
-      // var response = res;
-      // console.log(response);
-      // // return response.json();
-      //   })
-      //   .catch((error) => {
-      //     console.log('Failed to fetch: ', error);
-      //   });
-      //   return true;
-      //   }
-      //   else return false;
-      // }
+      async function put() {
+        try {
+          let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
+              method: 'PUT',
+              headers:{"Content-Type":"application/json"},
+              body: JSON.stringify({password:document.querySelector("#new_pw_modal").value})
+          })
+          .then(response => {
+            if(response.status==200) {
+              alert("updated")
+              location.reload();
+            }
+            else {
+              alert("sorry, update failed")
+            }
+          })
+        } catch(error) {console.log(error)}
+      }
 
 
+      // change_pw_form.onsubmit = (e) => {
+      document.querySelector("#save_pw").onclick = async (e) => {
+        await valid_pw()
+        .then(function(state) {
+          console.log("hmm",state === true)
+          if(state === true) {
+            put()
+          }
+          return
+        })
+      }
+      // 
+      
+        // function valid_pw() {
+        //   var current_pw = document.querySelector("#current_pw_modal");
+        //   var new_pw = document.querySelector("#new_pw_modal");
+        //   var confirm_pw = document.querySelector("#confirm_pw_modal");
+        //   var pw_api = document.querySelector("#user_password").value
+        //   console.log(current_pw.value, pw_api, current_pw.value == pw_api)
+
+        //   if (current_pw.value != pw_api) {
+        //     current_pw.setCustomValidity("Wrong password");
+        //     return  false;
+        //   }
+        //   current_pw.setCustomValidity("");
+        //   if (new_pw.value.length < 5 || new_pw.value.length > 15 || new_pw.value == pw_api) {
+        //     new_pw.setCustomValidity("New password must have 5-15 characters and different from current password");
+        //     return  false;
+        //   }
+        //   new_pw.setCustomValidity("");
+        //   if (new_pw.value != confirm_pw.value) {
+        //     confirm_pw.setCustomValidity("Confirm password doesn't match");
+        //     return false;
+        //   }
+        //   confirm_pw.setCustomValidity("");
+        //   return true;
+        // }
       
 
       // document.querySelector("#save_pw").onclick = () => {
@@ -526,59 +538,61 @@
           return Promise.resolve(true);
         }
 
-        async function check_put(state) {
-          console.log(state)
-          if (state == true) {
-          console.log(state)
+      //   async function check_put(state) {
+      //     console.log(state)
+      //     if (state == true) {
+      //     console.log(state)
 
-            return await put_pw().then(print_msg)
-          }
-          else {
-          console.log(state)
+      //       return await put_pw().then(print_msg)
+      //     }
+      //     else {
+      //     console.log(state)
 
-            return await print_msg_fail()
-          }
-        }
+      //       return await print_msg_fail()
+      //     }
+      //   }
 
-        async function put_pw() {
-          let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
-              method: "PUT",
-              headers:{"Content-Type":"application/json"},
-              body: JSON.stringify(
-                {
-                  password:document.querySelector("#new_pw_modal").value
-                }
-              )
-              })
-              .catch((error) => {
-                console.log('Failed to fetch: ', error);
-              });
-          let result = await response.json();
-          console.log(result.message)
-          return Promise.resolve(result.message)
-        }
+      //   async function put_pw() {
+      //     let response = await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+      //         method: "PUT",
+      //         headers:{"Content-Type":"application/json"},
+      //         body: JSON.stringify(
+      //           {
+      //             password:document.querySelector("#new_pw_modal").value
+      //           }
+      //         )
+      //         })
+      //         .catch((error) => {
+      //           console.log('Failed to fetch: ', error);
+      //         });
+      //     let result = await response.json();
+      //     console.log(result.message)
+      //     return Promise.resolve(result.message)
+      //   }
 
-        function print_msg(message) {
-          console.log("after put:",message)
-          return Promise.resolve()
-        }
+      //   function print_msg(message) {
+      //     console.log("after put:",message)
+      //     return Promise.resolve()
+      //   }
 
-        function print_msg_fail() {
-          console.log("pw invalid")
-          return Promise.resolve()
-        }
+      //   function print_msg_fail() {
+      //     console.log("pw invalid")
+      //     return Promise.resolve()
+      //   }
 
-      // async function valid_pw() {
-      document.querySelector("#save_pw").addEventListener("click", async function(e) {
-        let valid_response = await valid_pw()
-        let final_result = await valid_response
-        await valid_pw().then(check_put).then(function() {
-          console.log("done")
-        })
-        .catch((error) => {
-                console.log('Failed huhu: ', error);
-              });
-            })
+      // // async function valid_pw() {
+      // document.querySelector("#save_pw").addEventListener("click", async function(e) {
+      //   let valid_response = await valid_pw()
+      //   let final_result = await valid_response
+      //   await valid_pw().then(check_put).then(function() {
+      //     console.log("done")
+      //   })
+      //   .catch((error) => {
+      //           console.log('Failed huhu: ', error);
+      //         });
+      //       })
+
+
         // e.preventDefault()
       //   valid_pw().then(put_pw)
       //   let valid_state = await valid_pw();

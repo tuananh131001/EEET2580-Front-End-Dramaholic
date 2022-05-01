@@ -7,6 +7,7 @@
 @use "./layout/billboard";
 @use "./layout/search";
 @use "./components/accountMenu";
+@use "./components/pagination";
 
 *,
 *::before,
@@ -15,19 +16,6 @@
   padding: 0;
 
   box-sizing: border-box;
-}
-@font-face {
-  font-family: 'averta_pe_black';
-  src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
-  font-style: normal;
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: 'averta_pe';
-  src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
-  font-style: normal;
-  font-weight: 100;
 }
 .active{
   font-weight: 700 !important;
@@ -93,3 +81,4 @@ body {
   background-clip: content-box;
   background-color: colors.$red;
 }
+
