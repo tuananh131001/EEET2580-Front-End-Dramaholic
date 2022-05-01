@@ -100,7 +100,6 @@ async function setSwiper() {
         slidesPerView: 5,
         slidesPerGroup: 5,
         freeMode: false,
-
       },
     },
   });
@@ -157,7 +156,7 @@ async function getTrending() {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     console.log(scrollTop, clientHeight, scrollHeight);
     if (
-      scrollTop + clientHeight >= scrollHeight &&
+      scrollTop + clientHeight >= scrollHeight - 400 &&
       scrollCount < movieListTitle.length
     ) {
       getAllMovie(scrollCount);
