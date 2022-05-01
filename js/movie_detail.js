@@ -95,7 +95,7 @@ function stop_movie() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  userID == null ? (userID = JSON.parse(sessionStorage.getItem("dbid"))) : null;
+  userID == null ? (userID = JSON.parse(sessionStorage.getItem("userID"))) : null;
   let movieID = JSON.parse(localStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 

@@ -1,6 +1,24 @@
 @use "../abstract/colors";
 @use "../utilities/mixins";
 
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-color: #1a1a1a;
+  }
+  25% {
+    background-color: #333;
+  }
+  50% {
+    background-color: #1a1a1a;
+  }
+  100% {
+    background-color: #1a1a1a;
+  }
+}
+
 .card {
   display: grid;
   line-height: 1.6;
@@ -93,6 +111,13 @@
     color: colors.$red;
   }
 }
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.1);
+  background-color: rgba(20, 20, 20, 0.5);
+  color: #fff !important;
+}
+/* Swipe */
 @media (min-width: 62em) {
   .card-title {
     position: relative;
