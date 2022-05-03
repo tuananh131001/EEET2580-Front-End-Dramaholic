@@ -113,6 +113,8 @@ async function getTrending() {
 
   const movieListElementKo = createMovieList("Top 10 in Korea");
   const movieListElementEn = createMovieList("Top 10 in USA");
+  const movieListElementEs = createMovieList("Top 10 in Latin");
+
 
   // Promise.all(
   //   pageArray.map(async (url) => {
@@ -126,8 +128,9 @@ async function getTrending() {
     .then(json => {
       let countTopKo = 0;
       let countTopUS = 0;
+      let countTopEs = 0;
       let arraySort = json.content.sort((a, b) => (parseFloat(a.rating) < parseFloat(b.rating)) ? 1 : -1);
-      for(let i = 0; (i < arraySort.length) || (countTopKo < 10 && countTopUS < 10);i++){
+      for(let i = 0; (i < arraySort.length) || (countTopKo < 10 && countTopUS < 10 && countTopEs < 10);i++){
         if (arraySort[i].country == "ko" && countTopKo < 10) {
           const movieL = createElementsMovieCard(arraySort[i]);
           countTopKo ++;
@@ -137,6 +140,11 @@ async function getTrending() {
           const movieL = createElementsMovieCard(arraySort[i]);
           countTopUS ++;
           movieListElementEn.appendChild(movieL);
+        }
+        else if (arraySort[i].country == "es" && countTopEs < 10) {
+          const movieL = createElementsMovieCard(arraySort[i]);
+          countTopEs ++;
+          movieListElementEs.appendChild(movieL);
         }
       }
       console.log(arraySort);

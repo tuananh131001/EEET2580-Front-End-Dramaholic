@@ -2,12 +2,12 @@ const movieListElement = document.querySelector(".movie-list");
 
 const createMovieList = (title) => {
   let movieSection = document.createElement("div");
-  movieSection.classList.add("movie-section");
+  movieSection.className = "movie-section";
   movieListElement.appendChild(movieSection);
 
   // Title
   let sliderHeading = document.createElement("h2");
-  sliderHeading.classList.add("thumbTitle");
+  sliderHeading.className = "thumbTitle ";
   sliderHeading.textContent = title;
   movieSection.appendChild(sliderHeading);
 
@@ -34,11 +34,11 @@ const createElementsMovieCard = (x) => {
   col.className = "swiper-slide";
 
   let card = document.createElement("div");
-  card.className = "card";
+  card.className = "card skeleton";
   col.appendChild(card);
   // Image
   let img = document.createElement("img");
-  img.className = "thumbTile__image";
+  img.className = "thumbTile__image skeleton";
   img.src = x.thumbnail;
   card.appendChild(img);
 
@@ -64,16 +64,16 @@ const createElementsMovieCard = (x) => {
   button.className = "button";
   button.onclick = function () {
     localStorage.setItem("dbid", x.dbID);
-    location.href = "pages/movie/movie_detail.html";
+    location.href = "/pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
 
   return col;
 };
 // Billboard
-function setdbID() {
-  localStorage.setItem("dbid", 99966);
-  location.href = "pages/movie/movie_detail.html";
+function setdbID(x) {
+  localStorage.setItem("dbid", x);
+  location.href = "/pages/movie/movie_detail.html";
 }
 
 const movieList = [];
@@ -84,6 +84,7 @@ async function setSwiper() {
     // Optional parameters
     spaceBetween: 5,
     slidesPerView: 2,
+    slidesPerGroup: 2,
     loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
@@ -103,45 +104,72 @@ async function setSwiper() {
     },
   });
 }
+let movieArray = [
+  "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
+  "https://dramaholic.herokuapp.com/api/movies?sort=date,desc",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Drama&sort=date,desc",
+  "https://dramaholic.herokuapp.com/api/movies/search?genre=Animation",
+  "https://dramaholic.herokuapp.com/api/movies/search?country=ko&sort=date,desc",
+];
+let movieListTitle = [
+  "Highest Rating",
+  "New Release",
+  "Lastest Drama Movies",
+  "Animation",
+  "Newest Korean Movie",
+];
+const movieSliders = [];
+async function getAllMovie(i) {
+  const response = await fetch(movieArray[i]);
+  const json = await response.json();
+  const embedded = await json.content;
+  const movieListElement = createMovieList(movieListTitle[i]);
+  Promise.all(
+    embedded.map((movie) => {
+      const movieL = createElementsMovieCard(movie);
+      movieListElement.appendChild(movieL);
+    })
+  );
 
+  setSwiper();
+}
 async function getTrending() {
   const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   const data = await reponse.json();
   const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-  let movieArray = [
-    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
-    "https://dramaholic.herokuapp.com/api/movies?sort=date,asc",
-    "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc"
-  ];
 
-  let titleIndex = 0;
-  let movieListTitle = ["Highest Rating", "New Release", "Movie"];
-  Promise.all(
-    movieArray.map(async (url) => {
-      // Get data
-      const reponse = await fetch(url);
-      const json = await reponse.json();
-      const embedded = await json.content;
-      const movieListElement = createMovieList(movieListTitle[titleIndex]);
-
-      // Get movie and put in container
-      const movies = embedded.forEach((movie) => {
-        const movieL = createElementsMovieCard(movie);
-        movieListElement.appendChild(movieL);
-      });
-      // Loading Screen
-      const loading = document.querySelector("#loading");
-      loading.style.display = "none";
-
-      setSwiper();
-      titleIndex++;
-    })
-  );
+  await getAllMovie(0);
+  const loading = document.querySelector("#loading");
+  loading.style.display = "none";
+  let scrollCount = 1;
+  // media query to check
+  var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+  // matched or not
+  var matched = window.matchMedia(media_query).matches;
+  if (matched) {
+    for (let i = 1; i < movieListTitle.length; i++) {
+      await getAllMovie(i);
+    }
+  }
+  window.addEventListener("scroll", () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    console.log(scrollTop, clientHeight, scrollHeight);
+    if (
+      scrollTop + clientHeight >= scrollHeight - 400 &&
+      scrollCount < movieListTitle.length
+    ) {
+      getAllMovie(scrollCount);
+      scrollCount++;
+    }
+  });
 }
 async function getBillboardVideo() {
-  // const random = Math.floor(Math.random() * movieArray.length);
-  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/99966");
+  const movieBillboard = [99966, 76662, 2778, 1396];
+  const random = Math.floor(Math.random() * movieBillboard.length);
+  const url = await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/" + movieBillboard[random]
+  );
   const movie = await url.json();
 
   const videoContainer = document.querySelector(".billboard-video");
@@ -160,6 +188,10 @@ async function getBillboardVideo() {
   billboardFilmName.innerHTML = movie.title;
   const description = document.querySelector(".billboard-description");
   description.innerHTML = movie.description;
+  const button = document.querySelector(".button-container");
+  button.innerHTML = `<button class="more-info" onclick="setdbID(${movieBillboard[random]})">
+  <span class="ti-info-alt"></span> MORE INFO
+</button>`;
 }
 
 var myNav = document.querySelector(".navbar");
