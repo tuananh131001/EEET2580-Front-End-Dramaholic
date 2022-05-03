@@ -38,13 +38,15 @@
                 <img src="/assets/image/user.png" alt="" />
               </span>
               <input
-                name="email"
+                name="username"
                 type="text"
-                id="email"
+                id="username"
                 class="form-input"
+                  placeholder=" "
+
                 required
               />
-              <label for="email">Username</label>
+              <label for="username">Username</label>
             </div>
             <div class="form-group">
               <span class="icon">
@@ -55,6 +57,8 @@
                 type="password"
                 id="password"
                 class="form-input"
+                  placeholder=" "
+
                 required
               />
               <label for="password">Password</label>
@@ -97,10 +101,10 @@
     <script>
       function handleSignIn(e) {
         e.preventDefault();
-        let emailValue = document.forms["myForm"]["email"].value;
+        let usernameValue = document.forms["myForm"]["username"].value;
         let pass = document.forms["myForm"]["password"].value;
         const dataToSend = JSON.stringify({
-          username: emailValue,
+          username: usernameValue,
           password: pass,
         });
         fetch("https://dramaholic.herokuapp.com/api/customers/login", {

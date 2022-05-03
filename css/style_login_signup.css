@@ -125,8 +125,9 @@ form {
   transition: 0.2s;
 }
 
-.form-input:valid ~ label,
-.form-input:focus ~ label {
+.form-input:valid~label,
+.form-input:focus~label,
+.form-input:not(:placeholder-shown)~label{
   font-size: 1.5em;
   transform: translateY(-120%);
   background-color: white;
