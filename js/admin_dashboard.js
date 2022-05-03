@@ -50,7 +50,7 @@ function createDivMovie(x) {
   editButton.classList.add("edit-button");
   editButton.innerText = "EDIT";
   editButton.onclick = function () {
-    localStorage.setItem("edit_dbid", x.dbID);
+    sessionStorage.setItem("edit_dbid", x.dbID);
     location.href = "./edit-movie.html";
   };
 
