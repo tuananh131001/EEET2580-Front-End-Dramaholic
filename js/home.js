@@ -151,18 +151,20 @@ async function getTrending() {
     for (let i = 1; i < movieListTitle.length; i++) {
       await getAllMovie(i);
     }
+  } else {
+    window.addEventListener("scroll", () => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      console.log(scrollTop, clientHeight, scrollHeight);
+      if (
+        scrollTop + clientHeight >= scrollHeight - 400 &&
+        scrollCount < movieListTitle.length
+      ) {
+        getAllMovie(scrollCount);
+        scrollCount++;
+      }
+    });
   }
-  window.addEventListener("scroll", () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    console.log(scrollTop, clientHeight, scrollHeight);
-    if (
-      scrollTop + clientHeight >= scrollHeight - 400 &&
-      scrollCount < movieListTitle.length
-    ) {
-      getAllMovie(scrollCount);
-      scrollCount++;
-    }
-  });
 }
 async function getBillboardVideo() {
   const movieBillboard = [99966, 76662, 2778, 1396];
