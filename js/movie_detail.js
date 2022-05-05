@@ -15,6 +15,7 @@ fetch(fetchingURL)
     let text = json.date;
     const json_year = text.split("-");
     let year = json_year[0];
+    let epsiodes = json.episodes;
     //
     film_title = json.title;
     let href_cut = json.href.split("https://www.youtube.com/watch?v=");
@@ -32,10 +33,10 @@ fetch(fetchingURL)
     document.querySelector("#movie_star").innerHTML = `${json.rating}/10`;
     for (let i = 0; i < json.genres.length; i++) {
       if (i == 0) {
-        document.querySelector("#movie_info").innerHTML += `${json.genres[i]}`;
+        document.querySelector("#movie_genre").innerHTML += `${json.genres[i]}`;
       } else {
         document.querySelector(
-          "#movie_info"
+          "#movie_genre"
         ).innerHTML += ` & ${json.genres[i]}`;
       }
     }
@@ -65,7 +66,7 @@ fetch(fetchingURL)
     let country = regionNames.of(json.country.toUpperCase());
     document.querySelector(
       "#movie_info"
-    ).innerHTML += ` . ${year} . ${country}`;
+    ).innerHTML += `. ${epsiodes} episodes . ${year} . ${country}`;
 
     document.querySelector(
       "#youtube_frame"
@@ -73,11 +74,17 @@ fetch(fetchingURL)
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>`;
-  });
+      
+      document.querySelector("#youtube_frame").width = "100px";
+      
+    });
 
 function play_movie() {
   document.getElementById("youtube_frame").style.visibility = "visible";
   closeVideo.style.display = "block";
+  document.getElementById("youtube_frame").style.animationName = "zoom-in";
+  document.getElementById("youtube_frame").style.animationDuration = "1s";
+  document.getElementById("full-screen").style.visibility = "visible";
 }
 function stop_movie() {
   if (document.getElementById("youtube_frame").style.visibility == "visible") {
@@ -86,8 +93,10 @@ function stop_movie() {
       '{"event":"command","func":"pauseVideo","args":""}',
       "*"
     );
-    document.getElementById("youtube_frame").style.visibility = "collapse";
     closeVideo.style.display = "none";
+    document.getElementById("youtube_frame").style.animationName = "zoom-out";
+    document.getElementById("youtube_frame").style.visibility = "collapse";
+    document.getElementById("full-screen").style.visibility = "collapse";
   }
 }
 // Watch Later
@@ -153,15 +162,11 @@ function onPlayerStateChange(e) {
 const responsive_rating = document.querySelector(".star");
 const responsive_star = document.querySelector("#movie_radio");
 function responsiveRating() {
-  if (window.outerWidth <= 375) {
+  if (window.innerWidth < 923) {
     responsive_star.style.visibility = "collapse";
     responsive_rating.style.marginLeft = "0";
     responsive_star.style.width = "0";
-  } else if (window.outerWidth < 780) {
-    responsive_star.style.visibility = "collapse";
-    responsive_rating.style.marginLeft = "0";
-    responsive_star.style.width = "0";
-  } else if (window.outerWidth >= 780) {
+  } else if (window.innerWidth >= 923) {
     responsive_star.style.visibility = "visible";
     responsive_rating.style.marginLeft = "2%";
     responsive_star.style.width = "130px";
