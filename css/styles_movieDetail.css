@@ -13,6 +13,15 @@ html {
 body {
   height: 100vh;
 }
+/* #full-screen{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  backdrop-filter: blur(15px);
+  z-index: 5;
+  visibility: collapse;
+} */
 #blur_frame {
   position: absolute;
   display: flex;
@@ -22,6 +31,15 @@ body {
   width: 100%;
   gap: 0.5em;
   z-index: 1;
+}
+.logo-container{
+  position: absolute;
+  width: 100%;
+  padding: 1.5% 1.5%;
+  z-index: 4;
+}
+.logo {
+  width: 12rem;
 }
 .movie-info {
   width: 100%;
@@ -78,7 +96,7 @@ body {
   width: 90%;
   height: 86%;
   overflow: hidden;
-  z-index: 4;
+  z-index: 6;
   visibility: collapse;
 }
 .youtube {
@@ -93,10 +111,18 @@ body {
   font-size: 0.8rem;
 }
 
+.genre{
+  font-style: italic;
+  color:#3498db;
+}
+
 #movie_radio {
   display: flex;
-  flex-direction: row;
-  margin-top: 2px;
+  
+  /* height: 19.33px; */
+  /* flex-direction: row; */
+  margin-top: 0px;
+  /* overflow: hidden; */
   /* width: 120px; */
 }
 
@@ -107,22 +133,20 @@ body {
   display: block;
   pointer-events: none;
   width: 13px;
+  align-items: center;
+  /* content: "\f005";
+  font-family: fontAwesome;
+  font-weight: 10;
+  font-size: 12px;
+  color: #1d1c1c; */
 }
+
 .rating label:before {
   content: "\f005";
   font-family: fontAwesome;
   font-weight: 10;
   display: block;
-  font-size: 12px;
-  /* color: #3498db; */
-  color: #1d1c1c;
-  /* bottom: 0; */
-}
-.rating label:after {
-  content: "\f005";
-  font-family: fontAwesome;
-  font-weight: 10;
-  display: block;
+  /* align-self: flex-start; */
   font-size: 12px;
   color: #3498db;
   /* color: #1d1c1c; */
@@ -130,14 +154,16 @@ body {
   /* bottom: 0; */
 }
 
-.rating input:checked ~ label:after {
-  opacity: 0;
+.rating input:checked ~ label:before  {
+  /* opacity: 0; */
+  font-size: 12px;
+  color: #cdcdcd;
 }
 
 .button {
   width: 150px;
   color: #fff;
-  border: 2px solid rgb(192, 7, 29);
+  border: 2px solid #c0071d;
   background: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -188,7 +214,7 @@ body {
   padding-bottom: 1em;
 }
 .cover {
-  width: 90%;
+  width: 81%;
 }
 
 .scroll-images {
@@ -238,10 +264,11 @@ p {
   color: white;
   display: flex;
   background-color: transparent;
-  font-size: 10px;
+  font-size: 15px;
   outline: none;
   border: none;
   cursor: pointer;
+  filter: contrast(500%);
 }
 button {
   margin: 0;
@@ -293,9 +320,53 @@ button {
   font-size: 0.8rem;
   padding-bottom: 1vh;
 }
+
+
+/* if backdrop support: very transparent and blurred */
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  #full-screen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+    visibility: collapse;
+    background-color: #ffffff10;
+    -webkit-backdrop-filter: blur(2rem);
+    backdrop-filter: blur(2rem);
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(0, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0, 0);
+  }
+}
+
 @media screen and (max-width: 768px) {
   #blur_frame {
     display: block;
+  }
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    z-index: 4;
+  }
+  .logo-container .logo{
+    width: 10rem;
   }
   .movie-info {
     flex-direction: column;
@@ -304,6 +375,7 @@ button {
     width: 80%;
   }
   .thumbnail_portrait > img {
+    margin-top: 3em;
     width: 15em;
     border-radius: 10px;
   }
