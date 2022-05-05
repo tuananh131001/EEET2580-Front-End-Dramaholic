@@ -278,6 +278,10 @@ a:hover {
   z-index: 999;
 }
 
+.success{
+  background: #07b464;
+}
+
 .formElement .ui-message-container {
   margin-top: 0.3em;
 }

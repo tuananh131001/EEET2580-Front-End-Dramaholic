@@ -24,6 +24,12 @@
         <div class="content-main">
           <div class="heading">
             <h1 class="title">Create account</h1>
+            <div class="ui-message-container success hidden">
+              <div class="ui-message-icon"></div>
+              <div class="ui-message-contents">
+                <b>Account created successfully</b>
+              </div>
+            </div>
           </div>
           <form action="" class="form" id="form">
             <!-- Name -->
@@ -258,8 +264,11 @@
         })
           .then((resp) => {
             if (resp.status == 201) {
-              alert("Success create account");
-              window.location.href = "/pages/user/login.html";
+              // alert("Success create account");
+              sendSuccessMsg();
+              window.setTimeout(function () {
+                window.location.href = '/pages/user/login.html';
+              }, 3200);
             } else return Promise.reject("Fail create account user");
           })
           .catch((error) => alert(error));
@@ -301,6 +310,16 @@
           if (message_content) {
             message_content.innerText = message;
           }
+        }
+      }
+
+      function sendSuccessMsg() {
+        var x = document.querySelector(".success");
+        if (x) {
+          x.classList.remove("hidden");
+          setTimeout(function () {
+            x.classList.add("hidden");
+          }, 3000);
         }
       }
 
