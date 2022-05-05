@@ -46,10 +46,12 @@ if (isLogin || isLoginTemp) {
   }
   fetch("https://dramaholic.herokuapp.com/api/customers/" + userid)
     .then((res) => res.json())
-    .then(({ username }) => {
+    .then(({ username , admin }) => {
       const accountName = document.querySelectorAll(
         ".navigation-menu-profile-name"
       );
+      const adminElement = document.querySelector('.admin')
+      admin ? adminElement.style.display = 'flex' : adminElement.style.display = 'none'
       accountName.forEach((name) => (name.innerHTML = username.toUpperCase()));
     });
 }
