@@ -38,7 +38,6 @@
                   name="name"
                   class="form-input"
                   placeholder=" "
-
                   oninput="clearError(event)"
                   required
                 />
@@ -64,7 +63,6 @@
                   name="email"
                   class="form-input"
                   placeholder=" "
-
                   oninput="clearError(event)"
                   required
                 />
@@ -90,7 +88,6 @@
                   name="username"
                   class="form-input"
                   placeholder=" "
-
                   oninput="clearError(event)"
                   required
                 />
@@ -116,7 +113,6 @@
                   name="password"
                   class="form-input"
                   placeholder=" "
-
                   oninput="clearError(event)"
                   required
                 />
@@ -217,12 +213,17 @@
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        // get data from input
-        let data = getData();
-        console.log(data);
-        var usernameValue = document.getElementById("username").value;
+
+        //check for password length
+        var passValue = document.getElementById("password").value;
+        if (passValue.length < 5 || passValue.length > 15) {
+          var err = "Password must have 5-15 characters";
+          sendError(err, "password");
+          return;
+        }
 
         //check for username already exist
+        var usernameValue = document.getElementById("username").value;
         fetch(userURL)
           .then((response) => response.json())
           .then((user) => {
@@ -237,6 +238,8 @@
             });
           })
           .then((resp) => {
+            //get data from the input
+            let data = getData();
             //create new account with the data
             add_user(data);
           })
