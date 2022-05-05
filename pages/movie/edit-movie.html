@@ -16,10 +16,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Movie</title>
+    <title>Add Movie</title>
     <style>
         body { 
             gap: 7rem;
+        }
+
+        #actors_table {
+            border-collapse: collapse;
+        }
+
+        tr , td, th {
+            border: solid black 1px;
+        }
+
+        #actors_table tr, #actors_table th, #actors_table .input_box {height: 2rem;}
+        #actors_table th, #actors_table td, #actors_table .input_box {width: 8.3rem;}
+
+        #actors_table .input_box {
+            border: none;
+        }
+
+        .actor_btn {
+            width: 1.5rem;
+            height: 1.5rem;
         }
 
     </style>
@@ -31,18 +51,19 @@
             <div class="flex_col form_input">
                 <div class="input_title_area align_items_center">
                     <input disabled class="input_box input_title" type="text" id="title" name="title" value="Movie title" placeholder="Movie title"/>
+                    <span class="require_symbol">*</span>
                     <div id="edit_title" onclick="change_title()">Edit</div>
                 </div>
                 <div class="form_body flex_row">
                     <div class="flex_col form_col" id="left_col">
                         <div>
-                            <label for="originalTitle">Original Title</label>
+                            <label for="originalTitle">Original Title<span class="require_symbol">*</span></label>
                             <input required class="input_box" type="text" id="originalTitle" name="originalTitle" placeholder="Original title"/>
                         </div>
 
                         <div>
-                            <label for="description">Description</label>
-                            <textarea class="myTextarea" required id="description" name="description" style="height: 8.6rem;" placeholder="Desciption"></textarea>
+                            <label for="description">Description<span class="require_symbol">*</span></label>
+                            <textarea class="myTextarea"  id="description" name="description" style="height: 8.6rem;" placeholder="Desciption"></textarea>
                         </div>
 
                         <div>
@@ -52,13 +73,13 @@
                         </div>
 
                         <div>
-                            <label for="href">Href To Movie</label>
-                            <input required class="input_box" type="url" id="href" name="href" placeholder="URL"/>
+                            <label for="href">Href To Movie<span class="require_symbol">*</span></label>
+                            <input  class="input_box" type="url" id="href" name="href" placeholder="URL"/>
                         </div>
 
                         <div>
-                            <label for="thumbnail">Thumbnail</label>
-                            <input required class="input_box" type="url" id="thumbnail" name="thumbnail" placeholder="URL"/>
+                            <label for="thumbnail">Thumbnail<span class="require_symbol">*</span></label>
+                            <input  class="input_box" type="url" id="thumbnail" name="thumbnail" placeholder="URL"/>
                         </div>
 
                         <div>
@@ -90,7 +111,7 @@
                         <div>
                             <label for="country">Country</label>
                             <select required class="input_box" id="country" name="country" form="add_film_form">
-                                <option disabled>Country</option>
+                                <option id="no_country_option" value="">-- Select a country --</option>
                             </select>
                         </div>     
 
@@ -100,24 +121,38 @@
                         </div>
 
                         <div>
+                            <label for="tags">Tags</label>
+                            <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma"/>
+                        </div>
+
+                        <div>
                             <label for="director">Directors</label>
                             <input class="input_box" type="text" id="director" name="director" placeholder="Names separated by comma"/>
                         </div>   
 
                         <div>
-                            <label for="actor">Actors</label>
-                            <!-- <input class="input_box" type="text" id="actor" name="actors" placeholder="Names separated by comma"/> -->
-                            <input class="input_box" type="text" id="actors"placeholder="Names separated by comma"/>
-                        </div>
-
-                        <!-- <div>
-                            <label for="actor">Actor Images</label>
-                            <input class="input_box" type="text" id="actor_image" name="actor_image" placeholder="URLs separated by comma"/>
-                        </div> -->
-
-                        <div>
-                            <label for="tags">Tags</label>
-                            <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma"/>
+                            <div>
+                                <label for="actor">Actors</label>
+                                <button class="actor_btn" id="add_actor_btn">+</button>
+                                <button class="actor_btn" id="remove_actor_btn">-</button>
+                            </div>
+                            <input hidden class="input_box" type="text" id="actors" name="actors"/>
+                            <div class="flex_row">
+                                <table id="actors_table">
+                                    <thead>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Character</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="actor_info" id="actor1">
+                                            <td><input class="input_box" type="text" id="actor1_name"placeholder="Name"/></td>
+                                            <td><input class="input_box" type="text" id="actor1_img"placeholder="Image"/></td>
+                                            <td><input class="input_box" type="text" id="actor1_cha"placeholder="Character"/> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,7 +168,6 @@
     <script type="module" src="../../js/components/customHeaderFooter/addFooter.js"></script>
     <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
     <script>
-        console.log(document.querySelector("header").innerHTML)
     fetch("https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6d7c06dbe16&language=en-US")
     .then(response => response.json())
     .then(json => {
@@ -169,7 +203,7 @@
         document.querySelector("#country").innerHTML += html
     });
 
-    let current_movie = localStorage.getItem("edit_dbid");
+    let current_movie = sessionStorage.getItem("edit_dbid");
     fetch(`https://dramaholic.herokuapp.com/api/movies/${current_movie}`)
     .then(response => response.json())
     .then(data => {
@@ -182,7 +216,6 @@
         document.querySelector("#episodes").value = data.episodes
         document.querySelector("#country").value = data.country
         document.querySelector("#date").value = data.date
-        // document.querySelector("#actors").value = data.actors
         document.querySelector("#director").value = data.director
         document.querySelector("#thumbnail").value = data.thumbnail
         let checked_genres = data.genres
@@ -194,6 +227,16 @@
                     break;
                 }
             }
+        }
+        let actors = data.actors
+        for (let i=0; i<actors.length; i++) {
+            if (i>0) {
+                add_row()
+            }
+            let info = document.querySelectorAll(`#actor${i+1} input`)
+            info[0].value = actors[i].name
+            info[1].value = actors[i].image
+            info[2].value = actors[i].character
         }
     })
     .catch((error) => {
@@ -213,6 +256,34 @@
         }
     }
 
+    function add_row() {
+        var tbodyRef = document.getElementById('actors_table').getElementsByTagName('tbody')[0];
+        var newRow = tbodyRef.insertRow(-1); //append row to the end
+        let i = document.querySelectorAll(".actor_info").length + 1 //find index to make id
+        newRow.setAttribute("class","actor_info")
+        newRow.setAttribute("id","actor"+i)
+        newRow.innerHTML =
+        `
+            <td><input class="input_box" type="text" id="actor${i}_name" placeholder="Name"/></td>
+            <td><input class="input_box" type="text" id="actor${i}_img" placeholder="Image"/></td>
+            <td><input class="input_box" type="text" id="actor${i}_cha" placeholder="Character"/></td>
+        `
+    }
+
+    document.querySelector("#add_actor_btn").onclick = (e) => {
+        e.preventDefault()
+        add_row()
+    }
+
+    document.querySelector("#remove_actor_btn").onclick = (e) => {
+        e.preventDefault()
+        let i = document.querySelectorAll(".actor_info").length
+        if (i>1) {
+            let id = "actor" + i
+            document.getElementById(id).remove()
+        }
+    }
+
     function generalize_genres() {
         var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
         var selected = ''
@@ -225,17 +296,37 @@
         }
         document.getElementById("genres").value = selected
     }
+
+    function generalize_actors() {
+        let actors = document.querySelectorAll('.actor_info')
+        let actors_info = []
+        for (let i=0; i<actors.length; i++) {
+            let info = document.querySelectorAll(`#actor${i+1} input`)
+            if (info[0].value != "") {
+                let actor = {
+                    name: info[0].value,
+                    image: info[1].value,
+                    character: info[2].value
+                }
+                actors_info.push(JSON.stringify(actor))
+            }
+        }
+        document.getElementById("actors").value = actors_info
+    }
     
 
     add_film_form.onsubmit = async (e) => {
         document.getElementById("title").disabled = false
+        try {
         generalize_genres();
+        generalize_actors();
+        }
+        catch(error) {
+            console.log("gen: ",error)
+        }
         e.preventDefault();
 
-        let response = await fetch('https://dramaholic.herokuapp.com/api/movies/', {
-        method: 'PUT',
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({
+        let data = JSON.stringify({
             title: document.getElementById("title").value,
             originalTitle: document.getElementById("originalTitle").value,
             description: document.getElementById("description").value,
@@ -249,15 +340,29 @@
             date: document.getElementById("date").value,
             adult: document.getElementById("adult").value,
             country: document.getElementById("country").value,
-            director: [document.getElementById("director").value],
-            country: document.getElementById("country").value,
-            tags: [document.getElementById("tags").value]
-        })
+            tags: [document.getElementById("tags").value],
+            director: [document.getElementById("director").value]}
+        )
+
+        data = data.toString()
+        data = data.slice(0,-1)
+        data = data.concat(`,"actors":[${document.getElementById("actors").value}]}`)
+        console.log(data)
+
+        try {
+        let response = await fetch('https://dramaholic.herokuapp.com/api/movies/', {
+        method: 'POST',
+        headers: {"Content-Type":"application/json"},
+        body: data
         });
 
         let result = await response.json();
 
         alert(result.message);
+        }
+        catch(error) {
+            console.log(error)
+        }
     };
     </script>
 
