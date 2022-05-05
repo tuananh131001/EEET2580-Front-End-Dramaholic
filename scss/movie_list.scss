@@ -13,8 +13,6 @@ body {
   height: 100vh;
   display: grid;
   grid-template-areas:
-    "nav main"
-    "nav main"
     "nav main";
     grid-template-columns: 12em 1fr;
 }
