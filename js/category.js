@@ -1,6 +1,6 @@
 const historyContent = document.querySelector(".movie-list-grid");
 const pagination_element = document.getElementById("pagination");
-let rows = 5;
+let rows = 20;
 
 const createCardHistory = (x) => {
   let card = document.createElement("div");
