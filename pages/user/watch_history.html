@@ -51,17 +51,11 @@
                 >
                   Tuan Anh
                 </p>
-                <p
-                  class="navigation-menu-profile-text"
-                  data-href="/ProfilesGate"
-                >
-                  Switch Profiles
-                </p>
               </div>
             </li>
             <li
               class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/YourAccount"
+              data-href="/pages/user/user_profile.html"
             >
               Account
             </li>
@@ -73,10 +67,9 @@
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="#" class="active">Home</a>
-            <a href="#">My List</a>
+            <a href="/index.html" class="active">Home</a>
+            <a href="/pages/movie/category.html">Category</a>
             <a href="/pages/movie/trending.html">Trending</a>
-            <a href="#">Series</a>
           </div>
           <a href="/pages/user/login.html"
             ><button class="sign-in-subBar">SIGN IN</button></a
@@ -84,24 +77,18 @@
         </div>
 
         <div class="image-container">
-          <a href="/index.html">
+          <a href="/index.html"
             ><img src="/assets/image/logo.png" alt="DramaHolic" class="logo"
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <li href="#" class="active">Home</li>
-          <li href="#">Series</li>
-          <li href="#">Films</li>
+          <a href="/index.html" ><li class="active">Home</li></a>
+          <a href="/pages/movie/category.html"><li>Category</li></a>
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
       </div>
       <div class="nav-right">
-        <div class="search-box">
-          <input class="search-bar" />
-          <a href="##" class="icon" onclick="openSearch()"
-            ><i class="search-icon ti-search"></i
-          ></a>
-        </div>
+
         <a href="/pages/user/login.html"
           ><button class="sign-in-nagivation">SIGN IN</button></a
         >
@@ -113,6 +100,10 @@
           <a href="/pages/user/watch_history.html" class="account-container">
             <figure class="ti-time"></figure>
             <p>History</p>
+          </a>
+          <a href="/pages/movie/admin_dashboard.html" class="account-container admin">
+            <figure class="ti-crown"></figure>
+            <p>Admin</p>
           </a>
           <button class="button" onclick="handleSignOut()">Sign Out</button>
         </div>
