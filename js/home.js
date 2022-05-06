@@ -85,7 +85,6 @@ async function setSwiper() {
     spaceBetween: 5,
     slidesPerView: 2,
     slidesPerGroup: 2,
-    loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
     speed: 500,
