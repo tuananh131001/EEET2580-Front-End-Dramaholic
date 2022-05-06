@@ -31,8 +31,8 @@ function openDropList() {
 }
 
 function handleSignOut() {
-  sessionStorage.clear();
-  localStorage.clear();
+  localStorage.removeItem("UserID");
+  localStorage.removeItem("isLogin");
   location.reload();
 }
 if (isLogin || isLoginTemp) {
