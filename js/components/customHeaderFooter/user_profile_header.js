@@ -64,7 +64,7 @@ document.querySelector("header").innerHTML = `
         </div>
         <div>|</div>
         <div class="image-container" id="logo_nav">
-        <a href="javascript:window.location.reload(true)"
+        <a href="../../index.html";"
         ><img src="../../assets/image/logo.png" alt="DramaHolic" class="logo"
         /></a>
     </div>

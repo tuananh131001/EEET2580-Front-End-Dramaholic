@@ -35,16 +35,18 @@
           <form name="myForm" action="" class="form" id="form">
             <div class="form-group">
               <span class="icon">
-                <img src="/assets/image/at_sign.png" alt="" />
+                <img src="/assets/image/user.png" alt="" />
               </span>
               <input
-                name="email"
+                name="username"
                 type="text"
-                id="email"
+                id="username"
                 class="form-input"
+                  placeholder=" "
+
                 required
               />
-              <label for="email">Username</label>
+              <label for="username">Username</label>
             </div>
             <div class="form-group">
               <span class="icon">
@@ -55,6 +57,8 @@
                 type="password"
                 id="password"
                 class="form-input"
+                  placeholder=" "
+
                 required
               />
               <label for="password">Password</label>
@@ -97,14 +101,12 @@
     <script>
       function handleSignIn(e) {
         e.preventDefault();
-        let emailValue = document.forms["myForm"]["email"].value;
+        let usernameValue = document.forms["myForm"]["username"].value;
         let pass = document.forms["myForm"]["password"].value;
         const dataToSend = JSON.stringify({
-          username: emailValue,
+          username: usernameValue,
           password: pass,
         });
-        console.log(dataToSend);
-        let dataReceived = [];
         fetch("https://dramaholic.herokuapp.com/api/customers/login", {
           method: "post",
           headers: { "Content-Type": "application/json" },
@@ -119,8 +121,15 @@
             }
           })
           .then((dataJson) => {
-            localStorage.setItem("isLogin", true);
-            localStorage.setItem("UserID", dataJson.id);
+            const checkMe = document.querySelector("#rememberMe");
+            if (checkMe.checked) {
+              localStorage.setItem("isLogin", true);
+              localStorage.setItem("UserID", dataJson.id);
+            } else {
+              sessionStorage.setItem("isLogin", true);
+              sessionStorage.setItem("UserID", dataJson.id);
+            }
+
             // if (x == "") {
             //   return false;
             // }
@@ -135,7 +144,6 @@
             console.log(err);
           });
 
-        localStorage.setItem("data", dataReceived);
       }
 
       function togglePassword() {

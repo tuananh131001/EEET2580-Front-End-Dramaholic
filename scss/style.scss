@@ -7,6 +7,7 @@
 @use "./layout/billboard";
 @use "./layout/search";
 @use "./components/accountMenu";
+@use "./components/pagination";
 
 *,
 *::before,
@@ -15,19 +16,6 @@
   padding: 0;
 
   box-sizing: border-box;
-}
-@font-face {
-  font-family: 'averta_pe_black';
-  src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
-  font-style: normal;
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: 'averta_pe';
-  src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
-  font-style: normal;
-  font-weight: 100;
 }
 .active{
   font-weight: 700 !important;
@@ -52,21 +40,7 @@ body {
 
 }
 
-main {
-  background: linear-gradient(
-    77deg,
-    rgba(0, 0, 0, 0.6) 0,
-    rgba(0, 0, 0, 0) 85%
-  );
-}
 
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  transform: scale(1.1);
-  background-color: rgba(20, 20, 20, 0.5);
-  color: #fff !important;
-}
-/* Swipe */
 @media screen and (max-width: 30em) {
   aside {
     display: none;
@@ -100,3 +74,4 @@ main {
   background-clip: content-box;
   background-color: colors.$red;
 }
+
