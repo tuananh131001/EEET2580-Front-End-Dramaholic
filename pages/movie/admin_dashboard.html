@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,34 +99,24 @@
 
     </style>
   </head>
-  <body class="body">
-    <header></header>
-    <main class="body_region">
-      <h1 class="page_title"><b>DashBoard</b></h1>
-      <div class="flex_col body_content">
-      <div class="flex_row align_items_center" style="justify-content: space-between;">
-        <form action="">
-            <input type="search" class="input_box search" id="search_box" placeholder="Enter a name to search">
-        </form>
-        <a href="./add_movie.html">
-          <button class="red_theme_button add-movie-btn" >+ Add Movie</button>
-        </a>      
+  <body>
+    <aside>
+      <a href="/index.html"
+        ><img src="/assets/image/logo.png" alt="logo" class="logo"
+      /></a>
+      <div class="navigation">
+        <a href="/pages/movie/admin_dashboard.html"><h1>DashBoard</h1></a>
+        <a href="./add_movie.html"><h1>Add Movie</h1></a>
       </div>
-
-      <!-- <div class="flex_col movielist-pagination"> -->
-      <div class="list flex_col" id="list"></div>
-      <div class="pagenumbers flex_row" id="pagination"></div>
-      <!-- </div> -->
-      </div>
+    </aside>
+    <main>
+      <form action="">
+        <label for="search">Search: </label>
+        <input type="search" class="search" />
+      </form>
+      <div class="movie-list"></div>
+      <div class="list" id="list"></div>
+      <div class="pagenumbers" id="pagination"></div>
     </main>
-
-    <footer></footer>
-    
-
-    <script src="/js/admin_dashboard.js"></script>
-    <script type="module" src="../../js/components/customHeaderFooter/user_profile_header.js"></script>
-    <script type="module" src="../../js/components/customHeaderFooter/addFooter.js"></script>
-    <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
-      
   </body>
 </html>

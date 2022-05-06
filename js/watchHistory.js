@@ -1,4 +1,5 @@
 const historyContent = document.querySelector(".movie-list-grid");
+const pagination_element = document.getElementById("pagination");
 const createCardHistory = (x) => {
   let card = document.createElement("div");
   card.className = "movie-search-card";
@@ -34,11 +35,14 @@ const createCardHistory = (x) => {
 
   return card;
 };
+const userID = localStorage.getItem("UserID")
 async function getMovieListSearch(list) {
   const url = await fetch(
-    "https://dramaholic.herokuapp.com/api/customers/" + userID
+    "https://dramaholic.herokuapp.com/api/customers/" + userID + "/history"
   );
-  const { history } = await url.json();
+  const { _embedded } = await url.json();
+  const  history  = await _embedded.movies;
+  console.log(history)
   for (let i = 0; i < history.length; i++) {
     await list.push(createCardHistory(history[i]));
   }

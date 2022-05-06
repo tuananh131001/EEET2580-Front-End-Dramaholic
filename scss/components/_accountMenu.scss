@@ -4,7 +4,6 @@
   display: none;
 }
 
-
 @media (min-width: 62em) {
   .account-wrapper {
     position: relative;
@@ -15,9 +14,8 @@
     .down-arrow {
       cursor: pointer;
     }
-    
   }
-  .account-wrapper:hover{
+  .account-wrapper:hover {
     color: colors.$fade;
   }
   .drop-down {
@@ -31,14 +29,19 @@
     background-color: colors.$black;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: .8em;
-    a{
-        color: colors.$white;
+    align-items: flex-start;
+
+    gap: 0.8em;
+    a {
+      justify-content: flex-start;
+      color: colors.$white;
+      text-align: left;
+      width: 100%;
     }
   }
   .button {
     @include mixins.button-style();
+    width: 100%;
   }
   .button:hover,
   .button:focus {

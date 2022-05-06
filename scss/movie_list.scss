@@ -1,23 +1,61 @@
 @use "./abstract/colors";
-*,*::after,*::before{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@use "./components/pagination";
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
+body {
+  font-family: "Poppins", sans-serif;
+
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "nav main";
+    grid-template-columns: 12em 1fr;
+}
+aside {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background-color: #efefef;
+  .navigation {
     display: flex;
-}
-aside{
-    width: 10%;
-}
-main{
-    width: 90%;
-}
-.list{
-    .movie-wrapper{
-        display: flex;
+    flex-direction: column;
+    color: #efefef;
+    background-color: hsl(204, 56%, 15%);
+
+    a {
+      padding: 1em;
+      color: #fff;
+      text-decoration: none;
     }
-    .button-wrapper{
-        margin-left: auto;
+    a:hover {
+      background-color: hsl(204, 56%, 35%);
     }
+  }
+  .logo {
+    width: 100%;
+
+    padding: 0.5em;
+  }
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+}
+.list {
+  .movie-wrapper {
+    display: flex;
+  }
+  .button-wrapper {
+    margin-left: auto;
+  }
+}
+.pagenumbers {
+  display: flex;
 }
