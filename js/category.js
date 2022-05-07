@@ -1,7 +1,6 @@
 const historyContent = document.querySelector(".movie-list-grid");
 const pagination_element = document.getElementById("pagination");
-let current_page = 0;
-let rows = 5;
+let rows = 20;
 
 const createCardHistory = (x) => {
   let card = document.createElement("div");
@@ -81,7 +80,6 @@ async function displayCategory(list, categoryType, current_page) {
 
   const { content, totalPages } = await res.json();
 
-  console.log(totalPages);
   for (let i = 0; i < content.length; i++) {
     await list.push(createCardHistory(content[i]));
   }

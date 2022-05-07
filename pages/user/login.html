@@ -42,8 +42,7 @@
                 type="text"
                 id="username"
                 class="form-input"
-                  placeholder=" "
-
+                placeholder=" "
                 required
               />
               <label for="username">Username</label>
@@ -57,8 +56,7 @@
                 type="password"
                 id="password"
                 class="form-input"
-                  placeholder=" "
-
+                placeholder=" "
                 required
               />
               <label for="password">Password</label>
@@ -125,14 +123,12 @@
             if (checkMe.checked) {
               localStorage.setItem("isLogin", true);
               localStorage.setItem("UserID", dataJson.id);
+              localStorage.setItem("UserIDRemember", dataJson.id);
             } else {
-              sessionStorage.setItem("isLogin", true);
-              sessionStorage.setItem("UserID", dataJson.id);
+              localStorage.setItem("isLogin", true);
+              localStorage.setItem("UserID", dataJson.id);
+              localStorage.removeItem("UserIDRemember");
             }
-
-            // if (x == "") {
-            //   return false;
-            // }
             location.href = "/index.html";
           })
           .catch((err) => {
@@ -143,8 +139,16 @@
             if (err === "server") return;
             console.log(err);
           });
-
       }
+      const UserIdRemember = localStorage.getItem("UserIDRemember");
+      fetch("https://dramaholic.herokuapp.com/api/customers/" + UserIdRemember)
+        .then((res) => res.json())
+        .then(({ username, password }) => {
+          if (username) {
+            document.forms["myForm"]["username"].value = username;
+            document.forms["myForm"]["password"].value = password;
+          }
+        });
 
       function togglePassword() {
         var input = document.getElementById("password");
