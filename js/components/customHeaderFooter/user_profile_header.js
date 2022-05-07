@@ -18,13 +18,15 @@ document.querySelector("header").innerHTML = `
             </li>
           </div>
         <div class="navigation-menu-settings" style={margin-top:0;}>
-            <a href="../../../index.html">Home</a>
-            <a href="../../../pages/user/user_profile">My Profile</a>
-            <a href="#">Watch History</a>
-            <a href="#">Watch Later</a>
+            <div><a href="../../../index.html">Home</a></div>
+            <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html">Dashboard</a></div>
+            <div><a href="../../../pages/user/user_profile.html">My Profile</a></div>
+            <div><a href="#">Watch History</a></div>
+            <div><a href="#">Watch Later</a></div>
         </div>
         <div class="navigation-menu-settings">
-            <a href="../../../pages/info/aboutUs">About @dramaholic</a>
+            <div><a href="../../../pages/info/aboutUs.html">About @dramaholic</a></div>
+            <div><a href="../../../pages/info/policy.html">Policy</a></div>
         </div>
         <a href="../../pages/user/login.html"
             ><button class="sign-in-subBar">SIGN OUT</button></a
@@ -40,22 +42,48 @@ document.querySelector("header").innerHTML = `
         <div class="dropdown" id="account_navigate" onclick="account_onclick()">
             <div style="width: max-content;">Account</div>
             <div class="dropdown-content">
-                <a href="../../pages/user/user_profile.html">
-                    <i class="fas fa-user" style="font-size: 15px;"></i>
-                    Profile
-                </a>
+                <div>
+                    <a href="../../pages/user/user_profile.html">
+                        <i class="fas fa-user" style="font-size: 15px;"></i>
+                        Profile
+                    </a>
+                </div>
+                <div class="admin-dashboard" hidden>
+                    <a href="../../pages/movie/admin_dashboard.html">
+                        <i class="fa fa-video" style="font-size: 15px;"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div>
                 <a href="../../pages/user/login.html">
                     <i class="fas fa-sign-out-alt" style="font-size: 15px;"></i>
                     Sign Out
                 </a>
+                </div>
             </div>
         </div>
         <div>|</div>
         <div class="image-container" id="logo_nav">
-        <a href="javascript:window.location.reload(true)"
+        <a href="../../index.html";"
         ><img src="../../assets/image/logo.png" alt="DramaHolic" class="logo"
         /></a>
     </div>
     </div>
 </nav>
 `;
+
+let user = localStorage.getItem("UserID")
+// let current_user = sessionStorage.getItem('UserID')
+fetch(`https://dramaholic.herokuapp.com/api/customers/${user}`)
+.then((response) => response.json())
+.then((user) => {
+    if (user.admin == null) {
+        let a = document.querySelectorAll(".admin-dashboard")
+        for (let i=0; i<a.length; i++) {
+            a[i].removeAttribute("hidden")
+        }
+    }
+})
+.catch((error) => {
+    console.log(error); 
+});

@@ -85,6 +85,7 @@ function play_movie() {
   document.getElementById("youtube_frame").style.animationName = "zoom-in";
   document.getElementById("youtube_frame").style.animationDuration = "1s";
   document.getElementById("full-screen").style.visibility = "visible";
+  add_history()
 }
 function stop_movie() {
   if (document.getElementById("youtube_frame").style.visibility == "visible") {
@@ -100,11 +101,36 @@ function stop_movie() {
   }
 }
 // Watch Later
+function add_history() {
+  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let userID = JSON.parse(localStorage.getItem("UserID"));
+  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  var fetchingURL = originalURL + userID;
 
+  if (userID == null) {
+    alert("Please sign in or sign up to add movie to watch later");
+  } else {
+    fetch(fetchingURL)
+      .then((response) => response.json())
+      .then((json) => {
+        const dataToSend = JSON.stringify({
+          username: json.username,
+          password: json.password,
+          dbID: movieID,
+        });
+        fetch("https://dramaholic.herokuapp.com/api/customers/history", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: dataToSend,
+        }).then((response) => {
+          console.log(response);
+        });
+      });
+  }
+}
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  userID == null ? (userID = JSON.parse(sessionStorage.getItem("userID"))) : null;
   let movieID = JSON.parse(localStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
