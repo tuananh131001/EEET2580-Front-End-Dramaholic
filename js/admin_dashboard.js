@@ -39,7 +39,7 @@ function createDivMovie(x) {
   let wrapper = document.createElement("div");
   wrapper.classList.add("movie-wrapper");
 
-  let title = document.createElement("h2");
+  let title = document.createElement("div");
   title.className = "card-title";
   title.textContent = x.title;
 
@@ -48,6 +48,7 @@ function createDivMovie(x) {
 
   let editButton = document.createElement("button");
   editButton.classList.add("edit-button");
+  editButton.classList.add("white_theme_button");
   editButton.innerText = "EDIT";
   editButton.onclick = function () {
     sessionStorage.setItem("edit_dbid", x.dbID);
@@ -56,15 +57,26 @@ function createDivMovie(x) {
 
   let deleteButton = document.createElement("button");
   deleteButton.classList.add("delete-button");
+  deleteButton.classList.add("white_theme_button");
   deleteButton.innerText = "DELETE";
   deleteButton.onclick = async () => {
+    let text = `Are you sure to delete movie "${x.title}"?`
+    if (confirm(text) == true) {
     const response = await fetch(
       "https://dramaholic.herokuapp.com/api/movies/" + x.dbID,
       {
         method: "DELETE",
       }
     );
-    console.log(x.dbId)
+    alert(`Successfully deleted "${x.title}"`)
+    getMovieListAdmin();
+    
+    const data = await response.json();
+
+    // now do whatever you want with the data
+    console.log(data);
+    }
+    
     displayMovieList()
   };
 
@@ -83,6 +95,7 @@ function DisplayList(items, wrapper) {
 }
 function PaginationButton(page, items) {
   let button = document.createElement("button");
+  button.classList.add("pagination-btn");
   button.innerText = page;
 
   if (current_page == page) button.classList.add("active");

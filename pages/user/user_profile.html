@@ -155,7 +155,7 @@
                 </div>
                 <div>
                   <label for="user_password">Password:</label>
-                  <input class="info" disabled type="text" id="user_password" style="clear: both; border: none; background-color: transparent;">             
+                  <input class="info" disabled type="password" id="user_password" style="clear: both; border: none; background-color: transparent;">             
                 </div>
                 <!-- <div>
                   <label for="user_phone">Phone number:</label>
@@ -363,14 +363,14 @@
         $(this).find('form').trigger('reset');
       });
 
-      function formatDate(s_date) {
-        let d_date = new Date(s_date)
-        let d = d_date.getDate().toString()
-        let m = (d_date.getMonth()+1).toString()
-        m = m.length > 1 ? m : "0".concat(m)
-        let y = d_date.getFullYear().toString()
-        return (d+"-"+m+"-"+y)
-      }
+      // function formatDate(s_date) {
+      //   let d_date = new Date(s_date)
+      //   let d = d_date.getDate().toString()
+      //   let m = (d_date.getMonth()+1).toString()
+      //   m = m.length > 1 ? m : "0".concat(m)
+      //   let y = d_date.getFullYear().toString()
+      //   return (d+"-"+m+"-"+y)
+      // }
 
       edit_info_form.onsubmit = async (e) => {
         e.preventDefault();
@@ -382,8 +382,8 @@
                 {
                   name:document.querySelector("#modal_name").value,
                   email:document.querySelector("#modal_email").value,
-                  dob:formatDate(document.querySelector("#modal_dob").value)
-                  // dob:document.querySelector("#modal_dob").value
+                  dob:document.querySelector("#modal_dob").value
+                  // dob:formatDate(document.querySelector("#modal_dob").value)
                 }
               )
           })
@@ -401,44 +401,49 @@
 
 
       document.getElementById('change_pw_form').onsubmit = async (e) => {
-        var current_pw = document.querySelector("#current_pw_modal");
-        var new_pw = document.querySelector("#new_pw_modal");
-        var confirm_pw = document.querySelector("#confirm_pw_modal");
-        var pw_api = document.querySelector("#user_password").value
-        document.querySelector("#current_pw_msg").innerHTML = ""
-        document.querySelector("#new_pw_msg").innerHTML = ""
-        document.querySelector("#confirm_pw_msg").innerHTML = ""
+        let text = `Change password will require to re-login. Do you want to continue?`
+        if (confirm(text) == true) {
+          var current_pw = document.querySelector("#current_pw_modal");
+          var new_pw = document.querySelector("#new_pw_modal");
+          var confirm_pw = document.querySelector("#confirm_pw_modal");
+          var pw_api = document.querySelector("#user_password").value
+          document.querySelector("#current_pw_msg").innerHTML = ""
+          document.querySelector("#new_pw_msg").innerHTML = ""
+          document.querySelector("#confirm_pw_msg").innerHTML = ""
 
-        if (current_pw.value != pw_api) {
-          document.querySelector("#current_pw_msg").innerHTML = "Wrong password"
-          
-        }
-        else if(new_pw.value.length < 5 || new_pw.value.length > 15 || new_pw.value == pw_api) {
-          document.querySelector("#new_pw_msg").innerHTML = "New password must have 5-15 characters and different from current password"
-        }
-        else if (new_pw.value != confirm_pw.value) {
-          document.querySelector("#confirm_pw_msg").innerHTML = "Confirm password doesn't match"
-        }
-        else {
+          if (current_pw.value != pw_api) {
+            document.querySelector("#current_pw_msg").innerHTML = "Wrong password"
+            
+          }
+          else if(new_pw.value.length < 5 || new_pw.value.length > 15 || new_pw.value == pw_api) {
+            document.querySelector("#new_pw_msg").innerHTML = "New password must have 5-15 characters and different from current password"
+          }
+          else if (new_pw.value != confirm_pw.value) {
+            document.querySelector("#confirm_pw_msg").innerHTML = "Confirm password doesn't match"
+          }
+          else {
+            e.preventDefault()
+            try {
+              await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+              method: "PUT",
+              headers:{"Content-Type":"application/json"},
+              body: JSON.stringify({password:document.querySelector("#new_pw_modal").value})
+              })
+              .then(response => {
+                if(response.status==200) {
+                  alert("Password updated")
+                  window.location.replace("./login.html");
+                  
+                }
+                else {
+                  alert("Sorry, update failed")
+                }
+              })
+            } catch(error) {"Failed to fetch:",console.log(error)}
+          }
           e.preventDefault()
-          try {
-            await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
-            method: "PUT",
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify({password:document.querySelector("#new_pw_modal").value})
-            })
-            .then(response => {
-              if(response.status==200) {
-                alert("Password updated")
-                location.reload();
-              }
-              else {
-                alert("Sorry, update failed")
-              }
-            })
-          } catch(error) {"Failed to fetch:",console.log(error)}
         }
-        e.preventDefault()
+        
       }
 
     </script>
