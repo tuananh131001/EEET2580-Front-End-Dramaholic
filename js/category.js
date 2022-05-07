@@ -1,5 +1,7 @@
 const historyContent = document.querySelector(".movie-list-grid");
 const pagination_element = document.getElementById("pagination");
+const category = document.querySelector(".category");
+const countries = document.querySelector(".country");
 let rows = 20;
 
 const createCardHistory = (x) => {
@@ -7,7 +9,7 @@ const createCardHistory = (x) => {
   card.className = "movie-search-card";
   // Image
   let img = document.createElement("img");
-  img.className = "movie-search-image";
+  img.className = "movie-search-image skeleton";
   img.src = x.thumbnail;
   img.onclick = function () {
     localStorage.setItem("dbid", x.dbID);
@@ -39,7 +41,6 @@ const createCardHistory = (x) => {
 };
 const movieList = [];
 
-const category = document.querySelector(".category");
 
 function SetupPagination(items, wrapper, pages, categoryType) {
   wrapper.innerHTML = "";
@@ -68,15 +69,18 @@ function PaginationButton(page, items, categoryType) {
   return button;
 }
 
-async function displayCategory(list, categoryType, current_page) {
+async function displayCategory(list, categoryType,countryType, current_page) {
   historyContent.innerHTML = "";
+  console.log(countryType)
   const res = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
-      encodeURIComponent(categoryType) +
+      encodeURIComponent(categoryType) +"&country=" +
+      encodeURIComponent(countryType) +
       "&page=" +
       current_page
   );
   list = [];
+  console.log(res)
 
   const { content, totalPages } = await res.json();
 
@@ -98,11 +102,24 @@ category.addEventListener("click", function () {
   }
 });
 category.addEventListener("change", function () {
-  addActivityItem(category.value);
+  addActivityItem(category.value,countries.value);
 });
 
-function addActivityItem(option) {
+// select Country
+countries.addEventListener("click", function () {
+  var options = countries.querySelectorAll("option");
+  var count = options.length;
+  if (typeof count === "undefined" || count < 2) {
+    addActivityItem();
+  }
+});
+countries.addEventListener("change", function () {
+  addActivityItem(category.value,countries.value);
+});
+
+
+function addActivityItem(option,country) {
   historyContent.innerHTML = "";
-  displayCategory(movieList, option, 1);
+  displayCategory(movieList, option,country, 0);
 }
-displayCategory(movieList, "", 1);
+displayCategory(movieList, "", "",0);
