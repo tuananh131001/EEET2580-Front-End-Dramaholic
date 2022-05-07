@@ -85,7 +85,6 @@ async function setSwiper() {
     spaceBetween: 5,
     slidesPerView: 2,
     slidesPerGroup: 2,
-    loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
     speed: 500,
@@ -151,18 +150,20 @@ async function getTrending() {
     for (let i = 1; i < movieListTitle.length; i++) {
       await getAllMovie(i);
     }
+  } else {
+    window.addEventListener("scroll", () => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      console.log(scrollTop, clientHeight, scrollHeight);
+      if (
+        scrollTop + clientHeight >= scrollHeight - 400 &&
+        scrollCount < movieListTitle.length
+      ) {
+        getAllMovie(scrollCount);
+        scrollCount++;
+      }
+    });
   }
-  window.addEventListener("scroll", () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    console.log(scrollTop, clientHeight, scrollHeight);
-    if (
-      scrollTop + clientHeight >= scrollHeight - 400 &&
-      scrollCount < movieListTitle.length
-    ) {
-      getAllMovie(scrollCount);
-      scrollCount++;
-    }
-  });
 }
 async function getBillboardVideo() {
   const movieBillboard = [99966, 76662, 2778, 1396];
@@ -194,20 +195,7 @@ async function getBillboardVideo() {
 </button>`;
 }
 
-var myNav = document.querySelector(".navbar");
-window.onscroll = function () {
-  "use strict";
-  if (
-    document.body.scrollTop >= 50 ||
-    document.documentElement.scrollTop >= 50
-  ) {
-    myNav.classList.add("nav-colored");
-    myNav.classList.remove("nav-transparent");
-  } else {
-    myNav.classList.add("nav-transparent");
-    myNav.classList.remove("nav-colored");
-  }
-};
+
 
 const openNav = () => {
   const subNav = document.querySelector("#sideNav");

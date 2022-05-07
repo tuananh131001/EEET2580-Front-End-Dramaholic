@@ -38,7 +38,7 @@ const createElementsMovieCard = (x) => {
   col.appendChild(card);
   // Image
   let img = document.createElement("img");
-  img.className = "thumbTile__image";
+  img.className = "thumbTile__image skeleton";
   img.src = x.thumbnail;
   card.appendChild(img);
 
@@ -63,7 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    localStorage.setItem("dbid", x.dbID)
+    localStorage.setItem("dbid", x.dbID);
     location.href = "movie_detail.html";
   };
   cardContent.appendChild(button);
@@ -84,7 +84,6 @@ async function setSwiper() {
     // Optional parameters
     spaceBetween: 5,
     slidesPerView: 2,
-    loop: true,
     freeMode: true,
     loopAdditionalSlides: 5,
     speed: 500,
@@ -111,62 +110,47 @@ async function getTrending() {
   // const billboardVideo = await getBillboardVideo();
   let movieArray = [];
 
-  const movieListElementKo = createMovieList("Top 10 in Korea");
-  const movieListElementEn = createMovieList("Top 10 in USA");
-  const movieListElementEs = createMovieList("Top 10 in Latin");
-
-
   // Promise.all(
   //   pageArray.map(async (url) => {
   const url = "https://dramaholic.herokuapp.com/api/movies?page=0&size=100000";
-  // Get data
-  // const reponse = await fetch(url);
-  // const json = await reponse.json();
-  // const embedded = await json.content;
   fetch(url)
-    .then(response => response.json())
-    .then(json => {
+    .then((response) => response.json())
+    .then((json) => {
+      const movieListElementKo = createMovieList("Top 10 in Korea");
+      const movieListElementEn = createMovieList("Top 10 in USA");
+      const movieListElementEs = createMovieList("Top 10 in Latin");
+
       let countTopKo = 0;
       let countTopUS = 0;
       let countTopEs = 0;
-      let arraySort = json.content.sort((a, b) => (parseFloat(a.rating) < parseFloat(b.rating)) ? 1 : -1);
-      for(let i = 0; (i < arraySort.length) || (countTopKo < 10 && countTopUS < 10 && countTopEs < 10);i++){
+      let arraySort = json.content.sort((a, b) =>
+        parseFloat(a.rating) < parseFloat(b.rating) ? 1 : -1
+      );
+      for (
+        let i = 0;
+        i < arraySort.length ||
+        (countTopKo < 10 && countTopUS < 10 && countTopEs < 10);
+        i++
+      ) {
         if (arraySort[i].country == "ko" && countTopKo < 10) {
           const movieL = createElementsMovieCard(arraySort[i]);
-          countTopKo ++;
+          countTopKo++;
           movieListElementKo.appendChild(movieL);
-        }
-        else if (arraySort[i].country == "en" && countTopUS < 10) {
+        } else if (arraySort[i].country == "en" && countTopUS < 10) {
           const movieL = createElementsMovieCard(arraySort[i]);
-          countTopUS ++;
+          countTopUS++;
           movieListElementEn.appendChild(movieL);
-        }
-        else if (arraySort[i].country == "es" && countTopEs < 10) {
+        } else if (arraySort[i].country == "es" && countTopEs < 10) {
           const movieL = createElementsMovieCard(arraySort[i]);
-          countTopEs ++;
+          countTopEs++;
           movieListElementEs.appendChild(movieL);
         }
       }
-      console.log(arraySort);
-      // Loading Screen
       const loading = document.querySelector("#loading");
       loading.style.display = "none";
+      // Loading Screen
       setSwiper();
     });
-  //Get each movie to append to a total movie array
-  // embedded.forEach(element => {
-  //   movieArray.push(element);
-  // });
-
-  // Get movie and put in container
-  // })
-  // );
-  // console.log(movieAllArray);
-
-
-  // Promise.all(movieAllArray).then(values => {
-
-  // });
 }
 
 var myNav = document.querySelector(".navbar");
@@ -189,8 +173,8 @@ const openNav = () => {
   subNav.style.width === ""
     ? (subNav.style.width = "60%")
     : (subNav.style.width = "");
-  const input = document.querySelector(".search-bar")
-  input.nodeValue = ""
+  const input = document.querySelector(".search-bar");
+  input.nodeValue = "";
 };
 
 openSearch = () => {
@@ -204,9 +188,9 @@ openSearch = () => {
     subNav.style.width = "";
     subNav.classList.remove("animate-fade-right");
   }
-  subNav.value = ''
+  subNav.value = "";
   mainContent.style.display = "block";
-  searchContent.innerHTML = ""
+  searchContent.innerHTML = "";
 };
 
 getTrending();
