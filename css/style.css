@@ -265,12 +265,11 @@ nav input {
   outline: none;
   background: none;
   font-size: 1.1rem;
-  transition: 0.5s;
   line-height: 40px;
   color: #fff;
 }
 nav .open {
-  width: 100%;
+  width: 13em;
   padding: 0 20px;
 }
 nav .icon {
@@ -699,6 +698,10 @@ button[class=active] {
 
 .hidden {
   display: none !important;
+}
+
+.transition {
+  transition: 0.5s;
 }
 
 a {
