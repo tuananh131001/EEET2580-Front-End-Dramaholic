@@ -49,12 +49,22 @@
                 </p>
               </div>
             </li>
-            <li
-              class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/pages/user/user_profile.html"
+            <a href="/pages/user/user_profile.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Account
+              </li></a
             >
-              Account
-            </li>
+            <a href="/pages/user/watch_history.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                History
+              </li></a
+            >
+
+            <a href="/pages/movie/admin_dashboard.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Admin
+              </li></a
+            >
             <li
               class="has-inline-left-gutter navigation-menu-setting"
               onclick="handleSignOut()"
@@ -78,7 +88,7 @@
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <a href="/index.html" ><li class="active">Home</li></a>
+          <a href="/index.html"><li class="active">Home</li></a>
           <a href="/pages/movie/category.html"><li>Category</li></a>
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
@@ -102,7 +112,10 @@
             <figure class="ti-time"></figure>
             <p>History</p>
           </a>
-          <a href="/pages/movie/admin_dashboard.html" class="account-container admin">
+          <a
+            href="/pages/movie/admin_dashboard.html"
+            class="account-container admin"
+          >
             <figure class="ti-crown"></figure>
             <p>Admin</p>
           </a>
