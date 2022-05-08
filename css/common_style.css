@@ -2,6 +2,11 @@ header, footer {
     color: white;
 }
 
+.navbar {
+    width: 100%;
+    flex-wrap: nowrap !important;
+}
+
 nav {
     padding: 0.65em 2em;
 }
@@ -180,6 +185,24 @@ label, th {
     color: #c1071e;
 }
 
+.white_button {
+    background-color:rgb(230, 230, 230);
+    /* background-color: white; */
+    color: #c1071e;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: #c1071e solid 1.5px;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+
+.white_button:hover {
+    cursor: pointer;
+    background-color: white;
+
+}
+
 .white_theme_button {
     background-color: transparent;
     color: #c1071e;
@@ -193,11 +216,11 @@ label, th {
 
 .white_theme_button:hover {
     cursor: pointer;
-    /* background-color: rgb(238, 237, 237); */
 }
 
-#submit_btn {
-    margin-top: 2%;
+#submit_btn {margin-top: 2%;}
+
+#submit_btn, #delete_btn {
     width: 25rem;
     height: 3rem;
 }
@@ -220,24 +243,28 @@ label, th {
 
 .require_symbol {color: #c1071e;}
 
+@media screen and (max-width: 62em) {
+    nav #sideNav {
+        visibility: visible;
+    }
+
+    nav .nav-right .hide_later {display: none;}
+    
+}
+
 @media screen and (max-width: 55em) {
     body {min-width: min-content;}
 
     nav {padding: 0.4rem 1.3rem;}
 
-    nav .logo {width: 100px;}
+    nav .logo {width: 100px !important;}
 
     nav .nav-left {gap: 1rem;}
 
     nav #page_title_nav{
         font-size: 1.5rem;
         font-weight: 500;
-        /* visibility: hidden; */
     }
-
-    nav .nav-right {visibility: hidden;}
-
-    .logo {visibility: visible;}
 
     .form_whole {align-items: flex-start;}
 
@@ -247,7 +274,5 @@ label, th {
         gap: 1.5rem;
     }
 
-    nav #sideNav {
-        visibility: visible;
-    }
+    footer .wrapper-footer {flex-direction: column;}
 }

@@ -1,5 +1,4 @@
 document.querySelector("footer").innerHTML = `
-<footer>
     <div class="member-footer-copyright">
       <span>© 2022 Dramaholic.</span>
       <div class="wrapper-footer">
@@ -88,7 +87,6 @@ document.querySelector("footer").innerHTML = `
         </div>
       </div>
     </div>
-  </footer>
   `;
 
 
