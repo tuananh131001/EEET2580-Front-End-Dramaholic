@@ -63,7 +63,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  margin: 3em;
+  margin: 2em;
   padding: 1em;
 }
 footer ul {
@@ -85,7 +85,36 @@ footer .social-links {
   display: flex;
   gap: 0.5em;
 }
+footer .member-footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1em;
+}
+footer .member-footer-copyright li {
+  list-style: none;
+}
+footer .members {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
 
+@media (min-width: 62em) {
+  footer .member-footer-copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .member-footer-copyright li {
+    list-style: none;
+  }
+  footer .member-footer-copyright .members {
+    flex-direction: row;
+  }
+}
 .skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
 }
