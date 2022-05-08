@@ -59,6 +59,9 @@ function openSearch() {
   var media_query = "screen and (min-width:320px) and (max-width:1023px)";
   // matched or not
   var matched = window.matchMedia(media_query).matches;
+  !matched
+    ? searchBar.classList.add("transition")
+    : searchBar.classList.remove("transition");
   matched && !searchBar.classList.contains("open")
     ? logo.classList.add("hidden")
     : logo.classList.remove("hidden");

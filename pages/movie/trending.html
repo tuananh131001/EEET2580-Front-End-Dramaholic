@@ -53,12 +53,22 @@
                 </p>
               </div>
             </li>
-            <li
-              class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/pages/user/user_profile.html"
+            <a href="/pages/user/user_profile.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Account
+              </li></a
             >
-              Account
-            </li>
+            <a href="/pages/user/watch_history.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                History
+              </li></a
+            >
+
+            <a href="/pages/movie/admin_dashboard.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Admin
+              </li></a
+            >
             <li
               class="has-inline-left-gutter navigation-menu-setting"
               onclick="handleSignOut()"
@@ -67,9 +77,9 @@
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="/index.html" class="active" >Home</a>
-            <a href="/pages/movie/category.html" >Category</a>
-            <a href="/pages/movie/trending.html" ">Trending</a>
+            <a href="/index.html" class="active">Home</a>
+            <a href="/pages/movie/category.html">Category</a>
+            <a href="/pages/movie/trending.html">Trending</a>
           </div>
           <a href="/pages/user/login.html"
             ><button class="sign-in-subBar">SIGN IN</button></a
@@ -82,9 +92,9 @@
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <a href="/index.html"><li >Home</li></a>
+          <a href="/index.html"><li class="active">Home</li></a>
           <a href="/pages/movie/category.html"><li>Category</li></a>
-          <a href="/pages/movie/trending.html"><li href="#" class="active">Trending</li></a>
+          <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
       </div>
       <div class="nav-right">
@@ -105,6 +115,13 @@
           <a href="/pages/user/watch_history.html" class="account-container">
             <figure class="ti-time"></figure>
             <p>History</p>
+          </a>
+          <a
+            href="/pages/movie/admin_dashboard.html"
+            class="account-container admin"
+          >
+            <figure class="ti-crown"></figure>
+            <p>Admin</p>
           </a>
           <button class="button" onclick="handleSignOut()">Sign Out</button>
         </div>
@@ -134,12 +151,15 @@
     </section>
     <footer>
       <div class="member-footer-copyright">
-        <span>© 2022 Dramaholic.</span>
-        <div class="wrapper-footer">
-          <p class="member-color">
-            Developers: Tuan Anh , Duy Nguyen , Ha Khanh , Phong Le , Nguyen
-            Nguyen
-          </p>
+        <h1>© 2022 Dramaholic.</h1>
+          <div class="members">
+            <li>Tuan Anh</li>
+            <li>Duy Nguyen</li>
+            <li>Ha Khanh</li>
+            <li>Phong Le</li>
+            <li>Nguyen Nguyen</li>
+          </div>
+  
           <div class="social-links">
             <a
               class="social-link"
@@ -219,11 +239,11 @@
                 ></path></svg
             ></a>
           </div>
-        </div>
       </div>
     </footer>
   </body>
   <div id="loading"></div>
   <script src="../../js/trending.js"></script>
   <script src="../../js/searchSuggest.js"></script>
+  <script src="/js/checkSignedIn.js"></script>
 </html>
