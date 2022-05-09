@@ -33,6 +33,7 @@ function openDropList() {
 function handleSignOut() {
   localStorage.removeItem("UserID");
   localStorage.removeItem("isLogin");
+  localStorage.removeItem("isAdmin");
   location.reload();
 }
 if (isLogin || isLoginTemp) {
@@ -52,6 +53,7 @@ if (isLogin || isLoginTemp) {
       );
       const adminElement = document.querySelector('.admin')
       admin ? adminElement.style.display = 'flex' : adminElement.style.display = 'none'
+      admin ? localStorage.setItem("isAdmin",true): localStorage.setItem("isAdmin",false)
       accountName.forEach((name) => (name.innerHTML = username.toUpperCase()));
     });
 }

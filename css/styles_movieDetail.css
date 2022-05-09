@@ -318,7 +318,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: .5em;
-  width: 20em;
+  width: 80%;
   padding-right: .5em;
 }
 .comment-wrapper{
@@ -336,9 +336,16 @@ button {
   padding: .5em;
   color: #fff;
   background-color:hsl(213, 24%, 7%) ;
-  border: 1px solid #c0071d;
+  border: none;
   width: 60vw;
+  outline: none;
+  outline:0 0 1px white 0;
 }
+.comment-form input:focus{
+  border-bottom: #c0071d 1px solid;
+  transition: all .35s ease-in-out;
+}
+
 .comment-form button{
   padding: .5em;
   color: #fff;
@@ -491,5 +498,66 @@ button {
   }
   .right-column{
     width: 100%;
+  }
+}
+
+
+/* Footer */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 2em;
+  padding: 1em;
+  color: #fff;
+}
+footer ul {
+  display: grid;
+  align-items: center;
+  list-style: none;
+  color: rgb(153, 153, 153);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
+}
+footer a {
+  color: inherit;
+}
+footer .wrapper-footer {
+  display: flex;
+  justify-content: space-between;
+}
+footer .social-links {
+  display: flex;
+  gap: 0.5em;
+}
+footer .member-footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1em;
+}
+footer .member-footer-copyright li {
+  list-style: none;
+}
+footer .members {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+@media (min-width: 62em) {
+  footer .member-footer-copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .member-footer-copyright li {
+    list-style: none;
+  }
+  footer .member-footer-copyright .members {
+    flex-direction: row;
   }
 }
