@@ -79,25 +79,63 @@ fetch(fetchingURL)
 
     document.querySelector("#youtube_frame").width = "100px";
   });
-
+function handleDelteComment(commentId, username, password) {
+  const dataToSend = JSON.stringify({
+    username: username,
+    password: password,
+  });
+  fetch("https://dramaholic.herokuapp.com/api/comments/" + commentId, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: dataToSend,
+  }).then((response) => {
+    location.reload();
+  });
+}
 function getComments(commentList) {
+  let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
-  commentList.forEach(({ message, user }) => {
-    const wrapper = `<div class='wrapper'>
-    <h2 class="message">${message}</h2>
-    <h3 class="user-name">By: ${user.name}</h3>
-  </div>`;
-    commentListElement.innerHTML += wrapper;
+  commentList.forEach(({ id, message, user }) => {
+
+    //Init 
+    const wrapper = document.createElement("div");
+    wrapper.className = "wrapper";
+    const messageElement = document.createElement("h2");
+    messageElement.textContent = message;
+    messageElement.className = "message";
+    const userElement = document.createElement("h3");
+    userElement.textContent = "By: " + user.name;
+    userElement.className = "user-name";
+    const authorWrapper = document.createElement("div");
+    authorWrapper.className = "author-wrapper"
+
+    // Add Section 
+    authorWrapper.appendChild(userElement);
+    wrapper.appendChild(messageElement);
+    wrapper.appendChild(authorWrapper);
+    if (userID === user.id) {
+      console.log(id);
+      const deleteButton = document.createElement("button");
+      deleteButton.addEventListener("click", (e) => {
+        handleDelteComment(id, user.username, user.password);
+        console.log(id);
+      });
+      deleteButton.textContent = "DELETE";
+      authorWrapper.appendChild(deleteButton);
+    }
+
+    commentListElement.appendChild(wrapper);
   });
 }
 function handleSubmitComment() {
-  let messageMovie = document.querySelector(".comment-form input").value;
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
+      let messageMovie = document.querySelector(".comment-form input").value;
+      messageMovie == '' ? location.reload() : null 
+      let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
         user: {
@@ -106,13 +144,12 @@ function handleSubmitComment() {
         },
         movie: { dbID: movieID },
       });
-      console.log(dataToSend);
       fetch("https://dramaholic.herokuapp.com/api/comments", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
       }).then((response) => {
-        console.log(response);
+        location.reload();
       });
     });
 }
