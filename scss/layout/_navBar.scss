@@ -54,13 +54,12 @@ nav {
     outline: none;  
     background: none;
     font-size: 1.1rem;
-    transition: .5s;
     line-height: 40px;
     color: #fff;
  
   }
   .open{
-    width: 100%;
+    width: 13em;
     padding: 0 20px;
   }
   .icon{
@@ -86,6 +85,7 @@ nav {
   .logo {
     margin-top: 0.3em;
     width: 12rem;
+    
   }
   .nav-left {
     display: flex;
