@@ -19,8 +19,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  top: 10%;
   width: 100%;
   gap: 0.5em;
   z-index: 1;
@@ -37,7 +36,7 @@ body {
 }
 .movie-info {
   width: 100%;
-  display: flex;
+  display: flex;thumbnail
   align-items: center;
   justify-content: center;
 }
@@ -47,7 +46,6 @@ body {
   justify-content: space-between;
   gap: 1em;
   width: 40vw;
-  overflow-y: scroll;
   height: 80%
 }
 .rating {
@@ -59,7 +57,7 @@ body {
   padding: 2em;
 }
 .thumbnail_portrait > img {
-  width: 20em;
+  width: 12em;
   border-radius: 10px;
 }
 .title {
@@ -83,7 +81,7 @@ body {
   display: flex;
   background-size: cover;
   margin: 0;
-  height: 100vh;
+  height: 60vh;
   opacity: 0.2;
 }
 #youtube_frame {
@@ -306,6 +304,7 @@ button {
   padding-top: 10%;
 }
 .director {
+  color: #fff;
   float: left;
 }
 .director_name {
@@ -319,15 +318,12 @@ button {
   display: flex;
   flex-direction: column;
   gap: .5em;
-  overflow-y: scroll;
-  height: 10ch;
   width: 20em;
   padding-right: .5em;
 }
 .comment-wrapper{
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 1em;
 }
 .comment-form{
@@ -341,6 +337,7 @@ button {
   color: #fff;
   background-color:hsl(213, 24%, 7%) ;
   border: 1px solid #c0071d;
+  width: 60vw;
 }
 .comment-form button{
   padding: .5em;
@@ -392,6 +389,19 @@ button {
   cursor: pointer;
   background-color: hsl(353, 89%, 40%) ;
 }
+.horizontal-body{
+  display: flex;
+  padding: 2em;
+  padding-bottom: 1em;
+}
+.left-column{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.right-column{
+  width: 20%;
+}
 
 /* if backdrop support: very transparent and blurred */
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
@@ -427,7 +437,8 @@ button {
 
 @media screen and (max-width: 768px) {
   #blur_frame {
-    display: block;
+    position: revert ;
+    display: flex;
   }
   .logo-container {
     display: flex;
@@ -441,8 +452,14 @@ button {
   }
   .movie-info {
     flex-direction: column;
+    align-items: center;
   }
-
+  .screen{
+    height: 0;
+  }
+  .cast{
+    width: 100vw;
+  }
   .thumbnail_portrait > img {
     margin-top: 3em;
     width: 15em;
@@ -457,7 +474,6 @@ button {
   .comment-wrapper{
     flex-direction: column;
     gap: 1em;
-    padding:1em;
   }
   .comment-form{
     width: 85%;
@@ -469,23 +485,11 @@ button {
     overflow-y: visible;
     width: 80%;
   }
-}
-.comment-list::-webkit-scrollbar{
-  width: 0;
-}
-
-.right-container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.right-container::-webkit-scrollbar-track {
-  background-color: rgba(14, 17, 22, 0.204);
-  border-radius: 100px;
-}
-
-.right-container::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  border: 5px solid transparent;
-  background-clip: content-box;
-  background-color: rgb(192, 7, 29);
+  .horizontal-body{
+    flex-direction: column;
+    gap: 1em;
+  }
+  .right-column{
+    width: 100%;
+  }
 }

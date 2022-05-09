@@ -99,41 +99,6 @@
               WATCH LATER
             </button>
           </div>
-          <div id="movie_crew" class="equipe regular_setting">
-            <div id="movie_actor" class="cast">
-              <div class="icon_container">
-                <div>
-                  <button id="iconl" class="icon" onclick="scrolll()">
-                    <i class="fas fa-angle-double-left"></i>
-                  </button>
-                </div>
-                <p>CAST</p>
-                <div>
-                  <button id="iconr" class="icon" onclick="scrollr()">
-                    <i class="fas fa-angle-double-right"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="cover">
-                <div class="scroll-images"></div>
-              </div>
-            </div>
-
-            <!-- director -->
-            <div id="movie_director" class="director">
-              DIRECTOR BY
-              <br />
-              <br />
-            </div>
-          </div>
-          <div class="comment-wrapper">
-            <div class="comment-form" name="comment-section">
-              <label for="">Comment : </label>
-              <input type="text" />
-              <button onclick="handleSubmitComment()">Submit</button>
-            </div>
-            <div class="comment-list"></div>
-          </div>
         </div>
       </div>
       <!-- Comment -->
@@ -142,6 +107,46 @@
     <div id="youtube_frame" class="youtube_div"></div>
     <div class="screen">
       <div class="split a"></div>
+    </div>
+    <div class="horizontal-body">
+      <div class="left-column">
+        <div id="movie_crew" class="equipe regular_setting">
+          <div id="movie_actor" class="cast">
+            <div class="icon_container">
+              <div>
+                <button id="iconl" class="icon" onclick="scrolll()">
+                  <i class="fas fa-angle-double-left"></i>
+                </button>
+              </div>
+              <p>CAST</p>
+              <div>
+                <button id="iconr" class="icon" onclick="scrollr()">
+                  <i class="fas fa-angle-double-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="cover">
+              <div class="scroll-images"></div>
+            </div>
+          </div>
+        </div>
+        <div class="comment-wrapper">
+          <form  class="comment-form" name="comment-section">
+            <label for="">Comment : </label>
+            <input name="message" type="text" placeholder="Write your review..."/>
+          </form>
+          <div class="comment-list"></div>
+        </div>
+        
+      </div>
+      <div class="right-column">
+        <!-- director -->
+        <div id="movie_director" class="director">
+          DIRECTOR BY
+          <br />
+          <br />
+        </div>
+      </div>
     </div>
   </body>
 </html>
