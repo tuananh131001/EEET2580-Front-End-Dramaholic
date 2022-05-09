@@ -320,6 +320,48 @@ button {
   font-size: 0.8rem;
   padding-bottom: 1vh;
 }
+.comment-form{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+.comment-form input{
+  padding: .5em;
+  color: #fff;
+  background-color:hsl(213, 24%, 7%) ;
+  border: 1px solid #c0071d;
+}
+.comment-form button{
+  padding: .5em;
+  color: #fff;
+  border: none;
+  background-color:hsl(353, 93%, 39%) ;
+  border-radius: 10px;
+}
+.comment-list{
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+.comment-list .wrapper{
+  display:flex;
+  flex-direction: column;
+  padding: .5em;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.comment-list .message{
+  font-size: 0.9rem;
+  text-align: left;
+}
+.comment-list .user-name{
+  text-align: right;
+  font-size: 0.6rem;
+  font-weight: 300;
+}
 
 
 /* if backdrop support: very transparent and blurred */
