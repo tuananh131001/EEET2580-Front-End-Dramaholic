@@ -465,6 +465,10 @@ button {
   .comment-list{
     height: revert;
   }
+  .right-container{
+    overflow-y: visible;
+    width: 80%;
+  }
 }
 .comment-list::-webkit-scrollbar{
   width: 0;
