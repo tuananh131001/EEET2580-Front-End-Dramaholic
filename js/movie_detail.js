@@ -127,13 +127,16 @@ function getComments(commentList) {
     commentListElement.appendChild(wrapper);
   });
 }
-function handleSubmitComment() {
+const form = document.forms['comment-section']; 
+form.addEventListener('submit', handleSubmitComment);
+function handleSubmitComment(e) {
+  e.preventDefault()
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
-      let messageMovie = document.querySelector(".comment-form input").value;
+      let messageMovie = document.forms["comment-section"]["message"].value;
       messageMovie == '' ? location.reload() : null 
       let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
       const dataToSend = JSON.stringify({
@@ -150,6 +153,7 @@ function handleSubmitComment() {
         body: dataToSend,
       }).then((response) => {
         location.reload();
+
       });
     });
 }
