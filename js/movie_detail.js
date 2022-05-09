@@ -10,7 +10,9 @@ var fetchingURL = originalURL + id;
 fetch(fetchingURL)
   .then((response) => response.json())
   .then((json) => {
-    console.log(json);
+    //comments section get
+    console.log(json.comments);
+    getComments(json.comments);
     //parse year
     let text = json.date;
     const json_year = text.split("-");
@@ -21,7 +23,6 @@ fetch(fetchingURL)
     let href_cut = json.href.split("https://www.youtube.com/watch?v=");
     film_youtube =
       "https://www.youtube.com/embed/" + href_cut[1] + "?enablejsapi=1";
-    console.log(film_youtube);
     document.querySelector(
       ".thumbnail_portrait"
     ).innerHTML = `<img src="${json.thumbnail}" alt="">`;
@@ -63,6 +64,7 @@ fetch(fetchingURL)
     const regionNames = new Intl.DisplayNames(["en"], {
       type: "language",
     });
+
     let country = regionNames.of(json.country.toUpperCase());
     document.querySelector(
       "#movie_info"
@@ -74,10 +76,46 @@ fetch(fetchingURL)
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>`;
-      
-      document.querySelector("#youtube_frame").width = "100px";
-      
+
+    document.querySelector("#youtube_frame").width = "100px";
+  });
+
+function getComments(commentList) {
+  const commentListElement = document.querySelector(".comment-list");
+  commentList.forEach(({ message, user }) => {
+    const wrapper = `<div class='wrapper'>
+    <h2 class="message">${message}</h2>
+    <h3 class="user-name">By: ${user.name}</h3>
+  </div>`;
+    commentListElement.innerHTML += wrapper;
+  });
+}
+function handleSubmitComment() {
+  let messageMovie = document.querySelector(".comment-form input").value;
+  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let userID = JSON.parse(localStorage.getItem("UserID"));
+  let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
+  fetch(originalURL + userID)
+    .then((response) => response.json())
+    .then((json) => {
+      const dataToSend = JSON.stringify({
+        message: messageMovie,
+        user: {
+          username: json.username,
+          password: json.password,
+        },
+        movie: { dbID: movieID },
+      });
+      console.log(dataToSend);
+      fetch("https://dramaholic.herokuapp.com/api/comments", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: dataToSend,
+      }).then((response) => {
+        console.log(response);
+      });
     });
+}
 
 function play_movie() {
   document.getElementById("youtube_frame").style.visibility = "visible";
@@ -85,7 +123,7 @@ function play_movie() {
   document.getElementById("youtube_frame").style.animationName = "zoom-in";
   document.getElementById("youtube_frame").style.animationDuration = "1s";
   document.getElementById("full-screen").style.visibility = "visible";
-  add_history()
+  add_history();
 }
 function stop_movie() {
   if (document.getElementById("youtube_frame").style.visibility == "visible") {
