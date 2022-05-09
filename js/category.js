@@ -41,7 +41,6 @@ const createCardHistory = (x) => {
 };
 const movieList = [];
 
-
 function SetupPagination(items, wrapper, pages, categoryType) {
   wrapper.innerHTML = "";
   for (let i = 1; i < pages + 1; i++) {
@@ -69,18 +68,19 @@ function PaginationButton(page, items, categoryType) {
   return button;
 }
 
-async function displayCategory(list, categoryType,countryType, current_page) {
+async function displayCategory(list, categoryType, countryType, current_page) {
   historyContent.innerHTML = "";
-  console.log(countryType)
+  console.log(countryType);
   const res = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
-      encodeURIComponent(categoryType) +"&country=" +
+      encodeURIComponent(categoryType) +
+      "&country=" +
       encodeURIComponent(countryType) +
       "&page=" +
       current_page
   );
   list = [];
-  console.log(res)
+  console.log(res);
 
   const { content, totalPages } = await res.json();
 
@@ -102,7 +102,7 @@ category.addEventListener("click", function () {
   }
 });
 category.addEventListener("change", function () {
-  addActivityItem(category.value,countries.value);
+  addActivityItem(category.value, countries.value);
 });
 
 // select Country
@@ -114,12 +114,19 @@ countries.addEventListener("click", function () {
   }
 });
 countries.addEventListener("change", function () {
-  addActivityItem(category.value,countries.value);
+  addActivityItem(category.value, countries.value);
 });
 
-
-function addActivityItem(option,country) {
+function addActivityItem(option, country) {
   historyContent.innerHTML = "";
-  displayCategory(movieList, option,country, 0);
+  displayCategory(movieList, option, country, 0);
 }
-displayCategory(movieList, "", "",0);
+displayCategory(movieList, "", "", 0);
+const openNav = () => {
+  const subNav = document.querySelector("#sideNav");
+  subNav.style.width === ""
+    ? (subNav.style.width = "60%")
+    : (subNav.style.width = "");
+  const input = document.querySelector(".search-bar");
+  input.nodeValue = "";
+};
