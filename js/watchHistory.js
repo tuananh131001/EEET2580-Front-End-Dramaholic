@@ -47,11 +47,10 @@ async function getMovieListSearch(list) {
   );
   const { _embedded } = await url.json();
   const { movies } = await _embedded;
-
-  for (let i = 0; i < movies.length; i++) {
+  for (let i = movies.length -1 ; i >= 0; i--) {
     await list.push(createCardHistory(movies[i]));
   }
-  for (let i = 0; i < list.length; i++) {
+  for (let i = 0 ; i < movies.length; i++) {
     await historyContent.appendChild(list[i]);
   }
 }
