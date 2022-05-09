@@ -60,10 +60,11 @@
 
       .add-movie-btn {font-size: small;}
 
-      #pagination {
+      .pagenumbers {
         align-self: center;
         display: flex;
         gap: 0.5rem;
+        width: 100%;
       }
 
       .pagenumbers button{
@@ -87,17 +88,26 @@
       }
 
       .movielist-pagination {gap: 2rem;}
+
       @media screen and (max-width: 55em) {
-        .body_region {width: 90%;}
+        .body_region {width: 80%;}
 
         .add-movie-btn {padding: 0.5rem;}
       }
 
       @media screen and (max-width: 40em) {
         .input_box {width: 18rem;}
+        .pagenumbers {gap: 0.2rem;}
         .pagenumbers button{
           width: 1.8rem;
           height: 1.8rem;
+          min-width: 1.4rem;
+        }
+
+        .body_region {width: 77%;}
+
+        .wrapper-footer {
+          flex-direction: column;
         }
       }
 

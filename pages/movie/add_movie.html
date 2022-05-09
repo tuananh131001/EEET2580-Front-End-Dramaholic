@@ -83,21 +83,30 @@
                         </div>
 
                         <div>
+                            <label for="thumbnail">Thumbnail Portrait</label>
+                            <input class="input_box" type="url" id="thumbnail_portrait" name="thumbnail_portrait" placeholder="URL"/>
+                        </div>
+
+                        <div>
+                            <label for="thumbnail">Thumbnail Landscape</label>
+                            <input class="input_box" type="url" id="thumbnail_landscape" name="thumbnail_landscape" placeholder="URL"/>
+                        </div>
+                    </div>
+
+                    <div class="flex_col form_col" id="right_col">
+                        <div>
                             <label for="duration">Duration</label>
-                            <input class="input_box" type="text" id="duration" name="duration" placeholder="Duration"/>
+                            <input class="input_box" type="number" id="duration" name="duration" placeholder="Duration in minutes" min="0"/>
                         </div>    
                         
                         <div>
                             <label for="episodes">Episodes</label>
-                            <input class="input_box" type="number" id="episodes" name="episodes" placeholder="Epsisodes"/>
+                            <input class="input_box" type="number" id="episodes" name="episodes" placeholder="Epsisodes" min="0"/>
                         </div> 
-                    </div>
-
-                    <div class="flex_col form_col" id="right_col">
 
                         <div>
                             <label for="rating">Rating</label>
-                            <input class="input_box" type="number" step="any" id="rating" name="rating" placeholder="Rating"/>
+                            <input class="input_box" type="number" step="any" id="rating" name="rating" placeholder="Rating" min="0"/>
                         </div>   
 
                         <div>
@@ -109,7 +118,7 @@
                         </div>  
 
                         <div>
-                            <label for="country">Country</label>
+                            <label for="country">Country <span class="require_symbol">*</span></label>
                             <select required class="input_box" id="country" name="country" form="add_film_form">
                                 <option id="no_country_option" value="">-- Select a country --</option>
                             </select>
@@ -122,12 +131,12 @@
 
                         <div>
                             <label for="tags">Tags</label>
-                            <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma"/>
+                            <input class="input_box" type="text" id="tags" name="tags" placeholder="Tags separated by comma. Ex: #A, #b, #c"/>
                         </div>
 
                         <div>
                             <label for="director">Directors</label>
-                            <input class="input_box" type="text" id="director" name="director" placeholder="Names separated by comma"/>
+                            <input class="input_box" type="text" id="director" name="director" placeholder="Names separated by comma. Ex: Jimmy, Alex"/>
                         </div>   
 
                         <div>
@@ -246,16 +255,39 @@
     }
 
     function generalize_genres() {
-        var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
-        var selected = ''
-        var total = checkboxes.length
-        for (var i = 0; i < total; i++) {
-            if (i == (total-1))
-                selected += checkboxes[i].value;
-            else
-                selected += checkboxes[i].value + ',';
+        let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+        let selected = []
+        let total = checkboxes.length
+        for (let i = 0; i < total; i++) {
+                selected.push(checkboxes[i].value)
         }
-        document.getElementById("genres").value = selected
+        document.getElementById("genres").value = JSON.stringify(selected)
+    }
+
+    function generalize_director() {
+        let values = document.querySelector("#director").value.split(/[,]+/).filter(Boolean);
+        let total = values.length
+        let directors = []
+        for (let i = 0; i < total; i++) {
+            let name_parts = values[i].split(/[ ]+/).filter(Boolean);
+            let final_name = ""
+            for (let j=0; j<name_parts.length; j++) {
+                final_name += name_parts + " "
+            }
+            final_name = final_name.slice(0,-1)
+            directors.push(final_name)
+        }
+        document.getElementById("director").value = JSON.stringify(directors)
+    }
+
+    function generalize_tags() {
+        let values = document.querySelector("#tags").value.split(/[, ]+/).filter(Boolean);
+        let total = values.length
+        let tags = []
+        for (let i = 0; i < total; i++) {
+            tags.push(values[i])
+        }
+        document.getElementById("tags").value = JSON.stringify(tags)
     }
 
     function generalize_actors() {
@@ -281,9 +313,11 @@
         try {
         generalize_genres();
         generalize_actors();
+        generalize_director();
+        generalize_tags();
         }
         catch(error) {
-            console.log("gen: ",error)
+            console.log(error)
         }
         e.preventDefault();
 
@@ -291,7 +325,6 @@
             title: document.getElementById("title").value,
             originalTitle: document.getElementById("originalTitle").value,
             description: document.getElementById("description").value,
-            genres: [document.getElementById("genres").value],
             href: document.getElementById("href").value,
             thumbnail: document.getElementById("thumbnail").value,
             duration: document.getElementById("duration").value,
@@ -300,14 +333,18 @@
             adult: document.getElementById("adult").value,
             date: document.getElementById("date").value,
             adult: document.getElementById("adult").value,
-            country: document.getElementById("country").value,
-            tags: [document.getElementById("tags").value],
-            director: [document.getElementById("director").value]}
+            country: document.getElementById("country").value}
         )
 
         data = data.toString()
         data = data.slice(0,-1)
-        data = data.concat(`,"actors":[${document.getElementById("actors").value}]}`)
+        data = data.concat(`,
+        "genres":${document.getElementById("genres").value},
+        "actors":[${document.getElementById("actors").value}],
+        "director": ${document.getElementById("director").value},
+        "tags": ${document.getElementById("tags").value}
+        }
+        `)
         console.log(data)
 
         try {
