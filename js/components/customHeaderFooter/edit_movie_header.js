@@ -69,7 +69,7 @@ document.querySelector("header").innerHTML = `
    
 
     <div class="nav-right">
-        <div class="dropdown" id="account_navigate">
+        <div class="hide_later dropdown" id="account_navigate">
             <div class="flex_row align_items_center" style="gap:0.5rem;">
                 <span class="navigation-menu-profile-name"></span>
                 <span class="down-arrow ti-angle-down" style="font-size:13px;"></span>
@@ -102,7 +102,7 @@ document.querySelector("header").innerHTML = `
                 </div>
             </div>
         </div>
-        <div>|</div>
+        <div class="hide_later">|</div>
         <div class="image-container" id="logo_nav">
             <a href="../../index.html";"
             ><img src="../../assets/image/logo.png" alt="DramaHolic" class="logo"
