@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="/css/category.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +21,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DramaHolic</title>
+
+    <style>
+      .flex_row {display: flex;}
+
+      .flex_row.pagination_whole {
+        gap: 0.7rem;
+        align-items:baseline;
+        align-self: center;
+      }
+
+      .pagenumbers button:hover, .pagenumbers button.active {
+        cursor: pointer;
+        text-decoration: underline;
+        background-color: #c1071e;
+        color: white;
+      }
+    </style>
   </head>
   <header>
     <nav class="navbar nav-gradient">
@@ -146,9 +164,9 @@
       <main>
         <div class="select-category">
           <label for="category">Category:</label>
-          <select name="category" id="" class="category">
+          <select name="category" id="category" class="category">
             <option value="">All</option>
-            <option value="Action & Adventure">Action & Adventure</option>
+            <!-- <option value="Action & Adventure">Action & Adventure</option>
             <option value="Animation">Animation</option>
             <option value="Comedy">Comedy</option>
             <option value="Crime">Crime</option>
@@ -163,17 +181,22 @@
             <option value="Soap">Soap</option>
             <option value="Talk">Talk</option>
             <option value="War & Politics">War</option>
-            <option value="Western">Western</option>
+            <option value="Western">Western</option> -->
           </select>
           <label for="country">Country:</label>
           <select name="country" id="" class="country">
             <option value="">All</option>
             <option value="ko">Korea</option>
             <option value="en">US</option>
+            <option value="ja">Japan</option>
           </select>
         </div>
         <div class="movie-list-grid"></div>
-        <div class="pagenumbers" id="pagination"></div>
+        <div class="pagination_whole flex_row align_items_center">
+          <div class="pagi_range" id="prev">Prev</div>
+          <div class="pagenumbers" id="pagination"></div>
+          <div class="pagi_range" id="next">Next</div>
+        </div>
       </main>
     </section>
     <footer>

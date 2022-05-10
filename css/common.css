@@ -1,0 +1,53 @@
+.flex_row {
+    display: flex;
+}
+
+.flex_col {
+    display: flex;
+    flex-direction: column;
+}
+
+.align_items_center {
+    align-items: center;
+}
+
+.red_theme_button {
+    background-color: #c1071e;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: #c1071e solid 1.5px;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+.red_theme_button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #c1071e;
+}
+
+.flex_row.pagination_whole {
+    gap: 0.7rem;
+    align-items:baseline;
+    align-self: center;
+}
+
+.pagi_range {
+color: rgb(155, 155, 155);
+}
+
+.pagi_range:hover {
+cursor: pointer;
+text-decoration: underline;
+}
+
+nav #sideNav {
+    visibility: hidden;
+}
+
+@media screen and (max-width: 62em) {
+    nav #sideNav {
+        visibility: visible;
+    }
+}

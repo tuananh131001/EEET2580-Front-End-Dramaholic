@@ -1,6 +1,51 @@
+let user = localStorage.getItem("UserID")
+if (user == "" || user == null) {
+    window.location.replace("../../index.html");
+}
+else {
+// let current_user = sessionStorage.getItem('UserID')
+fetch(`https://dramaholic.herokuapp.com/api/customers/${user}`)
+.then((response) => response.json())
+.then((user) => {
+    let insertname = document.querySelectorAll(".navigation-menu-profile-name")
+    for (let i=0; i<insertname.length; i++) {
+        insertname[i].innerHTML = "Hi, " + user.username.toUpperCase()
+    }
+        
+    if (user.admin == true) {
+        let a = document.querySelectorAll(".admin-dashboard")
+        for (let i=0; i<a.length; i++) {
+            a[i].removeAttribute("hidden")
+        }
+    }
+})
+.catch((error) => {
+    console.log(error); 
+});
+}
+
 const historyContent = document.querySelector(".movie-list-grid");
 const pagination_element = document.getElementById("pagination");
-const createCardHistory = (movies) => {
+
+const account_navi = document.querySelector(".account-wrapper");
+// const prev_btn = document.querySelector("#prev");
+// const next_btn = document.querySelector("#next");
+// let current_page = 0;
+// let rows = 20;
+// let pagi_range = 8
+// let current_start_index = 0
+
+account_navi.onclick = () => {
+  let check = document.querySelector(".drop-down.hidden")
+  if (check != null)
+    document.querySelector(".drop-down").classList.remove("hidden")
+  else
+    document.querySelector(".drop-down").classList.add("hidden")
+}
+
+
+const createCardHistory = (x) => {
+
   let card = document.createElement("div");
   card.className = "movie-search-card";
   // Image
