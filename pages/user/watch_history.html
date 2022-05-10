@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,6 +24,44 @@
     footer {
       margin-top: auto;
     }
+
+    .account-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;  
+    }
+    .nav .sign-in-subBar {display: unset;}
+    
+    nav #sideNav {
+      visibility: hidden;
+    }
+
+    .sign-out-subBar {margin-top: 1em;}
+
+    .red_theme_button {
+        background-color: #c1071e;
+        color: white;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: #c1071e solid 1.5px;
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+    }
+
+    .red_theme_button:hover {
+        cursor: pointer;
+        background-color: white;
+        color: #c1071e;
+    }
+
+    @media screen and (max-width: 62em) {
+      nav #sideNav {
+        visibility: visible;
+      }
+
+      nav .nav-right {display: none;}
+    }
+
   </style>
   <header>
     <nav class="navbar nav-gradient">
@@ -35,46 +74,33 @@
         >
 
         <div id="sideNav" class="sideNav">
-          <ol class="account-menu">
-            <li class="has-inline-left-gutter navigation-menu-profile">
-              <img
-                src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
-                class="header-profile-avatar"
-              />
-              <div
-                class="navigation-menu-profile-link"
-                data-href="/ProfilesGate"
-              >
-                <p
-                  class="navigation-menu-profile-name"
-                  data-href="/ProfilesGate"
-                >
-                  Tuan Anh
-                </p>
-              </div>
-            </li>
-            <li
-              class="has-inline-left-gutter navigation-menu-setting"
-              data-href="/pages/user/user_profile.html"
-            >
-              Account
-            </li>
-            <li
-              class="has-inline-left-gutter navigation-menu-setting"
-              onclick="handleSignOut()"
-            >
-              Sign out of Netflix
-            </li>
-          </ol>
           <div class="navigation-menu-settings">
-            <a href="/index.html" class="active">Home</a>
-            <a href="/pages/movie/category.html">Category</a>
-            <a href="/pages/movie/trending.html">Trending</a>
+              <div class="flex_row align_items_center" style="gap:0.5rem;">
+                  <li class="has-inline-left-gutter navigation-menu-profile">
+                      <img
+                          src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
+                          class="header-profile-avatar"
+                      />
+                  </li>
+                  <li class="navigation-menu-profile-name"></li>
+              </div>
+              <div><a href="../../../pages/user/user_profile.html">Account</a></div>
+              <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html">Admin Dashboard</a></div>
+              <div><a href="../../pages/user/watch_history.html">Watching History</a></div>
           </div>
-          <a href="/pages/user/login.html"
-            ><button class="sign-in-subBar">SIGN IN</button></a
-          >
-        </div>
+          <div class="navigation-menu-settings">
+              <div><a href="../../../index.html">Home</a></div>
+              <div><a href="../../../pages/movie/category.html">Category</a></div>
+              <div><a href="../../../pages/movie/trending.html">Top Trending</a></div>
+          </div>
+          <div class="navigation-menu-settings">
+              <div><a href="../../../pages/info/aboutUs.html">About @dramaholic</a></div>
+              <div><a href="../../../pages/info/policy.html">Policy</a></div>
+          </div>
+          <div class="a" onclick=handleSignOut()>
+              <button class="red_theme_button sign-out-subBar" >SIGN OUT</button>
+          </div>
+      </div>
 
         <div class="image-container">
           <a href="/index.html"
@@ -87,10 +113,10 @@
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
       </div>
-      <div class="nav-right">
 
+      <div class="nav-right">
         <a href="/pages/user/login.html"
-          ><button class="sign-in-nagivation">SIGN IN</button></a
+          ><button class="sign-in-nagivation" style="display: block;">SIGN IN</button></a
         >
         <div class="drop-down hidden">
           <a href="/pages/user/user_profile.html" class="account-container">
@@ -107,9 +133,9 @@
           </a>
           <button class="button" onclick="handleSignOut()">Sign Out</button>
         </div>
-        <div class="account-wrapper">
+        <div class="account-wrapper flex_row">
           <p class="avatar">
-            Hi, <span class="navigation-menu-profile-name"></span>
+            <span class="navigation-menu-profile-name"></span>
           </p>
           <span class="down-arrow ti-angle-down"></span>
         </div>
@@ -128,6 +154,11 @@
       </div>
       <main>
         <div class="movie-list-grid"></div>
+        <!-- <div class="pagination_whole flex_row align_items_center">
+          <div class="pagi_range" id="prev">Prev</div>
+          <div class="pagenumbers" id="pagination"></div>
+          <div class="pagi_range" id="next">Next</div>
+        </div> -->
       </main>
     </section>
     <footer>
@@ -226,4 +257,5 @@
   <script  src="/js/watchHistory.js"></script>
   <script  src="../../js/searchSuggest.js"></script>
   <script src="/js/checkSignedIn.js"></script>
+  <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
 </html>
