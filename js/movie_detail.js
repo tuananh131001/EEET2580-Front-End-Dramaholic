@@ -10,7 +10,9 @@ var fetchingURL = originalURL + id;
 fetch(fetchingURL)
   .then((response) => response.json())
   .then((json) => {
-    console.log(json);
+    //comments section get
+    console.log(json.comments);
+    getComments(json.comments);
     //parse year
     let text = json.date;
     const json_year = text.split("-");
@@ -21,7 +23,6 @@ fetch(fetchingURL)
     let href_cut = json.href.split("https://www.youtube.com/watch?v=");
     film_youtube =
       "https://www.youtube.com/embed/" + href_cut[1] + "?enablejsapi=1";
-    console.log(film_youtube);
     document.querySelector(
       ".thumbnail_portrait"
     ).innerHTML = `<img src="${json.thumbnail}" alt="">`;
@@ -63,6 +64,7 @@ fetch(fetchingURL)
     const regionNames = new Intl.DisplayNames(["en"], {
       type: "language",
     });
+
     let country = regionNames.of(json.country.toUpperCase());
     document.querySelector(
       "#movie_info"
@@ -74,10 +76,88 @@ fetch(fetchingURL)
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>`;
+
+    document.querySelector("#youtube_frame").width = "100px";
+  });
+function handleDelteComment(commentId, username, password) {
+  const dataToSend = JSON.stringify({
+    username: username,
+    password: password,
+  });
+  fetch("https://dramaholic.herokuapp.com/api/comments/" + commentId, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: dataToSend,
+  }).then((response) => {
+    location.reload();
+  });
+}
+function getComments(commentList) {
+  let userID = JSON.parse(localStorage.getItem("UserID"));
+  const commentListElement = document.querySelector(".comment-list");
+  commentList.forEach(({ id, message, user }) => {
+
+    //Init 
+    const wrapper = document.createElement("div");
+    wrapper.className = "wrapper";
+    const messageElement = document.createElement("h2");
+    messageElement.textContent = message;
+    messageElement.className = "message";
+    const userElement = document.createElement("h3");
+    userElement.textContent = "By: " + user.name;
+    userElement.className = "user-name";
+    const authorWrapper = document.createElement("div");
+    authorWrapper.className = "author-wrapper"
+
+    // Add Section 
+    authorWrapper.appendChild(userElement);
+    wrapper.appendChild(messageElement);
+    wrapper.appendChild(authorWrapper);
+    const isAdmin = localStorage.getItem("isAdmin")
+    if (userID === user.id || isAdmin) {
       
-      document.querySelector("#youtube_frame").width = "100px";
-      
+      const deleteButton = document.createElement("button");
+      deleteButton.addEventListener("click", (e) => {
+        handleDelteComment(id, user.username, user.password);
+        console.log(id);
+      });
+      deleteButton.textContent = "DELETE";
+      authorWrapper.appendChild(deleteButton);
+    }
+
+    commentListElement.appendChild(wrapper);
+  });
+}
+const form = document.forms['comment-section']; 
+form.addEventListener('submit', handleSubmitComment);
+function handleSubmitComment(e) {
+  e.preventDefault()
+  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let userID = JSON.parse(localStorage.getItem("UserID"));
+  fetch(originalURL + userID)
+    .then((response) => response.json())
+    .then((json) => {
+      let messageMovie = document.forms["comment-section"]["message"].value;
+      messageMovie == '' ? location.reload() : null 
+      let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
+      const dataToSend = JSON.stringify({
+        message: messageMovie,
+        user: {
+          username: json.username,
+          password: json.password,
+        },
+        movie: { dbID: movieID },
+      });
+      fetch("https://dramaholic.herokuapp.com/api/comments", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: dataToSend,
+      }).then((response) => {
+        location.reload();
+
+      });
     });
+}
 
 function play_movie() {
   document.getElementById("youtube_frame").style.visibility = "visible";
@@ -85,7 +165,7 @@ function play_movie() {
   document.getElementById("youtube_frame").style.animationName = "zoom-in";
   document.getElementById("youtube_frame").style.animationDuration = "1s";
   document.getElementById("full-screen").style.visibility = "visible";
-  add_history()
+  add_history();
 }
 function stop_movie() {
   if (document.getElementById("youtube_frame").style.visibility == "visible") {
