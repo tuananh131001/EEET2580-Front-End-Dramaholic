@@ -154,7 +154,6 @@ async function getTrending() {
     window.addEventListener("scroll", () => {
       const { scrollTop, clientHeight, scrollHeight } =
         document.documentElement;
-      console.log(scrollTop, clientHeight, scrollHeight);
       if (
         scrollTop + clientHeight >= scrollHeight - 400 &&
         scrollCount < movieListTitle.length

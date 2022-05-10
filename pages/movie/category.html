@@ -29,14 +29,9 @@
         gap: 0.7rem;
         align-items:baseline;
         align-self: center;
+        justify-content: center;
       }
 
-      .pagenumbers button:hover, .pagenumbers button.active {
-        cursor: pointer;
-        text-decoration: underline;
-        background-color: #c1071e;
-        color: white;
-      }
     </style>
   </head>
   <header>
@@ -162,34 +157,38 @@
         </div>
       </div>
       <main>
-        <div class="select-category">
-          <label for="category">Category:</label>
-          <select name="category" id="category" class="category">
-            <option value="">All</option>
-            <!-- <option value="Action & Adventure">Action & Adventure</option>
-            <option value="Animation">Animation</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Crime">Crime</option>
-            <option value="Documentary">Documentary</option>
-            <option value="Drama">Drama</option>
-            <option value="Family">Family</option>
-            <option value="Kids">Kids</option>
-            <option value="Mystery">Mystery</option>
-            <option value="News">News</option>
-            <option value="Reality">Reality</option>
-            <option value="Sci-Fi & Fantasy">Sci</option>
-            <option value="Soap">Soap</option>
-            <option value="Talk">Talk</option>
-            <option value="War & Politics">War</option>
-            <option value="Western">Western</option> -->
-          </select>
-          <label for="country">Country:</label>
-          <select name="country" id="" class="country">
-            <option value="">All</option>
-            <option value="ko">Korea</option>
-            <option value="en">US</option>
-            <option value="ja">Japan</option>
-          </select>
+        <div class="flex_row select-category">
+          <div>
+            <label for="category">Category:</label>
+            <select name="category" id="category" class="category">
+              <option value="">All</option>
+              <!-- <option value="Action & Adventure">Action & Adventure</option>
+              <option value="Animation">Animation</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Crime">Crime</option>
+              <option value="Documentary">Documentary</option>
+              <option value="Drama">Drama</option>
+              <option value="Family">Family</option>
+              <option value="Kids">Kids</option>
+              <option value="Mystery">Mystery</option>
+              <option value="News">News</option>
+              <option value="Reality">Reality</option>
+              <option value="Sci-Fi & Fantasy">Sci</option>
+              <option value="Soap">Soap</option>
+              <option value="Talk">Talk</option>
+              <option value="War & Politics">War</option>
+              <option value="Western">Western</option> -->
+            </select>
+          </div>
+          <div>
+            <label for="country">Country:</label>
+            <select name="country" id="" class="country">
+              <option value="">All</option>
+              <option value="ko">Korea</option>
+              <option value="en">US</option>
+              <option value="ja">Japan</option>
+            </select>
+          </div>
         </div>
         <div class="movie-list-grid"></div>
         <div class="pagination_whole flex_row align_items_center">
@@ -293,7 +292,7 @@
     </footer>
   </body>
   <script src="/js/category.js"></script>
-  <script src="/js/searchSuggest.js"></script>
+  <!-- <script src="/js/searchSuggest.js"></script> -->
   <script src="/js/checkSignedIn.js"></script>
   <script src="/js/components/scrollEffect.js"></script>
 </html>
