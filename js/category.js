@@ -4,7 +4,7 @@ const category = document.querySelector(".category");
 const countries = document.querySelector(".country");
 const prev_btn = document.querySelector("#prev");
 const next_btn = document.querySelector("#next");
-let current_page = 0;
+let currenPage = 0;
 let rows = 20;
 let pagi_range = 8
 let current_start_index = 0
@@ -74,7 +74,7 @@ next_btn.onclick = () => {
 
 }
 
-function SetupPagination(end_index) {
+function SetUpPagination(end_index) {
   checkPrev()
   checkNext()
   pagination_element.innerHTML = "";
@@ -90,13 +90,13 @@ function PaginationButton(page) {
   button.classList.add("pagination-btn");
   button.innerText = page+1;
 
-  if (current_page == page) button.classList.add("active");
+  if (currenPage == page) button.classList.add("active");
 
   button.addEventListener("click", function () {
     let prev_active = document.querySelector(".pagenumbers button.active");
     if(prev_active != null) prev_active.classList.remove("active");
 
-    current_page = button.innerText - 1;
+    currenPage = button.innerText - 1;
     displayCards(false)
 
     button.classList.add("active");
@@ -113,19 +113,16 @@ async function displayCards(isNew) {
       "&country=" +
       encodeURIComponent(countries.value) +
       "&page=" +
-      current_page
+      currenPage
   );
-  list = [];
+  let list = [];
 
   const { content, totalPages } = await res.json();
-  console.log(current_start_index + pagi_range, totalPages, (current_start_index + pagi_range) > totalPages)
   let end_index = (current_start_index + pagi_range) > totalPages ? totalPages : (current_start_index + pagi_range)
-  console.log(end_index)
 
-  if (isNew) SetupPagination(end_index)
+  if (isNew) SetUpPagination(end_index)
 
   for (let i = 0; i < content.length; i++) {
-    // console.log(content[i].id)
     await list.push(createCardHistory(content[i]));
   }
   for (let i = 0; i < list.length; i++) {
@@ -133,7 +130,7 @@ async function displayCards(isNew) {
   }
 }
 
-// async function displayCategory(list, categoryType, countryType, current_page) {
+// async function displayCategory(list, categoryType, countryType, currenPage) {
 //   historyContent.innerHTML = "";
 //   console.log(countryType);
 //   const res = await fetch(
@@ -142,7 +139,7 @@ async function displayCards(isNew) {
 //       "&country=" +
 //       encodeURIComponent(countryType) +
 //       "&page=" +
-//       current_page
+//       currenPage
 //   );
 //   list = [];
 //   console.log(res);
@@ -223,7 +220,7 @@ countries.addEventListener("change", function () {
 });
 
 function reloadFilter() {
-  current_page = 0
+  currenPage = 0
   current_start_index = 0
   displayCards(true);
 }

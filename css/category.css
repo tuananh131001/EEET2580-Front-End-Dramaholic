@@ -34,7 +34,50 @@ main .movie-list-grid {
 }
 
 .select-category {
-  padding: 2.5em;
+  gap: 2rem;
+  padding: 2em; 
+}
+
+.select-category > * {display: flex; gap: 0.5rem;}
+
+.select-category * {font-size: 1.1rem;}
+.select-category option {font-size: 0.9rem;}
+
+.select-category select {
+  width: 13rem;
+  height: 1.7rem;
+}
+
+@media screen and (max-width: 50em) {
+  .select-category {
+    padding-top: 0em;
+  }
+  .select-category > * {flex-direction: column;}
+  .select-category * {font-size: 1rem;}
+  .select-category option {font-size: 0.75rem;}
+}
+
+
+@media screen and (max-width: 40em) {
+  .select-category select {
+    width: 11rem;
+    height: 1.5rem;
+  }
+  main{padding-top: 2.7em;}
+}
+
+@media screen and (max-width: 28em) {
+  .select-category {
+    padding-left: 0.7em;
+  }
+  .select-category select {width: 9.5rem;}
+  nav .open {width: 10em;}
+}
+
+@media screen and (max-width: 22em) {
+  .select-category select {width: 7rem;}
+  .select-category * {font-size: 0.8rem;}
+  .select-category option {font-size: 0.7rem;}
 }
 
 footer {
