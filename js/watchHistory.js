@@ -24,16 +24,8 @@ fetch(`https://dramaholic.herokuapp.com/api/customers/${user}`)
 });
 }
 
-const historyContent = document.querySelector(".movie-list-grid");
-const pagination_element = document.getElementById("pagination");
 
 const account_navi = document.querySelector(".account-wrapper");
-// const prev_btn = document.querySelector("#prev");
-// const next_btn = document.querySelector("#next");
-// let current_page = 0;
-// let rows = 20;
-// let pagi_range = 8
-// let current_start_index = 0
 
 account_navi.onclick = () => {
   let check = document.querySelector(".drop-down.hidden")
@@ -51,7 +43,7 @@ const createCardHistory = (x) => {
   // Image
   let img = document.createElement("img");
   img.className = "movie-search-image";
-  img.src = movies.thumbnail;
+  img.src = x.thumbnail;
 
   card.appendChild(img);
 
@@ -62,16 +54,16 @@ const createCardHistory = (x) => {
   // Title
   let title = document.createElement("h2");
   title.className = "card-title";
-  title.textContent = movies.title;
+  title.textContent = x.title;
 
   cardContent.appendChild(title);
 
   //description
   let description = document.createElement("p");
   description.className = "card-body";
-  description.textContent = movies.originalTitle;
+  description.textContent = x.originalTitle;
   cardContent.appendChild(description);
-  fetch(movies._links.self.href)
+  fetch(x._links.self.href)
     .then((res) => res.json())
     .then((x) => {
       img.onclick = function () {
@@ -85,11 +77,14 @@ const createCardHistory = (x) => {
     });
   return card;
 };
+
 const userID = localStorage.getItem("UserID");
-async function getMovieListSearch(list) {
+const historyContent = document.querySelector(".movie-list-grid");
+async function getMovieListHistory() {
   const url = await fetch(
     "https://dramaholic.herokuapp.com/api/customers/" + userID + "/history"
   );
+  let list = []
   const { _embedded } = await url.json();
   const { movies } = await _embedded;
   for (let i = movies.length -1 ; i >= 0; i--) {
@@ -100,5 +95,5 @@ async function getMovieListSearch(list) {
   }
 }
 
-const movieList = [];
-getMovieListSearch(movieList);
+// const movieList = [];
+getMovieListHistory();

@@ -86,13 +86,16 @@ nav .search-box {
     align-items: center;
 }
 
-nav .nav-right > * {
+nav .nav-right > * :not(.drop-down) {
     display: flex;
 }
 
 @media screen and (max-width: 62em) {
     nav #sideNav {
         visibility: visible;
+    }
+    nav .nav-right > * :not(.search-box *) {
+        display: none;
     }
 }
 
@@ -108,10 +111,6 @@ nav .nav-right > * {
     .pagenumbers button, .pagination-search button{
     width: 1.8rem;
     height: 1.8rem;
-    }
-
-    nav .nav-right > * :not(.search-box *) {
-        display: none;
     }
 }
 
