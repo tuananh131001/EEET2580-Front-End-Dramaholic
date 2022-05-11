@@ -237,7 +237,32 @@
 
       function submitForm(e) {
         e.preventDefault();
-        alert("Hello");
+        var userID = sessionStorage.getItem("userID");
+        var passValue = document.getElementById("password").value;
+
+        if (passValue.length < 5 || passValue.length > 15) {
+            let err = "Password must have 5-15 characters";
+            sendError(err, "password");
+            return;
+        }
+
+        console.log(userID);
+
+        fetch(userURL +'/'+ userID)
+        .then((response) => response.json())
+            .then((user) => {
+                return new Promise(function(resolve,reject){
+                    if (user.password == passValue) {
+                        let err = "New password must be diffent from your last password";
+                        reject(err);
+                    }
+                    resolve();
+                })
+            }) 
+            .then(function(){
+                // Put password chua lam xong
+            })
+            .catch(err => sendError(err, "password"))        
       }
      
      
