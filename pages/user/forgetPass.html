@@ -24,10 +24,9 @@
         <div class="content-main">
           <div class="heading">
             <h1 class="title">Create account</h1>
-            <div class="ui-message-container success hidden">
+            <div class="ui-message-container hidden">
               <div class="ui-message-icon"></div>
               <div class="ui-message-contents">
-                <b>Account created successfully</b>
               </div>
             </div>
           </div>
@@ -44,16 +43,10 @@
                   name="name"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="name">Your name</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -69,16 +62,10 @@
                   name="email"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="email">Email address</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -94,16 +81,10 @@
                   name="username"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="username">Username</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -154,16 +135,10 @@
                   placeholder=" "
                   onfocus="(this.type='date')"
                   onblur="(this.type='text')"
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="dob">Date of birth</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -200,6 +175,7 @@
 
       function searchUser(e) {
         e.preventDefault();
+        e.target.setAttribute("disabled","");
         var usernameValue = document.getElementById("username").value;
         var nameValue = document.getElementById("name").value;
         var dobValue = document.getElementById("dob").value;
@@ -231,7 +207,7 @@
           })
           .catch((rej) => {
             //   send out message
-            sendError(rej, "username");
+            sendFailedMsg(rej);
           });
       }
 
@@ -324,14 +300,22 @@
         }
       }
 
-      function sendSuccessMsg() {
-        var x = document.querySelector(".success");
-        if (x) {
-          x.classList.remove("hidden");
-          setTimeout(function () {
-            x.classList.add("hidden");
-          }, 3000);
+      function sendFailedMsg(message) {
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        if (msgContainer) {
+          msgContainer.classList.remove("hidden");
+          msgContent = msgContainer.querySelector(".ui-message-contents");
+            msgContent.innerHTML = "<b>" + message + "</b>";
         }
+      }
+
+      function clearFailedMsg(){
+        let btn = document.querySelector(".form-submit");
+        btn.removeAttribute("disabled");
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        if(msgContainer) msgContainer.classList.add("hidden");
       }
 
       function clearError(event) {
@@ -364,9 +348,11 @@
       }
 
       function changeButtonSubmit(){
-          let btn= document.querySelector(".form-submit");
-          btn.setAttribute("onclick","submitForm(event)");
-          btn.innerText = "Change Password";
+        let btn= document.querySelector(".form-submit");
+        btn.removeAttribute("disabled");
+        btn.setAttribute("onclick","submitForm(event)");
+        btn.innerText = "Change Password";
+         
       }
     </script>
   </body>
