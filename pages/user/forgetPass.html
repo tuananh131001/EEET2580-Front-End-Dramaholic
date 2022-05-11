@@ -23,12 +23,13 @@
       <div class="form-content signup-form">
         <div class="content-main">
           <div class="heading">
-            <h1 class="title">Create account</h1>
+            <h1 class="title">Find your account</h1>
             <div class="ui-message-container hidden">
               <div class="ui-message-icon"></div>
               <div class="ui-message-contents">
               </div>
             </div>
+            <p class="instruction">Please enter your informations to search for your account</p>
           </div>
           <form action="" class="form" id="form">
             <!-- Name -->
@@ -153,7 +154,7 @@
         </div>
       </div>
       <div class="footer">
-        Already have an account?
+        Remember password? 
         <a href="login.html" class="link-page">Log in</a>
       </div>
     </div>
@@ -203,7 +204,7 @@
           })
           .then((user) => {
             sessionStorage.setItem("userID",user.id);
-            proceedChangePass();
+            proceedChangePass(user.username);
           })
           .catch((rej) => {
             //   send out message
@@ -237,47 +238,29 @@
             }) 
             .then(function(){
                 // Put password chua lam xong
+                fetch(userURL + userID,{
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ password: passValue})
+                })
+                .then(response => {
+                    if (response.status == 200) {
+                      alert("Password updated")
+                      window.location.replace("./login.html");
+
+                    }
+                    else {
+                      alert("Sorry, update failed")
+                    }
+                  })
+                .catch(error => {
+                  alert(error);
+                })
+
             })
             .catch(err => sendError(err, "password"))        
       }
      
-     
-      //create account function
-      var add_user = function (data) {
-        fetch(userURL, {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: data,
-        })
-          .then((resp) => {
-            if (resp.status == 201) {
-              // alert("Success create account");
-              sendSuccessMsg();
-              window.setTimeout(function () {
-                window.location.href = "/pages/user/login.html";
-              }, 3200);
-            } else return Promise.reject("Fail create account user");
-          })
-          .catch((error) => alert(error));
-      };
-
-      //get data from input
-      var getData = function () {
-        var usernameValue = document.getElementById("username").value;
-        var nameValue = document.getElementById("name").value;
-        var passValue = document.getElementById("password").value;
-        var dobValue = document.getElementById("dob").value;
-        var emailValue = document.getElementById("email").value;
-
-        const data = JSON.stringify({
-          username: usernameValue,
-          name: nameValue,
-          password: passValue,
-          dob: dobValue,
-          email: emailValue,
-        });
-        return data;
-      };
 
       function sendError(message, inputField) {
         var input = document.getElementById(inputField);
@@ -333,17 +316,20 @@
         }
       }
 
-      function proceedChangePass(){
+      function proceedChangePass(username){
           let formEle = document.querySelectorAll(".formElement");
           formEle.forEach(function(item){
               if(item.classList.contains("hidden")){
                   item.classList.remove("hidden");
                   item.querySelector("#password").setAttribute("required","");
-                  console.log(item.querySelector("#password"));
+                  // console.log(item.querySelector("#password"));
               }
               else item.classList.add("hidden");
           })
 
+          document.querySelector(".form-content").classList.remove("signup-form");
+          document.querySelector(".title").innerText = "Reset your password";
+          document.querySelector(".instruction").innerText = "Hi " + username + ",\n Please enter your new password"; 
           changeButtonSubmit();
       }
 
