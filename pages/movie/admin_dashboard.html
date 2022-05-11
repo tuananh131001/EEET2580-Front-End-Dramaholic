@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/common_style.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="/css/movie_list.css" />
+    <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"/> 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
+        rel="stylesheet"
+        href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
     />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../../css/common_style.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
-
-    <link rel="stylesheet" href="/css/movie_list.css" />
-    <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
-        rel="stylesheet"
-    />
-
     <style>
       body {
         gap: 6rem;
@@ -50,6 +50,8 @@
         align-items: center;
       }
 
+      footer {bottom: 0;}
+
       .movie-wrapper * {
         font-size: 0.9rem;
       }
@@ -60,19 +62,20 @@
 
       .add-movie-btn {font-size: small;}
 
-      #pagination {
-        align-self: center;
+      .pagenumbers {
         display: flex;
         gap: 0.5rem;
       }
 
       .pagenumbers button{
-        width: 1.7rem;
-        height: 1.7rem;
+        padding: 0;
+        width: 2.2rem;
+        height: 2.2rem;
+        align-items: center;
+        justify-content: center;
         font-size: 0.75rem;
         color: #c1071e;
         border: #c1071e solid 1.5px;
-        /* border-radius: 5px; */
         background-color: white;
         white-space: nowrap;
       }
@@ -85,16 +88,48 @@
       }
 
       .movielist-pagination {gap: 2rem;}
-      @media screen and (max-width: 55em) {
-        .body_region {width: 90%;}
 
+      @media screen and (max-width: 55em) {
         .add-movie-btn {padding: 0.5rem;}
       }
 
       @media screen and (max-width: 40em) {
+       .page_title {font-size: 2.6rem;}
         .input_box {width: 18rem;}
+        .pagenumbers button{
+          width: 1.8rem;
+          height: 1.8rem;
+        }
+
+        .input_box {width: 15rem;}
+        .wrapper-footer {flex-direction: column;}
       }
 
+      
+      @media screen and (max-width: 28em) {
+        .body_region {width: 90%;}
+       .page_title {font-size: 2rem;}
+       .body_content * {font-size: 0.7rem;}
+       footer {padding: 1rem;}
+       footer * {font-size: 0.6rem;}
+        .pagenumbers {gap: 0.2rem;}
+       .input_box {
+         width: 13rem;
+         height: 2rem;
+         padding: 0rem 0.2rem;
+       }
+       .add-movie-btn{padding: 0.4rem;}
+      }
+
+      @media screen and (max-width: 20em) {
+        .input_box {width: 10rem; height: 1.8rem;}
+       .add-movie-btn{padding: 0.3rem;}
+       .body_content * {font-size: 0.6rem;}
+        .pagenumbers button{
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
       
 
     </style>
@@ -115,7 +150,11 @@
 
       <!-- <div class="flex_col movielist-pagination"> -->
       <div class="list flex_col" id="list"></div>
-      <div class="pagenumbers flex_row" id="pagination"></div>
+      <div class="pagination_whole flex_row align_items_center">
+        <div class="pagi_range" id="prev">Prev</div>
+        <div class="pagenumbers" id="pagination"></div>
+        <div class="pagi_range" id="next">Next</div>
+      </div>
       <!-- </div> -->
       </div>
     </main>

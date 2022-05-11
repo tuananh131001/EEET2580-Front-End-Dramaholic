@@ -3,7 +3,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  margin: 3em;
+  margin: 2em;
   padding: 1em;
 
   ul {
@@ -24,5 +24,37 @@ footer {
   .social-links{
     display: flex;
     gap: .5em;
+  }
+  .member-footer-copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1em;
+    li{
+      list-style: none;
+    }
+  }
+  .members{
+    display: flex;
+    flex-direction: column;
+    gap:.5em;
+  }
+}
+@media (min-width: 62em) {
+
+  footer .member-footer-copyright{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    li{
+      list-style: none;
+
+    }
+    .members{
+      flex-direction: row;
+    }
   }
 }

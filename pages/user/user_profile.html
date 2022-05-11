@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../../css/common_style.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -62,7 +63,8 @@
       }
       
       .btn {
-        white-space: nowrap
+        white-space: nowrap;
+        width: fit-content;
       }
 
       a {
@@ -71,14 +73,14 @@
 
       .d-flex.page_header {gap: 1.5rem} 
       .d-flex.right_col, .d-flex.left_info{gap: 0.7rem;}
+      .d-flex.right_col {align-items: flex-end;}
       .d-flex.left_col {gap: 3rem;}
       #sign_out_button {text-decoration: none;}
       .left_info > * {
         display: flex;
         gap: 0.7rem;
-        white-space: nowrap;
       }
-
+      
       .form.flex_col {
         display: flex;
         flex-direction: column;
@@ -87,10 +89,13 @@
 
       .btn.text_icon {
         display: flex;
+        align-items: center;
         gap: 0.5rem;
       }
 
       .info {
+        word-break: break-all;
+        white-space: normal;
         color: gray;
       }
 
@@ -98,26 +103,58 @@
         display: flex;
         justify-content: space-between;
       }
-      
+
+      .modal {top: unset;}
+
+      .fa-solid.fa-circle-user {font-size: 140px;}
+
+      input.info {
+        border: none; 
+        background-color: transparent;
+        width: 6rem;
+      }
+
       
       @media screen and (max-width: 55em) {
+        .d-flex.right_col {align-items: flex-start;}
 
-          /* nav .logo {width: 100px;} */
+        nav .logo { width: 100px;}
 
-          .body_region{ width: 90%;}
+        .body_region{ width: 90%;}
 
-          .general_content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-          }
-          
-          .d-flex.left_col {
-            gap: 2rem;
-          }
+        .general_content {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
 
-          .btn.edit {width: 12rem;}
-          .modal{width: 90%; justify-self: center;}
+        .modal{width: 90%; justify-self: center;}
+      }
+
+      @media screen and (max-width: 30em) {
+        .body_region * :not(.page_title, .section_title ) {
+          font-size: 0.85rem;
+        }
+
+        .d-flex.left_col {gap: 1.7rem;}
+        .fa-solid.fa-circle-user {font-size: 110px;}
+        .fas {font-size: 15px!important;}
+        .left_info > * {gap: 0.4rem;}
+      }
+
+      @media screen and (max-width: 20em) {
+        .left_info >* {flex-direction: column; gap:0rem}
+
+        .page_title {font-size: 2.4rem;}
+        .section_title {font-size: 1.1rem;}
+
+        hr{margin: 0.7rem 0;}
+
+        .body_region * :not(.page_title, .section_title ) {
+          font-size: 0.75rem;
+        }
+        .d-flex.page_content {gap: 1.8rem!important;}
+        .fa-solid.fa-circle-user {font-size: 80px;}
       }
     </style>
 
@@ -135,7 +172,7 @@
           <div class="section_title">General infomation</div>
           <div class="general_content">
             <div class="d-flex left_col" >
-                <i class="fa-solid fa-circle-user avatar" style="font-size: 140px;"></i>
+                <i class="fa-solid fa-circle-user avatar"></i>
                 <!-- <img class="avatar" id="user_avt" src="" alt="User Avatar"> -->
                 <!-- <button type="button" class="btn btn-danger btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#modal_change_avt">
                   Change avatar
@@ -155,7 +192,7 @@
                 </div>
                 <div>
                   <label for="user_password">Password:</label>
-                  <input class="info" disabled type="password" id="user_password" style="clear: both; border: none; background-color: transparent;">             
+                  <input class="info" disabled type="password" id="user_password">             
                 </div>
                 <!-- <div>
                   <label for="user_phone">Phone number:</label>
