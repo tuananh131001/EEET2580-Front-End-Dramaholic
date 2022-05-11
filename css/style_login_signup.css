@@ -20,7 +20,7 @@ html {
   background-color: white;
 }
 
-.login-page {
+.login-page, .forgetPass-page {
   flex-direction: row-reverse;
 }
 
@@ -41,6 +41,11 @@ html {
 
 .signup-page .imgBox {
   background-image: url(/assets/image/signup.jpg);
+}
+
+.forgetPass-page .imgBox{
+  background-image: url(/assets/image/forgetPasss_bg.jpg);
+  background-position: bottom;
 }
 
 .contentBox {
