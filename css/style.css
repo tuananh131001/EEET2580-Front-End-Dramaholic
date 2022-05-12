@@ -554,7 +554,16 @@ nav .nav-left {
   }
 
   /* Billboard */
+
+  /*movie-list*/
+  .movie-list{
+    margin-top: 0 !important;
+  }
 }
+.movie-list {
+  margin-top: 3em;
+}
+
 .search-content {
   display: none;
   margin-top: 5%;
