@@ -5,14 +5,14 @@ const pagination_element = document.getElementById("pagination");
 const search = document.querySelector(".search");
 const prev_btn = document.querySelector("#prev");
 const next_btn = document.querySelector("#next");
-let current_page = 1;
+let current_page = 0;
 let rows = 20;
 let pagi_range = 8
-let current_start_index = 1
+let current_start_index = 0
 
 
 function checkPrev() {
-  if(current_start_index == 1) prev_btn.setAttribute("hidden",true)
+  if(current_start_index == 0) prev_btn.setAttribute("hidden",true)
   else prev_btn.removeAttribute("hidden")
 }
 
@@ -41,14 +41,14 @@ next_btn.onclick = () => {
   fetch("https://dramaholic.herokuapp.com/api/movies")
   .then((respone) => respone.json())
   .then((data) => {
-    if((current_start_index+pagi_range) > data.totalPages) next_btn.setAttribute("hidden",true)
+    if((current_start_index+pagi_range) >= data.totalPages) next_btn.setAttribute("hidden",true)
     else next_btn.removeAttribute("hidden")
 
     prev_btn.removeAttribute("hidden")
     
     pagination_element.innerHTML = "";
     let totalPages = data.totalPages
-      let end_index = ((current_start_index + pagi_range) > (totalPages+1)) ? (totalPages+1) : (current_start_index + pagi_range)
+      let end_index = (current_start_index + pagi_range) > totalPages ? totalPages : (current_start_index + pagi_range)
       for (let i = current_start_index; i < end_index; i++) {
         let btn = PaginationButton(i);
         pagination_element.appendChild(btn);
@@ -63,7 +63,7 @@ function getMovieListAdmin() {
     .then((respone) => respone.json())
     .then((data) => {
       let totalPages = data.totalPages
-      let end_index = ((current_start_index + pagi_range) > (totalPages+1)) ? (totalPages+1) : (current_start_index + pagi_range)
+      let end_index = (current_start_index + pagi_range) > totalPages ? totalPages : (current_start_index + pagi_range)
       for (let i = current_start_index; i < end_index; i++) {
         let btn = PaginationButton(i);
         pagination_element.appendChild(btn);
@@ -73,7 +73,7 @@ function getMovieListAdmin() {
 }
 
 function displayMovieList() {
-  fetch("https://dramaholic.herokuapp.com/api/movies?page=" + current_page)
+  fetch("https://dramaholic.herokuapp.com/api/movies?page=" + (current_page-1))
     .then((respone) => respone.json())
     .then(({ content }) => {
       items = [];
@@ -136,8 +136,6 @@ function createDivMovie(x) {
   return wrapper;
 }
 
-function getPage(index, list) {}
-
 function DisplayList(items, wrapper) {
   wrapper.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
@@ -148,13 +146,13 @@ function DisplayList(items, wrapper) {
 function PaginationButton(page) {
   let button = document.createElement("button");
   button.classList.add("pagination-btn");
-  button.innerText = page;
+  button.innerText = page+1;
 
   if (current_page == page) button.classList.add("active");
   button.addEventListener("click", function () {
     let prev_active = document.querySelector(".pagenumbers button.active");
     if(prev_active != null) prev_active.classList.remove("active");
-    current_page = button.innerText;
+    current_page = button.innerText-1;
     displayMovieList()
     button.classList.add("active");
   });

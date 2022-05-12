@@ -36,7 +36,7 @@ document.querySelector("header").innerHTML = `
 
         <div id="sideNav" class="sideNav">
             <div class="navigation-menu-settings">
-                <div class="flex_row align_items_center" style="gap:0.5rem;">
+                <div class="flex_row" style="gap:0.5rem;">
                     <li class="has-inline-left-gutter navigation-menu-profile">
                         <img
                             src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
@@ -49,7 +49,7 @@ document.querySelector("header").innerHTML = `
                 <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html">Admin Dashboard</a></div>
                 <div><a href="../../pages/user/watch_history.html">Watching History</a></div>
             </div>
-            <div class="navigation-menu-settings" style={margin-top:0;}>
+            <div class="navigation-menu-settings" style="margin-top:0;">
                 <div><a href="../../../index.html">Home</a></div>
                 <div><a href="../../../pages/movie/category.html">Category</a></div>
                 <div><a href="../../../pages/movie/trending.html">Top Trending</a></div>

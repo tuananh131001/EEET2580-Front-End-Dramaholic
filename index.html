@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +21,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DramaHolic</title>
+    <style>
+      .pagination-search {
+        display: flex;
+        align-items: center;
+      }
+    </style>
   </head>
   <header>
     <nav class="navbar nav-gradient">
@@ -134,7 +142,11 @@
   <body id="body">
     <section>
       <div class="search-content"></div>
-      <div class="pagination-search"></div>
+      <div class="flex_row pagination-whole hidden" style="display: flex;">
+        <div class="pagi-range" id="prevs">Prev</div>
+        <div class="pagination-search"></div>
+        <div class="pagi-range" id="nexts">Next</div>
+      </div>
       <div class="error-search-page hidden">
         <div class="content">
           <img src="/assets/image/cat-sleep.gif" alt="Empty content" />

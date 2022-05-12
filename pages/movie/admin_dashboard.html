@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/common_style.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="/css/movie_list.css" />
     <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -60,26 +61,6 @@
       }
 
       .add-movie-btn {font-size: small;}
-
-      .flex_row.pagination_whole {
-        gap: 0.7rem;
-        align-items:baseline;
-        align-self: center;
-      }
-
-      .pagi_range {
-        color: rgb(155, 155, 155);
-      }
-
-      .pagi_range:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
-
-      .pagenumbers {
-        display: flex;
-        gap: 0.5rem;
-      }
 
       .pagenumbers button{
         padding: 0;
@@ -165,7 +146,6 @@
       <!-- <div class="flex_col movielist-pagination"> -->
       <div class="list flex_col" id="list"></div>
       <div class="pagination_whole flex_row align_items_center">
-        <input type="number" hidden id="total_page" value="0"/>
         <div class="pagi_range" id="prev">Prev</div>
         <div class="pagenumbers" id="pagination"></div>
         <div class="pagi_range" id="next">Next</div>
