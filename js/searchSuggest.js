@@ -7,10 +7,71 @@ const footer = document.querySelector("footer");
 let titleList = [];
 const isHover = (e) => e.parentElement.querySelector(":hover") === e;
 const emptyPage = document.querySelector(".error-search-page");
-const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
 const navBar = document.querySelector(".navbar");
 const paginationSearch = document.querySelector(".pagination-search");
+const prevs_btn = document.querySelector("#prevs");
+const nexts_btn = document.querySelector("#nexts");
+const pagi_bar = document.querySelector(".pagination-whole");
+let current_page = 0;
+let pagiRange = 8
+let currentStartIndex = 0
+let current_search = ""
+
+function checkPrevs() {
+  if(currentStartIndex == 0) prevs_btn.setAttribute("hidden",true)
+  else prevs_btn.removeAttribute("hidden")
+}
+
+async function checkNexts() {
+  await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+      current_search +
+      "&page=" +
+      current_page
+  )
+  .then((respone) => respone.json())
+  .then((data) => {
+    if((currentStartIndex+pagiRange) > data.totalPages) nexts_btn.setAttribute("hidden",true)
+    else nexts_btn.removeAttribute("hidden")
+  });
+}
+
+prevs_btn.onclick = () => {
+  currentStartIndex -= pagiRange
+  checkPrevs()
+  nexts_btn.removeAttribute("hidden")
+  paginationSearch.innerHTML = "";
+  for (let i = currentStartIndex; i < currentStartIndex+pagiRange; i++) {
+    let btn = PaginationButton(i);
+    paginationSearch.appendChild(btn);
+  }
+}
+
+nexts_btn.onclick = async () => {
+  currentStartIndex += pagiRange
+  await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+      current_search +
+      "&page=" +
+      current_page
+  )
+  .then((respone) => respone.json())
+  .then((data) => {
+    pages = data.totalPages
+    if((currentStartIndex+pagiRange) > pages) nexts_btn.setAttribute("hidden",true)
+    else nexts_btn.removeAttribute("hidden")
+    prevs_btn.removeAttribute("hidden")
+
+    paginationSearch.innerHTML = "";
+    let end_index = (currentStartIndex + pagiRange) > pages ? pages : (currentStartIndex + pagiRange)
+    for (let i = currentStartIndex; i < end_index; i++) {
+      let btn = PaginationButton(i);
+      paginationSearch.appendChild(btn);
+    }
+  });
+
+}
 
 const createCardSearch = (x) => {
   let card = document.createElement("div");
@@ -48,6 +109,7 @@ const createCardSearch = (x) => {
 
   return card;
 };
+
 function isEmpty(value) {
   return (
     Boolean(value && typeof value === "object") && !Object.keys(value).length
@@ -56,7 +118,7 @@ function isEmpty(value) {
 
 function openSearch() {
   // media query to check
-  var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+  var media_query = "screen and (max-width:1023px)";
   // matched or not
   var matched = window.matchMedia(media_query).matches;
   !matched
@@ -71,15 +133,17 @@ function openSearch() {
   searchBar.value = "";
   disableSearch();
 }
-async function getMovieListSearch(title, list, current_page) {
+
+async function getMovieListSearch(isNew) {
   const url = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" +
-      title +
+      current_search +
       "&page=" +
       current_page
   );
   const { content, totalPages } = await url.json();
-  list = [];
+
+  let list = [];
   searchContent.innerHTML = "";
   for (let i = 0; i < content.length; i++) {
     await list.push(createCardSearch(content[i]));
@@ -91,19 +155,19 @@ async function getMovieListSearch(title, list, current_page) {
   if (isEmpty(searchContent.childNodes)) {
     // No result found , display cat
     searchContent.style.display = "none";
-    paginationSearch.style.display = "none";
+    pagi_bar.classList.add("hidden")
     emptyPage.classList.remove("hidden");
     navBar.style.position = "relative";
   }
   if (!isEmpty(searchContent.childNodes)) {
     emptyPage.classList.add("hidden");
+    let end_index = (currentStartIndex + pagiRange) > totalPages ? totalPages : (currentStartIndex + pagiRange)
+    if (isNew) SetupPagination(end_index)
+    searchContent.style.display = "grid";
+    pagi_bar.classList.remove("hidden")
+    footer.style.display = "block";
+    mainContent.style.display = "none";
   }
-  // Found results and display
-  SetupPagination(list, paginationSearch, totalPages, title);
-  searchContent.style.display = "grid";
-  paginationSearch.style.display = "flex";
-  footer.style.display = "block";
-  mainContent.style.display = "none";
 }
 
 function disableSearch() {
@@ -113,43 +177,46 @@ function disableSearch() {
   emptyPage.classList.add("hidden");
   searchContent.innerHTML = "";
   searchContent.style.display = "none";
-  paginationSearch.style.display = "none";
+  pagi_bar.classList.add("hidden")
 }
-// Pagination
-let current_page = 0;
 
-function SetupPagination(items, wrapper, pages, categoryType) {
-  wrapper.innerHTML = "";
-  for (let i = 1; i < pages + 1; i++) {
-    let btn = PaginationButton(i, items, categoryType);
-    wrapper.appendChild(btn);
+function SetupPagination(end_index) {
+  checkPrevs()
+  checkNexts()
+  paginationSearch.innerHTML = "";
+  // let end_index = (currentStartIndex + pagiRange) > pages? pages : (currentStartIndex + pagiRange)
+  for (let i = currentStartIndex; i < end_index; i++) {
+    let btn = PaginationButton(i);
+    paginationSearch.appendChild(btn);
   }
 }
 
-function PaginationButton(page, items, title) {
+function PaginationButton(page) {
   let button = document.createElement("button");
-  button.innerText = page;
+  button.classList.add("pagination-btn");
+  button.innerText = page+1;
 
-  if (current_page == page - 1) button.classList.add("active");
+  if (current_page == page) button.classList.add("active");
 
   button.addEventListener("click", function () {
-    current_page = page - 1;
-    getMovieListSearch(title, items, current_page);
+    let prev_active = document.querySelector(".pagination-search button.active");
+    if(prev_active != null) prev_active.classList.remove("active");
 
-    let current_btn = document.querySelector(".pagenumbers button.active");
-    current_btn.classList.remove("active");
+    current_page = button.innerText - 1;
+    getMovieListSearch(false)
 
     button.classList.add("active");
   });
 
   return button;
-}
+} 
 
 inputValue.addEventListener("input", (e) => {
-  let current_search = e.target.value;
-  const suggestionList = [];
+  current_search = e.target.value;
   if (current_search) {
-    getMovieListSearch(current_search, suggestionList, 0);
+    current_page = 0
+    currentStartIndex = 0
+    getMovieListSearch(true);
   } else {
     // No Input in search bar
     disableSearch();

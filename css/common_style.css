@@ -156,6 +156,35 @@ label, th {
     font-weight: 500;
 }
 
+.flex_row {
+    display: flex;
+}
+
+.flex_col {
+    display: flex;
+    flex-direction: column;
+}
+
+.align_items_center {
+    align-items: center;
+}
+
+.red_theme_button {
+    background-color: #c1071e;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: #c1071e solid 1.5px;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+.red_theme_button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #c1071e;
+}
+
 .white_button {
     background-color:rgb(230, 230, 230);
     /* background-color: white; */
@@ -214,7 +243,67 @@ label, th {
 
 .require_symbol {color: #c1071e;}
 
+
+
+.flex_row.pagination_whole, .flex_row.pagination-whole {
+    gap: 0.7rem;
+    align-items:baseline;
+    align-self: center;
+    justify-content: center;
+}
+
+.pagi_range, .pagi-range {
+color: rgb(155, 155, 155);
+}
+
+.pagi_range:hover, .pagi-range:hover {
+cursor: pointer;
+text-decoration: underline;
+}
+
+nav #sideNav {
+    visibility: hidden;
+}
+
+.pagenumbers, .pagination-search {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pagenumbers button {
+    padding: 0;
+    width: 2.2rem;
+    height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #c1071e;
+    border: #c1071e solid 1.5px;
+    background-color: white;
+    white-space: nowrap;
+}
+
+.pagination-search button{
+    padding: 0;
+    width: 2.2rem;
+    height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.pagenumbers button:hover, .pagenumbers button.active, .pagination-search button:hover, .pagination-search button.active {
+    cursor: pointer;
+    text-decoration: underline;
+    background-color: #c1071e;
+    color: white;
+}
+
 @media screen and (max-width: 62em) {
+    nav #sideNav {
+        visibility: visible !important;
+    }
     nav .nav-right .hide_later {display: none;}
 }
 
@@ -222,8 +311,6 @@ label, th {
     body {min-width: min-content;}
 
     nav {padding: 0.4rem 1.3rem;}
-
-    nav .logo {width: 100px !important;}
 
     nav .nav-left {gap: 1rem;}
 
@@ -241,4 +328,33 @@ label, th {
     }
 
     footer .wrapper-footer {flex-direction: column;}
+}
+
+
+@media screen and (max-width: 40em) {
+    nav .logo {width: 100px !important;}
+
+    .pagenumbers button, .pagination-search button{
+    width: 1.8rem;
+    height: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 28em) {
+    .pagenumbers, .pagination-search {gap: 0.2rem!important;}
+    .pagi_range, .pagi-range {font-size: 0.8rem;}
+}
+
+@media screen and (max-width: 20em) {
+    .pagi_range, .pagi-range {font-size: 0.7rem;}
+    .pagenumbers button, .pagination-search button{
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.55rem;
+    }
+    .pagenumbers, .pagination-search{
+        gap: 0.1rem!important;
+    }
+    .flex_row.pagination_whole, .flex_row.pagination-whole {gap: 0.5rem;}
+
 }
