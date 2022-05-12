@@ -23,13 +23,13 @@
       <div class="form-content signup-form">
         <div class="content-main">
           <div class="heading">
-            <h1 class="title">Create account</h1>
-            <div class="ui-message-container success hidden">
+            <h1 class="title">Find your account</h1>
+            <div class="ui-message-container hidden">
               <div class="ui-message-icon"></div>
               <div class="ui-message-contents">
-                <b>Account created successfully</b>
               </div>
             </div>
+            <p class="instruction">Please enter your informations to search for your account</p>
           </div>
           <form action="" class="form" id="form">
             <!-- Name -->
@@ -44,16 +44,10 @@
                   name="name"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="name">Your name</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -69,16 +63,10 @@
                   name="email"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="email">Email address</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -94,16 +82,10 @@
                   name="username"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="username">Username</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -154,16 +136,10 @@
                   placeholder=" "
                   onfocus="(this.type='date')"
                   onblur="(this.type='text')"
-                  oninput="clearError(event)"
+                  oninput="clearFailedMsg()"
                   required
                 />
                 <label for="dob">Date of birth</label>
-              </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
-                </div>
               </div>
             </div>
 
@@ -178,7 +154,7 @@
         </div>
       </div>
       <div class="footer">
-        Already have an account?
+        Remember password? 
         <a href="login.html" class="link-page">Log in</a>
       </div>
     </div>
@@ -200,6 +176,7 @@
 
       function searchUser(e) {
         e.preventDefault();
+        e.target.setAttribute("disabled","");
         var usernameValue = document.getElementById("username").value;
         var nameValue = document.getElementById("name").value;
         var dobValue = document.getElementById("dob").value;
@@ -227,56 +204,63 @@
           })
           .then((user) => {
             sessionStorage.setItem("userID",user.id);
-            proceedChangePass();
+            proceedChangePass(user.username);
           })
           .catch((rej) => {
             //   send out message
-            sendError(rej, "username");
+            sendFailedMsg(rej);
           });
       }
 
       function submitForm(e) {
         e.preventDefault();
-        alert("Hello");
+        var userID = sessionStorage.getItem("userID");
+        var passValue = document.getElementById("password").value;
+
+        if (passValue.length < 5 || passValue.length > 15) {
+            let err = "Password must have 5-15 characters";
+            sendError(err, "password");
+            return;
+        }
+
+        console.log(userID);
+
+        fetch(userURL +'/'+ userID)
+        .then((response) => response.json())
+            .then((user) => {
+                return new Promise(function(resolve,reject){
+                    if (user.password == passValue) {
+                        let err = "New password must be diffent from your last password";
+                        reject(err);
+                    }
+                    resolve();
+                })
+            }) 
+            .then(function(){
+                // Put password chua lam xong
+                fetch(userURL + userID,{
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ password: passValue})
+                })
+                .then(response => {
+                    if (response.status == 200) {
+                      alert("Password updated")
+                      window.location.replace("./login.html");
+
+                    }
+                    else {
+                      alert("Sorry, update failed")
+                    }
+                  })
+                .catch(error => {
+                  alert(error);
+                })
+
+            })
+            .catch(err => sendError(err, "password"))        
       }
      
-     
-      //create account function
-      var add_user = function (data) {
-        fetch(userURL, {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: data,
-        })
-          .then((resp) => {
-            if (resp.status == 201) {
-              // alert("Success create account");
-              sendSuccessMsg();
-              window.setTimeout(function () {
-                window.location.href = "/pages/user/login.html";
-              }, 3200);
-            } else return Promise.reject("Fail create account user");
-          })
-          .catch((error) => alert(error));
-      };
-
-      //get data from input
-      var getData = function () {
-        var usernameValue = document.getElementById("username").value;
-        var nameValue = document.getElementById("name").value;
-        var passValue = document.getElementById("password").value;
-        var dobValue = document.getElementById("dob").value;
-        var emailValue = document.getElementById("email").value;
-
-        const data = JSON.stringify({
-          username: usernameValue,
-          name: nameValue,
-          password: passValue,
-          dob: dobValue,
-          email: emailValue,
-        });
-        return data;
-      };
 
       function sendError(message, inputField) {
         var input = document.getElementById(inputField);
@@ -299,14 +283,22 @@
         }
       }
 
-      function sendSuccessMsg() {
-        var x = document.querySelector(".success");
-        if (x) {
-          x.classList.remove("hidden");
-          setTimeout(function () {
-            x.classList.add("hidden");
-          }, 3000);
+      function sendFailedMsg(message) {
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        if (msgContainer) {
+          msgContainer.classList.remove("hidden");
+          msgContent = msgContainer.querySelector(".ui-message-contents");
+            msgContent.innerHTML = "<b>" + message + "</b>";
         }
+      }
+
+      function clearFailedMsg(){
+        let btn = document.querySelector(".form-submit");
+        btn.removeAttribute("disabled");
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        if(msgContainer) msgContainer.classList.add("hidden");
       }
 
       function clearError(event) {
@@ -324,24 +316,29 @@
         }
       }
 
-      function proceedChangePass(){
+      function proceedChangePass(username){
           let formEle = document.querySelectorAll(".formElement");
           formEle.forEach(function(item){
               if(item.classList.contains("hidden")){
                   item.classList.remove("hidden");
                   item.querySelector("#password").setAttribute("required","");
-                  console.log(item.querySelector("#password"));
+                  // console.log(item.querySelector("#password"));
               }
               else item.classList.add("hidden");
           })
 
+          document.querySelector(".form-content").classList.remove("signup-form");
+          document.querySelector(".title").innerText = "Reset your password";
+          document.querySelector(".instruction").innerText = "Hi " + username + ",\n Please enter your new password"; 
           changeButtonSubmit();
       }
 
       function changeButtonSubmit(){
-          let btn= document.querySelector(".form-submit");
-          btn.setAttribute("onclick","submitForm(event)");
-          btn.innerText = "Change Password";
+        let btn= document.querySelector(".form-submit");
+        btn.removeAttribute("disabled");
+        btn.setAttribute("onclick","submitForm(event)");
+        btn.innerText = "Change Password";
+         
       }
     </script>
   </body>

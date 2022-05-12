@@ -25,7 +25,7 @@
     <style>
       .flex_row {display: flex;}
 
-      .flex_row.pagination_whole {
+      .flex_row.pagination-bar {
         gap: 0.7rem;
         align-items:baseline;
         align-self: center;
@@ -110,7 +110,7 @@
       <div class="nav-right">
         <div class="search-box">
           <input class="search-bar" />
-          <a href="##" class="icon" onclick="openSearch()"
+          <a href="##" class="icon" onclick="openSearch()" 
             ><i class="search-icon ti-search"></i
           ></a>
         </div>
@@ -148,8 +148,11 @@
   <body id="body">
     <section>
       <div class="search-content"></div>
-      <div class="pagination-search"></div>
-
+      <div class="pagination-bar search flex_row hidden">
+        <div class="pagi-range" id="prevs">Prev</div>
+        <div class="pagination-search"></div>
+        <div class="pagi-range" id="nexts">Next</div>
+      </div>
       <div class="error-search-page hidden">
         <div class="content">
           <img src="/assets/image/cat-sleep.gif" alt="Empty content" />
@@ -191,7 +194,7 @@
           </div>
         </div>
         <div class="movie-list-grid"></div>
-        <div class="pagination_whole flex_row align_items_center">
+        <div class="pagination-bar cate flex_row align_items_center">
           <div class="pagi_range" id="prev">Prev</div>
           <div class="pagenumbers" id="pagination"></div>
           <div class="pagi_range" id="next">Next</div>

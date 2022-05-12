@@ -7,19 +7,16 @@ const footer = document.querySelector("footer");
 let titleList = [];
 const isHover = (e) => e.parentElement.querySelector(":hover") === e;
 const emptyPage = document.querySelector(".error-search-page");
-const myDiv = document.querySelector(".icon");
 const searchBar = document.querySelector(".search-bar");
 const navBar = document.querySelector(".navbar");
-const paginationSearch = document.querySelector(".pagination-whole .pagination-search");
+const paginationSearch = document.querySelector(".pagination-search");
 const prevs_btn = document.querySelector("#prevs");
 const nexts_btn = document.querySelector("#nexts");
 const pagi_bar = document.querySelector(".pagination-whole");
 let current_page = 0;
-let rows = 20;
-let pagi_range = 8
+let pagiRange = 8
 let currentStartIndex = 0
 let current_search = ""
-
 
 function checkPrevs() {
   if(currentStartIndex == 0) prevs_btn.setAttribute("hidden",true)
@@ -35,24 +32,24 @@ async function checkNexts() {
   )
   .then((respone) => respone.json())
   .then((data) => {
-    if((currentStartIndex+pagi_range) > data.totalPages) nexts_btn.setAttribute("hidden",true)
+    if((currentStartIndex+pagiRange) > data.totalPages) nexts_btn.setAttribute("hidden",true)
     else nexts_btn.removeAttribute("hidden")
   });
 }
 
 prevs_btn.onclick = () => {
-  currentStartIndex -= pagi_range
+  currentStartIndex -= pagiRange
   checkPrevs()
   nexts_btn.removeAttribute("hidden")
   paginationSearch.innerHTML = "";
-  for (let i = currentStartIndex; i < currentStartIndex+pagi_range; i++) {
+  for (let i = currentStartIndex; i < currentStartIndex+pagiRange; i++) {
     let btn = PaginationButton(i);
     paginationSearch.appendChild(btn);
   }
 }
 
 nexts_btn.onclick = async () => {
-  currentStartIndex += pagi_range
+  currentStartIndex += pagiRange
   await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" +
       current_search +
@@ -62,12 +59,12 @@ nexts_btn.onclick = async () => {
   .then((respone) => respone.json())
   .then((data) => {
     pages = data.totalPages
-    if((currentStartIndex+pagi_range) > pages) nexts_btn.setAttribute("hidden",true)
+    if((currentStartIndex+pagiRange) > pages) nexts_btn.setAttribute("hidden",true)
     else nexts_btn.removeAttribute("hidden")
     prevs_btn.removeAttribute("hidden")
 
     paginationSearch.innerHTML = "";
-    let end_index = (currentStartIndex + pagi_range) > pages ? pages : (currentStartIndex + pagi_range)
+    let end_index = (currentStartIndex + pagiRange) > pages ? pages : (currentStartIndex + pagiRange)
     for (let i = currentStartIndex; i < end_index; i++) {
       let btn = PaginationButton(i);
       paginationSearch.appendChild(btn);
@@ -164,8 +161,8 @@ async function getMovieListSearch(isNew) {
   }
   if (!isEmpty(searchContent.childNodes)) {
     emptyPage.classList.add("hidden");
-    let end_index = (currentStartIndex + pagi_range) > totalPages ? totalPages : (currentStartIndex + pagi_range)
-    if (isNew) SetUpPagination(end_index)
+    let end_index = (currentStartIndex + pagiRange) > totalPages ? totalPages : (currentStartIndex + pagiRange)
+    if (isNew) SetupPagination(end_index)
     searchContent.style.display = "grid";
     pagi_bar.classList.remove("hidden")
     footer.style.display = "block";
@@ -183,19 +180,11 @@ function disableSearch() {
   pagi_bar.classList.add("hidden")
 }
 
-// function SetupPagination() {
-//   wrapper.innerHTML = "";
-//   for (let i = 1; i < pages + 1; i++) {
-//     let btn = PaginationButton(i, items, categoryType);
-//     wrapper.appendChild(btn);
-//   }
-// }
-
-function SetUpPagination(end_index) {
+function SetupPagination(end_index) {
   checkPrevs()
   checkNexts()
   paginationSearch.innerHTML = "";
-  // let end_index = (currentStartIndex + pagi_range) > pages? pages : (currentStartIndex + pagi_range)
+  // let end_index = (currentStartIndex + pagiRange) > pages? pages : (currentStartIndex + pagiRange)
   for (let i = currentStartIndex; i < end_index; i++) {
     let btn = PaginationButton(i);
     paginationSearch.appendChild(btn);
@@ -225,7 +214,7 @@ function PaginationButton(page) {
 inputValue.addEventListener("input", (e) => {
   current_search = e.target.value;
   if (current_search) {
-    curren_page = 0
+    current_page = 0
     currentStartIndex = 0
     getMovieListSearch(true);
   } else {

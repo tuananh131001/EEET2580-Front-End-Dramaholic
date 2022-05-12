@@ -78,6 +78,10 @@ html {
   font-size: 2.8rem;
 }
 
+.instruction{
+  font-size: 1.5em;
+}
+
 .form-content {
   margin: auto;
   margin-top: 0;
