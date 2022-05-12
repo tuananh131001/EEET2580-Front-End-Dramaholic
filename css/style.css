@@ -754,6 +754,11 @@ body {
     display: none;
   }
 }
+
+.swiper-slide:first-child {
+  margin-left: 1%;
+}
+
 #loading {
   display: flex;
   position: fixed;
