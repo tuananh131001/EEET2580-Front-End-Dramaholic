@@ -161,7 +161,7 @@ function PaginationButton(page) {
 }
 
 // Search Function
-async function getMovieListSearch(title, list) {
+async function getMovieListSearch(title) {
   const url = await fetch(
     "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
   );
@@ -176,10 +176,9 @@ async function getMovieListSearch(title, list) {
 
 search.addEventListener("input", (e) => {
   let current_search = e.target.value;
-  const movieListArray = [];
   if (current_search) {
     pagination_element.innerHTML = "";
-    getMovieListSearch(current_search, movieListArray);
+    getMovieListSearch(current_search);
   } else {
     getMovieListAdmin();
   }
