@@ -92,7 +92,7 @@ nav .nav-right > * :not(.drop-down) {
 
 @media screen and (max-width: 62em) {
     nav #sideNav {
-        visibility: visible;
+        visibility: visible!important;
     }
     nav .nav-right > * :not(.search-box *) {
         display: none;

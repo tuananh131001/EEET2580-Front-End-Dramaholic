@@ -118,7 +118,7 @@ function isEmpty(value) {
 
 function openSearch() {
   // media query to check
-  var media_query = "screen and (min-width:200px) and (max-width:1023px)";
+  var media_query = "screen and (max-width:1023px)";
   // matched or not
   var matched = window.matchMedia(media_query).matches;
   !matched

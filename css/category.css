@@ -41,7 +41,7 @@ main .movie-list-grid {
 .select-category > * {display: flex; gap: 0.5rem;}
 
 .select-category * {font-size: 1.1rem;}
-.select-category option {font-size: 0.9rem;}
+.select-category option {font-size: 0.95rem;}
 
 .select-category select {
   width: 13rem;
@@ -50,11 +50,11 @@ main .movie-list-grid {
 
 @media screen and (max-width: 50em) {
   .select-category {
-    padding-top: 0em;
+    padding-top: 1em;
   }
   .select-category > * {flex-direction: column;}
-  .select-category * {font-size: 1rem;}
-  .select-category option {font-size: 0.75rem;}
+  .select-category * {font-size: 0.9rem;}
+  .select-category option {font-size: 0.8rem;}
 }
 
 
@@ -63,7 +63,7 @@ main .movie-list-grid {
     width: 11rem;
     height: 1.5rem;
   }
-  main{padding-top: 2.7em;}
+  /* main{padding-top: 2.7em;} */
 }
 
 @media screen and (max-width: 28em) {
@@ -77,7 +77,7 @@ main .movie-list-grid {
 @media screen and (max-width: 22em) {
   .select-category select {width: 7rem;}
   .select-category * {font-size: 0.8rem;}
-  .select-category option {font-size: 0.7rem;}
+  .select-category option {font-size: 0.65rem;}
 }
 
 footer {
