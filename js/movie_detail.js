@@ -149,8 +149,8 @@ function getComments(commentList) {
     wrapper.appendChild(messageElement);
     wrapper.appendChild(authorWrapper);
     const isAdmin = localStorage.getItem("isAdmin")
-    if (userID === user.id || isAdmin) {
 
+    if (user.id == userID || isAdmin == "true") {
       const deleteButton = document.createElement("button");
       deleteButton.addEventListener("click", (e) => {
         handleDelteComment(id, user.username, user.password);
