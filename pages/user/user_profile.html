@@ -72,7 +72,10 @@
 
       .d-flex.page_header {gap: 1.5rem} 
       .d-flex.right_col, .d-flex.left_info{gap: 0.7rem;}
-      .d-flex.right_col {align-items: flex-end;}
+      .d-flex.right_col {
+        width: fit-content;
+        align-items: flex-end;
+      }
       .d-flex.left_col {gap: 3rem;}
       #sign_out_button {text-decoration: none;}
       .left_info > * {
@@ -89,8 +92,11 @@
       .btn.text_icon {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
       }
+
+      #edit_info_btn {width: 100%;}
 
       .info {
         word-break: break-all;
