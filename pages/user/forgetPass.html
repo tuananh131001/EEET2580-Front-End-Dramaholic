@@ -26,10 +26,11 @@
             <h1 class="title">Find your account</h1>
             <div class="ui-message-container hidden">
               <div class="ui-message-icon"></div>
-              <div class="ui-message-contents">
-              </div>
+              <div class="ui-message-contents"></div>
             </div>
-            <p class="instruction">Please enter your informations to search for your account</p>
+            <p class="instruction">
+              Please enter your informations to search for your account
+            </p>
           </div>
           <form action="" class="form" id="form">
             <!-- Name -->
@@ -154,7 +155,7 @@
         </div>
       </div>
       <div class="footer">
-        Remember password? 
+        Remember password?
         <a href="login.html" class="link-page">Log in</a>
       </div>
     </div>
@@ -176,7 +177,7 @@
 
       function searchUser(e) {
         e.preventDefault();
-        e.target.setAttribute("disabled","");
+        e.target.setAttribute("disabled", "");
         var usernameValue = document.getElementById("username").value;
         var nameValue = document.getElementById("name").value;
         var dobValue = document.getElementById("dob").value;
@@ -203,7 +204,7 @@
             });
           })
           .then((user) => {
-            sessionStorage.setItem("userID",user.id);
+            sessionStorage.setItem("userID", user.id);
             proceedChangePass(user.username);
           })
           .catch((rej) => {
@@ -218,49 +219,50 @@
         var passValue = document.getElementById("password").value;
 
         if (passValue.length < 5 || passValue.length > 15) {
-            let err = "Password must have 5-15 characters";
-            sendError(err, "password");
-            return;
+          let err = "Password must have 5-15 characters";
+          sendError(err, "password");
+          return;
         }
 
         console.log(userID);
 
-        fetch(userURL +'/'+ userID)
-        .then((response) => response.json())
-            .then((user) => {
-                return new Promise(function(resolve,reject){
-                    if (user.password == passValue) {
-                        let err = "New password must be diffent from your last password";
-                        reject(err);
-                    }
-                    resolve();
-                })
-            }) 
-            .then(function(){
-                // Put password chua lam xong
-                fetch(userURL + userID,{
-                  method: "PUT",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ password: passValue})
-                })
-                .then(response => {
-                    if (response.status == 200) {
-                      alert("Password updated")
-                      window.location.replace("./login.html");
-
-                    }
-                    else {
-                      alert("Sorry, update failed")
-                    }
-                  })
-                .catch(error => {
-                  alert(error);
-                })
-
+        fetch(userURL + "/" + userID)
+          .then((response) => response.json())
+          .then((user) => {
+            return new Promise(function (resolve, reject) {
+              if (user.password == passValue) {
+                let err =
+                  "New password must be diffent from your last password";
+                reject(err);
+              }
+              resolve();
+            });
+          })
+          .then(function () {
+            // Put password chua lam xong
+            fetch(userURL + "/" + userID, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ password: passValue }),
             })
-            .catch(err => sendError(err, "password"))        
+              .then((response) => {
+                if (response.status == 200) {
+                  sendSuccessMsg("Password updated. Going to Login page");
+                  setTimeout(function(){
+                    window.location.replace("./login.html");
+                  }, 3000);
+                } else {
+                  sendFailedMsg(
+                    "Sorry, update failed. Please try again later."
+                  );
+                }
+              })
+              .catch((error) => {
+                alert(error);
+              });
+          })
+          .catch((err) => sendError(err, "password"));
       }
-     
 
       function sendError(message, inputField) {
         var input = document.getElementById(inputField);
@@ -283,22 +285,35 @@
         }
       }
 
+      function sendSuccessMsg(message) {
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        console.log(message);
+
+        if (msgContainer) {
+          msgContainer.classList.remove("hidden");
+          msgContainer.classList.add("success");
+          msgContent = msgContainer.querySelector(".ui-message-contents");
+          msgContent.innerHTML = "<b>" + message + "</b>";
+        } else alert(message);
+      }
+
       function sendFailedMsg(message) {
         let heading = document.querySelector(".heading");
         let msgContainer = heading.querySelector(".ui-message-container");
         if (msgContainer) {
           msgContainer.classList.remove("hidden");
           msgContent = msgContainer.querySelector(".ui-message-contents");
-            msgContent.innerHTML = "<b>" + message + "</b>";
+          msgContent.innerHTML = "<b>" + message + "</b>";
         }
       }
 
-      function clearFailedMsg(){
+      function clearFailedMsg() {
         let btn = document.querySelector(".form-submit");
         btn.removeAttribute("disabled");
         let heading = document.querySelector(".heading");
         let msgContainer = heading.querySelector(".ui-message-container");
-        if(msgContainer) msgContainer.classList.add("hidden");
+        if (msgContainer) msgContainer.classList.add("hidden");
       }
 
       function clearError(event) {
@@ -316,29 +331,28 @@
         }
       }
 
-      function proceedChangePass(username){
-          let formEle = document.querySelectorAll(".formElement");
-          formEle.forEach(function(item){
-              if(item.classList.contains("hidden")){
-                  item.classList.remove("hidden");
-                  item.querySelector("#password").setAttribute("required","");
-                  // console.log(item.querySelector("#password"));
-              }
-              else item.classList.add("hidden");
-          })
+      function proceedChangePass(username) {
+        let formEle = document.querySelectorAll(".formElement");
+        formEle.forEach(function (item) {
+          if (item.classList.contains("hidden")) {
+            item.classList.remove("hidden");
+            item.querySelector("#password").setAttribute("required", "");
+            // console.log(item.querySelector("#password"));
+          } else item.classList.add("hidden");
+        });
 
-          document.querySelector(".form-content").classList.remove("signup-form");
-          document.querySelector(".title").innerText = "Reset your password";
-          document.querySelector(".instruction").innerText = "Hi " + username + ",\n Please enter your new password"; 
-          changeButtonSubmit();
+        document.querySelector(".form-content").classList.remove("signup-form");
+        document.querySelector(".title").innerText = "Reset your password";
+        document.querySelector(".instruction").innerText =
+          "Hi " + username + ",\n Please enter your new password";
+        changeButtonSubmit();
       }
 
-      function changeButtonSubmit(){
-        let btn= document.querySelector(".form-submit");
+      function changeButtonSubmit() {
+        let btn = document.querySelector(".form-submit");
         btn.removeAttribute("disabled");
-        btn.setAttribute("onclick","submitForm(event)");
+        btn.setAttribute("onclick", "submitForm(event)");
         btn.innerText = "Change Password";
-         
       }
     </script>
   </body>
