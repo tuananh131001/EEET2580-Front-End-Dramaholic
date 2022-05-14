@@ -402,8 +402,11 @@
       //reset modal form after close
       $(".modal").on('hidden.bs.modal', function () {
         var pw = document.querySelectorAll(".password");
-          for (var i= 0; i<pw.length; i++)
-            pw[i].type = "password";
+        var msg = document.querySelectorAll(".msg");
+        for (let i= 0; i<pw.length; i++)
+          pw[i].type = "password";
+        for (let i= 0; i<msg.length; i++)
+        msg[i].innerHTML = '';
         $(this).find('form').trigger('reset');
       });
 
@@ -440,9 +443,9 @@
         // }
         
         document.querySelector("#modal_name_msg").innerHTML = ''
-        document.querySelector("#modal_username_msg").innerHTML = ''
         var formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; 
         let modalName = document.querySelector("#modal_name").value
+        // document.querySelector("#modal_username_msg").innerHTML = ''
         // var formatUserName = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/; 
         // let state = await checkUniqueUsername(modalUserName)
 

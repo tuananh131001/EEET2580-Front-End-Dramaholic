@@ -157,7 +157,7 @@ async function getMovieListSearch(isNew) {
     searchContent.style.display = "none";
     pagi_bar.classList.add("hidden")
     emptyPage.classList.remove("hidden");
-    navBar.style.position = "relative";
+    // navBar.style.position = "relative";
   }
   if (!isEmpty(searchContent.childNodes)) {
     emptyPage.classList.add("hidden");
