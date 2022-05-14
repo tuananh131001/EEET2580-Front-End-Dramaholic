@@ -30,7 +30,7 @@
           width: unset;
       } 
 
-      .pw_msg {font-size: 0.7rem !important; color: orange;}
+      .pw_msg, .msg {font-size: 0.7rem !important; color: orange;}
 
       nav .logo {width: 150px; margin-top: 0rem;}
 
@@ -236,11 +236,13 @@
                 <form class="form flex_col edit_info" id="edit_info_form">
                   <div class="flex_col">
                     <label>Username<span class="require_symbol">*</span></label>
-                    <input disabled type="text" class="input_box" id="modal_username" style="color: gray;" value=""/>
+                    <input required type="text" class="input_box" id="modal_username" style="color: gray;" value=""/>
+                    <div class="msg" id="modal_username_msg"></div>
                   </div> 
                   <div class="flex_col">
                     <label>Full name<span class="require_symbol">*</span></label>
                     <input required type="text" class="input_box" id="modal_name" value="" name="name"/>
+                    <div class="msg" id="modal_name_msg"></div>
                   </div> 
                   <div class="flex_col">
                     <label>Email address<span class="require_symbol">*</span></label>
@@ -279,17 +281,17 @@
                   <div class="flex_col">
                     <label>Enter current password<span class="require_symbol">*</span></label>
                     <input required type="password" class="input_box password" id="current_pw_modal" />
-                    <div class="pw_msg" id="current_pw_msg"></div>
+                    <div class="msg" id="current_pw_msg"></div>
                   </div> 
                   <div class="flex_col">
                     <label>Enter new password<span class="require_symbol">*</span></label>
                     <input required type="password" class="input_box password" id="new_pw_modal" name="password"/>
-                    <div class="pw_msg" id="new_pw_msg"></div>
+                    <div class="msg" id="new_pw_msg"></div>
                   </div>      
                   <div class="flex_col">
                     <label>Confirm current password<span class="require_symbol">*</span></label>
                     <input required type="password" class="input_box password" id="confirm_pw_modal" />
-                    <div class="pw_msg" id="confirm_pw_msg"></div>
+                    <div class="msg" id="confirm_pw_msg"></div>
                   </div>   
                   <div class="d-flex justify-content-between" style="align-items: center;">
                     <div>
@@ -413,31 +415,62 @@
       //   return (d+"-"+m+"-"+y)
       // }
 
+      async function checkUniqueUsername(name) {
+        console.log(name)
+        let response = await fetch("https://dramaholic.herokuapp.com/api/customers/")
+        const {content} = await response.json()
+        for (let i=0;i < content.length; i++) {
+          if (content[i].username == name && current_user != content[i].id) {
+            return false
+          }
+        }
+        return true
+      }
+
       edit_info_form.onsubmit = async (e) => {
         e.preventDefault();
-        try {
-          let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
-              method: 'PUT',
-              headers:{"Content-Type":"application/json"},
-              body: JSON.stringify(
-                {
-                  name:document.querySelector("#modal_name").value,
-                  email:document.querySelector("#modal_email").value,
-                  dob:document.querySelector("#modal_dob").value
-                  // dob:formatDate(document.querySelector("#modal_dob").value)
-                }
-              )
-          })
-          .then(response => {
-            if(response.status==200) {
-              alert("Profile infomation updated")
-              location.reload();
-            }
-            else {
-              alert("Sorry, update failed")
-            }
-          })
-        } catch(error) {"Failed to fetch",console.log(error)}
+        document.querySelector("#modal_name_msg").innerHTML = ''
+        document.querySelector("#modal_username_msg").innerHTML = ''
+        var formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; 
+        var formatUserName = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/; 
+        let modalUserName = document.querySelector("#modal_username").value
+        let modalName = document.querySelector("#modal_name").value
+        let state = await checkUniqueUsername(modalUserName)
+
+        if(formatName.test(modalName)) {
+          document.querySelector("#modal_name_msg").innerHTML = "Name cannot contain special characters"
+        }
+        else if (formatUserName.test(document.querySelector("#modal_username").value)) {
+          document.querySelector("#modal_username_msg").innerHTML = "Username can only contain letters, digits and '_' without white spaces"
+        }
+        else if (state == false) {
+          document.querySelector("#modal_username_msg").innerHTML = "Username has been used. Please choose another one"
+        }
+        else {
+          try {
+            let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
+                method: 'PUT',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify(
+                  {
+                    name:document.querySelector("#modal_name").value,
+                    email:document.querySelector("#modal_email").value,
+                    dob:document.querySelector("#modal_dob").value
+                    // dob:formatDate(document.querySelector("#modal_dob").value)
+                  }
+                )
+            })
+            .then(response => {
+              if(response.status==200) {
+                alert("Profile infomation updated")
+                location.reload();
+              }
+              else {
+                alert("Sorry, update failed")
+              }
+            })
+          } catch(error) {"Failed to fetch",console.log(error)}
+        }
       };
 
 
@@ -474,6 +507,7 @@
                 if(response.status==200) {
                   alert("Password updated")
                   window.location.replace("./login.html");
+                  console.log("ckjdcn")
                   
                 }
                 else {

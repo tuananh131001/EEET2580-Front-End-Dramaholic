@@ -33,6 +33,39 @@ fetch("https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6
     document.querySelector("#category").innerHTML += html
 })
 
+async function getCountry() {
+  const languageList = await fetch("../../language.json").then(res => res.json()).then(content => content.languages)
+
+  let total = languageList.length
+  let languageCode = []
+  let map = new Map();
+  for (let i =0; i< total; i++) {
+    languageCode.push(languageList[i].code)
+    map.set(languageList[i].code,languageList[i].name)
+  }
+  const {totalPages} = await fetch("https://dramaholic.herokuapp.com/api/movies").then(res => res.json())
+  let haveCountry = []
+  for (let j=0; j<totalPages; j++) {
+    await fetch("https://dramaholic.herokuapp.com/api/movies?page="+j)
+    .then(respone => respone.json())
+    .then(json => json.content)
+    .then(content => {
+      let length = content.length
+      for(let i=0; i<length; i++) {
+        if (!haveCountry.includes(content[i].country)) {
+          haveCountry.push(content[i].country)
+        }
+        if (haveCountry.length == total) break
+      }
+    })
+  }
+  let html = ''
+  for (let i=0; i<haveCountry.length;i++) {
+    html += `<option value=${haveCountry[i]}>${map.get(haveCountry[i])}</option>`
+  }
+  document.querySelector("#country").innerHTML += html
+}
+
 function checkPrev_cate() {
   if(currentStartIndex_cate == 0) prev_btn_cate.setAttribute("hidden",true)
   else prev_btn_cate.removeAttribute("hidden")
@@ -443,13 +476,6 @@ inputValue.addEventListener("input", (e) => {
 
 
 
-//----------------------------------------------------
-//----------------------------------------------------
-//----------------------------------------------------
-//----------------------------------------------------
-//----------------------------------------------------
-//----------------------------------------------------
-//----------------------------------------------------
-displayCards(true);
-checkPrev_cate();
-checkNext_cate();
+////////////////////////////////
+getCountry()
+displayCards(true)
