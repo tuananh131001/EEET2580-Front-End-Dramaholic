@@ -16,6 +16,7 @@ const categoryContent = document.querySelector(".movie-list-grid");
 const pagination_cate = document.getElementById("pagination");
 const category = document.querySelector(".category");
 const countries = document.querySelector(".country");
+// const isAdult = document.querySelector(".adult");
 const prev_btn_cate = document.querySelector("#prev");
 const next_btn_cate = document.querySelector("#next");
 let currentPage_cate = 0;
@@ -33,38 +34,74 @@ fetch("https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6
     document.querySelector("#category").innerHTML += html
 })
 
+
 async function getCountry() {
   const languageList = await fetch("../../language.json").then(res => res.json()).then(content => content.languages)
-
   let total = languageList.length
-  let languageCode = []
   let map = new Map();
   for (let i =0; i< total; i++) {
-    languageCode.push(languageList[i].code)
     map.set(languageList[i].code,languageList[i].name)
   }
+  
   const {totalPages} = await fetch("https://dramaholic.herokuapp.com/api/movies").then(res => res.json())
-  let haveCountry = []
-  for (let j=0; j<totalPages; j++) {
-    await fetch("https://dramaholic.herokuapp.com/api/movies?page="+j)
-    .then(respone => respone.json())
-    .then(json => json.content)
-    .then(content => {
-      let length = content.length
-      for(let i=0; i<length; i++) {
-        if (!haveCountry.includes(content[i].country)) {
-          haveCountry.push(content[i].country)
-        }
-        if (haveCountry.length == total) break
-      }
-    })
+  let urls = []
+  for (let i =0; i<totalPages; i++) {
+    urls.push(`https://dramaholic.herokuapp.com/api/movies?page=${i}`)
   }
+
+  let haveCountry = new Set()
+  await Promise.all(urls.map(url => fetch(url)))
+  .then(resp => Promise.all( resp.map(r => r.json())))
+  .then(json => Promise.all(json.map(j => j.content)))
+  .then(content => {
+    for(let i=0; i<totalPages; i++) {
+      let pageContent = content[i]
+      let len = content[i].length
+      for (let j=0; j<len; j++)
+        haveCountry.add(pageContent[j].country)
+    }
+  });
+
   let html = ''
-  for (let i=0; i<haveCountry.length;i++) {
-    html += `<option value=${haveCountry[i]}>${map.get(haveCountry[i])}</option>`
+  for (let item of haveCountry.keys()) {
+    html += `<option value=${item}>${map.get(item)}</option>`
   }
   document.querySelector("#country").innerHTML += html
 }
+
+
+// async function getCountry() {
+//   const languageList = await fetch("../../language.json").then(res => res.json()).then(content => content.languages)
+
+//   let total = languageList.length
+//   let languageCode = []
+//   let map = new Map();
+//   for (let i =0; i< total; i++) {
+//     languageCode.push(languageList[i].code)
+//     map.set(languageList[i].code,languageList[i].name)
+//   }
+//   const {totalPages} = await fetch("https://dramaholic.herokuapp.com/api/movies").then(res => res.json())
+//   let haveCountry = []
+//   for (let j=0; j<totalPages; j++) {
+//     await fetch("https://dramaholic.herokuapp.com/api/movies?page="+j)
+//     .then(respone => respone.json())
+//     .then(json => json.content)
+//     .then(content => {
+//       let length = content.length
+//       for(let i=0; i<length; i++) {
+//         if (!haveCountry.includes(content[i].country)) {
+//           haveCountry.push(content[i].country)
+//         }
+//         if (haveCountry.length == total) break
+//       }
+//     })
+//   }
+//   let html = ''
+//   for (let i=0; i<haveCountry.length;i++) {
+//     html += `<option value=${haveCountry[i]}>${map.get(haveCountry[i])}</option>`
+//   }
+//   document.querySelector("#country").innerHTML += html
+// }
 
 function checkPrev_cate() {
   if(currentStartIndex_cate == 0) prev_btn_cate.setAttribute("hidden",true)
