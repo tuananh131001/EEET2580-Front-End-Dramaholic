@@ -36,6 +36,7 @@ fetch("https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6
 
 
 async function getCountry() {
+  //get country name to use later
   const languageList = await fetch("../../language.json").then(res => res.json()).then(content => content.languages)
   let total = languageList.length
   let map = new Map();
@@ -43,14 +44,16 @@ async function getCountry() {
     map.set(languageList[i].code,languageList[i].name)
   }
   
+  //make links to fetch
   const {totalPages} = await fetch("https://dramaholic.herokuapp.com/api/movies").then(res => res.json())
   let urls = []
   for (let i =0; i<totalPages; i++) {
     urls.push(`https://dramaholic.herokuapp.com/api/movies?page=${i}`)
   }
 
-  let haveCountry = new Set()
-  await Promise.all(urls.map(url => fetch(url)))
+  //get all country codes we have
+  let haveCountry = new Set() 
+  await Promise.all(urls.map(u => fetch(u)))
   .then(resp => Promise.all( resp.map(r => r.json())))
   .then(json => Promise.all(json.map(j => j.content)))
   .then(content => {
@@ -62,6 +65,7 @@ async function getCountry() {
     }
   });
 
+  // make select options
   let html = ''
   for (let item of haveCountry.keys()) {
     html += `<option value=${item}>${map.get(item)}</option>`
@@ -515,22 +519,21 @@ inputValue.addEventListener("input", (e) => {
 
 ////////////////////////////////
 async function init() {
-  mainContent.style.display = "none";
-  document.querySelector(".hidable").classList.add("hidden")
-  document.querySelector("#waitingText").classList.remove("hidden")
-  emptyPage.classList.remove("hidden");
-  searchWrapper.classList.add("hidden")
+  // mainContent.style.display = "none";
+  // document.querySelector(".hidable").classList.add("hidden")
+  // document.querySelector("#waitingText").classList.remove("hidden")
+  // emptyPage.classList.remove("hidden");
+  // searchWrapper.classList.add("hidden")
   // navBar.style.position = "relative";
+  displayCards(true)
   await getCountry()
 
-  emptyPage.classList.add("hidden");
-  searchWrapper.classList.remove("hidden")
-  document.querySelector("#waitingText").classList.add("hidden")
-  document.querySelector(".hidable").classList.remove("hidden")
-  footer.style.display = "block";
-  mainContent.style.display = "block";
-
-  displayCards(true)
+  // emptyPage.classList.add("hidden");
+  // searchWrapper.classList.remove("hidden")
+  // document.querySelector("#waitingText").classList.add("hidden")
+  // document.querySelector(".hidable").classList.remove("hidden")
+  // footer.style.display = "block";
+  // mainContent.style.display = "block";
 
 }
 
