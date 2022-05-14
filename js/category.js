@@ -477,5 +477,24 @@ inputValue.addEventListener("input", (e) => {
 
 
 ////////////////////////////////
-getCountry()
-displayCards(true)
+async function init() {
+  mainContent.style.display = "none";
+  document.querySelector(".hidable").classList.add("hidden")
+  document.querySelector("#waitingText").classList.remove("hidden")
+  emptyPage.classList.remove("hidden");
+  searchWrapper.classList.add("hidden")
+  // navBar.style.position = "relative";
+  await getCountry()
+
+  emptyPage.classList.add("hidden");
+  searchWrapper.classList.remove("hidden")
+  document.querySelector("#waitingText").classList.add("hidden")
+  document.querySelector(".hidable").classList.remove("hidden")
+  footer.style.display = "block";
+  mainContent.style.display = "block";
+
+  displayCards(true)
+
+}
+
+init()
