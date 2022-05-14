@@ -167,6 +167,11 @@ async function getMovieListSearch(isNew) {
     pagi_bar.classList.remove("hidden")
     footer.style.display = "block";
     mainContent.style.display = "none";
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }
 }
 
@@ -204,8 +209,9 @@ function PaginationButton(page) {
 
     current_page = button.innerText - 1;
     getMovieListSearch(false)
-
+    
     button.classList.add("active");
+    
   });
 
   return button;

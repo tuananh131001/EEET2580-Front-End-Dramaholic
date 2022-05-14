@@ -15,6 +15,7 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
     />
+
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
     <meta charset="UTF-8" />
@@ -75,7 +76,7 @@
             >
 
             <a href="/pages/movie/admin_dashboard.html"
-              ><li class="has-inline-left-gutter navigation-menu-setting">
+              ><li class="has-inline-left-gutter navigation-menu-setting admin">
                 Admin
               </li></a
             >
@@ -87,8 +88,8 @@
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="/index.html" class="active">Home</a>
-            <a href="/pages/movie/category.html">Category</a>
+            <a href="/index.html">Home</a>
+            <a href="/pages/movie/category.html" ><li class="active">Category</li></a>
             <a href="/pages/movie/trending.html">Trending</a>
           </div>
           <a href="/pages/user/login.html"
@@ -102,8 +103,8 @@
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <a href="/index.html"><li class="active">Home</li></a>
-          <a href="/pages/movie/category.html"><li>Category</li></a>
+          <a href="/index.html"><li >Home</li></a>
+          <a href="/pages/movie/category.html"><li class="active">Category</li></a>
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
       </div>
@@ -164,7 +165,7 @@
         <div class="flex_row select-category">
           <div>
             <label for="category">Category:</label>
-            <select name="category" id="category" class="category">
+            <select name="category " id="category" class="category">
               <option value="">All</option>
             </select>
           </div>
