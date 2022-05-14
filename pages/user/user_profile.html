@@ -30,7 +30,7 @@
           width: unset;
       } 
 
-      .pw_msg {font-size: 0.7rem !important; color: orange;}
+      .pw_msg, .msg {font-size: 0.7rem !important; color: orange;}
 
       nav .logo {width: 150px; margin-top: 0rem;}
 
@@ -72,7 +72,10 @@
 
       .d-flex.page_header {gap: 1.5rem} 
       .d-flex.right_col, .d-flex.left_info{gap: 0.7rem;}
-      .d-flex.right_col {align-items: flex-end;}
+      .d-flex.right_col {
+        width: fit-content;
+        align-items: flex-end;
+      }
       .d-flex.left_col {gap: 3rem;}
       #sign_out_button {text-decoration: none;}
       .left_info > * {
@@ -89,8 +92,11 @@
       .btn.text_icon {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
       }
+
+      #edit_info_btn {width: 100%;}
 
       .info {
         word-break: break-all;
@@ -229,12 +235,15 @@
               <div class="modal-body" style="gap: 1.5rem;">
                 <form class="form flex_col edit_info" id="edit_info_form">
                   <div class="flex_col">
-                    <label>Username<span class="require_symbol">*</span></label>
-                    <input disabled type="text" class="input_box" id="modal_username" style="color: gray;" value=""/>
+                    <!-- <label>Username<span class="require_symbol">*</span></label> -->
+                    <label>Username</label>
+                    <input required disabled type="text" class="input_box" id="modal_username" style="color: gray;" value=""/>
+                    <!-- <div class="msg" id="modal_username_msg"></div> -->
                   </div> 
                   <div class="flex_col">
                     <label>Full name<span class="require_symbol">*</span></label>
                     <input required type="text" class="input_box" id="modal_name" value="" name="name"/>
+                    <div class="msg" id="modal_name_msg"></div>
                   </div> 
                   <div class="flex_col">
                     <label>Email address<span class="require_symbol">*</span></label>
@@ -273,17 +282,17 @@
                   <div class="flex_col">
                     <label>Enter current password<span class="require_symbol">*</span></label>
                     <input required type="password" class="input_box password" id="current_pw_modal" />
-                    <div class="pw_msg" id="current_pw_msg"></div>
+                    <div class="msg" id="current_pw_msg"></div>
                   </div> 
                   <div class="flex_col">
                     <label>Enter new password<span class="require_symbol">*</span></label>
                     <input required type="password" class="input_box password" id="new_pw_modal" name="password"/>
-                    <div class="pw_msg" id="new_pw_msg"></div>
+                    <div class="msg" id="new_pw_msg"></div>
                   </div>      
                   <div class="flex_col">
                     <label>Confirm current password<span class="require_symbol">*</span></label>
                     <input required type="password" class="input_box password" id="confirm_pw_modal" />
-                    <div class="pw_msg" id="confirm_pw_msg"></div>
+                    <div class="msg" id="confirm_pw_msg"></div>
                   </div>   
                   <div class="d-flex justify-content-between" style="align-items: center;">
                     <div>
@@ -303,7 +312,7 @@
 
         
         <!-- MODAL CHANGE AVATAR -->
-        <div class="modal fade" id="modal_change_avt" tabindex="-1" aria-labelledby="modal_change_avt_label" aria-hidden="true">
+        <!-- <div class="modal fade" id="modal_change_avt" tabindex="-1" aria-labelledby="modal_change_avt_label" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -321,17 +330,17 @@
                   <div>
                     <input class="red_theme_button" type="submit" value="Save" onclick="change_avt('')">
                   </div> 
-                  <!-- <div class="alert alert-success alert-dismissible fade show" role="alert" >
+                  <div class="alert alert-success alert-dismissible fade show" role="alert" >
                     <strong>Updated!</strong>
                     <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                  </div> -->
+                  </div>
                 </form>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- END MODAL CHANGE AVATAR -->
 
     </main>
@@ -393,8 +402,11 @@
       //reset modal form after close
       $(".modal").on('hidden.bs.modal', function () {
         var pw = document.querySelectorAll(".password");
-          for (var i= 0; i<pw.length; i++)
-            pw[i].type = "password";
+        var msg = document.querySelectorAll(".msg");
+        for (let i= 0; i<pw.length; i++)
+          pw[i].type = "password";
+        for (let i= 0; i<msg.length; i++)
+        msg[i].innerHTML = '';
         $(this).find('form').trigger('reset');
       });
 
@@ -407,31 +419,79 @@
       //   return (d+"-"+m+"-"+y)
       // }
 
+      async function checkUniqueUsername(name) {
+        console.log(name)
+        let response = await fetch("https://dramaholic.herokuapp.com/api/customers/")
+        const {content} = await response.json()
+        for (let i=0;i < content.length; i++) {
+          if (content[i].username == name && current_user != content[i].id) {
+            return false
+          }
+        }
+        return true
+      }
+
       edit_info_form.onsubmit = async (e) => {
         e.preventDefault();
-        try {
-          let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
-              method: 'PUT',
-              headers:{"Content-Type":"application/json"},
-              body: JSON.stringify(
-                {
-                  name:document.querySelector("#modal_name").value,
-                  email:document.querySelector("#modal_email").value,
-                  dob:document.querySelector("#modal_dob").value
-                  // dob:formatDate(document.querySelector("#modal_dob").value)
-                }
-              )
-          })
-          .then(response => {
-            if(response.status==200) {
-              alert("Profile infomation updated")
-              location.reload();
-            }
-            else {
-              alert("Sorry, update failed")
-            }
-          })
-        } catch(error) {"Failed to fetch",console.log(error)}
+        let modalUserName = document.querySelector("#modal_username").value
+        // let changeUsername = (modalUserName != document.querySelector("#user_username").innerHTML)
+        // if (changeUsername) {
+        //   let text = `Change username will require to re-login. Do you want to continue?`
+        //   if (confirm(text) == false) {
+        //     return
+        //   }
+        // }
+        
+        document.querySelector("#modal_name_msg").innerHTML = ''
+        var formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/; 
+        let modalName = document.querySelector("#modal_name").value
+        // document.querySelector("#modal_username_msg").innerHTML = ''
+        // var formatUserName = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/; 
+        // let state = await checkUniqueUsername(modalUserName)
+
+        if(formatName.test(modalName)) {
+          document.querySelector("#modal_name_msg").innerHTML = "Name cannot contain special characters"
+        }
+        // else if (formatUserName.test(document.querySelector("#modal_username").value)) {
+        //   document.querySelector("#modal_username_msg").innerHTML = "Username can only contain letters, digits and '_' without white spaces"
+        // }
+        // else if (state == false) {
+        //   document.querySelector("#modal_username_msg").innerHTML = "Username has been used. Please choose another one"
+        // }
+        else {
+          try {
+            let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
+                method: 'PUT',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify(
+                  {
+                    // username:document.querySelector("#modal_username").value,
+                    name:document.querySelector("#modal_name").value,
+                    email:document.querySelector("#modal_email").value,
+                    dob:document.querySelector("#modal_dob").value
+                    // dob:formatDate(document.querySelector("#modal_dob").value)
+                  }
+                )
+            })
+            .then(response => {
+              if(response.status==200) {
+                alert("Profile infomation updated")
+                  location.reload();
+                // if (changeUsername) {
+                //   alert("Profile infomation updated. Please login again")
+                //   window.location.replace("./login.html")
+                // }
+                // else {
+                //   alert("Profile infomation updated")
+                //   location.reload();
+                // }
+              }
+              else {
+                alert("Sorry, update failed")
+              }
+            })
+          } catch(error) {"Failed to fetch",console.log(error)}
+        }
       };
 
 
@@ -466,9 +526,8 @@
               })
               .then(response => {
                 if(response.status==200) {
-                  alert("Password updated")
+                  alert("Password updated. Please login again")
                   window.location.replace("./login.html");
-                  
                 }
                 else {
                   alert("Sorry, update failed")
