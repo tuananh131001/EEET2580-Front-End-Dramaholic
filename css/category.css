@@ -4,7 +4,7 @@ button[class=active] {
 
 .pagination-search,
 .pagenumbers {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 0.5em;
@@ -26,6 +26,73 @@ button[class=active] {
   color: white;
 }
 
+button[class=active] {
+  background-color: #c0071d !important;
+}
+
+.select-category > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+select {
+  -webkit-appearance: none;
+  padding: 7px 40px 7px 12px;
+  width: 100%;
+  border: 1px solid #e8eaed;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  transition: all 150ms ease;
+}
+select:required:invalid {
+  color: #5a667f;
+}
+select option {
+  color: #223254;
+}
+select option[value=""][disabled] {
+  display: none;
+}
+select:focus {
+  outline: none;
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+select:hover + svg {
+  stroke: #0077ff;
+}
+
+.pagination-search,
+.pagenumbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 2em 0 0 0;
+}
+
+.pagination-search button,
+.pagenumbers button {
+  display: flex;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  background-color: #0e1116;
+}
+
+.pagination-search button:hover,
+.pagenumbers button:hover {
+  cursor: pointer;
+  background-color: #c0071d;
+  color: white;
+}
+
 main {
   padding: 4em 0 0 0;
 }
@@ -34,50 +101,11 @@ main .movie-list-grid {
 }
 
 .select-category {
-  gap: 2rem;
-  padding: 2em; 
-}
-
-.select-category > * {display: flex; gap: 0.5rem;}
-
-.select-category * {font-size: 1.1rem;}
-.select-category option {font-size: 0.95rem;}
-
-.select-category select {
-  width: 13rem;
-  height: 1.7rem;
-}
-
-@media screen and (max-width: 50em) {
-  .select-category {
-    padding-top: 1em;
-  }
-  .select-category > * {flex-direction: column;}
-  .select-category * {font-size: 0.9rem;}
-  .select-category option {font-size: 0.8rem;}
-}
-
-
-@media screen and (max-width: 40em) {
-  .select-category select {
-    width: 11rem;
-    height: 1.5rem;
-  }
-  /* main{padding-top: 2.7em;} */
-}
-
-@media screen and (max-width: 28em) {
-  .select-category {
-    padding-left: 0.7em;
-  }
-  .select-category select {width: 9.5rem;}
-  nav .open {width: 10em;}
-}
-
-@media screen and (max-width: 22em) {
-  .select-category select {width: 7rem;}
-  .select-category * {font-size: 0.8rem;}
-  .select-category option {font-size: 0.65rem;}
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em;
+  gap: 1em;
+  background-color: #27323f;
 }
 
 footer {
