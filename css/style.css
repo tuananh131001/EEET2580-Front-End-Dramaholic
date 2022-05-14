@@ -725,7 +725,7 @@ button[class=active] {
 
 .active {
   font-weight: 700 !important;
-  color: color !important;
+  color: white !important;
 }
 
 .hidden {
