@@ -43,7 +43,9 @@ const page_per_pagination = 8;
 var totalMovies;
 var totalPages;
 var currentPage = 0;
+//initial end page
 var endPage = page_per_pagination;
+//initial start page
 var startPage = 0;
 
 const createCardHistory = (x) => {
@@ -91,40 +93,43 @@ const userID = localStorage.getItem("UserID");
 const watchLaterContent = document.querySelector(".movie-list-grid");
 
 async function getWatchLaterList(isNew) {
+  //if get movie for the first time
   if (isNew) {
     const url = await fetch(
       "https://dramaholic.herokuapp.com/api/customers/" + userID + "/watchLater"
     );
     const { _embedded } = await url.json();
-    console.log(_embedded);
     const { movies } = await _embedded;
+    // set total number of movie
     totalMovies = movies.length;
-    console.log(movies);
 
+    //push movies to list
     for (let i = totalMovies - 1; i >= 0; i--) {
       await list.push(createCardHistory(movies[i]));
     }
   }
+
+  //display movie
   watchLaterContent.innerHTML = "";
   let currentStartIndex = currentPage * movie_per_page;
   for (let i = currentStartIndex; i < currentStartIndex + movie_per_page; i++) {
     await watchLaterContent.appendChild(list[i]);
     if (i + 1 == list.length) break;
   }
-  console.log(currentPage);
+  // set up pagination
   createPagination();
 }
 
-//para: current page
 function createPagination() {
+  // find total pages enough for the movies list
   if (totalMovies <= movie_per_page) totalPages = 1;
   else {
     totalPages = Math.floor(totalMovies / movie_per_page);
     if (totalMovies % movie_per_page > 0) totalPages += 1;
   }
-  console.log(totalPages);
-  pageNumbers.innerHTML = "";
 
+  pageNumbers.innerHTML = "";
+  //set startPage and endPage to range the pagination
   if (totalPages > page_per_pagination) {
     if (currentPage + 1 >= page_per_pagination) {
       startPage =
@@ -132,6 +137,8 @@ function createPagination() {
       endPage = startPage + page_per_pagination;
     }
   } else endPage = totalPages;
+
+  //set button
   for (let i = startPage; i < endPage; i++) {
     let btn = SetPaginationButton(i);
     console.log(btn);
@@ -163,6 +170,7 @@ function SetPaginationButton(page) {
   if (startPage == 0) prev_btn.classList.add("hidden");
   else prev_btn.classList.remove("hidden");
   if (endPage >= totalPages) next_btn.classList.add("hidden");
+
   return button;
 }
 
