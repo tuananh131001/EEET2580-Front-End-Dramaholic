@@ -421,7 +421,7 @@ button {
   #full-screen {
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 5;
     visibility: collapse;
     background-color: #ffffff10;
