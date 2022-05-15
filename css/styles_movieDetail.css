@@ -415,6 +415,20 @@ button {
 .right-column{
   width: 20%;
 }
+.vote-container{
+  display: flex;
+  gap:.5em;
+  align-items: center;
+}
+.vote:hover,
+.delete:hover{
+  color: red;
+  cursor: pointer;
+}
+.top-comment-section{
+  display: flex;
+  justify-content: space-between;
+}
 
 /* if backdrop support: very transparent and blurred */
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {

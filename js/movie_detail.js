@@ -127,39 +127,82 @@ function handleDelteComment(commentId, username, password) {
     headers: { "Content-Type": "application/json" },
     body: dataToSend,
   }).then((response) => {
-    location.reload();
+    getInfomationMovie(commentId);
+  });
+}
+async function getInfomationMovie(commentid) {
+  const id = sessionStorage.getItem("dbid");
+  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
+  const json = await url.json();
+  getComments(json.comments);
+}
+function handleUpvote(commentId, username, password) {
+  const dataToSend = JSON.stringify({
+    username: username,
+    password: password,
+  });
+  fetch(
+    "https://dramaholic.herokuapp.com/api/comments/" + commentId + "/vote",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: dataToSend,
+    }
+  ).then((response) => {
+    getInfomationMovie(commentId);
   });
 }
 function getComments(commentList) {
   let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
-  commentList.forEach(({ id, message, user }) => {
+  commentListElement.innerHTML = "";
+  commentList.forEach(({ id, message, user, upvotes }) => {
     //Init
     const wrapper = document.createElement("div");
     wrapper.className = "wrapper";
+    const topElement = document.createElement("div");
+    topElement.className = "top-comment-section";
     const messageElement = document.createElement("h2");
     messageElement.textContent = message;
     messageElement.className = "message";
     const userElement = document.createElement("h3");
     userElement.textContent = "By: " + user.name;
     userElement.className = "user-name";
+
+    // Vote section
+    const voteContainer = document.createElement("div");
+    voteContainer.className = "vote-container";
+    const voteElement = document.createElement("h3");
+    voteElement.textContent = upvotes;
+    voteElement.className = "upvote";
+    voteContainer.appendChild(voteElement);
+
     const authorWrapper = document.createElement("div");
     authorWrapper.className = "author-wrapper";
 
     // Add Section
+    authorWrapper.appendChild(voteContainer);
+    topElement.appendChild(messageElement);
     authorWrapper.appendChild(userElement);
-    wrapper.appendChild(messageElement);
+    wrapper.appendChild(topElement);
     wrapper.appendChild(authorWrapper);
     const isAdmin = localStorage.getItem("isAdmin");
 
     if (user.id == userID || isAdmin == "true") {
-      const deleteButton = document.createElement("button");
+      const deleteButton = document.createElement("i");
+      deleteButton.className = "fa-solid fa-trash delete";
       deleteButton.addEventListener("click", (e) => {
         handleDelteComment(id, user.username, user.password);
         console.log(id);
       });
-      deleteButton.textContent = "DELETE";
-      authorWrapper.appendChild(deleteButton);
+      topElement.appendChild(deleteButton);
+      // Upvote button
+      const upvoteButton = document.createElement("i");
+      upvoteButton.className = "fa-solid fa-thumbs-up vote";
+      upvoteButton.addEventListener("click", (e) => {
+        handleUpvote(id, user.username, user.password);
+      });
+      voteContainer.appendChild(upvoteButton);
     }
 
     commentListElement.appendChild(wrapper);
@@ -190,7 +233,12 @@ function handleSubmitComment(e) {
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
       }).then((response) => {
-        location.reload();
+        fetch("https://dramaholic.herokuapp.com/api/movies/" + movieID)
+          .then((response) => response.json())
+          .then((json) => {
+            getComments(json.comments);
+            document.forms["comment-section"]["message"].value = ""
+          });
       });
     });
 }
