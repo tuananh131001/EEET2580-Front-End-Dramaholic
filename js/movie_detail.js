@@ -152,7 +152,13 @@ function handleUpvote(commentId, username, password) {
     getInfomationMovie(commentId);
   });
 }
+function sortComments(commentList) {
+  commentList.sort((a, b) => parseInt(b.upvotes) - parseInt(a.upvotes));
+  return commentList;
+}
+
 function getComments(commentList) {
+  commentList = sortComments(commentList);
   let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
   commentListElement.innerHTML = "";
@@ -196,14 +202,21 @@ function getComments(commentList) {
         console.log(id);
       });
       topElement.appendChild(deleteButton);
-      // Upvote button
-      const upvoteButton = document.createElement("i");
-      upvoteButton.className = "fa-solid fa-thumbs-up vote";
-      upvoteButton.addEventListener("click", (e) => {
-        handleUpvote(id, user.username, user.password);
-      });
-      voteContainer.appendChild(upvoteButton);
     }
+    // Upvote button
+    const upvoteButton = document.createElement("i");
+    upvoteButton.className = "fa-solid fa-thumbs-up vote";
+    upvoteButton.addEventListener("click", (e) => {
+      let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+      let userID = JSON.parse(localStorage.getItem("UserID"));
+      fetch(originalURL + userID)
+        .then((response) => response.json())
+        .then((json) => {
+          handleUpvote(id, json.username, json.password);
+        });
+      
+    });
+    voteContainer.appendChild(upvoteButton);
 
     commentListElement.appendChild(wrapper);
   });
@@ -237,7 +250,7 @@ function handleSubmitComment(e) {
           .then((response) => response.json())
           .then((json) => {
             getComments(json.comments);
-            document.forms["comment-section"]["message"].value = ""
+            document.forms["comment-section"]["message"].value = "";
           });
       });
     });
