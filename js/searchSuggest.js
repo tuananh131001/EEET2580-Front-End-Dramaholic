@@ -82,7 +82,7 @@ const createCardSearch = (x) => {
   img.className = "movie-search-image";
   img.src = x.thumbnail;
   img.onclick = function () {
-    localStorage.setItem("dbid", x.dbID);
+    sessionStorage.setItem("dbid", x.dbID);
     location.href = "/pages/movie/movie_detail.html";
   };
   card.appendChild(img);
@@ -96,7 +96,7 @@ const createCardSearch = (x) => {
   title.className = "card-title";
   title.textContent = x.title;
   title.onclick = function () {
-    localStorage.setItem("dbid", x.dbID);
+    sessionStorage.setItem("dbid", x.dbID);
     location.href = "/pages/movie/movie_detail.html";
   };
   cardContent.appendChild(title);

@@ -63,7 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    localStorage.setItem("dbid", x.dbID);
+    sessionStorage.setItem("dbid", x.dbID);
     location.href = "movie_detail.html";
   };
   cardContent.appendChild(button);

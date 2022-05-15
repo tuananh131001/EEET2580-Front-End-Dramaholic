@@ -63,7 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    localStorage.setItem("dbid", x.dbID);
+    sessionStorage.setItem("dbid", x.dbID);
     location.href = "/pages/movie/movie_detail.html";
   };
   cardContent.appendChild(button);
@@ -72,7 +72,7 @@ const createElementsMovieCard = (x) => {
 };
 // Billboard
 function setdbID(x) {
-  localStorage.setItem("dbid", x);
+  sessionStorage.setItem("dbid", x);
   location.href = "/pages/movie/movie_detail.html";
 }
 
