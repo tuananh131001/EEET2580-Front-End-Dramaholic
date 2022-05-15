@@ -3,7 +3,7 @@ let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
 let id = JSON.parse(sessionStorage.getItem("dbid"));
 let userId = JSON.parse(localStorage.getItem("UserID"));
-
+console.log(id);
 let film_title = "";
 let film_youtube = "";
 var fetchingURL = originalURL + id;
@@ -38,7 +38,6 @@ fetch(fetchingURL)
   .then((response) => response.json())
   .then((json) => {
     //comments section get
-    console.log(json.comments);
     getComments(json.comments);
     //parse year
     let text = json.date;
@@ -50,6 +49,7 @@ fetch(fetchingURL)
     let href_cut = json.href.split("https://www.youtube.com/watch?v=");
     film_youtube =
       "https://www.youtube.com/embed/" + href_cut[1] + "?enablejsapi=1";
+
     document.querySelector(
       ".thumbnail_portrait"
     ).innerHTML = `<img src="${json.thumbnail}" alt="">`;
@@ -69,11 +69,16 @@ fetch(fetchingURL)
       }
     }
     document.querySelector("#movie_description").innerHTML = json.description;
-    document.querySelector(
-      `#star${parseInt(json.rating)}`
-    ).outerHTML = `<input type="radio" id="star${parseInt(
-      json.rating
-    )}" checked>`;
+    try {
+      document.querySelector(
+        `#star${parseInt(json.rating)}`
+      ).outerHTML = `<input type="radio" id="star${parseInt(
+        json.rating
+      )}" checked>`;
+    } catch (err) {
+      console.log("Perfect 10/10");
+    }
+
     for (let i = 0; i < json.actors.length; i++) {
       document.querySelector(".scroll-images").innerHTML += `<div class="child">
 
@@ -207,7 +212,9 @@ function stop_movie() {
     // matched or not
     var matched = window.matchMedia(media_query).matches;
     // fix no youtube
-    matched ? document.querySelector("#blur_frame").style.position = "revert" : document.querySelector("#blur_frame").style.position = "absolute"
+    matched
+      ? (document.querySelector("#blur_frame").style.position = "revert")
+      : (document.querySelector("#blur_frame").style.position = "absolute");
     var frame = document.getElementById("iframe_frame");
     frame.contentWindow.postMessage(
       '{"event":"command","func":"pauseVideo","args":""}',
