@@ -1,13 +1,14 @@
 const closeVideo = document.querySelector(".close-video");
 let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
-let id = JSON.parse(localStorage.getItem("dbid"));
+let id = JSON.parse(sessionStorage.getItem("dbid"));
 let userId = JSON.parse(localStorage.getItem("UserID"));
-
+console.log(id);
 let film_title = "";
 let film_youtube = "";
 var fetchingURL = originalURL + id;
-var fetchingURL_watch_later = "https://dramaholic.herokuapp.com/api/customers/" + userId + "/watchLater";
+var fetchingURL_watch_later =
+  "https://dramaholic.herokuapp.com/api/customers/" + userId + "/watchLater";
 
 //check water_later list
 if (userId != null) {
@@ -37,8 +38,7 @@ fetch(fetchingURL)
   .then((response) => response.json())
   .then((json) => {
     //comments section get
-    console.log(json.comments);
-    getComments(json.comments);
+    getInfomationMovie();
     //parse year
     let text = json.date;
     const json_year = text.split("-");
@@ -49,6 +49,7 @@ fetch(fetchingURL)
     let href_cut = json.href.split("https://www.youtube.com/watch?v=");
     film_youtube =
       "https://www.youtube.com/embed/" + href_cut[1] + "?enablejsapi=1";
+
     document.querySelector(
       ".thumbnail_portrait"
     ).innerHTML = `<img src="${json.thumbnail}" alt="">`;
@@ -68,11 +69,16 @@ fetch(fetchingURL)
       }
     }
     document.querySelector("#movie_description").innerHTML = json.description;
-    document.querySelector(
-      `#star${parseInt(json.rating)}`
-    ).outerHTML = `<input type="radio" id="star${parseInt(
-      json.rating
-    )}" checked>`;
+    try {
+      document.querySelector(
+        `#star${parseInt(json.rating)}`
+      ).outerHTML = `<input type="radio" id="star${parseInt(
+        json.rating
+      )}" checked>`;
+    } catch (err) {
+      console.log("Perfect 10/10");
+    }
+
     for (let i = 0; i < json.actors.length; i++) {
       document.querySelector(".scroll-images").innerHTML += `<div class="child">
 
@@ -86,7 +92,6 @@ fetch(fetchingURL)
     });
 
     let country = regionNames.of(json.country.toUpperCase());
-
 
     for (let i = 0; i < json.director.length; i++) {
       document.querySelector(
@@ -102,8 +107,6 @@ fetch(fetchingURL)
     document.querySelector(
       "#movie_director"
     ).innerHTML += `<div class="director_name info_text">Language: ${country}</div>`;
-
-
 
     document.querySelector(
       "#youtube_frame"
@@ -124,57 +127,114 @@ function handleDelteComment(commentId, username, password) {
     headers: { "Content-Type": "application/json" },
     body: dataToSend,
   }).then((response) => {
-    location.reload();
+    getInfomationMovie();
   });
 }
+async function getInfomationMovie() {
+  const id = sessionStorage.getItem("dbid");
+  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
+  const json = await url.json();
+  getComments(json.comments);
+}
+function handleUpvote(commentId, username, password) {
+  const dataToSend = JSON.stringify({
+    username: username,
+    password: password,
+  });
+  fetch(
+    "https://dramaholic.herokuapp.com/api/comments/" + commentId + "/vote",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: dataToSend,
+    }
+  ).then((response) => {
+    getInfomationMovie();
+  });
+}
+function sortComments(commentList) {
+  commentList.sort((a, b) => parseInt(b.upvotes) - parseInt(a.upvotes));
+  return commentList;
+}
+
 function getComments(commentList) {
+  commentList = sortComments(commentList);
   let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
-  commentList.forEach(({ id, message, user }) => {
-
-    //Init 
+  commentListElement.innerHTML = "";
+  commentList.forEach(({ id, message, user, upvotes,upvoters }) => {
+    //Init
     const wrapper = document.createElement("div");
     wrapper.className = "wrapper";
+    const topElement = document.createElement("div");
+    topElement.className = "top-comment-section";
     const messageElement = document.createElement("h2");
     messageElement.textContent = message;
     messageElement.className = "message";
     const userElement = document.createElement("h3");
     userElement.textContent = "By: " + user.name;
     userElement.className = "user-name";
-    const authorWrapper = document.createElement("div");
-    authorWrapper.className = "author-wrapper"
 
-    // Add Section 
+    // Vote section
+    const voteContainer = document.createElement("div");
+    voteContainer.className = "vote-container";
+    const voteElement = document.createElement("h3");
+    voteElement.textContent = upvotes;
+    voteElement.className = "upvote";
+    voteContainer.appendChild(voteElement);
+
+    const authorWrapper = document.createElement("div");
+    authorWrapper.className = "author-wrapper";
+
+    // Add Section
+    authorWrapper.appendChild(voteContainer);
+    topElement.appendChild(messageElement);
     authorWrapper.appendChild(userElement);
-    wrapper.appendChild(messageElement);
+    wrapper.appendChild(topElement);
     wrapper.appendChild(authorWrapper);
-    const isAdmin = localStorage.getItem("isAdmin")
+    const isAdmin = localStorage.getItem("isAdmin");
 
     if (user.id == userID || isAdmin == "true") {
-      const deleteButton = document.createElement("button");
+      const deleteButton = document.createElement("i");
+      deleteButton.className = "fa-solid fa-trash delete";
       deleteButton.addEventListener("click", (e) => {
         handleDelteComment(id, user.username, user.password);
         console.log(id);
       });
-      deleteButton.textContent = "DELETE";
-      authorWrapper.appendChild(deleteButton);
+      topElement.appendChild(deleteButton);
     }
+    // Upvote button
+    const upvoteButton = document.createElement("i");
+    console.log(upvoters)
+    upvoters.find(upvoter=> upvoter.id === userID) ? upvoteButton.style.color = "red": upvoteButton.style.color = "white"
+    upvoteButton.className = "fa-solid fa-thumbs-up vote";
+    upvoteButton.addEventListener("click", (e) => {
+      let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+      let userID = JSON.parse(localStorage.getItem("UserID"));
+      fetch(originalURL + userID)
+        .then((response) => response.json())
+        .then((json) => {
+          handleUpvote(id, json.username, json.password);
+        });
+      
+    });
+    voteContainer.appendChild(upvoteButton);
 
     commentListElement.appendChild(wrapper);
   });
 }
-const form = document.forms['comment-section'];
-form.addEventListener('submit', handleSubmitComment);
+const form = document.forms["comment-section"];
+form.addEventListener("submit", handleSubmitComment);
 function handleSubmitComment(e) {
-  e.preventDefault()
+  e.preventDefault();
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
       let messageMovie = document.forms["comment-section"]["message"].value;
-      messageMovie == '' ? location.reload() : null
-      let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
+      messageMovie == "" ? location.reload() : null;
+      let movieID = JSON.parse(sessionStorage.getItem("dbid")).toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
         user: {
@@ -188,8 +248,12 @@ function handleSubmitComment(e) {
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
       }).then((response) => {
-        location.reload();
-
+        fetch("https://dramaholic.herokuapp.com/api/movies/" + movieID)
+          .then((response) => response.json())
+          .then((json) => {
+            getInfomationMovie()
+            document.forms["comment-section"]["message"].value = "";
+          });
       });
     });
 }
@@ -200,10 +264,20 @@ function play_movie() {
   document.getElementById("youtube_frame").style.animationName = "zoom-in";
   document.getElementById("youtube_frame").style.animationDuration = "1s";
   document.getElementById("full-screen").style.visibility = "visible";
+  // fix no youtube
+  document.querySelector("#blur_frame").style.position = "absolute";
   add_history();
 }
 function stop_movie() {
   if (document.getElementById("youtube_frame").style.visibility == "visible") {
+    // media query to check
+    var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+    // matched or not
+    var matched = window.matchMedia(media_query).matches;
+    // fix no youtube
+    matched
+      ? (document.querySelector("#blur_frame").style.position = "revert")
+      : (document.querySelector("#blur_frame").style.position = "absolute");
     var frame = document.getElementById("iframe_frame");
     frame.contentWindow.postMessage(
       '{"event":"command","func":"pauseVideo","args":""}',
@@ -219,7 +293,7 @@ function stop_movie() {
 function add_history() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -246,7 +320,7 @@ function add_history() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -268,7 +342,7 @@ function add_watch_later() {
           console.log(response);
         });
       });
-      document.querySelector("#button_watch_later").outerHTML = `
+    document.querySelector("#button_watch_later").outerHTML = `
               <button id="button_watch_later" class="button btn2" onclick="delete_watch_later()">
                   REMOVE FROM LIST
                 </button>`;
@@ -277,7 +351,7 @@ function add_watch_later() {
 function delete_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -299,7 +373,7 @@ function delete_watch_later() {
           console.log(response);
         });
       });
-      document.querySelector("#button_watch_later").outerHTML = `
+    document.querySelector("#button_watch_later").outerHTML = `
           <button id="button_watch_later" class="button btn2" onclick="add_watch_later()">
               WATCH LATER
             </button>`;
