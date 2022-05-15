@@ -7,7 +7,8 @@ let userId = JSON.parse(localStorage.getItem("UserID"));
 let film_title = "";
 let film_youtube = "";
 var fetchingURL = originalURL + id;
-var fetchingURL_watch_later = "https://dramaholic.herokuapp.com/api/customers/" + userId + "/watchLater";
+var fetchingURL_watch_later =
+  "https://dramaholic.herokuapp.com/api/customers/" + userId + "/watchLater";
 
 //check water_later list
 if (userId != null) {
@@ -87,7 +88,6 @@ fetch(fetchingURL)
 
     let country = regionNames.of(json.country.toUpperCase());
 
-
     for (let i = 0; i < json.director.length; i++) {
       document.querySelector(
         "#movie_director"
@@ -102,8 +102,6 @@ fetch(fetchingURL)
     document.querySelector(
       "#movie_director"
     ).innerHTML += `<div class="director_name info_text">Language: ${country}</div>`;
-
-
 
     document.querySelector(
       "#youtube_frame"
@@ -131,8 +129,7 @@ function getComments(commentList) {
   let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
   commentList.forEach(({ id, message, user }) => {
-
-    //Init 
+    //Init
     const wrapper = document.createElement("div");
     wrapper.className = "wrapper";
     const messageElement = document.createElement("h2");
@@ -142,13 +139,13 @@ function getComments(commentList) {
     userElement.textContent = "By: " + user.name;
     userElement.className = "user-name";
     const authorWrapper = document.createElement("div");
-    authorWrapper.className = "author-wrapper"
+    authorWrapper.className = "author-wrapper";
 
-    // Add Section 
+    // Add Section
     authorWrapper.appendChild(userElement);
     wrapper.appendChild(messageElement);
     wrapper.appendChild(authorWrapper);
-    const isAdmin = localStorage.getItem("isAdmin")
+    const isAdmin = localStorage.getItem("isAdmin");
 
     if (user.id == userID || isAdmin == "true") {
       const deleteButton = document.createElement("button");
@@ -163,17 +160,17 @@ function getComments(commentList) {
     commentListElement.appendChild(wrapper);
   });
 }
-const form = document.forms['comment-section'];
-form.addEventListener('submit', handleSubmitComment);
+const form = document.forms["comment-section"];
+form.addEventListener("submit", handleSubmitComment);
 function handleSubmitComment(e) {
-  e.preventDefault()
+  e.preventDefault();
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
       let messageMovie = document.forms["comment-section"]["message"].value;
-      messageMovie == '' ? location.reload() : null
+      messageMovie == "" ? location.reload() : null;
       let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
@@ -189,7 +186,6 @@ function handleSubmitComment(e) {
         body: dataToSend,
       }).then((response) => {
         location.reload();
-
       });
     });
 }
@@ -200,10 +196,18 @@ function play_movie() {
   document.getElementById("youtube_frame").style.animationName = "zoom-in";
   document.getElementById("youtube_frame").style.animationDuration = "1s";
   document.getElementById("full-screen").style.visibility = "visible";
+  // fix no youtube
+  document.querySelector("#blur_frame").style.position = "absolute";
   add_history();
 }
 function stop_movie() {
   if (document.getElementById("youtube_frame").style.visibility == "visible") {
+    // media query to check
+    var media_query = "screen and (min-width:320px) and (max-width:1023px)";
+    // matched or not
+    var matched = window.matchMedia(media_query).matches;
+    // fix no youtube
+    matched ? document.querySelector("#blur_frame").style.position = "revert" : document.querySelector("#blur_frame").style.position = "absolute"
     var frame = document.getElementById("iframe_frame");
     frame.contentWindow.postMessage(
       '{"event":"command","func":"pauseVideo","args":""}',
@@ -268,7 +272,7 @@ function add_watch_later() {
           console.log(response);
         });
       });
-      document.querySelector("#button_watch_later").outerHTML = `
+    document.querySelector("#button_watch_later").outerHTML = `
               <button id="button_watch_later" class="button btn2" onclick="delete_watch_later()">
                   REMOVE FROM LIST
                 </button>`;
@@ -299,7 +303,7 @@ function delete_watch_later() {
           console.log(response);
         });
       });
-      document.querySelector("#button_watch_later").outerHTML = `
+    document.querySelector("#button_watch_later").outerHTML = `
           <button id="button_watch_later" class="button btn2" onclick="add_watch_later()">
               WATCH LATER
             </button>`;
