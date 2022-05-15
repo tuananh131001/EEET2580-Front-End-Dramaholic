@@ -103,6 +103,35 @@ async function setSwiper() {
   });
 }
 
+function getKorea(data) {
+  const koreaData = await data.json();
+  const koreaArray = await koreaData.content;
+  const movieListElementKo = createMovieList("Top 10 in Korea");
+  for (let i = 0; i < koreaArray.length; i++) {
+    const movieL = createElementsMovieCard(koreaArray[i]);
+    movieListElementKo.appendChild(movieL);
+  }
+}
+function getEN(data) {
+  const USAData = await USAUrl.json();
+  const USAArray = await USAData.content;
+  const movieListElementEn = createMovieList("Top 10 in USA");
+  for (let i = 0; i < USAArray.length; i++) {
+    const movieL = createElementsMovieCard(USAArray[i]);
+    movieListElementEn.appendChild(movieL);
+  }
+}
+function getES(data) {
+  const ESData = await esUrl.json();
+  const ESArray = await ESData.content;
+  const movieListElementEs = createMovieList("Top 10 in Latin");
+  for (let i = 0; i < ESArray.length; i++) {
+    const movieL = createElementsMovieCard(ESArray[i]);
+    movieListElementEs.appendChild(movieL);
+  }
+
+}
+
 async function getTrending() {
   // const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
   // const data = await reponse.json();
@@ -112,45 +141,17 @@ async function getTrending() {
 
   // Promise.all(
   //   pageArray.map(async (url) => {
-  const url = "https://dramaholic.herokuapp.com/api/movies?page=0&size=100000";
-  fetch(url)
-    .then((response) => response.json())
-    .then((json) => {
-      const movieListElementKo = createMovieList("Top 10 in Korea");
-      const movieListElementEn = createMovieList("Top 10 in USA");
-      const movieListElementEs = createMovieList("Top 10 in Latin");
+  await Promise.all([
+      fetch('https://dramaholic.herokuapp.com/api/movies/search?country=ko&size=10').then(resp => getKorea(resp)),
+      fetch('https://dramaholic.herokuapp.com/api/movies/search?country=en&size=10').then(resp => getEN(resp)),
+      fetch('https://dramaholic.herokuapp.com/api/movies/search?country=es&size=10').then(resp => getES(resp)),
+    ]).then(console.log)
+    .catch(err => console.log(err));
 
-      let countTopKo = 0;
-      let countTopUS = 0;
-      let countTopEs = 0;
-      let arraySort = json.content.sort((a, b) =>
-        parseFloat(a.rating) < parseFloat(b.rating) ? 1 : -1
-      );
-      for (
-        let i = 0;
-        i < arraySort.length ||
-        (countTopKo < 10 && countTopUS < 10 && countTopEs < 10);
-        i++
-      ) {
-        if (arraySort[i].country == "ko" && countTopKo < 10) {
-          const movieL = createElementsMovieCard(arraySort[i]);
-          countTopKo++;
-          movieListElementKo.appendChild(movieL);
-        } else if (arraySort[i].country == "en" && countTopUS < 10) {
-          const movieL = createElementsMovieCard(arraySort[i]);
-          countTopUS++;
-          movieListElementEn.appendChild(movieL);
-        } else if (arraySort[i].country == "es" && countTopEs < 10) {
-          const movieL = createElementsMovieCard(arraySort[i]);
-          countTopEs++;
-          movieListElementEs.appendChild(movieL);
-        }
-      }
-      const loading = document.querySelector("#loading");
-      loading.style.display = "none";
-      // Loading Screen
-      setSwiper();
-    });
+  const loading = document.querySelector("#loading");
+  loading.style.display = "none";
+  // Loading Screen
+  setSwiper();
 }
 
 var myNav = document.querySelector(".navbar");
