@@ -103,33 +103,32 @@ async function setSwiper() {
   });
 }
 
-function getKorea(data) {
-  const koreaData =  data.json();
-  const koreaArray =  koreaData.content;
+async function getKorea(data) {
+  const koreaData = await data.json();
+  const koreaArray = await koreaData.content;
   const movieListElementKo = createMovieList("Top 10 in Korea");
   for (let i = 0; i < koreaArray.length; i++) {
     const movieL = createElementsMovieCard(koreaArray[i]);
     movieListElementKo.appendChild(movieL);
   }
 }
-function getEN(data) {
-  const USAData =  data.json();
-  const USAArray =  USAData.content;
+async function getEN(data) {
+  const USAData = await data.json();
+  const USAArray = await USAData.content;
   const movieListElementEn = createMovieList("Top 10 in USA");
   for (let i = 0; i < USAArray.length; i++) {
     const movieL = createElementsMovieCard(USAArray[i]);
     movieListElementEn.appendChild(movieL);
   }
 }
-function getES(data) {
-  const ESData =  data.json();
-  const ESArray =  ESData.content;
+async function getES(data) {
+  const ESData = await data.json();
+  const ESArray = await ESData.content;
   const movieListElementEs = createMovieList("Top 10 in Latin");
   for (let i = 0; i < ESArray.length; i++) {
     const movieL = createElementsMovieCard(ESArray[i]);
     movieListElementEs.appendChild(movieL);
   }
-
 }
 
 async function getTrending() {
@@ -142,16 +141,23 @@ async function getTrending() {
   // Promise.all(
   //   pageArray.map(async (url) => {
   await Promise.all([
-      fetch('https://dramaholic.herokuapp.com/api/movies/search?country=ko&size=10').then(resp => getKorea(resp)),
-      fetch('https://dramaholic.herokuapp.com/api/movies/search?country=en&size=10').then(resp => getEN(resp)),
-      fetch('https://dramaholic.herokuapp.com/api/movies/search?country=es&size=10').then(resp => getES(resp)),
-    ]).then(console.log)
-    .catch(err => console.log(err));
-
-  const loading = document.querySelector("#loading");
-  loading.style.display = "none";
-  // Loading Screen
-  setSwiper();
+    fetch(
+      "https://dramaholic.herokuapp.com/api/movies/search?country=ko&size=10"
+    ).then((resp) => getKorea(resp)),
+    fetch(
+      "https://dramaholic.herokuapp.com/api/movies/search?country=en&size=10"
+    ).then((resp) => getEN(resp)),
+    fetch(
+      "https://dramaholic.herokuapp.com/api/movies/search?country=es&size=10"
+    ).then((resp) => getES(resp)),
+  ])
+    .then(() => {
+      const loading = document.querySelector("#loading");
+      loading.style.display = "none";
+      // Loading Screen
+      setSwiper();
+    })
+    .catch((err) => console.log(err));
 }
 
 var myNav = document.querySelector(".navbar");
