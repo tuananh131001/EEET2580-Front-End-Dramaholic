@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/common_style.css" />
-    <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"/> 
@@ -402,20 +401,26 @@
         "tags": ${document.getElementById("tags").value}
         }
         `)
-        console.log(data)
+        
 
         try {
-        let response = await fetch('https://dramaholic.herokuapp.com/api/movies/', {
-        method: 'POST',
+        let response = await fetch('https://dramaholic.herokuapp.com/api/movies/'+current_movie, {
+        method: 'PUT',
         headers: {"Content-Type":"application/json"},
         body: data
-        });
-
-        let result = await response.json();
-
-        alert(result.message);
-        }
-        catch(error) {
+        })
+        .then(response => {
+            console.log(response.status)
+            if(response.status==200 || response.status==202 ) {
+            alert("Updated movie successfully ")
+                location.reload();
+            }
+            else {
+                console.log('https://dramaholic.herokuapp.com/api/movies/'+current_movie)
+            alert("Sorry, update movie failed")
+            }
+        })
+        } catch(error) {
             console.log(error)
         }
     };
