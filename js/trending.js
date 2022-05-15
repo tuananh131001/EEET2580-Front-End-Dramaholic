@@ -104,8 +104,8 @@ async function setSwiper() {
 }
 
 function getKorea(data) {
-  const koreaData = await data.json();
-  const koreaArray = await koreaData.content;
+  const koreaData =  data.json();
+  const koreaArray =  koreaData.content;
   const movieListElementKo = createMovieList("Top 10 in Korea");
   for (let i = 0; i < koreaArray.length; i++) {
     const movieL = createElementsMovieCard(koreaArray[i]);
@@ -113,8 +113,8 @@ function getKorea(data) {
   }
 }
 function getEN(data) {
-  const USAData = await USAUrl.json();
-  const USAArray = await USAData.content;
+  const USAData =  USAUrl.json();
+  const USAArray =  USAData.content;
   const movieListElementEn = createMovieList("Top 10 in USA");
   for (let i = 0; i < USAArray.length; i++) {
     const movieL = createElementsMovieCard(USAArray[i]);
@@ -122,8 +122,8 @@ function getEN(data) {
   }
 }
 function getES(data) {
-  const ESData = await esUrl.json();
-  const ESArray = await ESData.content;
+  const ESData =  esUrl.json();
+  const ESArray =  ESData.content;
   const movieListElementEs = createMovieList("Top 10 in Latin");
   for (let i = 0; i < ESArray.length; i++) {
     const movieL = createElementsMovieCard(ESArray[i]);
