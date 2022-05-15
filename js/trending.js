@@ -113,7 +113,7 @@ function getKorea(data) {
   }
 }
 function getEN(data) {
-  const USAData =  USAUrl.json();
+  const USAData =  data.json();
   const USAArray =  USAData.content;
   const movieListElementEn = createMovieList("Top 10 in USA");
   for (let i = 0; i < USAArray.length; i++) {
@@ -122,7 +122,7 @@ function getEN(data) {
   }
 }
 function getES(data) {
-  const ESData =  esUrl.json();
+  const ESData =  data.json();
   const ESArray =  ESData.content;
   const movieListElementEs = createMovieList("Top 10 in Latin");
   for (let i = 0; i < ESArray.length; i++) {
