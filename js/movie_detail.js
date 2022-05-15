@@ -1,7 +1,7 @@
 const closeVideo = document.querySelector(".close-video");
 let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
-let id = JSON.parse(localStorage.getItem("dbid"));
+let id = JSON.parse(sessionStorage.getItem("dbid"));
 let userId = JSON.parse(localStorage.getItem("UserID"));
 
 let film_title = "";
@@ -171,7 +171,7 @@ function handleSubmitComment(e) {
     .then((json) => {
       let messageMovie = document.forms["comment-section"]["message"].value;
       messageMovie == "" ? location.reload() : null;
-      let movieID = JSON.parse(localStorage.getItem("dbid")).toString();
+      let movieID = JSON.parse(sessionStorage.getItem("dbid")).toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
         user: {
@@ -223,7 +223,7 @@ function stop_movie() {
 function add_history() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -250,7 +250,7 @@ function add_history() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -281,7 +281,7 @@ function add_watch_later() {
 function delete_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(localStorage.getItem("dbid"));
+  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
