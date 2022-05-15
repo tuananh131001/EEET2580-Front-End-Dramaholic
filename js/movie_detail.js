@@ -297,7 +297,6 @@ function add_history() {
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
-    alert("Please sign in or sign up to add movie to watch later");
   } else {
     fetch(fetchingURL)
       .then((response) => response.json())
@@ -324,7 +323,7 @@ function add_watch_later() {
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
-    alert("Please sign in or sign up to add movie to watch later");
+    window.location.href = '../user/login.html';
   } else {
     fetch(fetchingURL)
       .then((response) => response.json())
@@ -355,7 +354,6 @@ function delete_watch_later() {
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
-    alert("Please sign in or sign up to add movie to watch later");
   } else {
     fetch(fetchingURL)
       .then((response) => response.json())
