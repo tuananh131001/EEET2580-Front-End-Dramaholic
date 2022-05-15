@@ -22,7 +22,10 @@
   </head>
   <style>
     main h1 {
-      background: -webkit-linear-gradient(rgba(255, 175, 189, 1), rgba(255, 195, 160, 1));
+      background: -webkit-linear-gradient(
+        rgba(255, 175, 189, 1),
+        rgba(255, 195, 160, 1)
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-align: center;
@@ -41,34 +44,35 @@
     .account-wrapper {
       display: flex;
       align-items: center;
-      gap: 0.5rem;  
+      gap: 0.5rem;
     }
-    .nav .sign-in-subBar {display: unset;}
-    
+    .nav .sign-in-subBar {
+      display: unset;
+    }
+
     nav #sideNav {
       visibility: hidden;
     }
 
-    .sign-out-subBar {margin-top: 1em;}
+    .sign-out-subBar {
+      margin-top: 1em;
+    }
 
     .red_theme_button {
-        background-color: #c1071e;
-        color: white;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: #c1071e solid 1.5px;
-        padding: 0.5rem 1rem;
-        white-space: nowrap;
+      background-color: #c1071e;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: #c1071e solid 1.5px;
+      padding: 0.5rem 1rem;
+      white-space: nowrap;
     }
 
     .red_theme_button:hover {
-        cursor: pointer;
-        background-color: white;
-        color: #c1071e;
+      cursor: pointer;
+      background-color: white;
+      color: #c1071e;
     }
-
-
-
   </style>
   <header>
     <nav class="navbar nav-gradient">
@@ -105,8 +109,15 @@
               </li></a
             >
             <a href="/pages/user/watch_history.html"
-              ><li class="has-inline-left-gutter navigation-menu-setting active">
+              ><li
+                class="has-inline-left-gutter navigation-menu-setting active"
+              >
                 History
+              </li></a
+            >
+            <a href="/pages/user/watch_later.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Watch Later
               </li></a
             >
 
@@ -123,7 +134,7 @@
             </li>
           </ol>
           <div class="navigation-menu-settings">
-            <a href="/index.html" >Home</a>
+            <a href="/index.html">Home</a>
             <a href="/pages/movie/category.html">Category</a>
             <a href="/pages/movie/trending.html">Trending</a>
           </div>
@@ -138,7 +149,7 @@
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <a href="/index.html"><li >Home</li></a>
+          <a href="/index.html"><li>Home</li></a>
           <a href="/pages/movie/category.html"><li>Category</li></a>
           <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
         </ul>
@@ -158,7 +169,10 @@
             <figure class="ti-user"></figure>
             <p>Account</p>
           </a>
-          <a href="/pages/user/watch_history.html" class="account-container active">
+          <a
+            href="/pages/user/watch_history.html"
+            class="account-container active"
+          >
             <figure class="ti-time"></figure>
             <p>History</p>
           </a>
@@ -184,7 +198,7 @@
   <body id="body">
     <section>
       <div class="search-content"></div>
-      <div class="flex_row pagination-whole hidden" style="display: flex;">
+      <div class="flex_row pagination-whole hidden" style="display: flex">
         <div class="pagi-range" id="prevs">Prev</div>
         <div class="pagination-search"></div>
         <div class="pagi-range" id="nexts">Next</div>
@@ -301,5 +315,8 @@
   <script src="/js/watchHistory.js"></script>
   <script src="../../js/searchSuggest.js"></script>
   <script src="/js/checkSignedIn.js"></script>
-  <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
+  <script
+    type="text/javascript"
+    src="../../js/components/customHeaderFooter/functions.js"
+  ></script>
 </html>
