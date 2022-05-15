@@ -123,6 +123,7 @@
                   class="form-input"
                   placeholder=" "
                   oninput="clearError(event);clearFailedMsg()"
+                  onblur="checkValidPassword()"
                   required
                 />
                 <label for="password">Password</label>
@@ -349,16 +350,6 @@
           }
         }
       }
-
-      // function sendSuccessMsg() {
-      //   var x = document.querySelector(".success");
-      //   if (x) {
-      //     x.classList.remove("hidden");
-      //     setTimeout(function () {
-      //       x.classList.add("hidden");
-      //     }, 3000);
-      //   }
-      // }
 
       function sendSuccessMsg() {
           let heading = document.querySelector(".heading");
