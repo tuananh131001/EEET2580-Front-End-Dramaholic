@@ -420,9 +420,13 @@ button {
   gap:.5em;
   align-items: center;
 }
+.vote,
+.delete{
+  padding: 0.3em;
+}
 .vote:hover,
 .delete:hover{
-  color: red;
+  background-color: hsl(213, 24%, 30%);
   cursor: pointer;
 }
 .top-comment-section{
