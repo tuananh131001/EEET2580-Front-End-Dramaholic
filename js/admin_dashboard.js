@@ -239,7 +239,7 @@ function createDivMovie(x) {
   let editButton = document.createElement("button");
   editButton.classList.add("edit-button");
   editButton.classList.add("white_theme_button");
-  editButton.innerText = "EDIT";
+  editButton.innerHTML = `<i class="fa-regular fa-edit" ></i>`
   editButton.onclick = function () {
     sessionStorage.setItem("edit_dbid", x.dbID);
     location.href = "./edit-movie.html";
@@ -248,7 +248,7 @@ function createDivMovie(x) {
   let deleteButton = document.createElement("button");
   deleteButton.classList.add("delete-button");
   deleteButton.classList.add("white_theme_button");
-  deleteButton.innerText = "DELETE";
+  deleteButton.innerHTML = `<i class="fa-regular fa-trash-can"></i>`
 
   deleteButton.onclick = async () => {
     let text = `Are you sure to delete movie "${x.title}"?`

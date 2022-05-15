@@ -45,18 +45,18 @@ document.querySelector("header").innerHTML = `
                     </li>
                     <li class="navigation-menu-profile-name"></li>
                 </div>
-                <div><a href="../../../pages/user/user_profile.html">Account</a></div>
-                <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html">Admin Dashboard</a></div>
-                <div><a href="../../pages/user/watch_history.html">Watching History</a></div>
-            </div>
-            <div class="navigation-menu-settings" style="margin-top:0;">
-                <div><a href="../../../index.html">Home</a></div>
-                <div><a href="../../../pages/movie/category.html">Category</a></div>
-                <div><a href="../../../pages/movie/trending.html">Top Trending</a></div>
+                <a href="../../../pages/user/user_profile.html"><li class="active">Account</li></a>
+                <a href="../../pages/user/watch_history.html"><li>History</li></a>
+                <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html"><li>Admin</li></a></div>
             </div>
             <div class="navigation-menu-settings">
-                <div><a href="../../../pages/info/aboutUs.html">About @dramaholic</a></div>
-                <div><a href="../../../pages/info/policy.html">Policy</a></div>
+                <a href="../../../index.html"><li>Home</li></a>
+                <a href="../../../pages/movie/category.html"><li>Category</li></a>
+                <a href="../../../pages/movie/trending.html"><li>Top Trending</li></a>
+            </div>
+            <div class="navigation-menu-settings">
+                <a href="../../../pages/info/aboutUs.html"><li>About @dramaholic</li></a>
+                <a href="../../../pages/info/policy.html"><li>Policy</li></a>
             </div>
             <div class="a" onclick=handleSignOut()>
                 <button class="sign-in-subBar">SIGN OUT</button>
