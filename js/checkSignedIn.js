@@ -51,8 +51,11 @@ if (isLogin || isLoginTemp) {
       const accountName = document.querySelectorAll(
         ".navigation-menu-profile-name"
       );
-      const adminElement = document.querySelector('.admin')
-      admin ? adminElement.style.display = 'flex' : adminElement.style.display = 'none'
+      const adminElement = document.querySelectorAll('.admin')
+      console.log(admin)
+      adminElement.forEach(element => {
+        admin ? element.style.display = 'flex' : element.style.display = 'none'
+      })
       admin ? localStorage.setItem("isAdmin",true): localStorage.setItem("isAdmin",false)
       accountName.forEach((name) => (name.innerHTML = username.toUpperCase()));
     });
