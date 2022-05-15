@@ -18,7 +18,9 @@
     <div class="imgBox"></div>
     <div class="contentBox">
       <div class="logo">
-        <a href="../../index.html"><img src="/assets/image/logo.png" alt="" /></a>
+        <a href="../../index.html"
+          ><img src="/assets/image/logo.png" alt=""
+        /></a>
       </div>
       <div class="form-content signup-form">
         <div class="content-main">
@@ -27,7 +29,6 @@
             <div class="ui-message-container success hidden">
               <div class="ui-message-icon"></div>
               <div class="ui-message-contents">
-                <b>Account created successfully</b>
               </div>
             </div>
           </div>
@@ -44,7 +45,8 @@
                   name="name"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearError(event);clearFailedMsg()"
+                  onblur="checkValidName()"
                   required
                 />
                 <label for="name">Your name</label>
@@ -69,7 +71,7 @@
                   name="email"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearError(event);clearFailedMsg()"
                   required
                 />
                 <label for="email">Email address</label>
@@ -94,7 +96,8 @@
                   name="username"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearError(event);clearFailedMsg()"
+                  onblur="checkValidUsername()"
                   required
                 />
                 <label for="username">Username</label>
@@ -119,7 +122,7 @@
                   name="password"
                   class="form-input"
                   placeholder=" "
-                  oninput="clearError(event)"
+                  oninput="clearError(event);clearFailedMsg()"
                   required
                 />
                 <label for="password">Password</label>
@@ -155,7 +158,7 @@
                   placeholder=" "
                   onfocus="(this.type='date')"
                   onblur="(this.type='text')"
-                  oninput="clearError(event)"
+                  oninput="clearError(event);clearFailedMsg()"
                   required
                 />
                 <label for="dob">Date of birth</label>
@@ -188,6 +191,9 @@
     </div>
 
     <script>
+      const formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+      const formatUserName = /[ `!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?~]/;
+
       function togglePassword() {
         var input = document.getElementById("password");
         // When an input is checked, or whatever...
@@ -217,16 +223,47 @@
 
       var form = document.getElementById("form");
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+      function checkValidName() {
+        var nameValue = document.getElementById("name").value;
+        if (formatName.test(nameValue)) {
+          let err = "Name cannot contain special characters";
+          sendError(err, "name");
+        }
+      }
 
+      function checkValidUsername() {
+        var usernameValue = document.getElementById("username").value;
+
+        if (formatUserName.test(usernameValue)) {
+          let err = "Username cannot contain special characters";
+          sendError(err, "username");
+        }
+      }
+
+      function checkValidPassword() {
         //check for password length
         var passValue = document.getElementById("password").value;
         if (passValue.length < 5 || passValue.length > 15) {
-          var err = "Password must have 5-15 characters";
+          let err = "Password must have 5-15 characters";
           sendError(err, "password");
+        }
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        console.log("checking all input field");
+
+        //check for any invalid field still exist
+        let invalidField = document.querySelectorAll(".invalid");
+        console.log(invalidField);
+        if (invalidField.length > 0) {
+          //send error
+          sendFailedMsg("Some information needs to be corrected");
           return;
         }
+
+        console.log("Submitting");
 
         //check for username already exist
         var usernameValue = document.getElementById("username").value;
@@ -267,7 +304,7 @@
               // alert("Success create account");
               sendSuccessMsg();
               window.setTimeout(function () {
-                window.location.href = '/pages/user/login.html';
+                window.location.href = "/pages/user/login.html";
               }, 3200);
             } else return Promise.reject("Fail create account user");
           })
@@ -313,14 +350,47 @@
         }
       }
 
+      // function sendSuccessMsg() {
+      //   var x = document.querySelector(".success");
+      //   if (x) {
+      //     x.classList.remove("hidden");
+      //     setTimeout(function () {
+      //       x.classList.add("hidden");
+      //     }, 3000);
+      //   }
+      // }
+
       function sendSuccessMsg() {
-        var x = document.querySelector(".success");
-        if (x) {
-          x.classList.remove("hidden");
-          setTimeout(function () {
-            x.classList.add("hidden");
-          }, 3000);
+          let heading = document.querySelector(".heading");
+          let msgContainer = heading.querySelector(".ui-message-container");
+
+          if (msgContainer) {
+            msgContainer.classList.remove("hidden");
+            msgContainer.classList.add("success");
+            msgContent = msgContainer.querySelector(".ui-message-contents");
+            msgContent.innerHTML = "<b>Account created successfully</b>";
+          } else alert("Account created successfully");
         }
+
+
+
+      function sendFailedMsg(message) {
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        if (msgContainer) {
+          msgContainer.classList.remove("hidden");
+          if(msgContainer.classList.contains("success")) msgContainer.classList.remove("success");
+          msgContent = msgContainer.querySelector(".ui-message-contents");
+          msgContent.innerHTML = "<b>" + message + "</b>";
+        } else alert(message);
+      }
+
+      function clearFailedMsg() {
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
+        if (msgContainer) {
+          msgContainer.classList.add("hidden");
+        } else alert(message);
       }
 
       function clearError(event) {
