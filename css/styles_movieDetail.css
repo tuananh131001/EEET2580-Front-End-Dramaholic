@@ -415,13 +415,31 @@ button {
 .right-column{
   width: 20%;
 }
+.vote-container{
+  display: flex;
+  gap:.5em;
+  align-items: center;
+}
+.vote,
+.delete{
+  padding: 0.3em;
+}
+.vote:hover,
+.delete:hover{
+  background-color: hsl(213, 24%, 30%);
+  cursor: pointer;
+}
+.top-comment-section{
+  display: flex;
+  justify-content: space-between;
+}
 
 /* if backdrop support: very transparent and blurred */
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
   #full-screen {
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 5;
     visibility: collapse;
     background-color: #ffffff10;
