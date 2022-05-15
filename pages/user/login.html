@@ -17,8 +17,9 @@
     <div class="imgBox" id="collumnOne"></div>
     <div class="contentBox" id="collumnTwo">
       <div class="logo">
-        <a href="../../index.html"><img src="/assets/image/logo.png" alt="" /></a>
-        
+        <a href="../../index.html"
+          ><img src="/assets/image/logo.png" alt=""
+        /></a>
       </div>
       <div class="form-content login-form">
         <div class="content-main">
@@ -27,9 +28,7 @@
             <h1 class="title">Log in to your account</h1>
             <div class="ui-message-container hidden">
               <div class="ui-message-icon"></div>
-              <div class="ui-message-contents">
-                <b>Incorrect password.</b> Please try again
-              </div>
+              <div class="ui-message-contents"></div>
             </div>
           </div>
 
@@ -44,6 +43,7 @@
                 id="username"
                 class="form-input"
                 placeholder=" "
+                oninput="clearError()"
                 required
               />
               <label for="username">Username</label>
@@ -58,6 +58,7 @@
                 id="password"
                 class="form-input"
                 placeholder=" "
+                oninput="clearError()"
                 required
               />
               <label for="password">Password</label>
@@ -102,44 +103,128 @@
         e.preventDefault();
         let usernameValue = document.forms["myForm"]["username"].value;
         let pass = document.forms["myForm"]["password"].value;
-        const dataToSend = JSON.stringify({
-          username: usernameValue,
-          password: pass,
-        });
-        fetch("https://dramaholic.herokuapp.com/api/customers/login", {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: dataToSend,
-        })
-          .then((resp) => {
-            if (resp.status === 200) {
-              return resp.json();
-            } else {
-              console.log("Status: " + resp.status);
-              return Promise.reject("server");
-            }
+
+        //check if username is existed
+        fetch("https://dramaholic.herokuapp.com/api/customers")
+          .then((response) => response.json())
+          .then((user) => {
+            return new Promise(function (resolve, reject) {
+              for (let i = 0; i < user.content.length; i++) {
+                //check for username already exist
+                if (user.content[i].username == usernameValue) {
+                  console.log("User found");
+                  resolve();
+                }
+              }
+              //username is not existed
+              reject("Username is not existed");
+            });
           })
-          .then((dataJson) => {
-            const checkMe = document.querySelector("#rememberMe");
-            if (checkMe.checked) {
-              localStorage.setItem("isLogin", true);
-              localStorage.setItem("UserID", dataJson.id);
-              localStorage.setItem("UserIDRemember", dataJson.id);
-            } else {
-              localStorage.setItem("isLogin", true);
-              localStorage.setItem("UserID", dataJson.id);
-              localStorage.removeItem("UserIDRemember");
-            }
-            location.href = "/index.html";
+          .then(function () {
+            const dataToSend = JSON.stringify({
+              username: usernameValue,
+              password: pass,
+            });
+            fetch("https://dramaholic.herokuapp.com/api/customers/login", {
+              method: "post",
+              headers: { "Content-Type": "application/json" },
+              body: dataToSend,
+            })
+              .then((resp) => {
+                if (resp.status === 200) {
+                  return resp.json();
+                } else {
+                  console.log("Status: " + resp.status);
+                  return Promise.reject("server");
+                }
+              })
+              .then((dataJson) => {
+                const checkMe = document.querySelector("#rememberMe");
+                if (checkMe.checked) {
+                  localStorage.setItem("isLogin", true);
+                  localStorage.setItem("UserID", dataJson.id);
+                  localStorage.setItem("UserIDRemember", dataJson.id);
+                } else {
+                  localStorage.setItem("isLogin", true);
+                  localStorage.setItem("UserID", dataJson.id);
+                  localStorage.removeItem("UserIDRemember");
+                }
+                location.href = "/index.html";
+              })
+              .catch((err) => {
+                let errorElement = document.querySelector(
+                  ".ui-message-container"
+                );
+                errorElement.classList.remove("hidden");
+                errorElement.querySelector(".ui-message-contents").innerHTML =
+                  "<b>Incorrect password.</b> Please try again.";
+                if (err === "server") return;
+                console.log(err);
+              });
           })
           .catch((err) => {
-            const errorElement = document.querySelector(
-              ".ui-message-container"
-            );
-            errorElement.classList.remove("hidden");
-            if (err === "server") return;
-            console.log(err);
+            if (err == "Username is not existed") {
+              let errorElement = document.querySelector(
+                ".ui-message-container"
+              );
+              errorElement.classList.remove("hidden");
+              errorElement.querySelector(".ui-message-contents").innerHTML =
+                "<b>Username is not existed.</b> Please try again.";
+            } else {
+              console.log(err);
+            }
           });
+
+        // if (checkExistedUsername(usernameValue)) {
+        //   let errorElement = document.querySelector(".ui-message-container");
+        //   errorElement.classList.remove("hidden");
+        //   errorElement.querySelector(".ui-message-contents").innerHTML =
+        //     "<b>Username is not existed.</b> Please try again.";
+        //   console.log(usernameValue);
+        //   return;
+        // }
+        // else{
+        //   const dataToSend = JSON.stringify({
+        //     username: usernameValue,
+        //     password: pass,
+        //   });
+
+        //   fetch("https://dramaholic.herokuapp.com/api/customers/login", {
+        //     method: "post",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: dataToSend,
+        //   })
+        //     .then((resp) => {
+        //       if (resp.status === 200) {
+        //         return resp.json();
+        //       } else {
+        //         console.log("Status: " + resp.status);
+        //         return Promise.reject("server");
+        //       }
+        //     })
+        //     .then((dataJson) => {
+        //       const checkMe = document.querySelector("#rememberMe");
+        //       if (checkMe.checked) {
+        //         localStorage.setItem("isLogin", true);
+        //         localStorage.setItem("UserID", dataJson.id);
+        //         localStorage.setItem("UserIDRemember", dataJson.id);
+        //       } else {
+        //         localStorage.setItem("isLogin", true);
+        //         localStorage.setItem("UserID", dataJson.id);
+        //         localStorage.removeItem("UserIDRemember");
+        //       }
+        //       location.href = "/index.html";
+        //     })
+        //     .catch((err) => {
+        //       let errorElement = document.querySelector(".ui-message-container");
+        //       errorElement.classList.remove("hidden");
+        //       errorElement.querySelector(".ui-message-contents").innerHTML =
+        //         "<b>Incorrect password.</b> Please try again.";
+        //       if (err === "server") return;
+        //       console.log(err);
+        //     });
+
+        // }
       }
       const UserIdRemember = localStorage.getItem("UserIDRemember");
       fetch("https://dramaholic.herokuapp.com/api/customers/" + UserIdRemember)
@@ -151,6 +236,21 @@
           }
         });
 
+      function checkExistedUsername(usernameValue) {
+        fetch("https://dramaholic.herokuapp.com/api/customers")
+          .then((response) => response.json())
+          .then((user) => {
+            for (let i = 0; i < user.content.length; i++) {
+              //check for username already exist
+              if (user.content[i].username == usernameValue) {
+                return 1;
+              }
+            }
+            //username is not existed
+            return 0;
+          });
+      }
+
       function togglePassword() {
         var input = document.getElementById("password");
         // When an input is checked, or whatever...
@@ -161,6 +261,12 @@
           input.setAttribute("type", "password");
           document.getElementById("show").src = "/assets/image/eye.png";
         }
+      }
+
+      function clearError() {
+        let errorElement = document.querySelector(".ui-message-container");
+        if (!errorElement.classList.contains("hidden"))
+          errorElement.classList.add("hidden");
       }
     </script>
   </body>
