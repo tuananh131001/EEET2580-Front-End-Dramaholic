@@ -52,7 +52,6 @@ if (isLogin || isLoginTemp) {
         ".navigation-menu-profile-name"
       );
       const adminElement = document.querySelectorAll('.admin')
-      console.log(admin)
       adminElement.forEach(element => {
         admin ? element.style.display = 'flex' : element.style.display = 'none'
       })
