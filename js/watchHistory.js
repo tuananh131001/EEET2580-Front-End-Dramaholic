@@ -67,11 +67,11 @@ const createCardHistory = (x) => {
     .then((res) => res.json())
     .then((x) => {
       img.onclick = function () {
-        localStorage.setItem("dbid", x.dbID);
+        sessionStorage.setItem("dbid", x.dbID);
         location.href = "/pages/movie/movie_detail.html";
       };
       title.onclick = function () {
-        localStorage.setItem("dbid", x.dbID);
+        sessionStorage.setItem("dbid", x.dbID);
         location.href = "/pages/movie/movie_detail.html";
       };
     });
