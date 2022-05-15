@@ -38,7 +38,7 @@ fetch(fetchingURL)
   .then((response) => response.json())
   .then((json) => {
     //comments section get
-    getComments(json.comments);
+    getInfomationMovie();
     //parse year
     let text = json.date;
     const json_year = text.split("-");
@@ -127,10 +127,10 @@ function handleDelteComment(commentId, username, password) {
     headers: { "Content-Type": "application/json" },
     body: dataToSend,
   }).then((response) => {
-    getInfomationMovie(commentId);
+    getInfomationMovie();
   });
 }
-async function getInfomationMovie(commentid) {
+async function getInfomationMovie() {
   const id = sessionStorage.getItem("dbid");
   const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
   const json = await url.json();
@@ -149,7 +149,7 @@ function handleUpvote(commentId, username, password) {
       body: dataToSend,
     }
   ).then((response) => {
-    getInfomationMovie(commentId);
+    getInfomationMovie();
   });
 }
 function sortComments(commentList) {
@@ -162,7 +162,7 @@ function getComments(commentList) {
   let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
   commentListElement.innerHTML = "";
-  commentList.forEach(({ id, message, user, upvotes }) => {
+  commentList.forEach(({ id, message, user, upvotes,upvoters }) => {
     //Init
     const wrapper = document.createElement("div");
     wrapper.className = "wrapper";
@@ -205,6 +205,8 @@ function getComments(commentList) {
     }
     // Upvote button
     const upvoteButton = document.createElement("i");
+    console.log(upvoters)
+    upvoters.find(upvoter=> upvoter.id === userID) ? upvoteButton.style.color = "red": upvoteButton.style.color = "white"
     upvoteButton.className = "fa-solid fa-thumbs-up vote";
     upvoteButton.addEventListener("click", (e) => {
       let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
@@ -249,7 +251,7 @@ function handleSubmitComment(e) {
         fetch("https://dramaholic.herokuapp.com/api/movies/" + movieID)
           .then((response) => response.json())
           .then((json) => {
-            getComments(json.comments);
+            getInfomationMovie()
             document.forms["comment-section"]["message"].value = "";
           });
       });
