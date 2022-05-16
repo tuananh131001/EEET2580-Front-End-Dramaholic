@@ -34,9 +34,11 @@
       font-size: 3rem;
       letter-spacing: 2px;
     }
+
     .movie-list-grid {
       margin-top: 0;
     }
+
     footer {
       margin-top: auto;
     }
@@ -46,6 +48,7 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .nav .sign-in-subBar {
       display: unset;
     }
@@ -72,6 +75,17 @@
       cursor: pointer;
       background-color: white;
       color: #c1071e;
+    }
+
+    .flex_row {
+      display: flex;
+    }
+
+    .flex_row.pagination-bar {
+      gap: 0.7rem;
+      align-items: baseline;
+      align-self: center;
+      justify-content: center;
     }
   </style>
   <header>
@@ -103,29 +117,30 @@
                 </p>
               </div>
             </li>
-            <a href="/pages/user/user_profile.html"
-              ><li class="has-inline-left-gutter navigation-menu-setting">
+            <a href="/pages/user/user_profile.html">
+              <li class="has-inline-left-gutter navigation-menu-setting">
                 Account
-              </li></a
-            >
-            <a href="/pages/user/watch_history.html"
+              </li>
+            </a>
+            <a href="/pages/user/watch_history.html">
+              <li class="has-inline-left-gutter navigation-menu-setting">
+                History
+              </li>
+            </a>
+
+            <a href="/pages/user/watch_later.html"
               ><li
                 class="has-inline-left-gutter navigation-menu-setting active"
               >
-                History
-              </li></a
-            >
-            <a href="/pages/user/watch_later.html"
-              ><li class="has-inline-left-gutter navigation-menu-setting">
                 Watch Later
               </li></a
             >
 
-            <a href="/pages/movie/admin_dashboard.html"
-              ><li class="has-inline-left-gutter navigation-menu-setting admin">
+            <a href="/pages/movie/admin_dashboard.html">
+              <li class="has-inline-left-gutter navigation-menu-setting admin">
                 Admin
-              </li></a
-            >
+              </li>
+            </a>
             <li
               class="has-inline-left-gutter navigation-menu-setting"
               onclick="handleSignOut()"
@@ -149,9 +164,15 @@
           /></a>
         </div>
         <ul class="header-navigation-text text-shadow">
-          <a href="/index.html"><li>Home</li></a>
-          <a href="/pages/movie/category.html"><li>Category</li></a>
-          <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
+          <a href="/index.html">
+            <li>Home</li>
+          </a>
+          <a href="/pages/movie/category.html">
+            <li>Category</li>
+          </a>
+          <a href="/pages/movie/trending.html">
+            <li href="#">Trending</li>
+          </a>
         </ul>
       </div>
       <div class="nav-right">
@@ -169,14 +190,14 @@
             <figure class="ti-user"></figure>
             <p>Account</p>
           </a>
-          <a
-            href="/pages/user/watch_history.html"
-            class="account-container active"
-          >
+          <a href="/pages/user/watch_history.html" class="account-container">
             <figure class="ti-time"></figure>
             <p>History</p>
           </a>
-          <a href="/pages/user/watch_later.html" class="account-container">
+          <a
+            href="/pages/user/watch_later.html"
+            class="account-container active"
+          >
             <figure class="ti-heart"></figure>
             <p>Watch Later</p>
           </a>
@@ -214,13 +235,13 @@
         </div>
       </div>
       <main>
-        <h1>WATCH HISTORY</h1>
+        <h1>WATCH LATER</h1>
         <div class="movie-list-grid"></div>
-        <!-- <div class="pagination_whole flex_row align_items_center">
+        <div class="pagination-bar cate flex_row align_items_center">
           <div class="pagi_range" id="prev">Prev</div>
           <div class="pagenumbers" id="pagination"></div>
           <div class="pagi_range" id="next">Next</div>
-        </div> -->
+        </div>
       </main>
     </section>
     <footer>
@@ -316,8 +337,9 @@
       </div>
     </footer>
   </body>
-  <script src="/js/watchHistory.js"></script>
   <script src="../../js/searchSuggest.js"></script>
+  <script src="/js/watchLater.js"></script>
+
   <script src="/js/checkSignedIn.js"></script>
   <script
     type="text/javascript"
