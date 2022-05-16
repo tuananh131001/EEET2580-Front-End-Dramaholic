@@ -232,7 +232,6 @@ body {
   height: 100%;
   margin-right: 5px;
   font-size: 12px;
-  font-weight: 900;
   /* cursor: pointer; */
   pointer-events: none;
   border: none;
@@ -258,10 +257,7 @@ body {
   display: flex;
   padding-bottom: .5em;
 }
-p {
-  font-size: 10px;
-  font-weight: 100;
-}
+
 .icon {
   margin-top: 5px;
   width: fit-content;
