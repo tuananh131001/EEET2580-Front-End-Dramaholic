@@ -162,25 +162,33 @@
       </div>
       <main>
         <div class="flex_row select-category">
-          <div>
-            <label for="category">Category:</label>
-            <select name="category " id="category" class="category">
-              <option value="">All</option>
-            </select>
+          <div class="flex_row">
+            <div>
+              <label for="category">Category:</label>
+              <select name="category " id="category" class="category">
+                <option value="">All</option>
+              </select>
+            </div>
+            <div>
+              <label for="country">Country</label>
+              <select name="country" id="country" class="country">
+                <option value="">All</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <label for="country">Country:</label>
-            <select name="country" id="country" class="country">
-              <option value="">All</option>
-            </select>
+          <div class="flex_row">
+            <div>
+              <label for="sort">Sort by</label>
+              <select name="sort" id="sort" class="sort">
+                <option value="">Default</option>
+                <option value="rating,desc">Highest Rating</option>
+                <option value="rating,asc">Lowest Rating</option>
+                <option value="date,desc">Newest</option>
+                <option value="date,asc">Oldest</option>
+              </select>
+            </div>
           </div>
-          <!-- <div>
-            <label for="adult">Country:</label>
-            <select name="adult" id="adult" class="adult">
-              <option value="true">All ages</option>
-              <option value="false">Adults</option>
-            </select>
-          </div> -->
+          
         </div>
         <div class="movie-list-grid"></div>
         <div class="pagination-bar cate flex_row align_items_center">

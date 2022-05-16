@@ -45,9 +45,9 @@ document.querySelector("header").innerHTML = `
                     </li>
                     <li class="navigation-menu-profile-name"></li>
                 </div>
-                <a href="../../../pages/user/user_profile.html"><li class="active">Account</li></a>
+                <a href="../../../pages/user/user_profile.html"><li>Account</li></a>
                 <a href="../../pages/user/watch_history.html"><li>History</li></a>
-                <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html"><li>Admin</li></a></div>
+                <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html"><li class="active">Admin</li></a></div>
             </div>
             <div class="navigation-menu-settings">
                 <a href="../../../index.html"><li>Home</li></a>

@@ -328,6 +328,7 @@ button {
   padding-right: .5em;
 }
 .comment-wrapper{
+  margin-top: 6vh;
   display: flex;
   flex-direction: column;
   gap: 1em;
