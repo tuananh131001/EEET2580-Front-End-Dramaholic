@@ -16,6 +16,7 @@ const categoryContent = document.querySelector(".movie-list-grid");
 const pagination_cate = document.getElementById("pagination");
 const category = document.querySelector(".category");
 const countries = document.querySelector(".country");
+const sortby = document.querySelector(".sort");
 // const isAdult = document.querySelector(".adult");
 const prev_btn_cate = document.querySelector("#prev");
 const next_btn_cate = document.querySelector("#next");
@@ -91,39 +92,6 @@ async function getCountry() {
   }
   document.querySelector("#country").innerHTML += html;
 }
-
-// async function getCountry() {
-//   const languageList = await fetch("../../language.json").then(res => res.json()).then(content => content.languages)
-
-//   let total = languageList.length
-//   let languageCode = []
-//   let map = new Map();
-//   for (let i =0; i< total; i++) {
-//     languageCode.push(languageList[i].code)
-//     map.set(languageList[i].code,languageList[i].name)
-//   }
-//   const {totalPages} = await fetch("https://dramaholic.herokuapp.com/api/movies").then(res => res.json())
-//   let haveCountry = []
-//   for (let j=0; j<totalPages; j++) {
-//     await fetch("https://dramaholic.herokuapp.com/api/movies?page="+j)
-//     .then(respone => respone.json())
-//     .then(json => json.content)
-//     .then(content => {
-//       let length = content.length
-//       for(let i=0; i<length; i++) {
-//         if (!haveCountry.includes(content[i].country)) {
-//           haveCountry.push(content[i].country)
-//         }
-//         if (haveCountry.length == total) break
-//       }
-//     })
-//   }
-//   let html = ''
-//   for (let i=0; i<haveCountry.length;i++) {
-//     html += `<option value=${haveCountry[i]}>${map.get(haveCountry[i])}</option>`
-//   }
-//   document.querySelector("#country").innerHTML += html
-// }
 
 function checkPrev_cate() {
   if (currentStartIndex_cate == 0) prev_btn_cate.setAttribute("hidden", true);
@@ -235,7 +203,9 @@ async function displayCards(isNew) {
       "&page=" +
       currentPage_cate +
       "&title=" +
-      encodeURIComponent(current_search)
+      encodeURIComponent(current_search) +
+      "&sort=" +
+      encodeURIComponent(sortby.value)
   );
 
   const { content, totalPages } = await res.json();
@@ -315,9 +285,21 @@ countries.addEventListener("click", function () {
     displayCards(true);
   }
 });
-
 countries.addEventListener("change", function () {
   reloadFilter();
+});
+
+// select sort
+sortby.addEventListener("click", function () {
+  var options = category.querySelectorAll("option");
+  var count = options.length;
+  if (typeof count === "undefined" || count < 2) {
+    category.value = ""
+    displayCards(true);
+  }
+});
+sortby.addEventListener("change", function () {
+  reloadFilter()
 });
 
 function reloadFilter() {
@@ -325,6 +307,7 @@ function reloadFilter() {
   currentStartIndex_cate = 0;
   displayCards(true);
 }
+
 inputValue.addEventListener("input", (e) => {
   current_search = e.target.value;
   if (current_search) {
@@ -362,21 +345,8 @@ function disableSearch() {
 
 ////////////////////////////////
 async function init() {
-  // mainContent.style.display = "none";
-  // document.querySelector(".hidable").classList.add("hidden")
-  // document.querySelector("#waitingText").classList.remove("hidden")
-  // emptyPage.classList.remove("hidden");
-  // searchWrapper.classList.add("hidden")
-  // navBar.style.position = "relative";
   displayCards(true);
   await getCountry();
-
-  // emptyPage.classList.add("hidden");
-  // searchWrapper.classList.remove("hidden")
-  // document.querySelector("#waitingText").classList.add("hidden")
-  // document.querySelector(".hidable").classList.remove("hidden")
-  // footer.style.display = "block";
-  // mainContent.style.display = "block";
 }
 
 init();

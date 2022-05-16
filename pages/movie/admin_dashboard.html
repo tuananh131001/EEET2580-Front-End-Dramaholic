@@ -22,9 +22,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
     <style>
+      .fa-regular {font-size: 18px!important;}
       body {
         gap: 6rem;
-        background-color: white;
       }
 
       .body_region {
@@ -101,6 +101,7 @@
 
       
       @media screen and (max-width: 28em) {
+        body {gap: 4rem;}
         .body_region {width: 90%;}
        .page_title {font-size: 2rem;}
        .body_content * {font-size: 0.7rem;}
@@ -113,6 +114,7 @@
          padding: 0rem 0.2rem;
        }
        .add-movie-btn{padding: 0.4rem;}
+       .fa-regular {font-size: 15px!important;}
       }
 
       @media screen and (max-width: 20em) {
@@ -123,6 +125,8 @@
           width: 1.5rem;
           height: 1.5rem;
         }
+       .fa-regular {font-size: 12px!important;}
+
       }
       
 
@@ -166,7 +170,7 @@
     
 
     <script src="/js/admin_dashboard.js"></script>
-    <script type="module" src="../../js/components/customHeaderFooter/user_profile_header.js"></script>
+    <script type="module" src="../../js/components/customHeaderFooter/admin_header.js"></script>
     <script type="module" src="../../js/components/customHeaderFooter/addFooter.js"></script>
     <script type="text/javascript" src="../../js/components/customHeaderFooter/functions.js"></script>
       
