@@ -418,6 +418,7 @@ nav .nav-left {
 }
 /* Billboard */
 .movie-list {
+  margin-top: 3em;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -558,7 +559,7 @@ nav .nav-left {
 .search-content {
   display: none;
   margin-top: 5%;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   place-content: center;
   gap: 2em;
   padding: 1em;
@@ -567,8 +568,7 @@ nav .nav-left {
 .movie-list-grid {
   margin-top: 5%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  place-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   gap: 2em;
   padding: 1em;
 }
