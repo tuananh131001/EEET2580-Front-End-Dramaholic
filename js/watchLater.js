@@ -78,12 +78,10 @@ const createCardHistory = (x) => {
     .then((res) => res.json())
     .then((x) => {
       img.onclick = function () {
-        sessionStorage.setItem("dbid", x.dbID);
-        location.href = "/pages/movie/movie_detail.html";
+        location.href = "/pages/movie/movie_detail.html?dbid=" + x.dbID;
       };
       title.onclick = function () {
-        sessionStorage.setItem("dbid", x.dbID);
-        location.href = "/pages/movie/movie_detail.html";
+        location.href = "/pages/movie/movie_detail.html?dbid=" + x.dbID;
       };
     });
   return card;

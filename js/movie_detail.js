@@ -1,7 +1,7 @@
 const closeVideo = document.querySelector(".close-video");
 let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
-let id = JSON.parse(sessionStorage.getItem("dbid"));
+let id = new URLSearchParams(location.search).get('dbid');
 let userId = JSON.parse(localStorage.getItem("UserID"));
 console.log(id);
 let film_title = "";
@@ -118,7 +118,7 @@ fetch(fetchingURL)
     document.querySelector(
       "#movie_director"
     ).innerHTML += `<h2 class="director_name ">Year Released: </h2><h3 class="info_text">${year}</h3>`;
-    
+
     document.querySelector(
       "#youtube_frame"
     ).innerHTML = `<iframe id = "iframe_frame" class="youtube" src="${film_youtube}" title="YouTube video player"
@@ -142,7 +142,7 @@ function handleDelteComment(commentId, username, password) {
   });
 }
 async function getInfomationMovie() {
-  const id = sessionStorage.getItem("dbid");
+  const id =  new URLSearchParams(location.search).get('dbid');
   const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
   const json = await url.json();
   getComments(json.comments);
@@ -246,7 +246,7 @@ function handleSubmitComment(e) {
     .then((json) => {
       let messageMovie = document.forms["comment-section"]["message"].value;
       messageMovie == "" ? location.reload() : null;
-      let movieID = JSON.parse(sessionStorage.getItem("dbid")).toString();
+      let movieID =  new URLSearchParams(location.search).get('dbid').toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
         user: {
@@ -305,7 +305,7 @@ function stop_movie() {
 function add_history() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
+  let movieID =  new URLSearchParams(location.search).get('dbid');
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -331,7 +331,7 @@ function add_history() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
+  let movieID =  new URLSearchParams(location.search).get('dbid');;
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -362,7 +362,7 @@ function add_watch_later() {
 function delete_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
+  let movieID =  new URLSearchParams(location.search).get('dbid');
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {

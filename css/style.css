@@ -324,7 +324,7 @@ nav #subBar {
 }
 nav .logo {
   margin-top: 0.3em;
-  width: 12rem;
+  width: 11rem;
 }
 nav .nav-left {
   display: flex;
@@ -656,8 +656,7 @@ nav .nav-left {
     text-align: left;
     width: 100%;
   }
-
-  .button {
+  .drop-down .button {
     background-color: rgb(192, 7, 29);
     color: white;
     font-weight: 400;
@@ -668,9 +667,8 @@ nav .nav-left {
     text-decoration: none;
     width: 100%;
   }
-
-  .button:hover,
-.button:focus {
+  .drop-down .button:hover,
+.drop-down .button:focus {
     cursor: pointer;
     background-color: rgb(255, 255, 255);
     color: rgb(192, 7, 29);

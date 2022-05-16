@@ -1,0 +1,336 @@
+.account-menu {
+  display: none;
+  list-style: none;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  gap: 0.5em;
+  padding: 1em 1em;
+}
+
+nav #sideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  height: 100%;
+  width: 0;
+  top: 45px;
+  left: 0;
+  overflow-x: hidden;
+  background-color: hsl(213deg, 24%, 7%);
+  transition: 0.2s;
+  /* 0.5 second transition effect to slide in the sidenav */
+  padding-top: 0.5em;
+}
+nav #sideNav .navigation-menu-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+nav #sideNav .navigation-menu-profile .navigation-menu-profile-text {
+  font-size: 0.6rem;
+}
+nav #sideNav .navigation-menu-profile .header-profile-avatar {
+  height: 32px;
+  width: 32px;
+}
+nav #sideNav .navigation-menu-profile .navigation-menu-profile-link {
+  display: flex;
+  flex-direction: column;
+}
+nav #sideNav a,
+nav #sideNav li {
+  font-size: 0.8rem;
+  color: rgb(153, 153, 153);
+  font-weight: 600;
+}
+nav #sideNav .navigation-menu-settings {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  gap: 0.5em;
+  padding: 1em 1em;
+}
+nav #sideNav .sign-in-subBar {
+  margin-top: 1em;
+}
+
+.account-menu {
+  display: none;
+}
+
+.sign-in-subBar {
+  background-color: rgb(192, 7, 29);
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.sign-in-subBar:hover {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(192, 7, 29);
+}
+
+/* Start side bar */
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  padding: 0 1em;
+  width: 100%;
+  gap: 1em;
+  background-color: hsl(213deg, 24%, 7%);
+  z-index: 99;
+}
+nav .nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  gap: 1em;
+}
+nav .search-box {
+  display: flex;
+  background: hsl(213deg, 24%, 7%);
+  height: 40px;
+  border-radius: 40px;
+  box-shadow: 0 0.1rem 0.75rem rgb(192, 7, 29);
+}
+nav .search-box:hover > .icon {
+  background: #536179;
+}
+nav input {
+  width: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.1rem;
+  line-height: 40px;
+  color: #fff;
+}
+nav .open {
+  width: 13em;
+  padding: 0 20px;
+}
+nav .icon {
+  color: rgb(255, 255, 255);
+  width: 40px;
+  font-size: 1.3rem;
+  height: 40px;
+  border-radius: 50%;
+  background: hsl(213deg, 24%, 7%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(0.9);
+}
+nav #subBar {
+  width: 0;
+}
+nav .logo {
+  margin-top: 0.3em;
+  width: 11rem;
+}
+nav .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+
+/* End Sidebar */
+@media (min-width: 62em) {
+  .header-navigation-text {
+    display: block;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  /* Start side bar */
+  .nav-colored {
+    background-color: hsl(213deg, 24%, 7%);
+    transition: background-color 0.4s ease;
+  }
+
+  .nav-transparent {
+    background-color: transparent;
+    transition: background-color 0.4s ease;
+  }
+
+  .nav-gradient {
+    --color-start: #11111100;
+    --color-end: #111111ff;
+    background-image: linear-gradient(0deg, var(--color-start) 0, var(--color-end) 100%);
+  }
+
+  nav {
+    position: fixed;
+    padding: 1em 2em;
+    background-color: transparent;
+    width: 100%;
+  }
+  nav .account-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 5px;
+  }
+  nav .account-container:hover {
+    background-color: #fff;
+    color: hsl(213deg, 24%, 7%);
+  }
+  nav .header-navigation-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-transform: uppercase;
+    list-style: none;
+    gap: 0.875em;
+  }
+  nav .header-navigation-text li {
+    font-size: clamp(0.5rem, 1vw, 0.875rem);
+    text-decoration: none;
+    font-weight: 300;
+    color: #fff;
+  }
+  nav .header-navigation-text li:hover {
+    cursor: pointer;
+    transition: color 0.4s;
+    color: #b3b3b3;
+  }
+  nav .sign-in-nagivation {
+    display: block;
+    background-color: rgb(192, 7, 29);
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+  nav .sign-in-nagivation:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    color: rgb(192, 7, 29);
+  }
+}
+.account-wrapper {
+  display: none;
+}
+
+@media (min-width: 62em) {
+  .account-wrapper {
+    position: relative;
+    display: none;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .account-wrapper .avatar,
+.account-wrapper .down-arrow {
+    cursor: pointer;
+  }
+
+  .account-wrapper:hover {
+    color: #b3b3b3;
+  }
+
+  .drop-down {
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    border-radius: 0.5rem;
+    padding: 1em;
+    position: absolute;
+    right: 1rem;
+    top: 5rem;
+    background-color: hsl(213deg, 24%, 7%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8em;
+  }
+  .drop-down a {
+    justify-content: flex-start;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    width: 100%;
+  }
+  .drop-down .button {
+    background-color: rgb(192, 7, 29);
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    width: 100%;
+  }
+  .drop-down .button:hover,
+.drop-down .button:focus {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    color: rgb(192, 7, 29);
+  }
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.account-wrapper {
+  color: rgb(255, 255, 255);
+}
+
+.account-container {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media screen and (max-width: 30em) {
+  aside {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=movieDetailHeader.css.map */
