@@ -152,8 +152,8 @@ async function getTrending() {
     ).then((resp) => getES(resp)),
   ])
     .then(() => {
-      const loading = document.querySelector("#loading");
-      loading.style.display = "none";
+      const loading = document.querySelector(".error-search-page");
+      loading.classList.add("hidden")
       // Loading Screen
       setSwiper();
     })
