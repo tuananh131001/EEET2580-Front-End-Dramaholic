@@ -257,12 +257,7 @@ body {
   display: flex;
   padding-bottom: .5em;
 }
-p {
-  margin-block-start: 0;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-}
+
 .icon {
   margin-top: 5px;
   width: fit-content;
@@ -599,3 +594,5 @@ footer .members {
     flex-direction: row;
   }
 }
+
+// header

@@ -1,0 +1,29 @@
+@use "./abstract/colors";
+@use "./components/sideBar";
+@use "./utilities/mixins";
+@use "./layout/navBar";
+@use "./components/accountMenu";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+.account-wrapper{
+    color: colors.$white;
+}
+.account-container{
+    text-decoration: none;
+}
+.hidden {
+  display: none !important;
+}
+
+@media screen and (max-width: 30em) {
+  aside {
+    display: none;
+  }
+}

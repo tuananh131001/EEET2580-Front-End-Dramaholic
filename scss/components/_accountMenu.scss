@@ -38,17 +38,18 @@
       text-align: left;
       width: 100%;
     }
+    .button {
+      @include mixins.button-style();
+      width: 100%;
+    }
+    .button:hover,
+    .button:focus {
+      cursor: pointer;
+      background-color: colors.$white;
+      color: colors.$red;
+    }
   }
-  .button {
-    @include mixins.button-style();
-    width: 100%;
-  }
-  .button:hover,
-  .button:focus {
-    cursor: pointer;
-    background-color: colors.$white;
-    color: colors.$red;
-  }
+  
   @keyframes growDown {
     0% {
       transform: scaleY(0);
