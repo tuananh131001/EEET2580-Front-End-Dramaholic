@@ -3,6 +3,7 @@
 @use "./utilities/mixins";
 @use "./layout/navBar";
 @use "./components/accountMenu";
+@use "./layout/billboard";
 
 *,
 *::before,
@@ -12,11 +13,18 @@
 
   box-sizing: border-box;
 }
-.account-wrapper{
+.hamburger {
     color: colors.$white;
 }
-.account-container{
-    text-decoration: none;
+.sideNav a {
+    text-decoration: none !important;
+  }
+
+.account-wrapper {
+  color: colors.$white;
+}
+.account-container {
+  text-decoration: none;
 }
 .hidden {
   display: none !important;
