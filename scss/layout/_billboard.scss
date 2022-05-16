@@ -4,6 +4,7 @@
 /* Billboard */
 
 .movie-list {
+  margin-top: 3em;
   @include mixins.flex(column, left, flex-start);
   gap: 2em;
 }
