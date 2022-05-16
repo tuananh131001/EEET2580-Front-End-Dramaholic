@@ -50,7 +50,9 @@ body {
   height: 80%
 }
 .info_text {
-  font-size: 1rem;
+  font-size: .8rem;
+  font-weight: 200;
+  padding-bottom: 1em;
 }
 .director_text {
   font-size: 0.8rem;
@@ -75,6 +77,7 @@ body {
   font-weight: 800;
 }
 .description {
+  text-align: justify;
   font-size: 1rem;
   line-height: 1.5em;
 }
@@ -252,6 +255,7 @@ body {
 }
 .icon_container {
   display: flex;
+  padding-bottom: .5em;
 }
 p {
   margin-block-start: 0;
@@ -314,19 +318,23 @@ button {
 .director {
   color: #fff;
   float: left;
+
 }
 .director_name {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   padding-bottom: 1vh;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 .comment-list{
   display: flex;
   flex-direction: column;
   gap: .5em;
-  width: 80%;
+  width: 80vw;
   padding-right: .5em;
+  height: revert;
 }
 .comment-wrapper{
   margin-top: 6vh;
@@ -415,7 +423,7 @@ button {
   width: 80%;
 }
 .right-column{
-  width: 20%;
+  width: fit-content;
 }
 .vote-container{
   display: flex;
@@ -511,16 +519,15 @@ button {
   .comment-form{
     width: 85%;
   }
-  .comment-list{
-    height: revert;
-  }
+
   .horizontal-body{
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 1em;
   }
   .right-column{
     width: 100%;
   }
+
 }
 
 
@@ -570,6 +577,15 @@ footer .members {
 }
 
 @media (min-width: 62em) {
+  .right-container{
+    width: 40%;
+  }
+  .horizontal-body{
+    padding: 2em 7em;
+  }
+  .comment-list{
+    width: 60vw;
+  }
   footer .member-footer-copyright {
     display: flex;
     flex-direction: row;

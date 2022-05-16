@@ -20,7 +20,10 @@
       type="text/css"
       href="../../css/styles_movieDetail.css"
     />
-    <script src="https://kit.fontawesome.com/11c31663b0.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/11c31663b0.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="../../js/movie_detail.js" defer></script>
     <title>Movie Detail</title>
   </head>
@@ -92,13 +95,16 @@
             <button id="button_play" class="button btn1" onclick="play_movie()">
               PLAY MOVIE
             </button>
-            <button id="button_watch_later" class="button btn2" onclick="add_watch_later()">
+            <button
+              id="button_watch_later"
+              class="button btn2"
+              onclick="add_watch_later()"
+            >
               WATCH LATER
             </button>
           </div>
         </div>
       </div>
-      
     </div>
 
     <div id="youtube_frame" class="youtube_div"></div>
@@ -115,7 +121,7 @@
                   <i class="fas fa-angle-double-left"></i>
                 </button>
               </div>
-              <p>CAST</p>
+              <h3 style="color: hsl(348, 79%, 57%); font-size:1rem;"><i class="fa-solid fa-person"></i> CAST</h3>
               <div>
                 <button id="iconr" class="icon" onclick="scrollr()">
                   <i class="fas fa-angle-double-right"></i>
@@ -130,7 +136,7 @@
         <!-- Comment -->
         <div class="comment-wrapper">
           <form class="comment-form" name="comment-section">
-            <label for="">Comment : </label>
+            <label style="color: hsl(348, 79%, 57%);" for=""><i class="fa-solid fa-comments"> </i> Comment : </label>
             <input
               name="message"
               type="text"
@@ -141,12 +147,9 @@
         </div>
       </div>
       <div class="right-column">
+        <h2  style="color: hsl(348, 79%, 57%); font-size: 1.2rem;padding-bottom: .5em;"><i class="fa-solid fa-film"></i> Info</h2>
         <!-- director -->
-        <div id="movie_director" class="director">
-          DIRECTOR BY
-          <br />
-          <br />
-        </div>
+        <div id="movie_director" class="director"></div>
       </div>
     </div>
   </body>
