@@ -23,12 +23,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign up</title>
-    <link rel="stylesheet" href="/css/style_login_signup.css" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="./assets/icons/themify-icons.css" /> -->
+    <link rel="stylesheet" href="/css/style_login_signup.css" />
   </head>
 
   <body class="body signup-page">
@@ -46,8 +46,7 @@
             <h1 class="title">Create account</h1>
             <div class="ui-message-container success hidden">
               <div class="ui-message-icon"></div>
-              <div class="ui-message-contents">
-              </div>
+              <div class="ui-message-contents"></div>
             </div>
           </div>
           <form action="" class="form" id="form">
@@ -147,7 +146,7 @@
                 <label for="password">Password</label>
                 <span onclick="togglePassword()" class="passShow">
                   <img
-                    src="/assets/image/eye.png"
+                    src="/assets/image/closed-eye.png"
                     alt=""
                     class="show"
                     id="show"
@@ -164,7 +163,7 @@
             </div>
 
             <!-- DOB -->
-            <div class="formElement dob">
+            <!-- <div class="formElement dob nativeDatePicker">
               <div class="form-group">
                 <span class="icon">
                   <img src="/assets/image/dob.png" alt="" />
@@ -182,10 +181,37 @@
                 />
                 <label for="dob">Date of birth</label>
               </div>
-              <div class="ui-message-container hidden">
-                <div class="ui-message-icon"></div>
-                <div class="ui-message-contents">
-                  <b>Incorrect password.</b> Please try again
+            </div> -->
+
+            <!-- alternative DOB -->
+            <div class="fallbackDatePicker">
+              <label class="dob">Date of birth</label>
+              <div class="fallbackDatePicker-content" oninput="clearFailedMsg()">
+                <div>
+                  <select id="year" name="year">
+                  </select>
+                </div>
+
+                <div>
+                  <!-- <label for="month">Month:</label> -->
+                  <select id="month" name="month">
+                    <option selected value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                </div>
+                <div>
+                  <select id="day" name="day" class="day"">
+                  </select>
                 </div>
               </div>
             </div>
@@ -194,8 +220,8 @@
               <div class="agreement">
                 <input type="checkbox" id="agreement" required />
                 <label for="agreement"
-                  >I agree with <a href="">Terms</a> and
-                  <a href="">Privacy</a></label
+                  >I agree with
+                  <a href="/pages/info/policy.html">Privacy</a></label
                 >
               </div>
             </div>
@@ -208,6 +234,7 @@
         <a href="login.html" class="link-page">Log in</a>
       </div>
     </div>
+    <script src="/js/dateInput.js"></script>
 
     <script>
       const formatName = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -218,10 +245,10 @@
         // When an input is checked, or whatever...
         if (input.type === "password") {
           input.setAttribute("type", "text");
-          document.getElementById("show").src = "/assets/image/closed-eye.png";
+          document.getElementById("show").src = "/assets/image/eye.png";
         } else {
           input.setAttribute("type", "password");
-          document.getElementById("show").src = "/assets/image/eye.png";
+          document.getElementById("show").src = "/assets/image/closed-eye.png";
         }
       }
 
@@ -335,7 +362,14 @@
         var usernameValue = document.getElementById("username").value;
         var nameValue = document.getElementById("name").value;
         var passValue = document.getElementById("password").value;
-        var dobValue = document.getElementById("dob").value;
+        var dobValue="";
+        if(document.querySelector(".nativeDatePicker"))
+          dobValue = document.getElementById("dob").value;
+        else{
+          dobValue += yearSelect.value + '-' + monthSelect.value + '-';
+          if (daySelect.value / 10 < 1) dobValue += '0' + daySelect.value;
+          else dobValue += daySelect.value;
+        }
         var emailValue = document.getElementById("email").value;
 
         const data = JSON.stringify({
@@ -370,25 +404,24 @@
       }
 
       function sendSuccessMsg() {
-          let heading = document.querySelector(".heading");
-          let msgContainer = heading.querySelector(".ui-message-container");
+        let heading = document.querySelector(".heading");
+        let msgContainer = heading.querySelector(".ui-message-container");
 
-          if (msgContainer) {
-            msgContainer.classList.remove("hidden");
-            msgContainer.classList.add("success");
-            msgContent = msgContainer.querySelector(".ui-message-contents");
-            msgContent.innerHTML = "<b>Account created successfully</b>";
-          } else alert("Account created successfully");
-        }
-
-
+        if (msgContainer) {
+          msgContainer.classList.remove("hidden");
+          msgContainer.classList.add("success");
+          msgContent = msgContainer.querySelector(".ui-message-contents");
+          msgContent.innerHTML = "<b>Account created successfully</b>";
+        } else alert("Account created successfully");
+      }
 
       function sendFailedMsg(message) {
         let heading = document.querySelector(".heading");
         let msgContainer = heading.querySelector(".ui-message-container");
         if (msgContainer) {
           msgContainer.classList.remove("hidden");
-          if(msgContainer.classList.contains("success")) msgContainer.classList.remove("success");
+          if (msgContainer.classList.contains("success"))
+            msgContainer.classList.remove("success");
           msgContent = msgContainer.querySelector(".ui-message-contents");
           msgContent.innerHTML = "<b>" + message + "</b>";
         } else alert(message);

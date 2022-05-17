@@ -122,6 +122,7 @@ nav .nav-right > * :not(.drop-down) {
 
 @media screen and (max-width: 20em) {
     .pagi_range, .pagi-range {font-size: 0.7rem;}
+    nav .hamburger {font-size: 22px!important;}
     .pagenumbers button, .pagination-search button{
         width: 1.5rem;
         height: 1.5rem;

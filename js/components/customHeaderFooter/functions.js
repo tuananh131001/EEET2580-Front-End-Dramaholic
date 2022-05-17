@@ -1,6 +1,5 @@
 function openNav() {
     const subNav = document.querySelector("#sideNav");
-    console.log("huhu")
     subNav.style.width === ""
         ? (subNav.style.width = "50%")
         : (subNav.style.width = "");

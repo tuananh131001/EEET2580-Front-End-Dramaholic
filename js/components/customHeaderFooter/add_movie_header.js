@@ -45,7 +45,7 @@ document.querySelector("header").innerHTML = `
                     </li>
                     <li class="navigation-menu-profile-name"></li>
                 </div>
-                <a href="../../../pages/user/user_profile.html"><li class="active">Account</li></a>
+                <a href="../../../pages/user/user_profile.html"><li>Account</li></a>
                 <a href="../../pages/user/watch_history.html"><li>History</li></a>
                 <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html"><li>Admin</li></a></div>
             </div>
@@ -55,7 +55,6 @@ document.querySelector("header").innerHTML = `
                 <a href="../../../pages/movie/trending.html"><li>Top Trending</li></a>
             </div>
             <div class="navigation-menu-settings">
-                <a href="../../../pages/info/aboutUs.html"><li>About @dramaholic</li></a>
                 <a href="../../../pages/info/policy.html"><li>Policy</li></a>
             </div>
             <div class="a" onclick=handleSignOut()>

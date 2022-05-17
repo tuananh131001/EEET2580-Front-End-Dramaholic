@@ -296,7 +296,7 @@ nav #sideNav {
 }
 
 @media screen and (max-width: 28em) {
-    nav #sideNav a, nav #sideNav li {font-size: 0.7rem;}
+    nav #sideNav a, nav #sideNav li,  .sign-in-subBar {font-size: 0.7rem!important;}
     nav .hamburger {font-size: 23px!important;}
     nav .nav-left {
         gap: 0.7rem;
@@ -316,8 +316,8 @@ nav #sideNav {
 }
 
 @media screen and (max-width: 20em) {
-    nav #sideNav a, nav #sideNav li {font-size: 0.6rem;}
-    nav .hamburger {font-size: 18px!important;}
+    nav #sideNav a, nav #sideNav li, .sign-in-subBar {font-size: 0.65rem!important;}
+    nav .hamburger {font-size: 22px!important;}
     nav .logo {width: 90px !important;}
 
 
