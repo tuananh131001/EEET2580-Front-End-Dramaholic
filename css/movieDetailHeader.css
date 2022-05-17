@@ -16,7 +16,7 @@ nav #sideNav {
   position: fixed;
   height: 100%;
   width: 0;
-  top: 45px;
+  top: 44px;
   left: 0;
   overflow-x: hidden;
   background-color: hsl(213deg, 24%, 7%);
@@ -309,12 +309,13 @@ nav .nav-left {
 }
 /* Billboard */
 .movie-list {
-  margin-top: 3em;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: flex-start;
   gap: 2em;
+  padding: 0 0 0 1em;
 }
 
 .movie-container {
@@ -339,6 +340,10 @@ nav .nav-left {
 }
 
 @media (min-width: 62em) {
+  .movie-list {
+    margin-top: 0;
+  }
+
   /* Billbroad Video*/
   .billboard-video:after {
     content: "";
@@ -382,7 +387,7 @@ nav .nav-left {
 
   .billboard {
     display: flex;
-    min-height: 90vh;
+    height: 100%;
     flex-direction: column;
     /* Billboard Button */
     /* End Button */
@@ -399,7 +404,7 @@ nav .nav-left {
     flex-direction: column;
     gap: 1em;
     width: max(50%, 500px);
-    top: 50%;
+    top: 25vw;
     left: 5%;
     border: none;
   }
@@ -455,6 +460,10 @@ nav .nav-left {
   box-sizing: border-box;
 }
 
+.navbar {
+  z-index: 4;
+}
+
 .hamburger {
   color: rgb(255, 255, 255);
 }
@@ -463,10 +472,16 @@ nav .nav-left {
   text-decoration: none !important;
 }
 
-.account-wrapper {
+a:-webkit-any-link {
+  text-decoration: none !important;
+}
+
+.account-wrapper p {
+  font-size: clamp(0.5rem, 1vw, 0.875rem);
   color: rgb(255, 255, 255);
 }
 
+.header-navigation-text a,
 .account-container {
   text-decoration: none;
 }
@@ -479,6 +494,21 @@ nav .nav-left {
   aside {
     display: none;
   }
+}
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: hsl(213deg, 24%, 7%);
+  border-radius: 100px;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: rgb(192, 7, 29);
 }
 
 /*# sourceMappingURL=movieDetailHeader.css.map */

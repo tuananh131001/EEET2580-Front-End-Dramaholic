@@ -55,7 +55,6 @@ document.querySelector("header").innerHTML = `
                 <a href="../../../pages/movie/trending.html"><li>Top Trending</li></a>
             </div>
             <div class="navigation-menu-settings">
-                <a href="../../../pages/info/aboutUs.html"><li>About @dramaholic</li></a>
                 <a href="../../../pages/info/policy.html"><li>Policy</li></a>
             </div>
             <div class="a" onclick=handleSignOut()>

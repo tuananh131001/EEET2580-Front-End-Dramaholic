@@ -13,7 +13,7 @@ html {
 }
 body {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 #blur_frame {
@@ -258,10 +258,7 @@ body {
   display: flex;
   padding-bottom: .5em;
 }
-p {
-  font-size: 10px;
-  font-weight: 100;
-}
+
 .icon {
   margin-top: 5px;
   width: fit-content;
@@ -313,6 +310,10 @@ button {
   width: 100%;
   height: 20%;
   padding-top: 10%;
+}
+.cast_name p {
+  font-weight: 100;
+  font-size: .6rem;
 }
 .director {
   color: #fff;

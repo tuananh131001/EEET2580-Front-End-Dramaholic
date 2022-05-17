@@ -16,7 +16,7 @@ nav #sideNav {
   position: fixed;
   height: 100%;
   width: 0;
-  top: 45px;
+  top: 44px;
   left: 0;
   overflow-x: hidden;
   background-color: hsl(213deg, 24%, 7%);
@@ -418,12 +418,13 @@ nav .nav-left {
 }
 /* Billboard */
 .movie-list {
-  margin-top: 3em;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: flex-start;
   gap: 2em;
+  padding: 0 0 0 1em;
 }
 
 .movie-container {
@@ -448,6 +449,10 @@ nav .nav-left {
 }
 
 @media (min-width: 62em) {
+  .movie-list {
+    margin-top: 0;
+  }
+
   /* Billbroad Video*/
   .billboard-video:after {
     content: "";
@@ -491,7 +496,7 @@ nav .nav-left {
 
   .billboard {
     display: flex;
-    min-height: 90vh;
+    height: 100%;
     flex-direction: column;
     /* Billboard Button */
     /* End Button */
@@ -508,7 +513,7 @@ nav .nav-left {
     flex-direction: column;
     gap: 1em;
     width: max(50%, 500px);
-    top: 50%;
+    top: 25vw;
     left: 5%;
     border: none;
   }
@@ -558,7 +563,7 @@ nav .nav-left {
 }
 .search-content {
   display: none;
-  margin-top: 5%;
+  margin-top: 10vh;
   grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   place-content: center;
   gap: 2em;
@@ -566,7 +571,7 @@ nav .nav-left {
 }
 
 .movie-list-grid {
-  margin-top: 5%;
+  margin-top: 10vh;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   gap: 2em;
@@ -763,6 +768,16 @@ body {
   background-image: url("/assets/image/loading.gif");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#loading::after {
+  color: black;
+  content: "Enjoy watch this cat while we get movie";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translateY(15em);
 }
 
 #body::-webkit-scrollbar {
