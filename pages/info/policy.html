@@ -1,88 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/assets/favicon_io/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/assets/favicon_io/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/assets/favicon_io/favicon-16x16.png"
+  />
+  <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Policy Page</title>
     <style>
-        @font-face {
-            font-family: 'averta_pe_black';
-            src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
-            font-style: normal;
-            font-weight: 100;
-        }
+      @font-face {
+        font-family: "averta_pe_black";
+        src: url(fonts/AvertaPE/Averta\ PE\ Black.otf);
+        font-style: normal;
+        font-weight: 100;
+      }
 
-        @font-face {
-            font-family: 'averta_pe';
-            src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
-            font-style: normal;
-            font-weight: 100;
-        }
+      @font-face {
+        font-family: "averta_pe";
+        src: url(fonts/AvertaPE/Averta\ PE\ Regular.otf);
+        font-style: normal;
+        font-weight: 100;
+      }
 
-        body {
-            background: url('image for movie_details and policy/term_of_use.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
+      body {
+        background: url("image for movie_details and policy/term_of_use.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
 
+      .blur {
+        position: absolute;
+        margin: 7vh 5%;
+        height: 86vh;
+      }
+
+      .term {
+        padding: 8vh 10%;
+        text-align: center;
+      }
+
+      .term h1 {
+        font-family: averta_pe_black;
+        font-size: 50px;
+        font-weight: 100;
+      }
+
+      .term p {
+        font-family: averta_pe;
+        font-size: 15px;
+      }
+
+      @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
         .blur {
-            position: absolute;
-            margin: 7vh 5%;
-            height: 86vh;
+          background-color: rgba(255, 255, 255, 0.5);
+          -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
         }
-
-        .term {
-            padding: 8vh 10%;
-            text-align: center;
-        }
-
-        .term h1 {
-            font-family: averta_pe_black;
-            font-size: 50px;
-            font-weight: 100;
-        }
-
-        .term p {
-            font-family: averta_pe;
-            font-size: 15px;
-        }
-
-        @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-            .blur {
-                background-color: rgba(255, 255, 255, 0.5);
-                -webkit-backdrop-filter: blur(5px);
-                backdrop-filter: blur(5px);
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="blur">
-        <div class="term">
-            <h1>TERM OF USE</h1>
-            <p>Dramaholic provides a personalized subscription service that allows our members to access
-                entertainment content (“Dramaholic content”) over the Internet to certain Internet-connected devices
-                ("Dramaholic
-                ready devices").
-            </p>
-            <p>As used in these Terms of Use, "Dramaholic service", "our service" or "the service" means the personalized
-                service provided by Dramaholic for discovering and accessing a selection of Dramaholic content, including all
-                features and functionalities, recommendations and reviews, our websites, and user interfaces, as well as
-                all
-                content and software associated with our service.</p>
-            <p>The Terms of Use set out on this webpage govern your use of the Dramaholic service. Use of any paid service
-                plan is subject to the “Terms of Use (Paid Plans)”. Use of our free service plan is subject to the
-                “Terms of
-                Use (Free Plan)”.</p>
-
-
-
-        </div>
+      <div class="term">
+        <h1>TERM OF USE</h1>
+        <p>
+          Dramaholic provides a personalized subscription service that allows
+          our members to access entertainment content (“Dramaholic content”)
+          over the Internet to certain Internet-connected devices ("Dramaholic
+          ready devices").
+        </p>
+        <p>
+          As used in these Terms of Use, "Dramaholic service", "our service" or
+          "the service" means the personalized service provided by Dramaholic
+          for discovering and accessing a selection of Dramaholic content,
+          including all features and functionalities, recommendations and
+          reviews, our websites, and user interfaces, as well as all content and
+          software associated with our service.
+        </p>
+        <p>
+          The Terms of Use set out on this webpage govern your use of the
+          Dramaholic service. Use of any paid service plan is subject to the
+          “Terms of Use (Paid Plans)”. Use of our free service plan is subject
+          to the “Terms of Use (Free Plan)”.
+        </p>
+        <button onclick="history.go(-1)" style="
+        background-color: rgb(192, 7, 29);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0.5em;
+        width: 100%;
+      ">I have read and accepted the policy</button>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

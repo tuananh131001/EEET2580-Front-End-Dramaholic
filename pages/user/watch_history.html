@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/assets/favicon_io/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/assets/favicon_io/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/assets/favicon_io/favicon-16x16.png"
+  />
+  <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="../../css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -129,12 +147,20 @@
                 Admin
               </li></a
             >
-            <li
+            <button
               class="has-inline-left-gutter navigation-menu-setting"
+              style="
+                background-color: rgb(192, 7, 29);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                padding: 0.5em;
+                width: 50%;
+              "
               onclick="handleSignOut()"
             >
-              Sign out of Netflix
-            </li>
+              SIGN OUT
+            </button>
           </ol>
           <div class="navigation-menu-settings">
             <a href="/index.html">Home</a>
