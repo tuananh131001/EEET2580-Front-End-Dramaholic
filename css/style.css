@@ -19,7 +19,7 @@ nav #sideNav {
   top: 44px;
   left: 0;
   overflow-x: hidden;
-  background-color: hsl(213deg, 24%, 7%);
+  background-color: #0e1116;
   transition: 0.2s;
   /* 0.5 second transition effect to slide in the sidenav */
   padding-top: 0.5em;
@@ -43,7 +43,7 @@ nav #sideNav .navigation-menu-profile .navigation-menu-profile-link {
 nav #sideNav a,
 nav #sideNav li {
   font-size: 0.8rem;
-  color: rgb(153, 153, 153);
+  color: #999999;
   font-weight: 600;
 }
 nav #sideNav .navigation-menu-settings {
@@ -70,7 +70,7 @@ footer ul {
   display: grid;
   align-items: center;
   list-style: none;
-  color: rgb(153, 153, 153);
+  color: #999999;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1em;
 }
@@ -169,7 +169,7 @@ footer .members {
   z-index: 1;
   --padding: 1.5rem;
   padding: var(--padding);
-  background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(213deg, 24%, 7%));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, #0e1116);
   overflow: hidden;
   transform: translateY(65%);
 }
@@ -190,7 +190,7 @@ footer .members {
   left: calc(var(--padding) * -1);
   bottom: -3px;
   width: calc(100% + var(--padding));
-  background-color: rgb(255, 204, 203);
+  background-color: #ffcccb;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 500ms ease;
@@ -206,7 +206,7 @@ footer .members {
   text-overflow: ellipsis;
 }
 .card .button {
-  background-color: rgb(192, 7, 29);
+  background-color: #c0071d;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -219,8 +219,8 @@ footer .members {
 .card .button:hover,
 .card .button:focus {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: rgb(192, 7, 29);
+  background-color: white;
+  color: #c0071d;
 }
 
 .swiper-button-prev:hover,
@@ -243,7 +243,7 @@ footer .members {
 }
 
 .sign-in-subBar {
-  background-color: rgb(192, 7, 29);
+  background-color: #c0071d;
   color: white;
   font-weight: 400;
   font-size: 1rem;
@@ -256,8 +256,8 @@ footer .members {
 
 .sign-in-subBar:hover {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: rgb(192, 7, 29);
+  background-color: white;
+  color: #c0071d;
 }
 
 /* Start side bar */
@@ -270,7 +270,7 @@ nav {
   padding: 0 1em;
   width: 100%;
   gap: 1em;
-  background-color: hsl(213deg, 24%, 7%);
+  background-color: #0e1116;
   z-index: 99;
 }
 nav .nav-right {
@@ -283,10 +283,10 @@ nav .nav-right {
 }
 nav .search-box {
   display: flex;
-  background: hsl(213deg, 24%, 7%);
+  background: #0e1116;
   height: 40px;
   border-radius: 40px;
-  box-shadow: 0 0.1rem 0.75rem rgb(192, 7, 29);
+  box-shadow: 0 0.1rem 0.75rem #c0071d;
 }
 nav .search-box:hover > .icon {
   background: #536179;
@@ -305,12 +305,12 @@ nav .open {
   padding: 0 20px;
 }
 nav .icon {
-  color: rgb(255, 255, 255);
+  color: white;
   width: 40px;
   font-size: 1.3rem;
   height: 40px;
   border-radius: 50%;
-  background: hsl(213deg, 24%, 7%);
+  background: #0e1116;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -344,7 +344,7 @@ nav .nav-left {
 
   /* Start side bar */
   .nav-colored {
-    background-color: hsl(213deg, 24%, 7%);
+    background-color: #0e1116;
     transition: background-color 0.4s ease;
   }
 
@@ -377,7 +377,7 @@ nav .nav-left {
   }
   nav .account-container:hover {
     background-color: #fff;
-    color: hsl(213deg, 24%, 7%);
+    color: #0e1116;
   }
   nav .header-navigation-text {
     display: flex;
@@ -401,7 +401,7 @@ nav .nav-left {
   }
   nav .sign-in-nagivation {
     display: block;
-    background-color: rgb(192, 7, 29);
+    background-color: #c0071d;
     color: white;
     font-weight: 400;
     font-size: 1rem;
@@ -412,8 +412,8 @@ nav .nav-left {
   }
   nav .sign-in-nagivation:hover {
     cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color: rgb(192, 7, 29);
+    background-color: white;
+    color: #c0071d;
   }
 }
 /* Billboard */
@@ -424,7 +424,7 @@ nav .nav-left {
   align-items: left;
   justify-content: flex-start;
   gap: 2em;
-  padding: 0 0 0 1em;
+  padding: 0 0 0 10px;
 }
 
 .movie-container {
@@ -461,7 +461,7 @@ nav .nav-left {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(hsla(0deg, 0%, 0%, 0), hsla(20deg, 0%, 0%, 0.3) 20%, hsl(0deg, 0%, 0%));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 20%, black);
     opacity: 0.7;
   }
 
@@ -527,7 +527,7 @@ nav .nav-left {
     text-transform: uppercase;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 15px;
-    text-shadow: 5px 5px rgb(192, 7, 29);
+    text-shadow: 5px 5px #c0071d;
   }
   .billboard .billboard-description {
     font-size: 1.2vw;
@@ -555,7 +555,7 @@ nav .nav-left {
     background-color: rgba(109, 109, 110, 0.7);
   }
   .billboard .more-info:hover {
-    background-color: rgb(192, 7, 29);
+    background-color: #c0071d;
     cursor: pointer;
   }
 
@@ -600,7 +600,7 @@ nav .nav-left {
   cursor: pointer;
 }
 .movie-search-card .card-body {
-  color: rgb(222, 222, 222);
+  color: #dedede;
 }
 
 .error-search-page {
@@ -649,7 +649,7 @@ nav .nav-left {
     position: absolute;
     right: 1rem;
     top: 5rem;
-    background-color: hsl(213deg, 24%, 7%);
+    background-color: #0e1116;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -657,12 +657,12 @@ nav .nav-left {
   }
   .drop-down a {
     justify-content: flex-start;
-    color: rgb(255, 255, 255);
+    color: white;
     text-align: left;
     width: 100%;
   }
   .drop-down .button {
-    background-color: rgb(192, 7, 29);
+    background-color: #c0071d;
     color: white;
     font-weight: 400;
     font-size: 1rem;
@@ -675,8 +675,8 @@ nav .nav-left {
   .drop-down .button:hover,
 .drop-down .button:focus {
     cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    color: rgb(192, 7, 29);
+    background-color: white;
+    color: #c0071d;
   }
 
   @keyframes growDown {
@@ -692,7 +692,7 @@ nav .nav-left {
   }
 }
 button[class=active] {
-  background-color: rgb(192, 7, 29) !important;
+  background-color: #c0071d !important;
 }
 
 .pagination-search,
@@ -708,15 +708,15 @@ button[class=active] {
   display: flex;
   padding: 1em;
   border-radius: 10px;
-  border: 1px solid rgb(255, 255, 255);
-  color: rgb(255, 255, 255);
-  background-color: hsl(213deg, 24%, 7%);
+  border: 1px solid white;
+  color: white;
+  background-color: #0e1116;
 }
 .pagination-search button:hover,
 .pagenumbers button:hover {
   cursor: pointer;
-  background-color: rgb(192, 7, 29);
-  color: rgb(255, 255, 255);
+  background-color: #c0071d;
+  color: white;
 }
 
 *,
@@ -729,7 +729,7 @@ button[class=active] {
 
 .active {
   font-weight: 700 !important;
-  color: rgb(255, 255, 255) !important;
+  color: white !important;
 }
 
 .hidden {
@@ -747,10 +747,10 @@ a {
 body {
   display: flex;
   flex-direction: column;
-  color: rgb(255, 255, 255);
+  color: white;
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-color: hsl(213deg, 24%, 7%);
+  background-color: #0e1116;
 }
 
 @media screen and (max-width: 30em) {
@@ -764,7 +764,7 @@ body {
   z-index: 100;
   width: 100%;
   height: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   background-image: url("/assets/image/loading.gif");
   background-repeat: no-repeat;
   background-position: center;
@@ -785,7 +785,7 @@ body {
 }
 
 #body::-webkit-scrollbar-track {
-  background-color: hsl(213deg, 24%, 7%);
+  background-color: #0e1116;
   border-radius: 100px;
 }
 
@@ -793,7 +793,7 @@ body {
   border-radius: 100px;
   border: 5px solid transparent;
   background-clip: content-box;
-  background-color: rgb(192, 7, 29);
+  background-color: #c0071d;
 }
 
 /*# sourceMappingURL=style.css.map */
