@@ -13,6 +13,10 @@
 
   box-sizing: border-box;
 }
+
+.navbar{
+  z-index: 4;
+}
 .hamburger {
     color: colors.$white;
 }
@@ -20,9 +24,11 @@
     text-decoration: none !important;
   }
 
-.account-wrapper {
+.account-wrapper p  {
+  font-size: clamp(0.5rem, 1vw, 0.875rem);
   color: colors.$white;
 }
+.header-navigation-text a,
 .account-container {
   text-decoration: none;
 }
