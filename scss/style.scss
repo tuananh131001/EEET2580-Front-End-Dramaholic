@@ -62,6 +62,16 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+#loading::after{
+  color: black;
+  content: "Enjoy watch this cat while we get movie";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translateY(15em);
+
+}
 #body::-webkit-scrollbar {
   width: 15px;
 }

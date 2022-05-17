@@ -278,6 +278,14 @@ a:hover {
   }
 }
 
+@media screen and (max-width: 300px) {
+  .fallbackDatePicker-content {
+      flex-direction: column;
+      gap: .5em;
+      justify-content: space-between;
+    }
+}
+
 .ui-message-container {
   position: relative;
   background: #e87c03;
@@ -294,3 +302,54 @@ a:hover {
 .formElement .ui-message-container {
   margin-top: 0.3em;
 }
+
+select {
+  -webkit-appearance: none;
+  padding: 0.6rem 3.5rem .6rem 1.2rem;
+  width: 100%;
+  border: 1px solid #e8eaed;  
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.5em;
+  transition: all 150ms ease;
+}
+
+select:required:invalid {
+  color: #5a667f;
+}
+
+select option {
+  color: #223254;
+}
+
+select option[value=""][disabled] {
+  display: none;
+}
+
+/* select:focus {
+  outline: none;
+  border-color: red;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+} */
+
+select:hover+svg {
+  stroke: #0077ff;
+}
+
+.fallbackDatePicker {
+  margin: 1em 0;
+}
+
+.fallbackDatePicker-content{
+  display: flex;
+  justify-content: space-between; 
+}
+
+label.dob{
+  font-size: 1.7em;
+    /* font-weight: 450; */
+}
+

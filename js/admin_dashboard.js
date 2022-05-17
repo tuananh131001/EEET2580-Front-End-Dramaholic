@@ -216,8 +216,7 @@ function createDivMovie(x) {
   editButton.classList.add("white_theme_button");
   editButton.innerHTML = `<i class="fa-regular fa-edit" ></i>`
   editButton.onclick = function () {
-    sessionStorage.setItem("edit_dbid", x.dbID);
-    location.href = "./edit-movie.html";
+    location.href = "./edit-movie.html?dbid=" + x.dbID;
   };
 
   let deleteButton = document.createElement("button");

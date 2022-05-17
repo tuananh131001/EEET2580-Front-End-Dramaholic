@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/assets/favicon_io/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/assets/favicon_io/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/assets/favicon_io/favicon-16x16.png"
+  />
+  <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +28,6 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100&display=swap"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="./assets/icons/themify-icons.css" /> -->
   </head>
 
   <body class="body forgetPass-page">
@@ -124,7 +141,7 @@
             </div>
 
             <!-- DOB -->
-            <div class="formElement dob">
+            <!-- <div class="formElement dob">
               <div class="form-group">
                 <span class="icon">
                   <img src="/assets/image/dob.png" alt="" />
@@ -141,6 +158,38 @@
                   required
                 />
                 <label for="dob">Date of birth</label>
+              </div>
+            </div> -->
+
+            <div class="formElement fallbackDatePicker">
+              <label class="dob">Date of birth</label>
+              <div class="fallbackDatePicker-content"  oninput="clearFailedMsg()">
+                <div>
+                  <select id="year" name="year">
+                  </select>
+                </div>
+
+                <div>
+                  <!-- <label for="month">Month:</label> -->
+                  <select id="month" name="month">
+                    <option selected value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                </div>
+                <div>
+                  <select id="day" name="day" class="day"">
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -159,6 +208,7 @@
         <a href="login.html" class="link-page">Log in</a>
       </div>
     </div>
+    <script src="/js/dateInput.js"></script>
 
     <script>
       const userURL = "https://dramaholic.herokuapp.com/api/customers";
@@ -180,7 +230,14 @@
         e.target.setAttribute("disabled", "");
         var usernameValue = document.getElementById("username").value;
         var nameValue = document.getElementById("name").value;
-        var dobValue = document.getElementById("dob").value;
+        var dobValue="";
+        if(document.querySelector(".nativeDatePicker"))
+          dobValue = document.getElementById("dob").value;
+        else{
+          dobValue += yearSelect.value + '-' + monthSelect.value + '-';
+          if (daySelect.value / 10 < 1) dobValue += '0' + daySelect.value;
+          else dobValue += daySelect.value;
+        }
         var emailValue = document.getElementById("email").value;
 
         fetch(userURL)

@@ -9,9 +9,11 @@ html {
   /* contain: content; */
   background-color: hsl(213, 24%, 7%);
   font-family: "Poppins", sans-serif;
+
 }
 body {
   height: 100vh;
+  width: 100%;
 }
 
 #blur_frame {
@@ -23,7 +25,6 @@ body {
   width: 100%;
   gap: 0.5em;
   z-index: 1;
-  padding: .5em;
 }
 .logo-container{
   position: absolute;
@@ -44,12 +45,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1em;
-  width: 40vw;
+  gap: .5em;
+  width: 80%;
   height: 80%
 }
 .info_text {
-  font-size: 1rem;
+  font-size: .8rem;
+  font-weight: 200;
+  padding-bottom: 1em;
 }
 .director_text {
   font-size: 0.8rem;
@@ -70,10 +73,11 @@ body {
 .title {
   width: fit-content;
   color: white;
-  font-size: 3rem;
+  font-size: 1.75rem;
   font-weight: 800;
 }
 .description {
+  text-align: justify;
   font-size: 1rem;
   line-height: 1.5em;
 }
@@ -228,6 +232,7 @@ body {
   height: 100%;
   margin-right: 5px;
   font-size: 12px;
+  font-weight: 900;
   /* cursor: pointer; */
   pointer-events: none;
   border: none;
@@ -251,13 +256,9 @@ body {
 }
 .icon_container {
   display: flex;
+  padding-bottom: .5em;
 }
-p {
-  margin-block-start: 0;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-}
+
 .icon {
   margin-top: 5px;
   width: fit-content;
@@ -313,19 +314,23 @@ button {
 .director {
   color: #fff;
   float: left;
+
 }
 .director_name {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   padding-bottom: 1vh;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 .comment-list{
   display: flex;
   flex-direction: column;
   gap: .5em;
-  width: 80%;
+  width: 80vw;
   padding-right: .5em;
+  height: revert;
 }
 .comment-wrapper{
   margin-top: 6vh;
@@ -414,7 +419,7 @@ button {
   width: 80%;
 }
 .right-column{
-  width: 20%;
+  width: fit-content;
 }
 .vote-container{
   display: flex;
@@ -510,20 +515,15 @@ button {
   .comment-form{
     width: 85%;
   }
-  .comment-list{
-    height: revert;
-  }
-  .right-container{
-    overflow-y: visible;
-    width: 80%;
-  }
+
   .horizontal-body{
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 1em;
   }
   .right-column{
     width: 100%;
   }
+
 }
 
 
@@ -573,6 +573,15 @@ footer .members {
 }
 
 @media (min-width: 62em) {
+  .right-container{
+    width: 40%;
+  }
+  .horizontal-body{
+    padding: 2em 7em;
+  }
+  .comment-list{
+    width: 60vw;
+  }
   footer .member-footer-copyright {
     display: flex;
     flex-direction: row;
@@ -586,3 +595,5 @@ footer .members {
     flex-direction: row;
   }
 }
+
+// header

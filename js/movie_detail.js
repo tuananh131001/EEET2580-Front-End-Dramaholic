@@ -1,7 +1,7 @@
 const closeVideo = document.querySelector(".close-video");
 let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
-let id = JSON.parse(sessionStorage.getItem("dbid"));
+let id = new URLSearchParams(location.search).get("dbid");
 let userId = JSON.parse(localStorage.getItem("UserID"));
 console.log(id);
 let film_title = "";
@@ -83,7 +83,7 @@ fetch(fetchingURL)
       document.querySelector(".scroll-images").innerHTML += `<div class="child">
 
                       <img class="child-img" src="${json.actors[i].image}" alt="image">
-                      <div class="cast_name">${json.actors[i].name}</div>
+                      <div class="cast_name">${json.actors[i].name} </br> <p>${json.actors[i].character} </p></div>
                   </div>`;
     }
     //nation name
@@ -93,20 +93,29 @@ fetch(fetchingURL)
 
     let country = regionNames.of(json.country.toUpperCase());
 
+    // Movie Information
+    document.querySelector(
+      "#movie_director"
+    ).innerHTML += `<h2 class="director_name ">Genres:<h3 class="info_text"> ${json.genres}</h3></h2>`;
+
+    // Director
     for (let i = 0; i < json.director.length; i++) {
       document.querySelector(
         "#movie_director"
-      ).innerHTML += `<div class="director_name director_text">${json.director[i]}</div>`;
+      ).innerHTML += `<h2 class="director_name">Director: </h2><h3 class="info_text">${json.director[i]}</h3>`;
     }
     document.querySelector(
       "#movie_director"
-    ).innerHTML += `<br /><br /> <div class="director_name info_text">Episodes: ${epsiodes}</div>`;
+    ).innerHTML += `<h2 class="director_name ">Episodes: </h2><h3 class="info_text">${epsiodes}</h3>`;
     document.querySelector(
       "#movie_director"
-    ).innerHTML += `<div class="director_name info_text">Year Released: ${year}</div>`;
+    ).innerHTML += `<h2 class="director_name ">Language:<h3 class="info_text"> ${country}</h3></h2>`;
     document.querySelector(
       "#movie_director"
-    ).innerHTML += `<div class="director_name info_text">Language: ${country}</div>`;
+    ).innerHTML += `<h2 class="director_name ">Original Title:<h3 class="info_text"> ${json.originalTitle}</h3></h2>`;
+    document.querySelector(
+      "#movie_director"
+    ).innerHTML += `<h2 class="director_name ">Year Released: </h2><h3 class="info_text">${year}</h3>`;
 
     document.querySelector(
       "#youtube_frame"
@@ -131,7 +140,7 @@ function handleDelteComment(commentId, username, password) {
   });
 }
 async function getInfomationMovie() {
-  const id = sessionStorage.getItem("dbid");
+  const id = new URLSearchParams(location.search).get("dbid");
   const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
   const json = await url.json();
   getComments(json.comments);
@@ -162,7 +171,7 @@ function getComments(commentList) {
   let userID = JSON.parse(localStorage.getItem("UserID"));
   const commentListElement = document.querySelector(".comment-list");
   commentListElement.innerHTML = "";
-  commentList.forEach(({ id, message, user, upvotes,upvoters }) => {
+  commentList.forEach(({ id, message, user, upvotes, upvoters }) => {
     //Init
     const wrapper = document.createElement("div");
     wrapper.className = "wrapper";
@@ -205,8 +214,10 @@ function getComments(commentList) {
     }
     // Upvote button
     const upvoteButton = document.createElement("i");
-    console.log(upvoters)
-    upvoters.find(upvoter=> upvoter.id === userID) ? upvoteButton.style.color = "red": upvoteButton.style.color = "white"
+    console.log(upvoters);
+    upvoters.find((upvoter) => upvoter.id === userID)
+      ? (upvoteButton.style.color = "red")
+      : (upvoteButton.style.color = "white");
     upvoteButton.className = "fa-solid fa-thumbs-up vote";
     upvoteButton.addEventListener("click", (e) => {
       let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
@@ -216,7 +227,6 @@ function getComments(commentList) {
         .then((json) => {
           handleUpvote(id, json.username, json.password);
         });
-      
     });
     voteContainer.appendChild(upvoteButton);
 
@@ -229,12 +239,13 @@ function handleSubmitComment(e) {
   e.preventDefault();
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
+  userID == null ? window.location.href = "../user/login.html" : null
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
       let messageMovie = document.forms["comment-section"]["message"].value;
       messageMovie == "" ? location.reload() : null;
-      let movieID = JSON.parse(sessionStorage.getItem("dbid")).toString();
+      let movieID = new URLSearchParams(location.search).get("dbid").toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
         user: {
@@ -248,12 +259,13 @@ function handleSubmitComment(e) {
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
       }).then((response) => {
-        fetch("https://dramaholic.herokuapp.com/api/movies/" + movieID)
-          .then((response) => response.json())
-          .then((json) => {
-            getInfomationMovie()
-            document.forms["comment-section"]["message"].value = "";
-          });
+        if (response.ok) {
+          getInfomationMovie();
+          document.forms["comment-section"]["message"].value = "";
+          document.querySelector(".comment-error").classList.add("hidden");
+        } else {
+          document.querySelector(".comment-error").classList.remove("hidden");
+        }
       });
     });
 }
@@ -293,7 +305,7 @@ function stop_movie() {
 function add_history() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
+  let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -319,11 +331,11 @@ function add_history() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
+  let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
-    window.location.href = '../user/login.html';
+    window.location.href = "../user/login.html";
   } else {
     fetch(fetchingURL)
       .then((response) => response.json())
@@ -350,7 +362,7 @@ function add_watch_later() {
 function delete_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID = JSON.parse(sessionStorage.getItem("dbid"));
+  let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -367,9 +379,11 @@ function delete_watch_later() {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: dataToSend,
-        }).then((response) => {
-          console.log(response);
-        });
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => con);
       });
     document.querySelector("#button_watch_later").outerHTML = `
           <button id="button_watch_later" class="button btn2" onclick="add_watch_later()">
@@ -422,3 +436,12 @@ function responsiveRating() {
 }
 
 window.onresize = responsiveRating;
+
+// ------------------------------------- Header
+
+const openNav = () => {
+  const subNav = document.querySelector("#sideNav");
+  subNav.style.width === ""
+    ? (subNav.style.width = "60%")
+    : (subNav.style.width = "");
+};

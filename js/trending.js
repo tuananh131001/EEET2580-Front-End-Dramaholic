@@ -63,8 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    sessionStorage.setItem("dbid", x.dbID);
-    location.href = "movie_detail.html";
+    location.href = "/pages/movie/movie_detail.html?dbid=" + x.dbID;
   };
   cardContent.appendChild(button);
 
@@ -152,8 +151,8 @@ async function getTrending() {
     ).then((resp) => getES(resp)),
   ])
     .then(() => {
-      const loading = document.querySelector("#loading");
-      loading.style.display = "none";
+      const loading = document.querySelector(".error-search-page");
+      loading.classList.add("hidden")
       // Loading Screen
       setSwiper();
     })

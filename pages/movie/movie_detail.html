@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../assets/icons/themify-icons.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -20,18 +39,146 @@
       type="text/css"
       href="../../css/styles_movieDetail.css"
     />
-    <script src="https://kit.fontawesome.com/11c31663b0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/movieDetailHeader.css" />
+    <script
+      src="https://kit.fontawesome.com/11c31663b0.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="../../js/movie_detail.js" defer></script>
+    <script src="/js/checkSignedIn.js" defer></script>
+    <script src="/js/components/scrollEffect.js" defer></script>
+
     <title>Movie Detail</title>
   </head>
+  <header>
+    <nav class="navbar nav-gradient">
+      <div class="nav-left">
+        <span
+          class="hamburger"
+          style="font-size: 30px; cursor: pointer"
+          onclick="openNav()"
+          >&#9776;</span
+        >
 
+        <div id="sideNav" class="sideNav">
+          <ol class="account-menu">
+            <li class="has-inline-left-gutter navigation-menu-profile">
+              <img
+                src="https://occ-0-58-395.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABYnnca7HCf0z4YHtIK5R8MIGCeMyodAsxBYSBmMkYHqjSw46VWWyNQirfwxT-CkbxPkp-G84Wu-iOMwGG-r9QAs.png?r=f71"
+                class="header-profile-avatar"
+              />
+              <div
+                class="navigation-menu-profile-link"
+                data-href="/ProfilesGate"
+              >
+                <p
+                  class="navigation-menu-profile-name"
+                  data-href="/ProfilesGate"
+                >
+                  Tuan Anh
+                </p>
+              </div>
+            </li>
+            <a href="/pages/user/user_profile.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Account
+              </li></a
+            >
+            <a href="/pages/user/watch_history.html"
+              ><li
+                class="has-inline-left-gutter navigation-menu-setting active"
+              >
+                History
+              </li></a
+            >
+            <a href="/pages/user/watch_later.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting">
+                Watch Later
+              </li></a
+            >
+
+            <a href="/pages/movie/admin_dashboard.html"
+              ><li class="has-inline-left-gutter navigation-menu-setting admin">
+                Admin
+              </li></a
+            >
+            <button
+              class="has-inline-left-gutter navigation-menu-setting"
+              style="
+                background-color: rgb(192, 7, 29);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                padding: 0.5em;
+                width: 50%;
+              "
+              onclick="handleSignOut()"
+            >
+              SIGN OUT
+            </button>
+          </ol>
+          <div class="navigation-menu-settings">
+            <a href="/index.html">Home</a>
+            <a href="/pages/movie/category.html">Category</a>
+            <a href="/pages/movie/trending.html">Trending</a>
+          </div>
+          <a href="/pages/user/login.html"
+            ><button class="sign-in-subBar">SIGN IN</button></a
+          >
+        </div>
+
+        <div class="image-container">
+          <a href="/index.html"
+            ><img src="/assets/image/logo.png" alt="DramaHolic" class="logo"
+          /></a>
+        </div>
+        <ul class="header-navigation-text text-shadow">
+          <a href="/index.html"><li>Home</li></a>
+          <a href="/pages/movie/category.html"><li>Category</li></a>
+          <a href="/pages/movie/trending.html"><li href="#">Trending</li></a>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a href="/pages/user/login.html"
+          ><button class="sign-in-nagivation">SIGN IN</button></a
+        >
+        <div class="drop-down hidden">
+          <a href="/pages/user/user_profile.html" class="account-container">
+            <figure class="ti-user"></figure>
+            <p>Account</p>
+          </a>
+          <a
+            href="/pages/user/watch_history.html"
+            class="account-container active"
+          >
+            <figure class="ti-time"></figure>
+            <p>History</p>
+          </a>
+          <a href="/pages/user/watch_later.html" class="account-container">
+            <figure class="ti-heart"></figure>
+            <p>Watch Later</p>
+          </a>
+          <a
+            href="/pages/movie/admin_dashboard.html"
+            class="account-container admin"
+          >
+            <figure class="ti-crown"></figure>
+            <p>Admin</p>
+          </a>
+          <button class="button" onclick="handleSignOut()">Sign Out</button>
+        </div>
+        <div class="account-wrapper">
+          <p class="avatar">
+            Hi, <span class="navigation-menu-profile-name"></span>
+          </p>
+          <span class="down-arrow ti-angle-down"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
   <body>
     <div id="full-screen" onclick="stop_movie()"></div>
-    <div class="logo-container">
-      <a href="../../index.html"
-        ><img src="../../assets/image/logo.png" alt="DramaHolic" class="logo"
-      /></a>
-    </div>
+
     <div class="close-video"></div>
     <div id="blur_frame" class="blur">
       <div class="movie-info">
@@ -92,13 +239,16 @@
             <button id="button_play" class="button btn1" onclick="play_movie()">
               PLAY MOVIE
             </button>
-            <button id="button_watch_later" class="button btn2" onclick="add_watch_later()">
+            <button
+              id="button_watch_later"
+              class="button btn2"
+              onclick="add_watch_later()"
+            >
               WATCH LATER
             </button>
           </div>
         </div>
       </div>
-      
     </div>
 
     <div id="youtube_frame" class="youtube_div"></div>
@@ -115,7 +265,9 @@
                   <i class="fas fa-angle-double-left"></i>
                 </button>
               </div>
-              <p>CAST</p>
+              <h3 style="color: hsl(348, 79%, 57%); font-size: 1rem">
+                <i class="fa-solid fa-person"></i> CAST
+              </h3>
               <div>
                 <button id="iconr" class="icon" onclick="scrollr()">
                   <i class="fas fa-angle-double-right"></i>
@@ -130,7 +282,15 @@
         <!-- Comment -->
         <div class="comment-wrapper">
           <form class="comment-form" name="comment-section">
-            <label for="">Comment : </label>
+            <label style="color: hsl(348, 79%, 57%)" for=""
+              ><i class="fa-solid fa-comments"> </i> Comment :
+            </label>
+            <p
+              style="color: yellow; padding: 0.5em; width: 70%"
+              class="comment-error hidden"
+            >
+              ERROR: Max 255 characters.
+            </p>
             <input
               name="message"
               type="text"
@@ -141,12 +301,17 @@
         </div>
       </div>
       <div class="right-column">
+        <h2
+          style="
+            color: hsl(348, 79%, 57%);
+            font-size: 1.2rem;
+            padding-bottom: 0.5em;
+          "
+        >
+          <i class="fa-solid fa-film"></i> Info
+        </h2>
         <!-- director -->
-        <div id="movie_director" class="director">
-          DIRECTOR BY
-          <br />
-          <br />
-        </div>
+        <div id="movie_director" class="director"></div>
       </div>
     </div>
   </body>

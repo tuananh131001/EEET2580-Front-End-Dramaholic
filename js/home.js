@@ -63,8 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    sessionStorage.setItem("dbid", x.dbID);
-    location.href = "/pages/movie/movie_detail.html";
+    location.href = "/pages/movie/movie_detail.html?dbid=" + x.dbID;
   };
   cardContent.appendChild(button);
 
@@ -72,8 +71,7 @@ const createElementsMovieCard = (x) => {
 };
 // Billboard
 function setdbID(x) {
-  sessionStorage.setItem("dbid", x);
-  location.href = "/pages/movie/movie_detail.html";
+  location.href = "/pages/movie/movie_detail.html?dbid=" + x;
 }
 
 const movieList = [];
@@ -133,11 +131,8 @@ async function getAllMovie(i) {
   setSwiper();
 }
 async function getTrending() {
-  const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
-  const data = await reponse.json();
-  const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-
+  const totalPages = await billboardVideo.totalPages;
   await getAllMovie(0);
   const loading = document.querySelector("#loading");
   loading.style.display = "none";
@@ -192,9 +187,8 @@ async function getBillboardVideo() {
   button.innerHTML = `<button class="more-info" onclick="setdbID(${movieBillboard[random]})">
   <span class="ti-info-alt"></span> MORE INFO
 </button>`;
+  return movie
 }
-
-
 
 const openNav = () => {
   const subNav = document.querySelector("#sideNav");

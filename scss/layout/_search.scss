@@ -2,17 +2,17 @@
 
 .search-content {
   display: none;
-  margin-top: 5%;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin-top: 10vh;
+  grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   place-content: center;
   gap: 2em;
   padding: 1em;
 }
 .movie-list-grid {
-  margin-top: 5%;
+
+  margin-top: 10vh;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  place-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   gap: 2em;
   padding: 1em;
 }
@@ -44,6 +44,7 @@
 }
 .error-search-page {
   display: grid;
+  height: 100vh;
   place-content: center;
   text-align: center;
   margin-bottom: 0;

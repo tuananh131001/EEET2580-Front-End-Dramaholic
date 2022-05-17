@@ -4,8 +4,10 @@
 /* Billboard */
 
 .movie-list {
+  margin-top: 5vh;
   @include mixins.flex(column, left, flex-start);
   gap: 2em;
+  padding: 0 0 0 1em;
 }
 
 .movie-container {
@@ -31,6 +33,9 @@
 }
 
 @media (min-width: 62em) {
+  .movie-list{
+    margin-top: 0;
+  }
   /* Billbroad Video*/
   .billboard-video:after{
     content: ""; // ::before and ::after both require content
@@ -73,7 +78,7 @@
   }
   .billboard {
     display: flex;
-    min-height: 90vh;
+    height: 100%;
     flex-direction: column;
 
     .feature-movie {
@@ -89,13 +94,14 @@
       flex-direction: column;
       gap: 1em;
       width: max(50%, 500px);
-      top: 50%;
+      top: 25vw;
       left: 5%;
       border: none;
     }
     .bilboard-video-wrapper {
       overflow: hidden;
       max-width: 100%;
+      
    }
     // End video
 
