@@ -8,7 +8,7 @@ var monthSelect = document.querySelector("#month");
 var daySelect = document.querySelector("#day");
 
 // hide fallback initially
-fallbackPicker.style.display = "block";
+// fallbackPicker.style.display = "block";
 // fallbackLabel.style.display = "none";
 populateDays(monthSelect.value);
 populateYears();
@@ -24,17 +24,17 @@ try {
 }
 
 // if it does, run the code inside the if() {} block
-if (test.type === "text") {
-  // hide the native picker and show the fallback
-  nativePicker.style.display = "none";
-  fallbackPicker.style.display = "block";
-  // fallbackLabel.style.display = "block";
+// if (test.type === "text") {
+//   // hide the native picker and show the fallback
+//   nativePicker.style.display = "none";
+//   fallbackPicker.style.display = "block";
+//   // fallbackLabel.style.display = "block";
 
-  // populate the days and years dynamically
-  // (the months are always the same, therefore hardcoded)
-  populateDays(monthSelect.value);
-  populateYears();
-}
+//   // populate the days and years dynamically
+//   // (the months are always the same, therefore hardcoded)
+//   populateDays(monthSelect.value);
+//   populateYears();
+// }
 
 function populateDays(month) {
   // delete the current set of <option> elements out of the

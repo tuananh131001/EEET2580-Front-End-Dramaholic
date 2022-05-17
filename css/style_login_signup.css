@@ -331,6 +331,10 @@ select:hover+svg {
   stroke: #0077ff;
 }
 
+.fallbackDatePicker {
+  margin: 1em 0;
+}
+
 .fallbackDatePicker-content{
   display: flex;
   justify-content: space-between;
@@ -341,3 +345,4 @@ label.dob{
   font-size: 1.7em;
     /* font-weight: 450; */
 }
+
