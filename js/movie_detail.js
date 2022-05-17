@@ -239,6 +239,7 @@ function handleSubmitComment(e) {
   e.preventDefault();
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
+  userID == null ? window.location.href = "../user/login.html" : null
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
@@ -258,11 +259,13 @@ function handleSubmitComment(e) {
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
       }).then((response) => {
-        response.status == 500
-          ? document.querySelector(".comment-error").classList.remove("hidden")
-          : document.querySelector(".comment-error").classList.add("hidden");
-        getInfomationMovie();
-        document.forms["comment-section"]["message"].value = "";
+        if (response.ok) {
+          getInfomationMovie();
+          document.forms["comment-section"]["message"].value = "";
+          document.querySelector(".comment-error").classList.add("hidden");
+        } else {
+          document.querySelector(".comment-error").classList.remove("hidden");
+        }
       });
     });
 }
