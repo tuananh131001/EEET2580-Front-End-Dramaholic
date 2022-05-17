@@ -455,6 +455,10 @@ nav .nav-left {
   box-sizing: border-box;
 }
 
+.navbar {
+  z-index: 4;
+}
+
 .hamburger {
   color: rgb(255, 255, 255);
 }
@@ -463,10 +467,12 @@ nav .nav-left {
   text-decoration: none !important;
 }
 
-.account-wrapper {
+.account-wrapper p {
+  font-size: clamp(0.5rem, 1vw, 0.875rem);
   color: rgb(255, 255, 255);
 }
 
+.header-navigation-text a,
 .account-container {
   text-decoration: none;
 }
