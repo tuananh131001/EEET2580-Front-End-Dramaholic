@@ -131,14 +131,10 @@ async function getAllMovie(i) {
   setSwiper();
 }
 async function getTrending() {
-  const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
-  const data = await reponse.json();
-  const totalPages = await data.totalPages;
   const billboardVideo = await getBillboardVideo();
-
+  const totalPages = await billboardVideo.totalPages;
   await getAllMovie(0);
   const loading = document.querySelector("#loading");
-
   loading.style.display = "none";
   let scrollCount = 1;
   // media query to check
@@ -191,6 +187,7 @@ async function getBillboardVideo() {
   button.innerHTML = `<button class="more-info" onclick="setdbID(${movieBillboard[random]})">
   <span class="ti-info-alt"></span> MORE INFO
 </button>`;
+  return movie
 }
 
 const openNav = () => {
