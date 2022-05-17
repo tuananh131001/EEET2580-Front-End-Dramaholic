@@ -13,7 +13,7 @@ html {
 }
 body {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 #blur_frame {
