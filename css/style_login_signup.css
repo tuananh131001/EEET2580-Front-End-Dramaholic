@@ -294,3 +294,50 @@ a:hover {
 .formElement .ui-message-container {
   margin-top: 0.3em;
 }
+
+select {
+  -webkit-appearance: none;
+  padding: 6px 35px 6px 12px;
+  width: 100%;
+  border: 1px solid #e8eaed;  
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 1px 3px -2px #9098a9;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 150ms ease;
+}
+
+select:required:invalid {
+  color: #5a667f;
+}
+
+select option {
+  color: #223254;
+}
+
+select option[value=""][disabled] {
+  display: none;
+}
+
+/* select:focus {
+  outline: none;
+  border-color: red;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+} */
+
+select:hover+svg {
+  stroke: #0077ff;
+}
+
+.fallbackDatePicker-content{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+label.dob{
+  font-size: 1.7em;
+    /* font-weight: 450; */
+}
