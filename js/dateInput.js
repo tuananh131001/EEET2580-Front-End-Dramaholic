@@ -48,20 +48,20 @@ function populateDays(month) {
 
   // 31 or 30 days?
   if (
-    (month === "January") |
-    (month === "March") |
-    (month === "May") |
-    (month === "July") |
-    (month === "August") |
-    (month === "October") |
-    (month === "December")
+    (month === "01") |
+    (month === "03") |
+    (month === "05") |
+    (month === "07") |
+    (month === "08") |
+    (month === "10") |
+    (month === "12")
   ) {
     dayNum = 31;
   } else if (
-    (month === "April") |
-    (month === "June") |
-    (month === "September") |
-    (month === "November")
+    (month === "04") |
+    (month === "06") |
+    (month === "09") |
+    (month === "11")
   ) {
     dayNum = 30;
   } else {
