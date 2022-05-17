@@ -311,6 +311,10 @@ button {
   height: 20%;
   padding-top: 10%;
 }
+.cast_name p {
+  font-weight: 100;
+  font-size: .6rem;
+}
 .director {
   color: #fff;
   float: left;
