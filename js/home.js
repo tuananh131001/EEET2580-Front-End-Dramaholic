@@ -138,6 +138,7 @@ async function getTrending() {
 
   await getAllMovie(0);
   const loading = document.querySelector("#loading");
+
   loading.style.display = "none";
   let scrollCount = 1;
   // media query to check

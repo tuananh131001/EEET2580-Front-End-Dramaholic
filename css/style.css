@@ -558,7 +558,7 @@ nav .nav-left {
 }
 .search-content {
   display: none;
-  margin-top: 5%;
+  margin-top: 10vh;
   grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   place-content: center;
   gap: 2em;
@@ -566,7 +566,7 @@ nav .nav-left {
 }
 
 .movie-list-grid {
-  margin-top: 5%;
+  margin-top: 10vh;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
   gap: 2em;
@@ -763,6 +763,16 @@ body {
   background-image: url("/assets/image/loading.gif");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#loading::after {
+  color: black;
+  content: "Enjoy watch this cat while we get movie";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translateY(15em);
 }
 
 #body::-webkit-scrollbar {
