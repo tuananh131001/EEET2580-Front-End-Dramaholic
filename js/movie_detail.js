@@ -83,7 +83,7 @@ fetch(fetchingURL)
       document.querySelector(".scroll-images").innerHTML += `<div class="child">
 
                       <img class="child-img" src="${json.actors[i].image}" alt="image">
-                      <div class="cast_name">${json.actors[i].name}</div>
+                      <div class="cast_name">${json.actors[i].name} </br> <p>${json.actors[i].character} </p></div>
                   </div>`;
     }
     //nation name
