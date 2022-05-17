@@ -14,17 +14,20 @@
   box-sizing: border-box;
 }
 
-.navbar{
+.navbar {
   z-index: 4;
 }
 .hamburger {
-    color: colors.$white;
+  color: colors.$white;
 }
 .sideNav a {
-    text-decoration: none !important;
-  }
+  text-decoration: none !important;
+}
+a:-webkit-any-link{
+  text-decoration: none !important;
+}
 
-.account-wrapper p  {
+.account-wrapper p {
   font-size: clamp(0.5rem, 1vw, 0.875rem);
   color: colors.$white;
 }
