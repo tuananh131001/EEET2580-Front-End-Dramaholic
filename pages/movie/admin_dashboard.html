@@ -200,6 +200,15 @@
       label > input[type="radio"]:checked ~ button {
         display: none;
       }
+      .reloadButton:hover {
+        background-color: white !important;
+      }
+      .fa-edit:hover{
+        color: #c1071e;
+      }
+      .fa-trash-can:hover{
+        color: red;
+      }
     </style>
   </head>
   <body class="body">
@@ -222,16 +231,19 @@
           <div class="right-container">
             <label
               ><input type="radio" /><button
-                style="font-size: small; background-color: blue"
-                class="red_theme_button"
+              style="font-size: small;"
+                class="red_theme_button reloadButton"
                 onclick="reloadDatabase()"
               >
                 <i class="fa-solid fa-repeat"></i>
-                Reload Database
+                 Reload Database
               </button></label
             >
             <a href="./add_movie.html">
-              <button class="red_theme_button add-movie-btn">
+              <button
+                style="font-size: small; background-color: green; "
+                class="red_theme_button add-movie-btn reloadButton"
+              >
                 + Add Movie
               </button>
             </a>
