@@ -63,8 +63,7 @@ const createElementsMovieCard = (x) => {
   button.textContent = "More Detail";
   button.className = "button";
   button.onclick = function () {
-    sessionStorage.setItem("dbid", x.dbID);
-    location.href = "/pages/movie/movie_detail.html";
+    location.href = "/pages/movie/movie_detail.html?dbid=" + x.dbID;
   };
   cardContent.appendChild(button);
 
@@ -72,8 +71,7 @@ const createElementsMovieCard = (x) => {
 };
 // Billboard
 function setdbID(x) {
-  sessionStorage.setItem("dbid", x);
-  location.href = "/pages/movie/movie_detail.html";
+  location.href = "/pages/movie/movie_detail.html?dbid=" + x;
 }
 
 const movieList = [];
@@ -193,8 +191,6 @@ async function getBillboardVideo() {
   <span class="ti-info-alt"></span> MORE INFO
 </button>`;
 }
-
-
 
 const openNav = () => {
   const subNav = document.querySelector("#sideNav");

@@ -189,7 +189,7 @@
         document.querySelector("#country").innerHTML += html
     });
 
-    let current_movie = sessionStorage.getItem("edit_dbid");
+    let current_movie = new URLSearchParams(location.search).get('dbid');
     fetch(`https://dramaholic.herokuapp.com/api/movies/${current_movie}`)
     .then(response => response.json())
     .then(data => {
