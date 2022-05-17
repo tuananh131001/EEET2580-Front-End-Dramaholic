@@ -29,16 +29,6 @@ tr , td, th {
     gap: 1rem;
 }
 
-.input_title {
-    /* border: none; */
-    background-color: transparent;
-    color: black;
-    font-weight: 500;
-    font-size: 3rem;
-    width: 22rem;
-    height: 5rem;
-}
-
 .input_title_area {
     display: flex;
     gap: 1rem;
@@ -46,12 +36,12 @@ tr , td, th {
 
 
 .input_title {
-    border: none;
-    background-color: transparent;
-    color: black;
+    border: solid rgb(212, 14, 38) 1px;
+    /* background-color: transparent; */
+    /* color: black; */
     font-weight: 500;
     font-size: 3rem;
-    width: 22rem;
+    /* width: 22rem; */
     height: 5rem;
 }
 
