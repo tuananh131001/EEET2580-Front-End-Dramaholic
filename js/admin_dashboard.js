@@ -19,6 +19,16 @@ let current_page_search = 0;
 let current_start_index_search = 0
 let current_search = ""
 
+function reloadDatabase(){
+  fetch(
+    "https://dramaholic.herokuapp.com/api/movies/loadDatabase?ko=100&g=100&ja=100",
+    {
+      method: "POST",
+    }
+  ).then((response) =>console.log(response))
+}
+
+
 
 function checkPrev(mode) {
   if (mode == "search") {
