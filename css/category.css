@@ -2,6 +2,10 @@ button[class=active] {
   background-color: #c0071d !important;
 }
 
+.justify-center{
+  justify-content: center;
+}
+
 .pagination-search,
 .pagenumbers {
   display: none;
