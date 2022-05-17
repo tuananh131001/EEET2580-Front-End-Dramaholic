@@ -107,6 +107,11 @@ async function getWatchLaterList(isNew) {
     }
   }
 
+  // set up pagination
+  createPagination();
+
+  if (totalMovies == 0) return;
+
   //display movie
   watchLaterContent.innerHTML = "";
   let currentStartIndex = currentPage * movie_per_page;
@@ -114,8 +119,6 @@ async function getWatchLaterList(isNew) {
     await watchLaterContent.appendChild(list[i]);
     if (i + 1 == list.length) break;
   }
-  // set up pagination
-  createPagination();
 }
 
 function createPagination() {
@@ -139,7 +142,6 @@ function createPagination() {
   //set button
   for (let i = startPage; i < endPage; i++) {
     let btn = SetPaginationButton(i);
-    console.log(btn);
     pageNumbers.appendChild(btn);
   }
 }
@@ -201,7 +203,7 @@ prev_btn.onclick = () => {
 
 async function init() {
   await getWatchLaterList(true);
-  console.log(totalMovies);
+  console.log("Watch later: " + totalMovies);
   if (totalPages <= page_per_pagination) {
     prev_btn.setAttribute("hidden", true);
     next_btn.setAttribute("hidden", true);
