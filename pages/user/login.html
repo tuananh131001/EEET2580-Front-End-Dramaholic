@@ -64,7 +64,7 @@
               <label for="password">Password</label>
               <span onclick="togglePassword()" class="passShow">
                 <img
-                  src="/assets/image/eye.png"
+                  src="/assets/image/closed-eye.png"
                   alt=""
                   class="show"
                   id="show"
@@ -186,16 +186,15 @@
           }
         });
 
-
       function togglePassword() {
         var input = document.getElementById("password");
         // When an input is checked, or whatever...
         if (input.type === "password") {
           input.setAttribute("type", "text");
-          document.getElementById("show").src = "/assets/image/closed-eye.png";
+          document.getElementById("show").src = "/assets/image/eye.png";
         } else {
           input.setAttribute("type", "password");
-          document.getElementById("show").src = "/assets/image/eye.png";
+          document.getElementById("show").src = "/assets/image/closed-eye.png";
         }
       }
 
