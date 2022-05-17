@@ -117,6 +117,7 @@
       }
 
       @media screen and (max-width: 55em) {
+        .reloadButton,
         .add-movie-btn {
           padding: 0.5rem;
         }
@@ -169,8 +170,10 @@
           height: 2rem;
           padding: 0rem 0.2rem;
         }
+        .reloadButton,
         .add-movie-btn {
           padding: 0.4rem;
+          text-align: right;
         }
         .fa-regular {
           font-size: 15px !important;
@@ -182,6 +185,7 @@
           width: 10rem;
           height: 1.8rem;
         }
+        
         .add-movie-btn {
           padding: 0.3rem;
         }
@@ -200,14 +204,22 @@
       label > input[type="radio"]:checked ~ button {
         display: none;
       }
+ 
+      .add:hover,
       .reloadButton:hover {
         background-color: white !important;
       }
-      .fa-edit:hover{
+      .fa-edit:hover {
         color: #c1071e;
       }
-      .fa-trash-can:hover{
+      .fa-trash-can:hover {
         color: red;
+      }
+      .right-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5em;
+        justify-content: flex-end;
       }
     </style>
   </head>
@@ -231,18 +243,18 @@
           <div class="right-container">
             <label
               ><input type="radio" /><button
-              style="font-size: small;"
+                style="font-size: small"
                 class="red_theme_button reloadButton"
                 onclick="reloadDatabase()"
               >
                 <i class="fa-solid fa-repeat"></i>
-                 Reload Database
+                Database
               </button></label
             >
             <a href="./add_movie.html">
               <button
-                style="font-size: small; background-color: green; "
-                class="red_theme_button add-movie-btn reloadButton"
+                style="font-size: small; background-color: green"
+                class="red_theme_button add-movie-btn add"
               >
                 + Add Movie
               </button>
