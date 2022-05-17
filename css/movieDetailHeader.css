@@ -467,6 +467,10 @@ nav .nav-left {
   text-decoration: none !important;
 }
 
+a:-webkit-any-link {
+  text-decoration: none !important;
+}
+
 .account-wrapper p {
   font-size: clamp(0.5rem, 1vw, 0.875rem);
   color: rgb(255, 255, 255);
