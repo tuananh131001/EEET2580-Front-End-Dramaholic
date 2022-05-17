@@ -55,31 +55,6 @@ function checkNext(mode) {
   }
 }
 
-// function prev_onclick(mode) {
-//   let pagination_e = pagination_element
-//   let next_b = next_btn
-//   let index = 0
-//   if (mode == 'search') {
-//     current_start_index_search -= pagi_range
-//     pagination_e = pagination_element
-//     next_b = next_btn_search
-//     index = current_start_index_search
-//   }
-//   else {
-//     current_start_index -= pagi_range
-//     index = current_start_index
-//   }
-
-//   checkPrev(mode)
-//   next_b.removeAttribute("hidden")
-//   pagination_e.innerHTML = "";
-//   for (let i = index; i < index+pagi_range; i++) {
-//     let btn = (mode == "search")? PaginationButtonSearch(i) : PaginationButtonNormal(i);
-//     pagination_e.appendChild(btn);
-//   }
-// }
-
-
 prev_btn.onclick = () => {
   current_start_index -= pagi_range
   checkPrev("normal")

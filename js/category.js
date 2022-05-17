@@ -16,6 +16,8 @@ const categoryContent = document.querySelector(".movie-list-grid");
 const pagination_cate = document.getElementById("pagination");
 const category = document.querySelector(".category");
 const countries = document.querySelector(".country");
+const from_year = document.querySelector(".from_year");
+const to_year = document.querySelector(".to_year");
 const sortby = document.querySelector(".sort");
 // const isAdult = document.querySelector(".adult");
 const prev_btn_cate = document.querySelector("#prev");
@@ -33,6 +35,7 @@ const paginationSearch = document.querySelector(".pagination-search");
 const prevs_btn = document.querySelector("#prevs");
 const nexts_btn = document.querySelector("#nexts");
 const pagi_bar = document.querySelector(".pagination-whole");
+
 
 let current_search = "";
 let currentPage_cate = 0;
@@ -105,7 +108,11 @@ function checkNext_cate() {
       "&country=" +
       encodeURIComponent(countries.value) +
       "&title=" +
-      encodeURIComponent(current_search)
+      encodeURIComponent(current_search) +
+      "&dateGT=" +
+      encodeURIComponent(from_year.value) +
+      "&dateLTE=" +
+      encodeURIComponent(to_year.value)
   )
     .then((respone) => respone.json())
     .then((data) => {
@@ -138,11 +145,16 @@ next_btn_cate.onclick = () => {
       "&country=" +
       encodeURIComponent(countries.value) +
       "&title=" +
-      encodeURIComponent(current_search)
+      encodeURIComponent(current_search) +
+      "&dateGT=" +
+      encodeURIComponent(from_year.value) +
+      "&dateLTE=" +
+      encodeURIComponent(to_year.value)
   )
     .then((respone) => respone.json())
     .then((data) => {
       pages = data.totalPages;
+      console.log(currentStartIndex_cate + pagi_range > pages)
       if (currentStartIndex_cate + pagi_range > pages)
         next_btn_cate.setAttribute("hidden", true);
       else next_btn_cate.removeAttribute("hidden");
@@ -204,6 +216,10 @@ async function displayCards(isNew) {
       currentPage_cate +
       "&title=" +
       encodeURIComponent(current_search) +
+      "&dateGT=" +
+      encodeURIComponent(from_year.value) +
+      "&dateLTE=" +
+      encodeURIComponent(to_year.value) +
       "&sort=" +
       encodeURIComponent(sortby.value)
   );
@@ -289,6 +305,14 @@ countries.addEventListener("change", function () {
   reloadFilter();
 });
 
+// // select Country
+// from_year.addEventListener("change", function () {
+//   if (parseInt(from_year.value) > parseInt(to_year.value)) {
+//     to_year.value = ""
+//   }
+//   reloadFilter();
+// });
+
 // select sort
 sortby.addEventListener("click", function () {
   var options = category.querySelectorAll("option");
@@ -299,6 +323,14 @@ sortby.addEventListener("click", function () {
   }
 });
 sortby.addEventListener("change", function () {
+  reloadFilter()
+});
+
+from_year.addEventListener("change", function () {
+  reloadFilter()
+});
+
+to_year.addEventListener("change", function () {
   reloadFilter()
 });
 
