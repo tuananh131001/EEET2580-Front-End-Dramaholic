@@ -7,7 +7,7 @@
   margin-top: 5vh;
   @include mixins.flex(column, left, flex-start);
   gap: 2em;
-  padding: 0 0 0 1em;
+  padding: 0 0 0 10px;
 }
 
 .movie-container {
