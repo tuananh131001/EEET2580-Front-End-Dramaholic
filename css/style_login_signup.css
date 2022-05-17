@@ -278,6 +278,14 @@ a:hover {
   }
 }
 
+@media screen and (max-width: 300px) {
+  .fallbackDatePicker-content {
+      flex-direction: column;
+      gap: .5em;
+      justify-content: space-between;
+    }
+}
+
 .ui-message-container {
   position: relative;
   background: #e87c03;
@@ -297,7 +305,7 @@ a:hover {
 
 select {
   -webkit-appearance: none;
-  padding: 6px 35px 6px 12px;
+  padding: 0.6rem 3.5rem .6rem 1.2rem;
   width: 100%;
   border: 1px solid #e8eaed;  
   border-radius: 5px;
@@ -305,7 +313,7 @@ select {
   box-shadow: 0 1px 3px -2px #9098a9;
   cursor: pointer;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 1.5em;
   transition: all 150ms ease;
 }
 
@@ -337,8 +345,7 @@ select:hover+svg {
 
 .fallbackDatePicker-content{
   display: flex;
-  justify-content: space-between;
-  
+  justify-content: space-between; 
 }
 
 label.dob{
