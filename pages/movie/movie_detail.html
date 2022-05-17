@@ -2,23 +2,23 @@
 <html lang="en">
   <head>
     <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="/assets/favicon_io/apple-touch-icon.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="/assets/favicon_io/favicon-32x32.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="/assets/favicon_io/favicon-16x16.png"
-  />
-  <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,7 +39,7 @@
       type="text/css"
       href="../../css/styles_movieDetail.css"
     />
-    <link rel="stylesheet" href="/css/movieDetailHeader.css">
+    <link rel="stylesheet" href="/css/movieDetailHeader.css" />
     <script
       src="https://kit.fontawesome.com/11c31663b0.js"
       crossorigin="anonymous"
@@ -138,7 +138,6 @@
         </ul>
       </div>
       <div class="nav-right">
-
         <a href="/pages/user/login.html"
           ><button class="sign-in-nagivation">SIGN IN</button></a
         >
@@ -265,7 +264,9 @@
                   <i class="fas fa-angle-double-left"></i>
                 </button>
               </div>
-              <h3 style="color: hsl(348, 79%, 57%); font-size:1rem;"><i class="fa-solid fa-person"></i> CAST</h3>
+              <h3 style="color: hsl(348, 79%, 57%); font-size: 1rem">
+                <i class="fa-solid fa-person"></i> CAST
+              </h3>
               <div>
                 <button id="iconr" class="icon" onclick="scrollr()">
                   <i class="fas fa-angle-double-right"></i>
@@ -280,7 +281,15 @@
         <!-- Comment -->
         <div class="comment-wrapper">
           <form class="comment-form" name="comment-section">
-            <label style="color: hsl(348, 79%, 57%);" for=""><i class="fa-solid fa-comments"> </i> Comment : </label>
+            <label style="color: hsl(348, 79%, 57%)" for=""
+              ><i class="fa-solid fa-comments"> </i> Comment :
+            </label>
+            <p
+              style="color: yellow; padding: 0.5em; width: 70%"
+              class="comment-error hidden"
+            >
+              ERROR: Max 255 characters.
+            </p>
             <input
               name="message"
               type="text"
@@ -291,7 +300,15 @@
         </div>
       </div>
       <div class="right-column">
-        <h2  style="color: hsl(348, 79%, 57%); font-size: 1.2rem;padding-bottom: .5em;"><i class="fa-solid fa-film"></i> Info</h2>
+        <h2
+          style="
+            color: hsl(348, 79%, 57%);
+            font-size: 1.2rem;
+            padding-bottom: 0.5em;
+          "
+        >
+          <i class="fa-solid fa-film"></i> Info
+        </h2>
         <!-- director -->
         <div id="movie_director" class="director"></div>
       </div>
