@@ -234,11 +234,13 @@ function handleSubmitComment(e) {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   userID == null ? (window.location.href = "../user/login.html") : null;
+  let messageMovie;
+  document.forms["comment-section"]["message"].value == ""
+    ? location.reload()
+    : (messageMovie = document.forms["comment-section"]["message"].value);
   fetch(originalURL + userID)
     .then((response) => response.json())
     .then((json) => {
-      let messageMovie = document.forms["comment-section"]["message"].value;
-      messageMovie == "" ? location.reload() : null;
       let movieID = new URLSearchParams(location.search).get("dbid").toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
