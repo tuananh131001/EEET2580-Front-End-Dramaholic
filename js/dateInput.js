@@ -8,8 +8,11 @@ var monthSelect = document.querySelector("#month");
 var daySelect = document.querySelector("#day");
 
 // hide fallback initially
-fallbackPicker.style.display = "none";
+fallbackPicker.style.display = "block";
 // fallbackLabel.style.display = "none";
+populateDays(monthSelect.value);
+populateYears();
+// nativePicker.style.display = "none";
 
 // test whether a new date input falls back to a text input or not
 var test = document.createElement("input");
