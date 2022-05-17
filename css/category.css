@@ -2,10 +2,6 @@ button[class=active] {
   background-color: #c0071d !important;
 }
 
-.justify-center{
-  justify-content: center;
-}
-
 .pagination-search,
 .pagenumbers {
   display: none;
@@ -34,19 +30,15 @@ button[class=active] {
   background-color: #c0071d !important;
 }
 
-.select-category > div > div {
+.select-category > div {
   display: flex;
   flex-direction: column;
-  gap: 0.3em;
-}
-
-.select-category > div{
   gap: 0.5em;
 }
 
 select {
   -webkit-appearance: none;
-  padding: 6px 35px 6px 12px;
+  padding: 7px 40px 7px 12px;
   width: 100%;
   border: 1px solid #e8eaed;
   border-radius: 5px;
@@ -54,7 +46,7 @@ select {
   box-shadow: 0 1px 3px -2px #9098a9;
   cursor: pointer;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;
   transition: all 150ms ease;
 }
 select:required:invalid {
@@ -112,35 +104,12 @@ main .movie-list-grid {
   border-radius: 10px;
   padding: 1em;
   margin: 1em;
-  gap: 0.5em;
-  background-color: #1d2630;
+  gap: 1em;
+  background-color: #131920;
 }
 
 footer {
   margin-top: auto;
-}
-
-@media screen and (max-width: 40em) {
-  .select-category {
-    flex-direction: column;
-  }
-  .select-category label {font-size: 14px;}
-  select {
-    font-size: 14px;
-    padding: 5px 30px 5px 12px;
-  }
-}
-
-@media screen and (max-width: 21em) {
-  .select-category label {font-size: 13px;}
-  .select-category {
-    padding: 1em 0.5em;
-    margin: 0.5em;
-  }
-  select {
-    font-size: 12.5px;
-    padding: 4px 10px;
-  }
 }
 
 /*# sourceMappingURL=category.css.map */
