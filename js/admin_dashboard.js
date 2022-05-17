@@ -22,14 +22,15 @@ let current_start_index_search = 0;
 let current_search = "";
 
 function reloadDatabase() {
-  let text = "Are you sure you want to reload database 1\nEither OK or Cancel.";
+  let text = "Are you sure you want to reload database? \nEither OK or Cancel.";
   if (confirm(text) == true) {
+    alert("Database is reloading. Please dont press refresh button too soon");
     fetch(
       "https://dramaholic.herokuapp.com/api/movies/loadDatabase?ko=200&g=200&ja=200",
       {
         method: "POST",
       }
-    ).then((response) => console.log(response));
+    ).then((response) => alert("Database reloaded"));
   }
 }
 
