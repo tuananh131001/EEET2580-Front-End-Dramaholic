@@ -1,7 +1,7 @@
 const closeVideo = document.querySelector(".close-video");
 let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
 
-let id = new URLSearchParams(location.search).get('dbid');
+let id = new URLSearchParams(location.search).get("dbid");
 let userId = JSON.parse(localStorage.getItem("UserID"));
 console.log(id);
 let film_title = "";
@@ -93,14 +93,12 @@ fetch(fetchingURL)
 
     let country = regionNames.of(json.country.toUpperCase());
 
-
-
     // Movie Information
     document.querySelector(
       "#movie_director"
     ).innerHTML += `<h2 class="director_name ">Genres:<h3 class="info_text"> ${json.genres}</h3></h2>`;
-    
-    // Director 
+
+    // Director
     for (let i = 0; i < json.director.length; i++) {
       document.querySelector(
         "#movie_director"
@@ -142,7 +140,7 @@ function handleDelteComment(commentId, username, password) {
   });
 }
 async function getInfomationMovie() {
-  const id =  new URLSearchParams(location.search).get('dbid');
+  const id = new URLSearchParams(location.search).get("dbid");
   const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
   const json = await url.json();
   getComments(json.comments);
@@ -246,7 +244,7 @@ function handleSubmitComment(e) {
     .then((json) => {
       let messageMovie = document.forms["comment-section"]["message"].value;
       messageMovie == "" ? location.reload() : null;
-      let movieID =  new URLSearchParams(location.search).get('dbid').toString();
+      let movieID = new URLSearchParams(location.search).get("dbid").toString();
       const dataToSend = JSON.stringify({
         message: messageMovie,
         user: {
@@ -260,12 +258,11 @@ function handleSubmitComment(e) {
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
       }).then((response) => {
-        fetch("https://dramaholic.herokuapp.com/api/movies/" + movieID)
-          .then((response) => response.json())
-          .then((json) => {
-            getInfomationMovie();
-            document.forms["comment-section"]["message"].value = "";
-          });
+        response.status == 500
+          ? document.querySelector(".comment-error").classList.remove("hidden")
+          : document.querySelector(".comment-error").classList.add("hidden");
+        getInfomationMovie();
+        document.forms["comment-section"]["message"].value = "";
       });
     });
 }
@@ -305,7 +302,7 @@ function stop_movie() {
 function add_history() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID =  new URLSearchParams(location.search).get('dbid');
+  let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -331,7 +328,7 @@ function add_history() {
 function add_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID =  new URLSearchParams(location.search).get('dbid');;
+  let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -362,7 +359,7 @@ function add_watch_later() {
 function delete_watch_later() {
   let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
-  let movieID =  new URLSearchParams(location.search).get('dbid');
+  let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
 
   if (userID == null) {
@@ -379,9 +376,11 @@ function delete_watch_later() {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: dataToSend,
-        }).then((response) => {
-          console.log(response);
-        });
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => con);
       });
     document.querySelector("#button_watch_later").outerHTML = `
           <button id="button_watch_later" class="button btn2" onclick="add_watch_later()">
@@ -436,7 +435,6 @@ function responsiveRating() {
 window.onresize = responsiveRating;
 
 // ------------------------------------- Header
-
 
 const openNav = () => {
   const subNav = document.querySelector("#sideNav");
