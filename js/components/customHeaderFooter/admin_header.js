@@ -47,6 +47,7 @@ document.querySelector("header").innerHTML = `
                 </div>
                 <a href="../../../pages/user/user_profile.html"><li>Account</li></a>
                 <a href="../../pages/user/watch_history.html"><li>History</li></a>
+                <a href="../../pages/user/watch_later.html"><li>Watch Later</li></a>
                 <div hidden class="admin-dashboard"><a href="../../../pages/movie/admin_dashboard.html"><li class="active">Admin</li></a></div>
             </div>
             <div class="navigation-menu-settings">
@@ -86,6 +87,12 @@ document.querySelector("header").innerHTML = `
                     <a href="../../pages/user/watch_history.html">
                         <span class="cuteicon ti-time"></span>
                         History
+                    </a>
+                </div>
+                <div>
+                    <a href="../../pages/user/watch_later.html">
+                        <span class="cuteicon ti-heart"></span>
+                        Watch Later
                     </a>
                 </div>
                 <div class="admin-dashboard" hidden>

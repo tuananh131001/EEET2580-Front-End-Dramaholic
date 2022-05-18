@@ -48,7 +48,6 @@
                 <div class="input_title_area align_items_center">
                     <input  class="input_box input_title" type="text" id="title" name="title" value="Movie title" placeholder="Movie title"/>
                     <span class="require_symbol">*</span>
-                    <!-- <div id="edit_title" onclick="change_title()">Edit</div> -->
                 </div>
                 <div class="form_body flex_row">
                     <div class="flex_col form_col" id="left_col">
@@ -323,6 +322,8 @@
             description: document.getElementById("description").value,
             href: document.getElementById("href").value,
             thumbnail: document.getElementById("thumbnail").value,
+            thumbnail_portrait: document.querySelector("#thumbnail_portrait").value,
+            thumbnail_landscape = document.querySelector("#thumbnail_landscape").value,
             duration: document.getElementById("duration").value,
             episodes: document.getElementById("episodes").value,
             rating: document.getElementById("rating").value,

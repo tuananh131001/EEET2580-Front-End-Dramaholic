@@ -122,75 +122,45 @@
         let usernameValue = document.forms["myForm"]["username"].value;
         let pass = document.forms["myForm"]["password"].value;
 
-        //check if username is existed
-        fetch("https://dramaholic.herokuapp.com/api/customers")
-          .then((response) => response.json())
-          .then((user) => {
-            return new Promise(function (resolve, reject) {
-              for (let i = 0; i < user.content.length; i++) {
-                //check for username already exist
-                if (user.content[i].username == usernameValue) {
-                  console.log("User found");
-                  resolve();
-                }
-              }
-              //username is not existed
-              reject("Username is not existed");
-            });
+        const dataToSend = JSON.stringify({
+          username: usernameValue,
+          password: pass,
+        });
+        fetch("https://dramaholic.herokuapp.com/api/customers/login", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: dataToSend,
+        })
+          .then((resp) => {
+            if (resp.status === 200) {
+              return resp.json();
+            } else if (resp.status === 403) {
+              return Promise.reject("Credential error");
+            } else {
+              console.log("Status: " + resp.status);
+              return Promise.reject("server");
+            }
           })
-          .then(function () {
-            const dataToSend = JSON.stringify({
-              username: usernameValue,
-              password: pass,
-            });
-            fetch("https://dramaholic.herokuapp.com/api/customers/login", {
-              method: "post",
-              headers: { "Content-Type": "application/json" },
-              body: dataToSend,
-            })
-              .then((resp) => {
-                if (resp.status === 200) {
-                  return resp.json();
-                } else {
-                  console.log("Status: " + resp.status);
-                  return Promise.reject("server");
-                }
-              })
-              .then((dataJson) => {
-                const checkMe = document.querySelector("#rememberMe");
-                if (checkMe.checked) {
-                  localStorage.setItem("isLogin", true);
-                  localStorage.setItem("UserID", dataJson.id);
-                  localStorage.setItem("UserIDRemember", dataJson.id);
-                } else {
-                  localStorage.setItem("isLogin", true);
-                  localStorage.setItem("UserID", dataJson.id);
-                  localStorage.removeItem("UserIDRemember");
-                }
-                location.href = "/index.html";
-              })
-              .catch((err) => {
-                let errorElement = document.querySelector(
-                  ".ui-message-container"
-                );
-                errorElement.classList.remove("hidden");
-                errorElement.querySelector(".ui-message-contents").innerHTML =
-                  "<b>Incorrect password.</b> Please try again.";
-                if (err === "server") return;
-                console.log(err);
-              });
+          .then((dataJson) => {
+            const checkMe = document.querySelector("#rememberMe");
+            if (checkMe.checked) {
+              localStorage.setItem("isLogin", true);
+              localStorage.setItem("UserID", dataJson.id);
+              localStorage.setItem("UserIDRemember", dataJson.id);
+            } else {
+              localStorage.setItem("isLogin", true);
+              localStorage.setItem("UserID", dataJson.id);
+              localStorage.removeItem("UserIDRemember");
+            }
+            location.href = "/index.html";
           })
           .catch((err) => {
-            if (err == "Username is not existed") {
-              let errorElement = document.querySelector(
-                ".ui-message-container"
-              );
-              errorElement.classList.remove("hidden");
-              errorElement.querySelector(".ui-message-contents").innerHTML =
-                "<b>Username is not existed.</b> Please try again.";
-            } else {
-              console.log(err);
-            }
+            let errorElement = document.querySelector(".ui-message-container");
+            errorElement.classList.remove("hidden");
+            errorElement.querySelector(".ui-message-contents").innerHTML =
+              "<b>The username or password is incorrect.</b> Please try again.";
+            if (err === "server") return;
+            console.log(err);
           });
       }
 

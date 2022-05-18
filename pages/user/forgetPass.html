@@ -46,7 +46,7 @@
               <div class="ui-message-contents"></div>
             </div>
             <p class="instruction">
-              Please enter your informations to search for your account
+              Please enter your information to search for your account
             </p>
           </div>
           <form action="" class="form" id="form">
@@ -240,7 +240,7 @@
         }
         var emailValue = document.getElementById("email").value;
 
-        fetch(userURL)
+        fetch(userURL + "?size=100000")
           .then((response) => response.json())
           .then((users) => {
             return new Promise(function (resolve, reject) {
