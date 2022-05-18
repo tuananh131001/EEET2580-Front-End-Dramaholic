@@ -240,7 +240,7 @@
         }
         var emailValue = document.getElementById("email").value;
 
-        fetch(userURL)
+        fetch(userURL + "?size=100000")
           .then((response) => response.json())
           .then((users) => {
             return new Promise(function (resolve, reject) {
