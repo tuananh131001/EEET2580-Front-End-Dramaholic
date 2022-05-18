@@ -13,6 +13,7 @@ const openNav = () => {
 //-------------------------------------------------
 //---------------CATEGORY--------------------------
 const categoryContent = document.querySelector(".movie-list-grid");
+const pagi_bar = document.querySelector(".pagination-bar.cate");
 const pagination_cate = document.getElementById("pagination");
 const category = document.querySelector(".category");
 const countries = document.querySelector(".country");
@@ -31,15 +32,15 @@ const logo = document.querySelector(".image-container");
 const navBar = document.querySelector(".navbar");
 const mainContent = document.querySelector("main");
 const emptyPage = document.querySelector(".error-search-page");
-const paginationSearch = document.querySelector(".pagination-search");
+// const paginationSearch = document.querySelector(".pagination-search");
 const prevs_btn = document.querySelector("#prevs");
 const nexts_btn = document.querySelector("#nexts");
-const pagi_bar = document.querySelector(".pagination-whole");
 
 
 let current_search = "";
 let currentPage_cate = 0;
 let currentStartIndex_cate = 0;
+let total_pages = 0;
 
 fetch(
   "https://api.themoviedb.org/3/genre/tv/list?api_key=2a51e561a490f304053dd6d7c06dbe16&language=en-US"
@@ -96,30 +97,32 @@ async function getCountry() {
   document.querySelector("#country").innerHTML += html;
 }
 
+async function getTotalPages(mode) {
+    let res = await fetch(
+      "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
+        encodeURIComponent(category.value) +
+        "&country=" +
+        encodeURIComponent(countries.value) +
+        "&title=" +
+        encodeURIComponent(current_search) +
+        "&dateGT=" +
+        encodeURIComponent(from_year.value) +
+        "&dateLTE=" +
+        encodeURIComponent(to_year.value)
+        )
+    const {totalPages} = await res.json()
+    total_pages = totalPages
+}
+
 function checkPrev_cate() {
   if (currentStartIndex_cate == 0) prev_btn_cate.setAttribute("hidden", true);
   else prev_btn_cate.removeAttribute("hidden");
 }
 
 function checkNext_cate() {
-  fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
-      encodeURIComponent(category.value) +
-      "&country=" +
-      encodeURIComponent(countries.value) +
-      "&title=" +
-      encodeURIComponent(current_search) +
-      "&dateGT=" +
-      encodeURIComponent(from_year.value) +
-      "&dateLTE=" +
-      encodeURIComponent(to_year.value)
-  )
-    .then((respone) => respone.json())
-    .then((data) => {
-      if (currentStartIndex_cate + pagi_range > data.totalPages)
-        next_btn_cate.setAttribute("hidden", true);
-      else next_btn_cate.removeAttribute("hidden");
-    });
+  if (currentStartIndex_cate + pagi_range >= total_pages)
+    next_btn_cate.setAttribute("hidden", true);
+  else next_btn_cate.removeAttribute("hidden");
 }
 
 prev_btn_cate.onclick = () => {
@@ -139,37 +142,11 @@ prev_btn_cate.onclick = () => {
 
 next_btn_cate.onclick = () => {
   currentStartIndex_cate += pagi_range;
-  fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
-      encodeURIComponent(category.value) +
-      "&country=" +
-      encodeURIComponent(countries.value) +
-      "&title=" +
-      encodeURIComponent(current_search) +
-      "&dateGT=" +
-      encodeURIComponent(from_year.value) +
-      "&dateLTE=" +
-      encodeURIComponent(to_year.value)
-  )
-    .then((respone) => respone.json())
-    .then((data) => {
-      pages = data.totalPages;
-      console.log(currentStartIndex_cate + pagi_range > pages)
-      if (currentStartIndex_cate + pagi_range > pages)
-        next_btn_cate.setAttribute("hidden", true);
-      else next_btn_cate.removeAttribute("hidden");
-      prev_btn_cate.removeAttribute("hidden");
-
-      pagination_cate.innerHTML = "";
-      let end_index =
-        currentStartIndex_cate + pagi_range > pages
-          ? pages
-          : currentStartIndex_cate + pagi_range;
-      for (let i = currentStartIndex_cate; i < end_index; i++) {
-        let btn = PaginationButton_cate(i);
-        pagination_cate.appendChild(btn);
-      }
-    });
+  let end_index =
+    currentStartIndex_cate + pagi_range >= total_pages
+      ? total_pages
+      : currentStartIndex_cate + pagi_range;
+  SetupPagination_cate(end_index)
 };
 
 function SetupPagination_cate(end_index) {
@@ -228,11 +205,14 @@ async function displayCards(isNew) {
   let list = [];
   categoryContent.innerHTML = "";
   let end_index =
-    currentStartIndex_cate + pagi_range > totalPages
+    currentStartIndex_cate + pagi_range >= totalPages
       ? totalPages
       : currentStartIndex_cate + pagi_range;
 
-  if (isNew) SetupPagination_cate(end_index);
+  if (isNew) {
+    total_pages = totalPages;
+    SetupPagination_cate(end_index);
+  }
 
   for (let i = 0; i < content.length; i++) {
     list.push(createCardHistory(content[i]));
@@ -341,7 +321,9 @@ function reloadFilter() {
 inputValue.addEventListener("input", (e) => {
   current_search = e.target.value;
   if (current_search) {
+    
     reloadFilter();
+    // pagi_bar.classList.remove("hidden");
   } else {
     disableSearch();
   }
@@ -370,7 +352,7 @@ function disableSearch() {
   navBar.style.position = "fixed";
   mainContent.style.display = "block";
   emptyPage.classList.add("hidden");
-  pagiBar_search.classList.add("hidden");
+  // pagi_bar.classList.add("hidden");
 }
 
 ////////////////////////////////
