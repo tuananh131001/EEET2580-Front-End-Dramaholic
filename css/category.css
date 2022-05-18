@@ -30,7 +30,21 @@ button[class=active] {
   background-color: #c0071d !important;
 }
 
+.select-category {
+  justify-content: center;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em;
+  gap: 0.5em;
+  background-color: #131920;
+}
+
 .select-category > div {
+  display: flex;
+  gap: 0.5em;
+}
+
+.select-category > div > div {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -38,7 +52,7 @@ button[class=active] {
 
 select {
   -webkit-appearance: none;
-  padding: 7px 40px 7px 12px;
+  padding: 7px 25px 7px 12px;
   width: 100%;
   border: 1px solid #e8eaed;
   border-radius: 5px;
@@ -100,16 +114,20 @@ main .movie-list-grid {
   margin-top: 0;
 }
 
-.select-category {
-  border-radius: 10px;
-  padding: 1em;
-  margin: 1em;
-  gap: 1em;
-  background-color: #131920;
-}
 
 footer {
   margin-top: auto;
+}
+
+@media screen and (max-width: 41em) {
+  .select-category > div {
+    flex-direction: column;
+  }
+
+  .select-category {
+    justify-content: left;
+    gap: 1em;
+  }
 }
 
 /*# sourceMappingURL=category.css.map */
