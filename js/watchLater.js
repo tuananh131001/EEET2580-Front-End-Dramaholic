@@ -101,16 +101,16 @@ async function getWatchLaterList(isNew) {
     // set total number of movie
     totalMovies = movies.length;
 
+    if (totalMovies != 0) {
+      prev_btn.style.display = "block";
+      next_btn.style.display = "block";
+    } else return;
+
     //push movies to list
     for (let i = totalMovies - 1; i >= 0; i--) {
       await list.push(createCardHistory(movies[i]));
     }
   }
-
-  // set up pagination
-  createPagination();
-
-  if (totalMovies == 0) return;
 
   //display movie
   watchLaterContent.innerHTML = "";
@@ -119,6 +119,9 @@ async function getWatchLaterList(isNew) {
     await watchLaterContent.appendChild(list[i]);
     if (i + 1 == list.length) break;
   }
+
+  // set up pagination
+  createPagination();
 }
 
 function createPagination() {
@@ -136,6 +139,7 @@ function createPagination() {
       startPage =
         Math.floor(currentPage / page_per_pagination) * page_per_pagination;
       endPage = startPage + page_per_pagination;
+      if (endPage > totalPages) endPage = totalPages;
     }
   } else endPage = totalPages;
 
@@ -204,6 +208,7 @@ prev_btn.onclick = () => {
 async function init() {
   await getWatchLaterList(true);
   console.log("Watch later: " + totalMovies);
+
   if (totalPages <= page_per_pagination) {
     prev_btn.setAttribute("hidden", true);
     next_btn.setAttribute("hidden", true);
