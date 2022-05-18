@@ -9,14 +9,26 @@ const isHover = (e) => e.parentElement.querySelector(":hover") === e;
 const emptyPage = document.querySelector(".error-search-page");
 const searchBar = document.querySelector(".search-bar");
 const navBar = document.querySelector(".navbar");
-const paginationSearch = document.querySelector(".pagination-search");
 const prevs_btn = document.querySelector("#prevs");
 const nexts_btn = document.querySelector("#nexts");
-const pagi_bar = document.querySelector(".pagination-whole");
+const pagi_bar = document.querySelector(".pagination-whole"); //whole pagi bar
+const paginationSearch = document.querySelector(".pagination-search"); //pagi buttons
 let current_page = 0;
 let pagiRange = 8
 let currentStartIndex = 0
 let current_search = ""
+let total_pages = 0;
+
+async function getTotalPages() {
+  let res = await fetch(
+    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+      current_search +
+      "&page=" +
+      current_page
+  )
+    const {totalPages} = await res.json()
+    total_pages = totalPages
+}
 
 function checkPrevs() {
   if(currentStartIndex == 0) prevs_btn.setAttribute("hidden",true)
@@ -24,53 +36,19 @@ function checkPrevs() {
 }
 
 async function checkNexts() {
-  await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
-      current_search +
-      "&page=" +
-      current_page
-  )
-  .then((respone) => respone.json())
-  .then((data) => {
-    if((currentStartIndex+pagiRange) > data.totalPages) nexts_btn.setAttribute("hidden",true)
+    if((currentStartIndex+pagiRange) >= total_pages) nexts_btn.setAttribute("hidden",true)
     else nexts_btn.removeAttribute("hidden")
-  });
 }
 
 prevs_btn.onclick = () => {
   currentStartIndex -= pagiRange
-  checkPrevs()
-  nexts_btn.removeAttribute("hidden")
-  paginationSearch.innerHTML = "";
-  for (let i = currentStartIndex; i < currentStartIndex+pagiRange; i++) {
-    let btn = PaginationButton(i);
-    paginationSearch.appendChild(btn);
-  }
+  SetupPagination(currentStartIndex+pagiRange)
 }
 
 nexts_btn.onclick = async () => {
   currentStartIndex += pagiRange
-  await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
-      current_search +
-      "&page=" +
-      current_page
-  )
-  .then((respone) => respone.json())
-  .then((data) => {
-    pages = data.totalPages
-    if((currentStartIndex+pagiRange) > pages) nexts_btn.setAttribute("hidden",true)
-    else nexts_btn.removeAttribute("hidden")
-    prevs_btn.removeAttribute("hidden")
-
-    paginationSearch.innerHTML = "";
-    let end_index = (currentStartIndex + pagiRange) > pages ? pages : (currentStartIndex + pagiRange)
-    for (let i = currentStartIndex; i < end_index; i++) {
-      let btn = PaginationButton(i);
-      paginationSearch.appendChild(btn);
-    }
-  });
-
+  let end_index = (currentStartIndex + pagiRange) >= total_pages ? total_pages : (currentStartIndex + pagiRange)
+  SetupPagination(end_index)
 }
 
 const createCardSearch = (x) => {
@@ -140,6 +118,7 @@ async function getMovieListSearch(isNew) {
       current_page
   );
   const { content, totalPages } = await url.json();
+  total_pages = totalPages
 
   let list = [];
   searchContent.innerHTML = "";
@@ -156,20 +135,29 @@ async function getMovieListSearch(isNew) {
     pagi_bar.classList.add("hidden")
     emptyPage.classList.remove("hidden");
     // navBar.style.position = "relative";
+
   }
   if (!isEmpty(searchContent.childNodes)) {
     emptyPage.classList.add("hidden");
-    let end_index = (currentStartIndex + pagiRange) > totalPages ? totalPages : (currentStartIndex + pagiRange)
-    if (isNew) SetupPagination(end_index)
+    let end_index = (currentStartIndex + pagiRange) >= totalPages ? totalPages : (currentStartIndex + pagiRange)
+    if (isNew) {
+      // getTotalPages()
+      SetupPagination(end_index)
+    }
     searchContent.style.display = "grid";
-    pagi_bar.classList.remove("hidden")
     footer.style.display = "block";
     mainContent.style.display = "none";
+    pagi_bar.classList.remove("hidden")
+
     window.scroll({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
+  }
+  else { 
+    pagi_bar.classList.add("hidden")
+
   }
 }
 

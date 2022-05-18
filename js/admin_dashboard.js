@@ -9,6 +9,8 @@ const prev_btn = document.querySelector(".pnormal .prev");
 const next_btn = document.querySelector(".pnormal .next");
 let current_page = 0;
 let current_start_index = 0;
+let total_pages = 0;
+
 
 const list_element_search = document.querySelector(".psearch #list");
 const pagination_element_search = document.querySelector(
@@ -20,6 +22,7 @@ const search = document.querySelector(".search");
 let current_page_search = 0;
 let current_start_index_search = 0;
 let current_search = "";
+let total_pages_search = 0;
 
 function reloadDatabase() {
   let text = "Are you sure you want to reload database? \nEither OK or Cancel.";
@@ -31,6 +34,18 @@ function reloadDatabase() {
         method: "POST",
       }
     ).then((response) => alert("Database reloaded"));
+  }
+}
+
+async function getTotalPages(mode) {
+  if (mode == "search") {
+    let res = await fetch( `https://dramaholic.herokuapp.com/api/movies/search?title=` +current_search)
+    const {totalPages} = await res.json()
+    total_pages_search = totalPages
+  } else {
+    let res = await fetch("https://dramaholic.herokuapp.com/api/movies")
+    const {totalPages} = await res.json()
+    total_pages = totalPages
   }
 }
 
@@ -48,26 +63,39 @@ function checkPrev(mode) {
 
 function checkNext(mode) {
   if (mode == "search") {
-    fetch(
-      `https://dramaholic.herokuapp.com/api/movies/search?title=` +
-        current_search
-    )
-      .then((respone) => respone.json())
-      .then((data) => {
-        if (current_start_index_search + pagi_range > data.totalPages)
+        if (current_start_index_search + pagi_range >= total_pages_search)
           next_btn_search.setAttribute("hidden", true);
         else next_btn_search.removeAttribute("hidden");
-      });
   } else {
-    fetch("https://dramaholic.herokuapp.com/api/movies")
-      .then((respone) => respone.json())
-      .then((data) => {
-        if (current_start_index + pagi_range > data.totalPages)
+        if (current_start_index + pagi_range >= total_pages)
           next_btn.setAttribute("hidden", true);
         else next_btn.removeAttribute("hidden");
-      });
   }
 }
+
+
+// function checkNext(mode) {
+//   if (mode == "search") {
+//     fetch(
+//       `https://dramaholic.herokuapp.com/api/movies/search?title=` +
+//         current_search
+//     )
+//       .then((respone) => respone.json())
+//       .then((data) => {
+//         if (current_start_index_search + pagi_range > data.totalPages)
+//           next_btn_search.setAttribute("hidden", true);
+//         else next_btn_search.removeAttribute("hidden");
+//       });
+//   } else {
+//     fetch("https://dramaholic.herokuapp.com/api/movies")
+//       .then((respone) => respone.json())
+//       .then((data) => {
+//         if (current_start_index + pagi_range > data.totalPages)
+//           next_btn.setAttribute("hidden", true);
+//         else next_btn.removeAttribute("hidden");
+//       });
+//   }
+// }
 
 prev_btn.onclick = () => {
   current_start_index -= pagi_range;
@@ -97,43 +125,20 @@ prev_btn_search.onclick = () => {
 
 next_btn.onclick = () => {
   current_start_index += pagi_range;
-  fetch("https://dramaholic.herokuapp.com/api/movies")
-    .then((respone) => respone.json())
-    .then((data) => {
-      if (current_start_index + pagi_range >= data.totalPages)
-        next_btn.setAttribute("hidden", true);
-      else next_btn.removeAttribute("hidden");
-
-      prev_btn.removeAttribute("hidden");
-
-      let totalPages = data.totalPages;
-      let end_index =
-        current_start_index + pagi_range > totalPages
-          ? totalPages
-          : current_start_index + pagi_range;
-      SetupPagination("normal", end_index);
-    });
+  let end_index =
+    current_start_index + pagi_range >= total_pages
+      ? total_pages
+      : current_start_index + pagi_range;
+  SetupPagination("normal", end_index);
 };
 
-///////////////////////////////
 next_btn_search.onclick = () => {
   current_start_index_search += pagi_range;
-  fetch("https://dramaholic.herokuapp.com/api/movies")
-    .then((respone) => respone.json())
-    .then((data) => {
-      if (current_start_index + pagi_range >= data.totalPages)
-        next_btn.setAttribute("hidden", true);
-      else next_btn_search.removeAttribute("hidden");
-
-      next_btn_search.removeAttribute("hidden");
-
-      let totalPages = data.totalPages;
-      let end_index =
-        current_start_index_search + pagi_range > totalPages
-          ? totalPages
-          : current_start_index_search + pagi_range;
-      SetupPagination("normal", end_index);
-    });
+  let end_index =
+    current_start_index_search + pagi_range >= total_pages
+      ? total_pages
+      : current_start_index_search + pagi_range;
+  SetupPagination("search", end_index);
 };
 
 function PaginationButtonNormal(page) {
@@ -157,7 +162,6 @@ function PaginationButtonSearch(page) {
   button.innerText = page + 1;
   if (current_page_search == page) button.classList.add("active");
   button.addEventListener("click", function () {
-    console.log("huhu");
     let prev_active = document.querySelector(".psearch button.active");
     if (prev_active != null) prev_active.classList.remove("active");
     current_page_search = button.innerText - 1;
@@ -202,8 +206,11 @@ async function getMovieList(mode, isNew) {
     mode == "search" ? current_start_index_search : current_start_index;
 
   if (isNew) {
+    if (mode == "search") total_pages_search = totalPages
+    else total_pages = totalPages
+    // getTotalPages(mode)
     let end_index =
-      start_index + pagi_range > totalPages
+      start_index + pagi_range >= totalPages
         ? totalPages
         : start_index + pagi_range;
     SetupPagination(mode, end_index);
