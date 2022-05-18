@@ -221,6 +221,7 @@
         document.querySelector("#country").value = data.country
         document.querySelector("#date").value = data.date
         document.querySelector("#director").value = data.director
+        document.querySelector("#tags").value = data.tags
         document.querySelector("#thumbnail").value = data.thumbnail
         document.querySelector("#thumbnail_portrait").value = data.thumbnail_portrait
         document.querySelector("#thumbnail_landscape").value = data.thumbnail_landscape
@@ -316,29 +317,30 @@
     }
 
     function generalize_director() {
-        let values = document.querySelector("#director").value.split(/[,]+/).filter(Boolean);
-        let total = values.length
-        let directors = []
-        for (let i = 0; i < total; i++) {
-            let name_parts = values[i].split(/[ ]+/).filter(Boolean);
-            let final_name = ""
-            for (let j=0; j<name_parts.length; j++) {
-                final_name += name_parts + " "
-            }
-            final_name = final_name.slice(0,-1)
-            directors.push(final_name)
-        }
-        document.getElementById("director").value = JSON.stringify(directors)
+        let values = document.querySelector("#director").value.split(/[,]+/)
+        // let total = values.length
+        // let directors = []
+        // for (let i = 0; i < total; i++) {
+        //     let name_parts = values[i].split(/[ ]+/).filter(Boolean);
+        //     console.log(name_parts)
+        //     let final_name = ""
+        //     for (let j=0; j<name_parts.length; j++) {
+        //         final_name += name_parts + " "
+        //     }
+        //     final_name = final_name.slice(0,-1)
+        //     directors.push(final_name)
+        // }
+        document.getElementById("director").value = JSON.stringify(values)
     }
 
     function generalize_tags() {
-        let values = document.querySelector("#tags").value.split(/[, ]+/).filter(Boolean);
-        let total = values.length
-        let tags = []
-        for (let i = 0; i < total; i++) {
-            tags.push(values[i])
-        }
-        document.getElementById("tags").value = JSON.stringify(tags)
+        let values = document.querySelector("#tags").value.split(/[,]+/)
+        // let total = values.length
+        // let tags = []
+        // for (let i = 0; i < total; i++) {
+        //     tags.push(values[i])
+        // }
+        document.getElementById("tags").value = JSON.stringify(values)
     }
 
     function generalize_actors() {
