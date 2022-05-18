@@ -41,6 +41,7 @@
     .button {
       @include mixins.button-style();
       width: 100%;
+      justify-content: center;
     }
     .button:hover,
     .button:focus {
