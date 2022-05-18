@@ -90,7 +90,7 @@ document.querySelector("header").innerHTML = `
                     </a>
                 </div>
                 <div>
-                    <a href="../../pages/user/watch_later.html" class="account-container">
+                    <a href="../../pages/user/watch_later.html">
                         <span class="cuteicon ti-heart"></span>
                         Watch Later
                     </a>
