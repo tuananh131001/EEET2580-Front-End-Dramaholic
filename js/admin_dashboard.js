@@ -29,7 +29,7 @@ function reloadDatabase() {
   if (confirm(text) == true) {
     alert("Database is reloading. Please dont press refresh button too soon");
     fetch(
-      "https://dramaholic.herokuapp.com/api/movies/loadDatabase?ko=200&g=200&ja=200",
+      "https://articulate-bot-415803.as.r.appspot.com/api/movies/loadDatabase?ko=50&g=50&ja=50",
       {
         method: "POST",
       }
@@ -39,11 +39,11 @@ function reloadDatabase() {
 
 async function getTotalPages(mode) {
   if (mode == "search") {
-    let res = await fetch( `https://dramaholic.herokuapp.com/api/movies/search?title=` +current_search)
+    let res = await fetch( `https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=` +current_search)
     const {totalPages} = await res.json()
     total_pages_search = totalPages
   } else {
-    let res = await fetch("https://dramaholic.herokuapp.com/api/movies")
+    let res = await fetch("https://articulate-bot-415803.as.r.appspot.com/api/movies")
     const {totalPages} = await res.json()
     total_pages = totalPages
   }
@@ -77,7 +77,7 @@ function checkNext(mode) {
 // function checkNext(mode) {
 //   if (mode == "search") {
 //     fetch(
-//       `https://dramaholic.herokuapp.com/api/movies/search?title=` +
+//       `https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=` +
 //         current_search
 //     )
 //       .then((respone) => respone.json())
@@ -87,7 +87,7 @@ function checkNext(mode) {
 //         else next_btn_search.removeAttribute("hidden");
 //       });
 //   } else {
-//     fetch("https://dramaholic.herokuapp.com/api/movies")
+//     fetch("https://articulate-bot-415803.as.r.appspot.com/api/movies")
 //       .then((respone) => respone.json())
 //       .then((data) => {
 //         if (current_start_index + pagi_range > data.totalPages)
@@ -189,8 +189,8 @@ function SetupPagination(mode, end_index) {
 async function getMovieList(mode, isNew) {
   let url =
     mode == "search"
-      ? `https://dramaholic.herokuapp.com/api/movies/search?title=${current_search}&page=${current_page_search}`
-      : `https://dramaholic.herokuapp.com/api/movies?page=${current_page}`;
+      ? `https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=${current_search}&page=${current_page_search}`
+      : `https://articulate-bot-415803.as.r.appspot.com/api/movies?page=${current_page}`;
   const res = await fetch(url);
   const { content, totalPages } = await res.json();
 
@@ -219,7 +219,7 @@ async function getMovieList(mode, isNew) {
 
 // function displayMovieList(isNew) {
 //   list_element.innerHTML = "";
-//   fetch("https://dramaholic.herokuapp.com/api/movies?page=" + current_page)
+//   fetch("https://articulate-bot-415803.as.r.appspot.com/api/movies?page=" + current_page)
 //     .then((respone) => respone.json())
 //     .then(({ content }) => {
 //       items = [];
@@ -270,7 +270,7 @@ function createDivMovie(x) {
 
     if (confirm(text) == true) {
       const response = await fetch(
-        "https://dramaholic.herokuapp.com/api/movies/" + x.dbID,
+        "https://articulate-bot-415803.as.r.appspot.com/api/movies/" + x.dbID,
         {
           method: "DELETE",
         }
@@ -293,7 +293,7 @@ function createDivMovie(x) {
 // // Search Function
 // async function getMovieListSearch(title) {
 //   const url = await fetch(
-//     "https://dramaholic.herokuapp.com/api/movies/search?title=" + title
+//     "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=" + title
 //   );
 //   const { content } = await url.json();
 //   list_element_search.innerHTML = "";
@@ -306,7 +306,7 @@ function createDivMovie(x) {
 
 // async function getMovieListSearch(isNew) {
 //   const url = await fetch(
-//     "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+//     "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=" +
 //       current_search +
 //       "&page=" +
 //       current_page_search

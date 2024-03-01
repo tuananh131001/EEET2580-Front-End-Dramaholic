@@ -102,11 +102,11 @@ async function setSwiper() {
   });
 }
 let movieArray = [
-  "https://dramaholic.herokuapp.com/api/movies?sort=rating,desc",
-  "https://dramaholic.herokuapp.com/api/movies?sort=date,desc",
-  "https://dramaholic.herokuapp.com/api/movies/search?genre=Drama&sort=date,desc",
-  "https://dramaholic.herokuapp.com/api/movies/search?genre=Animation",
-  "https://dramaholic.herokuapp.com/api/movies/search?country=ko&sort=date,desc",
+  "https://articulate-bot-415803.as.r.appspot.com/api/movies?sort=rating,desc",
+  "https://articulate-bot-415803.as.r.appspot.com/api/movies?sort=date,desc",
+  "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?genre=Drama&sort=date,desc",
+  "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?genre=Animation",
+  "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?country=ko&sort=date,desc",
 ];
 let movieListTitle = [
   "Highest Rating",
@@ -163,9 +163,21 @@ async function getBillboardVideo() {
   const movieBillboard = [99966, 76662, 2778, 1396];
   const random = Math.floor(Math.random() * movieBillboard.length);
   const url = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/" + movieBillboard[random]
+    "https://articulate-bot-415803.as.r.appspot.com/api/movies/" + movieBillboard[random]
   );
-  const movie = await url.json();
+
+  let movie = await url.json();
+
+  console.log(movie);
+
+  if (movie == null || movie.href == null || movie.title == null) {
+    movie = {
+      href: "https://www.youtube.com/watch?v=JfVOs4VSpmA",
+      title: "SPIDER-MAN: NO WAY HOME",
+      description:
+        "For the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. When he enlists Doctor Strange's help to restore his secret, the spell tears a hole in their world, releasing the most powerful villains who've ever fought a Spider-Man in any universe. Now, Peter will have to overcome his greatest challenge yet, which will not only forever alter his own future but the future of the Multiverse."
+    }
+  }
 
   const videoContainer = document.querySelector(".billboard-video");
   const videoElement = document.createElement("iframe");

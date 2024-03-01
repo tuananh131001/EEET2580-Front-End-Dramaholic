@@ -359,7 +359,7 @@
       let current_user = localStorage.getItem('UserID')
       current_user === null ? current_user = sessionStorage.getItem('UserID') : null;
 
-      fetch(`https://dramaholic.herokuapp.com/api/customers/${current_user}`)
+      fetch(`https://articulate-bot-415803.as.r.appspot.com/api/customers/${current_user}`)
       .then((response) => response.json())
       .then((user) => {
           user_username.innerHTML = user.username
@@ -417,7 +417,7 @@
 
       async function checkUniqueUsername(name) {
         console.log(name)
-        let response = await fetch("https://dramaholic.herokuapp.com/api/customers/")
+        let response = await fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/")
         const {content} = await response.json()
         for (let i=0;i < content.length; i++) {
           if (content[i].username == name && current_user != content[i].id) {
@@ -444,7 +444,7 @@
 
         if(modal_name_msg.innerHTML == '') {
           try {
-            let response = await fetch("https://dramaholic.herokuapp.com/api/customers/" + current_user, {
+            let response = await fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/" + current_user, {
                 method: 'PUT',
                 headers:{"Content-Type":"application/json"},
                 body: JSON.stringify(
@@ -520,7 +520,7 @@
           if (confirm(text) == true) {
               e.preventDefault()
               try {
-                await fetch("https://dramaholic.herokuapp.com/api/customers/"+ current_user, {
+                await fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/"+ current_user, {
                 method: "PUT",
                 headers:{"Content-Type":"application/json"},
                 body: JSON.stringify({password:new_pw_modal.value})

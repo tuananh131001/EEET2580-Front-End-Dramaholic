@@ -131,7 +131,7 @@ async function getES(data) {
 }
 
 async function getTrending() {
-  // const reponse = await fetch("https://dramaholic.herokuapp.com/api/movies");
+  // const reponse = await fetch("https://articulate-bot-415803.as.r.appspot.com/api/movies");
   // const data = await reponse.json();
   // const totalPages = await data.totalPages;
   // const billboardVideo = await getBillboardVideo();
@@ -141,13 +141,13 @@ async function getTrending() {
   //   pageArray.map(async (url) => {
   await Promise.all([
     fetch(
-      "https://dramaholic.herokuapp.com/api/movies/search?country=ko&size=10"
+      "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?country=ko&size=10"
     ).then((resp) => getKorea(resp)),
     fetch(
-      "https://dramaholic.herokuapp.com/api/movies/search?country=en&size=10"
+      "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?country=en&size=10"
     ).then((resp) => getEN(resp)),
     fetch(
-      "https://dramaholic.herokuapp.com/api/movies/search?country=es&size=10"
+      "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?country=es&size=10"
     ).then((resp) => getES(resp)),
   ])
     .then(() => {

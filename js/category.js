@@ -69,11 +69,11 @@ async function getCountry() {
 
   //make links to fetch
   const { totalPages } = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies"
+    "https://articulate-bot-415803.as.r.appspot.com/api/movies"
   ).then((res) => res.json());
   let urls = [];
   for (let i = 0; i < totalPages; i++) {
-    urls.push(`https://dramaholic.herokuapp.com/api/movies?page=${i}`);
+    urls.push(`https://articulate-bot-415803.as.r.appspot.com/api/movies?page=${i}`);
   }
 
   //get all country codes we have
@@ -99,7 +99,7 @@ async function getCountry() {
 
 async function getTotalPages(mode) {
     let res = await fetch(
-      "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
+      "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?genre=" +
         encodeURIComponent(category.value) +
         "&country=" +
         encodeURIComponent(countries.value) +
@@ -185,7 +185,7 @@ function isEmpty(value) {
 }
 async function displayCards(isNew) {
   const res = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?genre=" +
+    "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?genre=" +
       encodeURIComponent(category.value) +
       "&country=" +
       encodeURIComponent(countries.value) +

@@ -126,7 +126,7 @@
           username: usernameValue,
           password: pass,
         });
-        fetch("https://dramaholic.herokuapp.com/api/customers/login", {
+        fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/login", {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: dataToSend,
@@ -165,7 +165,7 @@
       }
 
       const UserIdRemember = localStorage.getItem("UserIDRemember");
-      fetch("https://dramaholic.herokuapp.com/api/customers/" + UserIdRemember)
+      fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/" + UserIdRemember)
         .then((res) => res.json())
         .then(({ username, password }) => {
           if (username) {

@@ -3,7 +3,7 @@ if (user == "" || user == null) {
   window.location.replace("../../index.html");
 } else {
   // let current_user = sessionStorage.getItem('UserID')
-  fetch(`https://dramaholic.herokuapp.com/api/customers/${user}`)
+  fetch(`https://articulate-bot-415803.as.r.appspot.com/api/customers/${user}`)
     .then((response) => response.json())
     .then((user) => {
       let insertname = document.querySelectorAll(
@@ -94,7 +94,7 @@ async function getWatchLaterList(isNew) {
   //if get movie for the first time
   if (isNew) {
     const url = await fetch(
-      "https://dramaholic.herokuapp.com/api/customers/" + userID + "/watchLater"
+      "https://articulate-bot-415803.as.r.appspot.com/api/customers/" + userID + "/watchLater"
     );
     const { _embedded } = await url.json();
     const { movies } = await _embedded;

@@ -1,5 +1,5 @@
 const closeVideo = document.querySelector(".close-video");
-let originalURL = "https://dramaholic.herokuapp.com/api/movies/";
+let originalURL = "https://articulate-bot-415803.as.r.appspot.com/api/movies/";
 
 let id = new URLSearchParams(location.search).get("dbid");
 let userId = JSON.parse(localStorage.getItem("UserID"));
@@ -7,7 +7,7 @@ let film_title = "";
 let film_youtube = "";
 var fetchingURL = originalURL + id;
 var fetchingURL_watch_later =
-  "https://dramaholic.herokuapp.com/api/customers/" + userId + "/watchLater";
+  "https://articulate-bot-415803.as.r.appspot.com/api/customers/" + userId + "/watchLater";
 
 //check water_later list
 if (userId != null) {
@@ -126,7 +126,7 @@ function handleDelteComment(commentId, username, password) {
     username: username,
     password: password,
   });
-  fetch("https://dramaholic.herokuapp.com/api/comments/" + commentId, {
+  fetch("https://articulate-bot-415803.as.r.appspot.com/api/comments/" + commentId, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: dataToSend,
@@ -136,7 +136,7 @@ function handleDelteComment(commentId, username, password) {
 }
 async function getInfomationMovie() {
   const id = new URLSearchParams(location.search).get("dbid");
-  const url = await fetch("https://dramaholic.herokuapp.com/api/movies/" + id);
+  const url = await fetch("https://articulate-bot-415803.as.r.appspot.com/api/movies/" + id);
   const json = await url.json();
   getComments(json.comments);
 }
@@ -146,7 +146,7 @@ function handleUpvote(commentId, username, password) {
     password: password,
   });
   fetch(
-    "https://dramaholic.herokuapp.com/api/comments/" + commentId + "/vote",
+    "https://articulate-bot-415803.as.r.appspot.com/api/comments/" + commentId + "/vote",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -214,7 +214,7 @@ function getComments(commentList) {
       : (upvoteButton.style.color = "white");
     upvoteButton.className = "fa-solid fa-thumbs-up vote";
     upvoteButton.addEventListener("click", (e) => {
-      let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+      let originalURL = "https://articulate-bot-415803.as.r.appspot.com/api/customers/";
       let userID = JSON.parse(localStorage.getItem("UserID"));
       fetch(originalURL + userID)
         .then((response) => response.json())
@@ -231,7 +231,7 @@ const form = document.forms["comment-section"];
 form.addEventListener("submit", handleSubmitComment);
 function handleSubmitComment(e) {
   e.preventDefault();
-  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let originalURL = "https://articulate-bot-415803.as.r.appspot.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   userID == null ? (window.location.href = "../user/login.html") : null;
   let messageMovie;
@@ -250,7 +250,7 @@ function handleSubmitComment(e) {
         },
         movie: { dbID: movieID },
       });
-      fetch("https://dramaholic.herokuapp.com/api/comments", {
+      fetch("https://articulate-bot-415803.as.r.appspot.com/api/comments", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: dataToSend,
@@ -299,7 +299,7 @@ function stop_movie() {
 }
 // Watch Later
 function add_history() {
-  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let originalURL = "https://articulate-bot-415803.as.r.appspot.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
@@ -314,7 +314,7 @@ function add_history() {
           password: json.password,
           dbID: movieID,
         });
-        fetch("https://dramaholic.herokuapp.com/api/customers/history", {
+        fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/history", {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: dataToSend,
@@ -325,7 +325,7 @@ function add_history() {
   }
 }
 function add_watch_later() {
-  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let originalURL = "https://articulate-bot-415803.as.r.appspot.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
@@ -341,7 +341,7 @@ function add_watch_later() {
           password: json.password,
           dbID: movieID,
         });
-        fetch("https://dramaholic.herokuapp.com/api/customers/watchlater", {
+        fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/watchlater", {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: dataToSend,
@@ -356,7 +356,7 @@ function add_watch_later() {
   }
 }
 function delete_watch_later() {
-  let originalURL = "https://dramaholic.herokuapp.com/api/customers/";
+  let originalURL = "https://articulate-bot-415803.as.r.appspot.com/api/customers/";
   let userID = JSON.parse(localStorage.getItem("UserID"));
   let movieID = new URLSearchParams(location.search).get("dbid");
   var fetchingURL = originalURL + userID;
@@ -371,7 +371,7 @@ function delete_watch_later() {
           password: json.password,
           dbID: movieID,
         });
-        fetch("https://dramaholic.herokuapp.com/api/customers/watchlater", {
+        fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/watchlater", {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: dataToSend,

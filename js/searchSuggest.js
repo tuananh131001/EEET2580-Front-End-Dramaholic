@@ -21,7 +21,7 @@ let total_pages = 0;
 
 async function getTotalPages() {
   let res = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+    "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=" +
       current_search +
       "&page=" +
       current_page
@@ -112,7 +112,7 @@ function openSearch() {
 
 async function getMovieListSearch(isNew) {
   const url = await fetch(
-    "https://dramaholic.herokuapp.com/api/movies/search?title=" +
+    "https://articulate-bot-415803.as.r.appspot.com/api/movies/search?title=" +
       current_search +
       "&page=" +
       current_page

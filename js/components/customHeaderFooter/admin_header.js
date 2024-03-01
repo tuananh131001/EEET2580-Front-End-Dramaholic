@@ -4,7 +4,7 @@ if (user == "" || user == null) {
 }
 else {
 // let current_user = sessionStorage.getItem('UserID')
-fetch(`https://dramaholic.herokuapp.com/api/customers/${user}`)
+fetch(`https://articulate-bot-415803.as.r.appspot.com/api/customers/${user}`)
 .then((response) => response.json())
 .then((user) => {
     let insertname = document.querySelectorAll(".navigation-menu-profile-name")

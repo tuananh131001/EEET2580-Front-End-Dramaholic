@@ -208,7 +208,7 @@
 
     let current_movie = new URLSearchParams(location.search).get('dbid');
     console.log(current_movie)
-    fetch(`https://dramaholic.herokuapp.com/api/movies/${current_movie}`)
+    fetch(`https://articulate-bot-415803.as.r.appspot.com/api/movies/${current_movie}`)
     .then(response => response.json())
     .then(data => {
         document.querySelector("#title").value = data.title
@@ -255,7 +255,7 @@
         let text = `Are you sure to delete movie "${document.querySelector("#title").value}"?`
         if (confirm(text) == true) {
         const response = await fetch(
-        "https://dramaholic.herokuapp.com/api/movies/" + current_movie,
+        "https://articulate-bot-415803.as.r.appspot.com/api/movies/" + current_movie,
         {
             method: "DELETE",
         }
@@ -402,7 +402,7 @@
         
 
         try {
-        let response = await fetch('https://dramaholic.herokuapp.com/api/movies/'+current_movie, {
+        let response = await fetch('https://articulate-bot-415803.as.r.appspot.com/api/movies/'+current_movie, {
         method: 'PUT',
         headers: {"Content-Type":"application/json"},
         body: data
@@ -414,7 +414,7 @@
                 location.reload();
             }
             else {
-                console.log('https://dramaholic.herokuapp.com/api/movies/'+current_movie)
+                console.log('https://articulate-bot-415803.as.r.appspot.com/api/movies/'+current_movie)
             alert("Sorry, update movie failed")
             }
         })

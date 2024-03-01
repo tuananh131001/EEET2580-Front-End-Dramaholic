@@ -45,7 +45,7 @@ if (isLogin || isLoginTemp) {
   } else {
     userid = sessionStorage.getItem("UserID");
   }
-  fetch("https://dramaholic.herokuapp.com/api/customers/" + userid)
+  fetch("https://articulate-bot-415803.as.r.appspot.com/api/customers/" + userid)
     .then((res) => res.json())
     .then(({ username , admin }) => {
       const accountName = document.querySelectorAll(
